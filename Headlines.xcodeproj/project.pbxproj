@@ -13,7 +13,6 @@
 		675A81EC1D6BF6E8000DC680 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 675A81EA1D6BF6E8000DC680 /* LaunchScreen.storyboard */; };
 		675A81F71D6BF6E8000DC680 /* HeadlinesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A81F61D6BF6E8000DC680 /* HeadlinesTests.swift */; };
 		675A82021D6BF6E8000DC680 /* HeadlinesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A82011D6BF6E8000DC680 /* HeadlinesUITests.swift */; };
-		67FD84DD1D6BF85D00BACAFC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD84D91D6BF85D00BACAFC /* DetailViewController.swift */; };
 		67FD84DE1D6BF85D00BACAFC /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD84DA1D6BF85D00BACAFC /* MasterViewController.swift */; };
 		67FD84E01D6BF87900BACAFC /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD84DF1D6BF87900BACAFC /* NewsService.swift */; };
 		CB5776E0C1E4A0AD0C481A5C /* Pods_Headlines.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 884A5BFA52E8811A2C5A6A7D /* Pods_Headlines.framework */; };
@@ -49,7 +48,6 @@
 		675A81FD1D6BF6E8000DC680 /* HeadlinesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeadlinesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		675A82011D6BF6E8000DC680 /* HeadlinesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlinesUITests.swift; sourceTree = "<group>"; };
 		675A82031D6BF6E8000DC680 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		67FD84D91D6BF85D00BACAFC /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		67FD84DA1D6BF85D00BACAFC /* MasterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
 		67FD84DF1D6BF87900BACAFC /* NewsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
 		76124FBA967C0DCF6FC87B1F /* Pods-Headlines.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Headlines.release.xcconfig"; path = "Pods/Target Support Files/Pods-Headlines/Pods-Headlines.release.xcconfig"; sourceTree = "<group>"; };
@@ -149,7 +147,6 @@
 		67FD84D81D6BF85D00BACAFC /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				67FD84D91D6BF85D00BACAFC /* DetailViewController.swift */,
 				67FD84DA1D6BF85D00BACAFC /* MasterViewController.swift */,
 			);
 			path = Controllers;
@@ -387,7 +384,6 @@
 				67FD84DE1D6BF85D00BACAFC /* MasterViewController.swift in Sources */,
 				675A81E01D6BF6E8000DC680 /* AppDelegate.swift in Sources */,
 				67FD84E01D6BF87900BACAFC /* NewsService.swift in Sources */,
-				67FD84DD1D6BF85D00BACAFC /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
