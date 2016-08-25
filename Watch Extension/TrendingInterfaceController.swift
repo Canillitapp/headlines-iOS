@@ -12,12 +12,12 @@ import SwiftyJSON
 
 class TrendingInterfaceController: WKInterfaceController {
     
-    var topics: [String]?
+    var data: [String : AnyObject]?
     
     @IBOutlet var trendingTable: WKInterfaceTable!
 
     func requestTrendingTopicsWithDate (date: NSDate,
-                                        success: ((keywords: [String]?) -> ())?,
+                                        success: ((result: [String : AnyObject]?) -> ())?,
                                         fail: ((error: NSError) -> ())?) {
         
         let calendar = NSCalendar.currentCalendar()
@@ -42,7 +42,23 @@ class TrendingInterfaceController: WKInterfaceController {
             }
             
             let json = JSON(data: d)
-            success?(keywords: json["keywords"].arrayValue.map { $0.string!})
+            
+            var res = [String : AnyObject]()
+            res["keywords"] = json["keywords"].arrayValue.map {$0.string!}
+            
+            var topics = [String : [News]]()
+            for (k, t) in json["news"] {
+                var a = [News]()
+                
+                for (_, n) in t {
+                    let news = News(json: n)
+                    a.append(news)
+                }
+                topics[k] = a
+            }
+            res["news"] = topics
+            
+            success?(result: res)
         })
 
         // do whatever you need with the task e.g. run
@@ -52,25 +68,25 @@ class TrendingInterfaceController: WKInterfaceController {
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        requestTrendingTopicsWithDate(NSDate(), success: { (keywords) in
-            self.topics = keywords
-            
-            guard let t = self.topics else {
-                return
-            }
-            
-            self.trendingTable.setNumberOfRows(t.count, withRowType: "TrendingRow")
-            
-            for (index, topic) in t.enumerate() {
-                let row = self.trendingTable.rowControllerAtIndex(index) as! TrendingRowController
-                row.titleLabel.setText(topic)
-            }
-        }, fail: nil)
     }
 
     override func willActivate() {
-        // This method is called when watch view controller is about to be visible to user
         super.willActivate()
+        requestTrendingTopicsWithDate(NSDate(), success: { (result) in
+            self.data = result
+            
+            guard let keywords = self.data?["keywords"] as? [String] else {
+                return
+            }
+            
+            self.trendingTable.setNumberOfRows(keywords.count, withRowType: "TrendingRow")
+            
+            for (index, topic) in keywords.enumerate() {
+                let row = self.trendingTable.rowControllerAtIndex(index) as! TrendingRowController
+                row.titleLabel.setText(topic)
+            }
+            }, fail: nil)
+        
     }
 
     override func didDeactivate() {
