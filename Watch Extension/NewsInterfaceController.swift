@@ -23,10 +23,12 @@ class NewsInterfaceController: WKInterfaceController {
             return
         }
         
-        self.setTitle(title)
-        self.newsTable.setNumberOfRows(news.count, withRowType: "NewsRow")
+        let sortedNews = news.sort { $0.date!.compare($1.date!) == .OrderedDescending }
         
-        for (index, n) in news.enumerate() {
+        self.setTitle(title)
+        self.newsTable.setNumberOfRows(sortedNews.count, withRowType: "NewsRow")
+        
+        for (index, n) in sortedNews.enumerate() {
             let row = self.newsTable.rowControllerAtIndex(index) as! NewsRowController
             row.titleLabel.setText(n.title)
             row.sourceLabel.setText(n.source)
