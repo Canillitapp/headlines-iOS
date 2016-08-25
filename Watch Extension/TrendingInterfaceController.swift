@@ -93,5 +93,15 @@ class TrendingInterfaceController: WKInterfaceController {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
+    
+    override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
+        guard let key = self.data?["keywords"]?[rowIndex] as? String,
+            news = self.data?["news"]?[key] as? [News] else {
+            return
+        }
+        
+        let context = ["title" : key, "elements" : news]
+        pushControllerWithName("News", context: context)
+    }
 
 }

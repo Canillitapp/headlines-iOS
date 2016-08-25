@@ -23,7 +23,7 @@ class News: NSObject {
         let timestamp = json["date"].doubleValue
         date = NSDate(timeIntervalSince1970: timestamp)
         
-        source = json["source"].string
+        source = json["source_name"].string
         super.init()
     }
 }

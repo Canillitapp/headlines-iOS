@@ -20,9 +20,9 @@
                                             </separator>
                                             <group width="107" alignment="left" id="2D7-IM-A0V">
                                                 <items>
-                                                    <label width="110" height="79.5" alignment="left" text="Macri" textAlignment="left" id="0BF-0n-XTO">
+                                                    <label width="1" height="79.5" alignment="left" text="Macri" textAlignment="left" id="0BF-0n-XTO">
                                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <fontDescription key="font" type="system" pointSize="20"/>
+                                                        <fontDescription key="font" type="system" weight="medium" pointSize="20"/>
                                                     </label>
                                                 </items>
                                                 <edgeInsets key="margins" left="4" right="0.0" top="0.0" bottom="0.0"/>
@@ -41,7 +41,65 @@
                     </connections>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="435" y="376"/>
+            <point key="canvasLocation" x="217" y="374"/>
+        </scene>
+        <!--News-->
+        <scene sceneID="K07-hC-XRn">
+            <objects>
+                <controller identifier="News" id="fp9-CU-C6f" customClass="NewsInterfaceController" customModule="Watch_Extension">
+                    <items>
+                        <table alignment="left" id="hI6-8W-c3R">
+                            <items>
+                                <tableRow identifier="NewsRow" id="Lpc-VQ-CHo" customClass="NewsRowController" customModule="Watch_Extension">
+                                    <group key="rootItem" width="1" height="0.0" alignment="left" spacing="0.0" id="kJj-fG-2o2">
+                                        <items>
+                                            <group width="1" alignment="left" id="afx-Yv-9MP">
+                                                <items>
+                                                    <separator height="1" alignment="left" id="8Y1-Ya-NJS">
+                                                        <color key="color" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </separator>
+                                                    <group width="118" alignment="left" layout="vertical" id="FlQ-Wl-aJm">
+                                                        <items>
+                                                            <label width="1" alignment="left" text="Lorem ipsum dolor sit met" textAlignment="left" numberOfLines="7" minimumScaleFactor="0.5" id="FOF-6L-QUC">
+                                                                <accessibilityTraits key="accessibilityTraits" none="YES"/>
+                                                                <fontDescription key="font" type="system" pointSize="14"/>
+                                                            </label>
+                                                            <group width="1" alignment="left" spacing="5" id="l4G-yR-X1i">
+                                                                <items>
+                                                                    <label alignment="left" text="UN DIARIO" minimumScaleFactor="0.5" id="vOl-ZI-RNo">
+                                                                        <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <fontDescription key="font" type="system" weight="medium" pointSize="13"/>
+                                                                    </label>
+                                                                    <label alignment="left" text="8:59 PM" minimumScaleFactor="0.5" id="VWK-gr-tHv">
+                                                                        <color key="textColor" red="0.40000000600000002" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                                        <fontDescription key="font" type="system" pointSize="13"/>
+                                                                    </label>
+                                                                </items>
+                                                            </group>
+                                                        </items>
+                                                        <edgeInsets key="margins" left="4" right="0.0" top="4" bottom="4"/>
+                                                    </group>
+                                                </items>
+                                                <edgeInsets key="margins" left="5" right="0.0" top="0.0" bottom="0.0"/>
+                                            </group>
+                                        </items>
+                                        <edgeInsets key="margins" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
+                                    </group>
+                                    <connections>
+                                        <outlet property="sourceLabel" destination="vOl-ZI-RNo" id="kXq-pE-JUy"/>
+                                        <outlet property="timeLabel" destination="VWK-gr-tHv" id="brX-Ta-yAz"/>
+                                        <outlet property="titleLabel" destination="FOF-6L-QUC" id="qoH-sU-zZo"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <connections>
+                        <outlet property="newsTable" destination="hI6-8W-c3R" id="lIV-ND-QYK"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="517" y="374"/>
         </scene>
     </scenes>
 </document>
