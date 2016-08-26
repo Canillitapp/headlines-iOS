@@ -13,7 +13,9 @@ import SwiftyJSON
 class TrendingInterfaceController: WKInterfaceController {
     
     var data: [String : AnyObject]?
+    var lastFetch : NSDate?
     
+    @IBOutlet var loadingImageView: WKInterfaceImage!
     @IBOutlet var trendingTable: WKInterfaceTable!
 
     func requestTrendingTopicsWithDate (date: NSDate,
@@ -65,17 +67,25 @@ class TrendingInterfaceController: WKInterfaceController {
         task.resume()
 
     }
-
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    
+    func showLoadingIndicator(show: Bool) {
+        if show {
+            loadingImageView.setHidden(false)
+            loadingImageView.setImageNamed("Activity")
+            loadingImageView.startAnimatingWithImagesInRange(NSMakeRange(1, 15), duration: 1, repeatCount: 0)
+        } else {
+            self.loadingImageView.stopAnimating()
+            self.loadingImageView.setHidden(true)
+        }
     }
-
-    override func willActivate() {
-        super.willActivate()
+    
+    func fetchTrendingNews() {
+        showLoadingIndicator(true)
         requestTrendingTopicsWithDate(NSDate(), success: { (result) in
             self.data = result
             
             guard let keywords = self.data?["keywords"] as? [String] else {
+                self.showLoadingIndicator(false)
                 return
             }
             
@@ -85,8 +95,33 @@ class TrendingInterfaceController: WKInterfaceController {
                 let row = self.trendingTable.rowControllerAtIndex(index) as! TrendingRowController
                 row.titleLabel.setText(topic)
             }
+            self.showLoadingIndicator(false)
+            self.lastFetch = NSDate()
             }, fail: nil)
+    }
+
+    override func awakeWithContext(context: AnyObject?) {
+        super.awakeWithContext(context)
+    }
+
+    override func willActivate() {
+        super.willActivate()
         
+        var shouldUpdate = false
+        
+        if data == nil {
+            shouldUpdate = true
+        } else if let lf = lastFetch {
+            let timeInterval = NSDate().timeIntervalSinceDate(lf)
+            if timeInterval > 150 {
+                // 2.5 minutes
+                shouldUpdate = true
+            }
+        }
+        
+        if shouldUpdate {
+            fetchTrendingNews()
+        }
     }
 
     override func didDeactivate() {

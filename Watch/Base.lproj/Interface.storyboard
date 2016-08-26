@@ -10,6 +10,7 @@
             <objects>
                 <controller title="Trending" id="AgC-eL-Hgc" customClass="TrendingInterfaceController" customModule="Watch_Extension">
                     <items>
+                        <imageView width="1" alignment="left" image="Activity1" contentMode="center" id="ouY-iW-h4e"/>
                         <table alignment="left" id="Lk7-b8-nl7">
                             <items>
                                 <tableRow identifier="TrendingRow" id="3ah-wf-mcN" customClass="TrendingRowController" customModule="Watch_Extension">
@@ -37,6 +38,7 @@
                         </table>
                     </items>
                     <connections>
+                        <outlet property="loadingImageView" destination="ouY-iW-h4e" id="pby-si-IqY"/>
                         <outlet property="trendingTable" destination="Lk7-b8-nl7" id="gfZ-aL-WfT"/>
                     </connections>
                 </controller>
