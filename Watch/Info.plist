@@ -28,7 +28,7 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>WKCompanionAppBundleIdentifier</key>
-	<string>ar.com.betzerra.Headlines</string>
+	<string>ar.com.betzerra.headlines</string>
 	<key>WKWatchKitApp</key>
 	<true/>
 </dict>

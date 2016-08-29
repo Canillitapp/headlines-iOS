@@ -396,6 +396,7 @@
 				TargetAttributes = {
 					6719DA5E1D6D143E00D1E214 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 2334RGUT2P;
 					};
 					6719DA6A1D6D143E00D1E214 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -403,6 +404,7 @@
 					};
 					675A81DB1D6BF6E8000DC680 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 2334RGUT2P;
 					};
 					675A81F11D6BF6E8000DC680 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -686,10 +688,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = Watch_Extension;
 				INFOPLIST_FILE = Watch/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.Headlines.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.headlines.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -702,10 +705,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = Watch_Extension;
 				INFOPLIST_FILE = Watch/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.Headlines.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.headlines.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -722,7 +726,7 @@
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.Headlines.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.headlines.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
@@ -740,7 +744,7 @@
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.Headlines.watchkitapp.watchkitextension;
+				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.headlines.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
@@ -838,9 +842,10 @@
 			baseConfigurationReference = CBCA2736BC05D788D049F5CF /* Pods-Headlines.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Headlines/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.Headlines;
+				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.headlines;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -850,9 +855,10 @@
 			baseConfigurationReference = 76124FBA967C0DCF6FC87B1F /* Pods-Headlines.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = Headlines/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.Headlines;
+				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.headlines;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

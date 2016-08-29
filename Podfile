@@ -6,7 +6,6 @@ use_frameworks!
 target 'Headlines' do
   platform :ios, '9.0'
   pod 'SwiftyJSON'
-  pod 'Alamofire'
 end
 
 target 'Watch Extension' do
