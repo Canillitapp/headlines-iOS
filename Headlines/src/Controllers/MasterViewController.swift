@@ -10,19 +10,19 @@ import UIKit
 
 class MasterViewController: UITableViewController {
 
-    var objects = [AnyObject]()
-
+    var keywords = [String]()
+    let newsService = NewsService()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let newsService = NewsService()
-        newsService.trendingNews { (result) in
-            guard let obj = result!["keywords"] as? [String] else {
+        newsService.requestTrendingTopicsWithDate(NSDate(), success: { (result) in
+            guard let keywords = result?["keywords"] as? [String] else {
                 return
             }
-            self.objects = obj
+            
+            self.keywords = keywords
             self.tableView.reloadData()
-        }
+        }, fail: nil)
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -37,13 +37,13 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return objects.count
+        return keywords.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
 
-        cell.textLabel!.text = objects[indexPath.row] as? String
+        cell.textLabel!.text = keywords[indexPath.row]
         return cell
     }
 

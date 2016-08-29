@@ -8,65 +8,15 @@
 
 import WatchKit
 import Foundation
-import SwiftyJSON
 
 class TrendingInterfaceController: WKInterfaceController {
     
     var data: [String : AnyObject]?
-    var lastFetch : NSDate?
+    var lastFetch: NSDate?
+    let newsService = NewsService()
     
     @IBOutlet var loadingImageView: WKInterfaceImage!
     @IBOutlet var trendingTable: WKInterfaceTable!
-
-    func requestTrendingTopicsWithDate (date: NSDate,
-                                        success: ((result: [String : AnyObject]?) -> ())?,
-                                        fail: ((error: NSError) -> ())?) {
-        
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Day, .Month, .Year], fromDate: date)
-        
-        let datePath = String(format: "%d-%02d-%02d", components.year, components.month, components.day)
-        
-        let url = NSURL(string: "http://45.55.247.52:4567/trending/\(datePath)")
-        let request = NSURLRequest(URL: url!)
-
-        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-        let session = NSURLSession(configuration: config)
-
-        let task = session.dataTaskWithRequest(request, completionHandler: {(data, response, error) in
-            if let e = error {
-                fail?(error: e)
-                return
-            }
-
-            guard let d = data else {
-                return
-            }
-            
-            let json = JSON(data: d)
-            
-            var res = [String : AnyObject]()
-            res["keywords"] = json["keywords"].arrayValue.map {$0.string!}
-            
-            var topics = [String : [News]]()
-            for (k, t) in json["news"] {
-                var a = [News]()
-                
-                for (_, n) in t {
-                    let news = News(json: n)
-                    a.append(news)
-                }
-                topics[k] = a
-            }
-            res["news"] = topics
-            
-            success?(result: res)
-        })
-
-        // do whatever you need with the task e.g. run
-        task.resume()
-
-    }
     
     func showLoadingIndicator(show: Bool) {
         if show {
@@ -81,7 +31,7 @@ class TrendingInterfaceController: WKInterfaceController {
     
     func fetchTrendingNews() {
         showLoadingIndicator(true)
-        requestTrendingTopicsWithDate(NSDate(), success: { (result) in
+        newsService.requestTrendingTopicsWithDate(NSDate(), success: { (result) in
             self.data = result
             
             guard let keywords = self.data?["keywords"] as? [String] else {
