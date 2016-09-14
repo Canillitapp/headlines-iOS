@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-class NewsService : NSObject {
+class NewsService: NSObject {
     func requestTrendingTopicsWithDate (date: NSDate,
                                         count: Int,
                                         success: ((result: [String : AnyObject]?) -> ())?,
@@ -60,6 +60,5 @@ class NewsService : NSObject {
         
         // do whatever you need with the task e.g. run
         task.resume()
-        
     }
 }

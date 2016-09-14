@@ -6,6 +6,7 @@ use_frameworks!
 target 'Headlines' do
   platform :ios, '9.0'
   pod 'SwiftyJSON'
+  pod 'EBCardCollectionViewLayout'
 end
 
 target 'Watch Extension' do

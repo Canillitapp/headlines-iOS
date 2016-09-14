@@ -7,48 +7,54 @@
 //
 
 import UIKit
+import EBCardCollectionViewLayout
 
-class MasterViewController: UITableViewController {
+class MasterViewController: UICollectionViewController {
 
     var keywords = [String]()
+    var news = [String : [News]]()
     let newsService = NewsService()
 
+    private func setupCollectionView() {
+        guard let layout = self.collectionView?.collectionViewLayout as? EBCardCollectionViewLayout else {
+            return
+        }
+        
+        layout.offset = UIOffset(horizontal: 30, vertical: 0)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCollectionView()
+        
         newsService.requestTrendingTopicsWithDate(NSDate(), count:5, success: { (result) in
-            guard let keywords = result?["keywords"] as? [String] else {
+            guard let keywords = result?["keywords"] as? [String],
+                news = result?["news"] as? [String : [News]] else {
                 return
             }
             
             self.keywords = keywords
-            self.tableView.reloadData()
-        }, fail: nil)
+            self.news = news
+            self.collectionView?.reloadData()
+            
+            }, fail: { (error) in
+                print(error.localizedDescription)
+            })
     }
 
-    override func viewWillAppear(animated: Bool) {
-        self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
-        super.viewWillAppear(animated)
+    // MARK: - UICollectionView
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.keywords.count
     }
-
-    // MARK: - Table View
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return keywords.count
-    }
-
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-
-        cell.textLabel!.text = keywords[indexPath.row]
+    
+    override func collectionView(collectionView: UICollectionView,
+                                 cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as? KeywordCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        
+        let keyword = self.keywords[indexPath.row]
+        cell.titleLabel.text = keyword
         return cell
-    }
-
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
     }
 }
