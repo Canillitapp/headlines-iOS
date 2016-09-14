@@ -11,6 +11,7 @@ import SwiftyJSON
 
 class NewsService : NSObject {
     func requestTrendingTopicsWithDate (date: NSDate,
+                                        count: Int,
                                         success: ((result: [String : AnyObject]?) -> ())?,
                                         fail: ((error: NSError) -> ())?) {
         
@@ -19,7 +20,7 @@ class NewsService : NSObject {
         
         let datePath = String(format: "%d-%02d-%02d", components.year, components.month, components.day)
         
-        let url = NSURL(string: "http://45.55.247.52:4567/trending/\(datePath)")
+        let url = NSURL(string: "http://45.55.247.52:4567/trending/\(datePath)/\(count)")
         let request = NSURLRequest(URL: url!)
         
         let config = NSURLSessionConfiguration.defaultSessionConfiguration()

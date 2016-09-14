@@ -15,7 +15,7 @@ class MasterViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        newsService.requestTrendingTopicsWithDate(NSDate(), success: { (result) in
+        newsService.requestTrendingTopicsWithDate(NSDate(), count:5, success: { (result) in
             guard let keywords = result?["keywords"] as? [String] else {
                 return
             }

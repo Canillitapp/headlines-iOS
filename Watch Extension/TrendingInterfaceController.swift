@@ -31,7 +31,7 @@ class TrendingInterfaceController: WKInterfaceController {
     
     func fetchTrendingNews() {
         showLoadingIndicator(true)
-        newsService.requestTrendingTopicsWithDate(NSDate(), success: { (result) in
+        newsService.requestTrendingTopicsWithDate(NSDate(), count: 3, success: { (result) in
             self.data = result
             
             guard let keywords = self.data?["keywords"] as? [String] else {
