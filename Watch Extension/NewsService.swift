@@ -10,25 +10,25 @@ import Foundation
 import SwiftyJSON
 
 class NewsService: NSObject {
-    func requestTrendingTopicsWithDate (date: NSDate,
+    func requestTrendingTopicsWithDate (_ date: Date,
                                         count: Int,
-                                        success: ((result: [String : AnyObject]?) -> ())?,
-                                        fail: ((error: NSError) -> ())?) {
+                                        success: ((_ result: [String : Any]?) -> ())?,
+                                        fail: ((_ error: NSError) -> ())?) {
         
-        let calendar = NSCalendar.currentCalendar()
-        let components = calendar.components([.Day, .Month, .Year], fromDate: date)
+        let calendar = Calendar.current
+        let components = (calendar as NSCalendar).components([.day, .month, .year], from: date)
         
-        let datePath = String(format: "%d-%02d-%02d", components.year, components.month, components.day)
+        let datePath = String(format: "%d-%02d-%02d", components.year!, components.month!, components.day!)
         
-        let url = NSURL(string: "http://45.55.247.52:4567/trending/\(datePath)/\(count)")
-        let request = NSURLRequest(URL: url!)
+        let url = URL(string: "http://45.55.247.52:4567/trending/\(datePath)/\(count)")
+        let request = URLRequest(url: url!)
         
-        let config = NSURLSessionConfiguration.defaultSessionConfiguration()
-        let session = NSURLSession(configuration: config)
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
         
-        let task = session.dataTaskWithRequest(request, completionHandler: {(data, response, error) in
+        let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
             if let e = error {
-                fail?(error: e)
+                fail?(e as NSError)
                 return
             }
             
@@ -38,7 +38,7 @@ class NewsService: NSObject {
             
             let json = JSON(data: d)
             
-            var res = [String : AnyObject]()
+            var res = [String : Any]()
             res["keywords"] = json["keywords"].arrayValue.map {$0.string!}
             
             var topics = [String : [News]]()
@@ -51,10 +51,10 @@ class NewsService: NSObject {
                 }
                 topics[k] = a
             }
-            res["news"] = topics
+            res["news"] = topics as AnyObject?
             
-            dispatch_async(dispatch_get_main_queue(), { 
-                success?(result: res)                
+            DispatchQueue.main.async(execute: { 
+                success?(res)                
             })
         })
         

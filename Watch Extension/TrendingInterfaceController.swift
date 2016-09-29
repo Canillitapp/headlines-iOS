@@ -11,18 +11,18 @@ import Foundation
 
 class TrendingInterfaceController: WKInterfaceController {
     
-    var data: [String : AnyObject]?
-    var lastFetch: NSDate?
+    var data: [String : Any]?
+    var lastFetch: Date?
     let newsService = NewsService()
     
     @IBOutlet var loadingImageView: WKInterfaceImage!
     @IBOutlet var trendingTable: WKInterfaceTable!
     
-    func showLoadingIndicator(show: Bool) {
+    func showLoadingIndicator(_ show: Bool) {
         if show {
             loadingImageView.setHidden(false)
             loadingImageView.setImageNamed("Activity")
-            loadingImageView.startAnimatingWithImagesInRange(NSMakeRange(1, 15), duration: 1, repeatCount: 0)
+            loadingImageView.startAnimatingWithImages(in: NSMakeRange(1, 15), duration: 1, repeatCount: 0)
         } else {
             self.loadingImageView.stopAnimating()
             self.loadingImageView.setHidden(true)
@@ -31,7 +31,7 @@ class TrendingInterfaceController: WKInterfaceController {
     
     func fetchTrendingNews() {
         showLoadingIndicator(true)
-        newsService.requestTrendingTopicsWithDate(NSDate(), count: 3, success: { (result) in
+        newsService.requestTrendingTopicsWithDate(Date(), count: 3, success: { (result) in
             self.data = result
             
             guard let keywords = self.data?["keywords"] as? [String] else {
@@ -41,17 +41,17 @@ class TrendingInterfaceController: WKInterfaceController {
             
             self.trendingTable.setNumberOfRows(keywords.count, withRowType: "TrendingRow")
             
-            for (index, topic) in keywords.enumerate() {
-                let row = self.trendingTable.rowControllerAtIndex(index) as! TrendingRowController
+            for (index, topic) in keywords.enumerated() {
+                let row = self.trendingTable.rowController(at: index) as! TrendingRowController
                 row.titleLabel.setText(topic)
             }
             self.showLoadingIndicator(false)
-            self.lastFetch = NSDate()
+            self.lastFetch = Date()
             }, fail: nil)
     }
 
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
     }
 
     override func willActivate() {
@@ -62,7 +62,7 @@ class TrendingInterfaceController: WKInterfaceController {
         if data == nil {
             shouldUpdate = true
         } else if let lf = lastFetch {
-            let timeInterval = NSDate().timeIntervalSinceDate(lf)
+            let timeInterval = Date().timeIntervalSince(lf)
             if timeInterval > 150 {
                 // 2.5 minutes
                 shouldUpdate = true
@@ -79,14 +79,16 @@ class TrendingInterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
     
-    override func table(table: WKInterfaceTable, didSelectRowAtIndex rowIndex: Int) {
-        guard let key = self.data?["keywords"]?[rowIndex] as? String,
-            news = self.data?["news"]?[key] as? [News] else {
-            return
+    override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
+        guard let keys = data?["keywords"] as? [String],
+            let news = data?["news"] as? [String : Any],
+            let selectedNews = news[keys[rowIndex]] as? [News] else {
+                return
         }
         
-        let context = ["title" : key, "elements" : news]
-        pushControllerWithName("News", context: context)
+        let key = keys[rowIndex]
+        let context: [String : Any] = ["title" : key, "elements" : selectedNews]
+        pushController(withName: "News", context: context)
     }
 
 }

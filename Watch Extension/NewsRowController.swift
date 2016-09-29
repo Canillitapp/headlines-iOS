@@ -14,12 +14,12 @@ class NewsRowController: NSObject {
     @IBOutlet var sourceLabel: WKInterfaceLabel!
     @IBOutlet var timeLabel: WKInterfaceLabel!
     
-    var date: NSDate? {
+    var date: Date? {
         didSet {
             if let date = date {
-                let formatter = NSDateFormatter()
+                let formatter = DateFormatter()
                 formatter.dateFormat = "HH:mm"
-                let timeString = formatter.stringFromDate(date)
+                let timeString = formatter.string(from: date)
                 
                 timeLabel.setText(timeString)
             } else {
