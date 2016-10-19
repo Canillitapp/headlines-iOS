@@ -407,28 +407,30 @@
 				TargetAttributes = {
 					6719DA5E1D6D143E00D1E214 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = XC2G94P38M;
+						DevelopmentTeam = 2334RGUT2P;
 						ProvisioningStyle = Manual;
 					};
 					6719DA6A1D6D143E00D1E214 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = XC2G94P38M;
+						DevelopmentTeam = 2334RGUT2P;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
 					};
 					675A81DB1D6BF6E8000DC680 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = XC2G94P38M;
+						DevelopmentTeam = 2334RGUT2P;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Manual;
 					};
 					675A81F11D6BF6E8000DC680 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 2334RGUT2P;
 						LastSwiftMigration = 0800;
 						TestTargetID = 675A81DB1D6BF6E8000DC680;
 					};
 					675A81FC1D6BF6E8000DC680 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 2334RGUT2P;
 						LastSwiftMigration = 0800;
 						TestTargetID = 675A81DB1D6BF6E8000DC680;
 					};
@@ -710,13 +712,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = XC2G94P38M;
+				DEVELOPMENT_TEAM = 2334RGUT2P;
 				IBSC_MODULE = Watch_Extension;
 				INFOPLIST_FILE = Watch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.headlines.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "aebdfc60-84e1-40fc-af38-5ca41ee221d2";
-				PROVISIONING_PROFILE_SPECIFIER = "XC: *";
+				PROVISIONING_PROFILE = "e208e64e-208b-4885-a480-45cae99a3ba7";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: *";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -731,13 +733,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = XC2G94P38M;
+				DEVELOPMENT_TEAM = 2334RGUT2P;
 				IBSC_MODULE = Watch_Extension;
 				INFOPLIST_FILE = Watch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.headlines.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "aebdfc60-84e1-40fc-af38-5ca41ee221d2";
-				PROVISIONING_PROFILE_SPECIFIER = "XC: *";
+				PROVISIONING_PROFILE = "e208e64e-208b-4885-a480-45cae99a3ba7";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: *";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = 4;
@@ -752,13 +754,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = XC2G94P38M;
+				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.headlines.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE = "aebdfc60-84e1-40fc-af38-5ca41ee221d2";
-				PROVISIONING_PROFILE_SPECIFIER = "XC: *";
+				PROVISIONING_PROFILE = "e208e64e-208b-4885-a480-45cae99a3ba7";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: *";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -774,13 +776,13 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = XC2G94P38M;
+				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.headlines.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
-				PROVISIONING_PROFILE = "aebdfc60-84e1-40fc-af38-5ca41ee221d2";
-				PROVISIONING_PROFILE_SPECIFIER = "XC: *";
+				PROVISIONING_PROFILE = "e208e64e-208b-4885-a480-45cae99a3ba7";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: *";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 3.0;
@@ -885,14 +887,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = XC2G94P38M;
+				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = Headlines/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.headlines;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "aebdfc60-84e1-40fc-af38-5ca41ee221d2";
-				PROVISIONING_PROFILE_SPECIFIER = "XC: *";
+				PROVISIONING_PROFILE = "3d1397ac-793d-40a3-b851-1238d98cda9b";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: ar.com.betzerra.headlines";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -905,14 +907,14 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				DEVELOPMENT_TEAM = XC2G94P38M;
+				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = Headlines/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.headlines;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "aebdfc60-84e1-40fc-af38-5ca41ee221d2";
-				PROVISIONING_PROFILE_SPECIFIER = "XC: *";
+				PROVISIONING_PROFILE = "3d1397ac-793d-40a3-b851-1238d98cda9b";
+				PROVISIONING_PROFILE_SPECIFIER = "XC iOS: ar.com.betzerra.headlines";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -921,6 +923,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = HeadlinesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.HeadlinesTests;
@@ -934,6 +937,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = HeadlinesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.HeadlinesTests;
@@ -946,6 +950,7 @@
 		675A820D1D6BF6E8000DC680 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = HeadlinesUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.HeadlinesUITests;
@@ -958,6 +963,7 @@
 		675A820E1D6BF6E8000DC680 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = HeadlinesUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.HeadlinesUITests;
