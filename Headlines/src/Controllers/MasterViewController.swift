@@ -49,7 +49,8 @@ class MasterViewController: UICollectionViewController {
     
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? KeywordCollectionViewCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+            as? KeywordCollectionViewCell else {
             return UICollectionViewCell()
         }
         
