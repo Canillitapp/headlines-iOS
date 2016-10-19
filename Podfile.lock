@@ -1,15 +1,15 @@
 PODS:
   - EBCardCollectionViewLayout (0.2.0)
-  - SwiftyJSON (3.0.0)
+  - SwiftyJSON (3.1.1)
 
 DEPENDENCIES:
   - EBCardCollectionViewLayout
-  - SwiftyJSON (= 3.0.0)
+  - SwiftyJSON (= 3.1.1)
 
 SPEC CHECKSUMS:
   EBCardCollectionViewLayout: 83acdccba21001480f50e7d4f5547cbcfb75e1e7
-  SwiftyJSON: f57b2b44bc166617372d1c70773591fe9f0f5fd4
+  SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
 
-PODFILE CHECKSUM: f1e4883c2629309a130dbe5d5eb7131348b38951
+PODFILE CHECKSUM: 4b066eb411b18a315821a3135afa40fe751c8891
 
-COCOAPODS: 1.1.0.rc.2
+COCOAPODS: 1.0.1
