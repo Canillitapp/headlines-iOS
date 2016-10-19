@@ -18,7 +18,7 @@ class News: NSObject {
     
     init(json: JSON) {
         title = json["title"].string
-        url = json["url"].URL
+        url = json["url"].URL as NSURL?
         
         let timestamp = json["date"].doubleValue
         date = Date(timeIntervalSince1970: timestamp)
