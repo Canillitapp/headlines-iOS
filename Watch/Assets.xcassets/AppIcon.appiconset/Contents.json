@@ -61,12 +61,14 @@
     {
       "size" : "29x29",
       "idiom" : "watch",
+      "filename" : "Icon-29@2x-1.png",
       "role" : "companionSettings",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "watch",
+      "filename" : "Icon-29@3x-1.png",
       "role" : "companionSettings",
       "scale" : "3x"
     },
