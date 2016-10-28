@@ -13,15 +13,15 @@ class News: NSObject {
     
     var title: String?
     var url: NSURL?
-    var date: NSDate?
+    var date: Date?
     var source: String?
     
     init(json: JSON) {
         title = json["title"].string
-        url = json["url"].URL
+        url = json["url"].URL as NSURL?
         
         let timestamp = json["date"].doubleValue
-        date = NSDate(timeIntervalSince1970: timestamp)
+        date = Date(timeIntervalSince1970: timestamp)
         
         source = json["source_name"].string
         super.init()
