@@ -7,25 +7,23 @@
 //
 
 import UIKit
-import EBCardCollectionViewLayout
 
 class MasterViewController: UICollectionViewController {
 
     var keywords = [String]()
     var news = [String : [News]]()
     let newsService = NewsService()
-
-    fileprivate func setupCollectionView() {
-        guard let layout = self.collectionView?.collectionViewLayout as? EBCardCollectionViewLayout else {
-            return
-        }
-        
-        layout.offset = UIOffset(horizontal: 30, vertical: 0)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCollectionView()
+        
+        guard let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout,
+            let collectionViewSize = self.collectionView?.bounds.size else {
+            return
+        }
+        
+        flowLayout.minimumLineSpacing = 10
+        flowLayout.itemSize = CGSize(width: collectionViewSize.width - 20, height: 100)
         
         newsService.requestTrendingTopicsWithDate(Date(), count:5, success: { (result) in
             guard let keywords = result?["keywords"] as? [String],
@@ -42,20 +40,26 @@ class MasterViewController: UICollectionViewController {
             })
     }
 
-    // MARK: - UICollectionView
+    // MARK: - UICollectionViewDataSource
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.keywords.count
     }
     
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let keyword = self.keywords[(indexPath as NSIndexPath).row]
+        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-            as? KeywordCollectionViewCell else {
+            as? KeywordCollectionViewCell,
+            let keywordNews = self.news[keyword] as [News]?,
+            let firstNews = keywordNews.first else {
             return UICollectionViewCell()
         }
         
-        let keyword = self.keywords[(indexPath as NSIndexPath).row]
         cell.titleLabel.text = keyword
+        cell.bodyLabel.text = firstNews.title
+        cell.sourceLabel.text = firstNews.source
         return cell
     }
 }
