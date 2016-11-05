@@ -23,7 +23,7 @@ class MasterViewController: UICollectionViewController {
         }
         
         flowLayout.minimumLineSpacing = 10
-        flowLayout.itemSize = CGSize(width: collectionViewSize.width - 20, height: 100)
+        flowLayout.itemSize = CGSize(width: collectionViewSize.width - 20, height: 180)
         
         newsService.requestTrendingTopicsWithDate(Date(), count:5, success: { (result) in
             guard let keywords = result?["keywords"] as? [String],
@@ -57,9 +57,22 @@ class MasterViewController: UICollectionViewController {
             return UICollectionViewCell()
         }
         
+        if let newsDate = firstNews.date {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            dateFormatter.timeStyle = .none
+            cell.dateLabel.text = dateFormatter.string(from: newsDate)
+            
+            let timeFormatter = DateFormatter()
+            timeFormatter.dateStyle = .none
+            timeFormatter.timeStyle = .short
+            cell.timeLabel.text = timeFormatter.string(from: newsDate)
+        }
+
         cell.titleLabel.text = keyword
         cell.bodyLabel.text = firstNews.title
         cell.sourceLabel.text = firstNews.source
+        cell.newsQuantityLabel.text = "\(keywordNews.count) noticias"
         return cell
     }
 }
