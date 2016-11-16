@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,7 +14,7 @@
         <scene sceneID="pY4-Hu-kfo">
             <objects>
                 <navigationController title="Master" id="RMx-3f-FxP" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="Pmd-2v-anx">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" barStyle="black" id="Pmd-2v-anx">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -31,7 +32,7 @@
         <scene sceneID="puQ-12-U3T">
             <objects>
                 <collectionViewController id="pGg-2V-AiX" customClass="MasterViewController" customModule="Headlines" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="DKO-eO-dVO">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="DKO-eO-dVO">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.13725490196078433" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
@@ -147,10 +148,76 @@
                     </collectionView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="Destacados" id="SVr-Np-BvU"/>
+                    <connections>
+                        <segue destination="MYF-Oh-yyD" kind="show" identifier="news" id="1T8-GN-JGj"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aM6-Vr-VFH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="758" y="-335"/>
+        </scene>
+        <!--Cambiemos-->
+        <scene sceneID="rjg-1C-8Pp">
+            <objects>
+                <tableViewController title="Cambiemos" id="MYF-Oh-yyD" customClass="NewsTableViewController" customModule="Headlines" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5Bm-b3-Mm7">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="90" id="7Sz-iH-b0N" customClass="NewsTableViewCell" customModule="Headlines" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="90"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Sz-iH-b0N" id="eSd-uj-gqa">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Con Macri, Carrió y Sanz, Cambiemos presenta su Mesa Nacional." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jEW-QW-uUD">
+                                            <rect key="frame" x="10" y="10" width="355" height="44.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kOW-dm-jzy">
+                                            <rect key="frame" x="39.5" y="59.5" width="38.5" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKa-8o-k3F">
+                                            <rect key="frame" x="10" y="59.5" width="19.5" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="iKa-8o-k3F" firstAttribute="leading" secondItem="jEW-QW-uUD" secondAttribute="leading" id="4XM-4x-pNw"/>
+                                        <constraint firstItem="kOW-dm-jzy" firstAttribute="leading" secondItem="iKa-8o-k3F" secondAttribute="trailing" constant="10" id="7Hh-ra-eER"/>
+                                        <constraint firstAttribute="trailing" secondItem="jEW-QW-uUD" secondAttribute="trailing" constant="10" id="9XB-XV-Cv8"/>
+                                        <constraint firstItem="iKa-8o-k3F" firstAttribute="top" secondItem="jEW-QW-uUD" secondAttribute="bottom" constant="5" id="WWS-5z-CDu"/>
+                                        <constraint firstItem="kOW-dm-jzy" firstAttribute="baseline" secondItem="iKa-8o-k3F" secondAttribute="baseline" id="d1o-uL-rkQ"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="iKa-8o-k3F" secondAttribute="bottom" constant="5" id="gFU-LQ-ANi"/>
+                                        <constraint firstItem="jEW-QW-uUD" firstAttribute="top" secondItem="eSd-uj-gqa" secondAttribute="top" constant="10" id="hBK-9r-dRy"/>
+                                        <constraint firstItem="jEW-QW-uUD" firstAttribute="leading" secondItem="eSd-uj-gqa" secondAttribute="leading" constant="10" id="riB-o3-sx9"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="sourceLabel" destination="iKa-8o-k3F" id="dKM-gV-AUW"/>
+                                    <outlet property="timeLabel" destination="kOW-dm-jzy" id="1EB-hc-NlS"/>
+                                    <outlet property="titleLabel" destination="jEW-QW-uUD" id="A3P-vi-qPA"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="MYF-Oh-yyD" id="Xvb-Zt-upY"/>
+                            <outlet property="delegate" destination="MYF-Oh-yyD" id="Yw9-6h-70I"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EJs-cm-0um" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1594" y="-335"/>
         </scene>
     </scenes>
 </document>

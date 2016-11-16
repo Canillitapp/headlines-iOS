@@ -39,6 +39,21 @@ class MasterViewController: UICollectionViewController {
                 print(error.localizedDescription)
             })
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else {
+            return
+        }
+        
+        if identifier == "news" {
+            if let vc = segue.destination as? NewsTableViewController,
+                let key = sender as? String,
+                let selectedNews = news[key] as [News]? {
+                vc.title = key
+                vc.news = selectedNews
+            }
+        }
+    }
 
     // MARK: - UICollectionViewDataSource
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -74,5 +89,10 @@ class MasterViewController: UICollectionViewController {
         cell.sourceLabel.text = firstNews.source
         cell.newsQuantityLabel.text = "\(keywordNews.count) noticias"
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let keyword = self.keywords[(indexPath as NSIndexPath).row]
+        performSegue(withIdentifier: "news", sender: keyword)
     }
 }
