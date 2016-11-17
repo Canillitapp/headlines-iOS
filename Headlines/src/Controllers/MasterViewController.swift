@@ -20,8 +20,17 @@ class MasterViewController: UICollectionViewController {
                 return
             }
             
+            var indexPaths = [IndexPath]()
+            let startIndex = self.topics.count
+            let endIndex = startIndex + r.count-1
+            
+            for index in startIndex...endIndex {
+                let i = IndexPath(row: index, section: 0)
+                indexPaths.append(i)
+            }
+            
             self.topics.append(contentsOf: r)
-            self.collectionView?.reloadData()
+            self.collectionView?.insertItems(at: indexPaths)
             
         }, fail: { (error) in
             print(error.localizedDescription)
@@ -101,13 +110,21 @@ class MasterViewController: UICollectionViewController {
     }
     
     // MARK: - UICollectionViewDelegate
-    
     override func collectionView(_ collectionView: UICollectionView,
                                  willDisplay cell: UICollectionViewCell,
                                  forItemAt indexPath: IndexPath) {
         
         if indexPath.row == topics.count-1 {
+            let topic = topics[indexPath.row]
             
+            guard let lastDate = topic.date else {
+                return
+            }
+            
+            let calendar = Calendar.current
+            let newDate = calendar.date(byAdding: .day, value: -1, to: lastDate)
+            
+            requestTrendingTopicsWithDate(newDate!)
         }
     }
 }
