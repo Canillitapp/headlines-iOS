@@ -11,7 +11,7 @@ import Foundation
 
 class TrendingInterfaceController: WKInterfaceController {
     
-    var data: [String : Any]?
+    var topics: [Topic]?
     var lastFetch: Date?
     let newsService = NewsService()
     
@@ -32,18 +32,17 @@ class TrendingInterfaceController: WKInterfaceController {
     func fetchTrendingNews() {
         showLoadingIndicator(true)
         newsService.requestTrendingTopicsWithDate(Date(), count: 3, success: { (result) in
-            self.data = result
+            self.topics = result
             
-            guard let keywords = self.data?["keywords"] as? [String] else {
-                self.showLoadingIndicator(false)
+            guard let topics = self.topics else {
                 return
             }
             
-            self.trendingTable.setNumberOfRows(keywords.count, withRowType: "TrendingRow")
+            self.trendingTable.setNumberOfRows(topics.count, withRowType: "TrendingRow")
             
-            for (index, topic) in keywords.enumerated() {
+            for (index, t) in topics.enumerated() {
                 let row = self.trendingTable.rowController(at: index) as! TrendingRowController
-                row.titleLabel.setText(topic)
+                row.titleLabel.setText(t.name)
             }
             self.showLoadingIndicator(false)
             self.lastFetch = Date()
@@ -59,7 +58,7 @@ class TrendingInterfaceController: WKInterfaceController {
         
         var shouldUpdate = false
         
-        if data == nil {
+        if topics == nil {
             shouldUpdate = true
         } else if let lf = lastFetch {
             let timeInterval = Date().timeIntervalSince(lf)
@@ -79,15 +78,12 @@ class TrendingInterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
     
-    override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {
-        guard let keys = data?["keywords"] as? [String],
-            let news = data?["news"] as? [String : Any],
-            let selectedNews = news[keys[rowIndex]] as? [News] else {
-                return
+    override func table(_ table: WKInterfaceTable, didSelectRowAt rowIndex: Int) {        
+        guard let t = topics?[rowIndex] else {
+            return
         }
         
-        let key = keys[rowIndex]
-        let context: [String : Any] = ["title" : key, "elements" : selectedNews]
+        let context: [String : Any] = ["title" : t.name ?? "Topic", "elements" : t.news as Any]
         pushController(withName: "News", context: context)
     }
 

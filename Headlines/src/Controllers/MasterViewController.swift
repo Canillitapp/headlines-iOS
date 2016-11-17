@@ -10,9 +10,23 @@ import UIKit
 
 class MasterViewController: UICollectionViewController {
 
-    var keywords = [String]()
-    var news = [String : [News]]()
+    var topics = [Topic]()
     let newsService = NewsService()
+    
+    func requestTrendingTopicsWithDate(_ date: Date) {
+        newsService.requestTrendingTopicsWithDate(date, count:5, success: { (result) in
+            
+            guard let r = result else {
+                return
+            }
+            
+            self.topics.append(contentsOf: r)
+            self.collectionView?.reloadData()
+            
+        }, fail: { (error) in
+            print(error.localizedDescription)
+        })
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,50 +39,40 @@ class MasterViewController: UICollectionViewController {
         flowLayout.minimumLineSpacing = 10
         flowLayout.itemSize = CGSize(width: collectionViewSize.width - 20, height: 180)
         
-        newsService.requestTrendingTopicsWithDate(Date(), count:5, success: { (result) in
-            guard let keywords = result?["keywords"] as? [String],
-                let news = result?["news"] as? [String : [News]] else {
-                return
-            }
-            
-            self.keywords = keywords
-            self.news = news
-            self.collectionView?.reloadData()
-            
-            }, fail: { (error) in
-                print(error.localizedDescription)
-            })
+        requestTrendingTopicsWithDate(Date())
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else {
             return
         }
-        
+
         if identifier == "news" {
             if let vc = segue.destination as? NewsTableViewController,
-                let key = sender as? String,
-                let selectedNews = news[key] as [News]? {
-                vc.title = key
-                vc.news = selectedNews
+                let topic = sender as? Topic,
+                let topicName = topic.name,
+                let topicNews = topic.news {
+                
+                vc.title = topicName
+                vc.news = topicNews
             }
         }
     }
 
     // MARK: - UICollectionViewDataSource
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.keywords.count
+        return self.topics.count
     }
     
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let keyword = self.keywords[(indexPath as NSIndexPath).row]
+        let topic = topics[indexPath.row]
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
             as? KeywordCollectionViewCell,
-            let keywordNews = self.news[keyword] as [News]?,
-            let firstNews = keywordNews.first else {
+            let news = topic.news,
+            let firstNews = news.first else {
             return UICollectionViewCell()
         }
         
@@ -84,15 +88,26 @@ class MasterViewController: UICollectionViewController {
             cell.timeLabel.text = timeFormatter.string(from: newsDate)
         }
 
-        cell.titleLabel.text = keyword
+        cell.titleLabel.text = topic.name
         cell.bodyLabel.text = firstNews.title
         cell.sourceLabel.text = firstNews.source
-        cell.newsQuantityLabel.text = "\(keywordNews.count) noticias"
+        cell.newsQuantityLabel.text = "\(news.count) noticias"
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let keyword = self.keywords[(indexPath as NSIndexPath).row]
-        performSegue(withIdentifier: "news", sender: keyword)
+        let topic = topics[indexPath.row]
+        performSegue(withIdentifier: "news", sender: topic)
+    }
+    
+    // MARK: - UICollectionViewDelegate
+    
+    override func collectionView(_ collectionView: UICollectionView,
+                                 willDisplay cell: UICollectionViewCell,
+                                 forItemAt indexPath: IndexPath) {
+        
+        if indexPath.row == topics.count-1 {
+            
+        }
     }
 }
