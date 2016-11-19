@@ -7,16 +7,18 @@
 //
 
 import UIKit
+import SafariServices
 
 class NewsTableViewController: UITableViewController {
 
     var news: [News] = []
-    
+
+    //  MARK: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
     }
 
-    // MARK: - Table view data source
+    // MARK: UITableViewDataSource
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -52,5 +54,15 @@ class NewsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
+    }
+    
+    //  MARK: UITableViewDelegate
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let n = news[indexPath.row]
+        if let url = n.url as? URL {
+            let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
+            present(vc, animated: true, completion: nil)
+        }
     }
 }
