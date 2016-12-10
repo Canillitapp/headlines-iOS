@@ -14,7 +14,7 @@ class MasterViewController: UICollectionViewController {
     let newsService = NewsService()
     
     func requestTrendingTopicsWithDate(_ date: Date) {
-        newsService.requestTrendingTopicsWithDate(date, count:5, success: { (result) in
+        newsService.requestTrendingTopicsWithDate(date, count:3, success: { (result) in
             
             guard let r = result else {
                 return
