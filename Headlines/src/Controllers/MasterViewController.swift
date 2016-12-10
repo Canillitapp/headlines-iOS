@@ -7,55 +7,124 @@
 //
 
 import UIKit
-import EBCardCollectionViewLayout
 
 class MasterViewController: UICollectionViewController {
 
-    var keywords = [String]()
-    var news = [String : [News]]()
+    var topics = [Topic]()
     let newsService = NewsService()
-
-    fileprivate func setupCollectionView() {
-        guard let layout = self.collectionView?.collectionViewLayout as? EBCardCollectionViewLayout else {
-            return
-        }
-        
-        layout.offset = UIOffset(horizontal: 30, vertical: 0)
+    
+    func requestTrendingTopicsWithDate(_ date: Date) {
+        newsService.requestTrendingTopicsWithDate(date, count:5, success: { (result) in
+            
+            guard let r = result else {
+                return
+            }
+            
+            var indexPaths = [IndexPath]()
+            let startIndex = self.topics.count
+            let endIndex = startIndex + r.count-1
+            
+            for index in startIndex...endIndex {
+                let i = IndexPath(row: index, section: 0)
+                indexPaths.append(i)
+            }
+            
+            self.topics.append(contentsOf: r)
+            self.collectionView?.insertItems(at: indexPaths)
+            
+        }, fail: { (error) in
+            print(error.localizedDescription)
+        })
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCollectionView()
         
-        newsService.requestTrendingTopicsWithDate(Date(), count:5, success: { (result) in
-            guard let keywords = result?["keywords"] as? [String],
-                let news = result?["news"] as? [String : [News]] else {
-                return
+        guard let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout,
+            let collectionViewSize = self.collectionView?.bounds.size else {
+            return
+        }
+        
+        flowLayout.minimumLineSpacing = 10
+        flowLayout.itemSize = CGSize(width: collectionViewSize.width - 20, height: 180)
+        
+        requestTrendingTopicsWithDate(Date())
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else {
+            return
+        }
+
+        if identifier == "news" {
+            if let vc = segue.destination as? NewsTableViewController,
+                let topic = sender as? Topic,
+                let topicName = topic.name,
+                let topicNews = topic.news {
+                
+                vc.title = topicName
+                vc.news = topicNews
             }
-            
-            self.keywords = keywords
-            self.news = news
-            self.collectionView?.reloadData()
-            
-            }, fail: { (error) in
-                print(error.localizedDescription)
-            })
+        }
     }
 
-    // MARK: - UICollectionView
+    // MARK: - UICollectionViewDataSource
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.keywords.count
+        return self.topics.count
     }
     
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let topic = topics[indexPath.row]
+        
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-            as? KeywordCollectionViewCell else {
+            as? KeywordCollectionViewCell,
+            let news = topic.news,
+            let firstNews = news.first else {
             return UICollectionViewCell()
         }
         
-        let keyword = self.keywords[(indexPath as NSIndexPath).row]
-        cell.titleLabel.text = keyword
+        if let newsDate = firstNews.date {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateStyle = .short
+            dateFormatter.timeStyle = .none
+            cell.dateLabel.text = dateFormatter.string(from: newsDate)
+            
+            let timeFormatter = DateFormatter()
+            timeFormatter.dateStyle = .none
+            timeFormatter.timeStyle = .short
+            cell.timeLabel.text = timeFormatter.string(from: newsDate)
+        }
+
+        cell.titleLabel.text = topic.name
+        cell.bodyLabel.text = firstNews.title
+        cell.sourceLabel.text = firstNews.source
+        cell.newsQuantityLabel.text = "\(news.count) noticias"
         return cell
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let topic = topics[indexPath.row]
+        performSegue(withIdentifier: "news", sender: topic)
+    }
+    
+    // MARK: - UICollectionViewDelegate
+    override func collectionView(_ collectionView: UICollectionView,
+                                 willDisplay cell: UICollectionViewCell,
+                                 forItemAt indexPath: IndexPath) {
+        
+        if indexPath.row == topics.count-1 {
+            let topic = topics[indexPath.row]
+            
+            guard let lastDate = topic.date else {
+                return
+            }
+            
+            let calendar = Calendar.current
+            let newDate = calendar.date(byAdding: .day, value: -1, to: lastDate)
+            
+            requestTrendingTopicsWithDate(newDate!)
+        }
     }
 }

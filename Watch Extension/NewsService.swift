@@ -12,7 +12,7 @@ import SwiftyJSON
 class NewsService: NSObject {
     func requestTrendingTopicsWithDate (_ date: Date,
                                         count: Int,
-                                        success: ((_ result: [String : Any]?) -> ())?,
+                                        success: ((_ result: [Topic]?) -> ())?,
                                         fail: ((_ error: NSError) -> ())?) {
         
         let calendar = Calendar.current
@@ -38,20 +38,21 @@ class NewsService: NSObject {
             
             let json = JSON(data: d)
             
-            var res = [String : Any]()
-            res["keywords"] = json["keywords"].arrayValue.map {$0.string!}
+            var res = [Topic]()
             
-            var topics = [String : [News]]()
             for (k, t) in json["news"] {
-                var a = [News]()
+                let a = Topic()
+                a.name = k
+                a.date = date
+                a.news = [News]()
                 
                 for (_, n) in t {
                     let news = News(json: n)
-                    a.append(news)
+                    a.news!.append(news)
                 }
-                topics[k] = a
+                
+                res.append(a)
             }
-            res["news"] = topics as AnyObject?
             
             DispatchQueue.main.async(execute: { 
                 success?(res)                
