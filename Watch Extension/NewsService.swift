@@ -10,6 +10,49 @@ import Foundation
 import SwiftyJSON
 
 class NewsService: NSObject {
+    
+    func requestRecentNewsWithDate (_ date: Date,
+                                    success: ((_ result: [News]?) -> ())?,
+                                    fail: ((_ error: NSError) -> ())?) {
+
+        let calendar = Calendar.current
+        let components = (calendar as NSCalendar).components([.day, .month, .year], from: date)
+        
+        let datePath = String(format: "%d-%02d-%02d", components.year!, components.month!, components.day!)
+        
+        let url = URL(string: "http://45.55.247.52:4567/latest/\(datePath)")
+        let request = URLRequest(url: url!)
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        
+        let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
+            if let e = error {
+                fail?(e as NSError)
+                return
+            }
+            
+            guard let d = data else {
+                return
+            }
+            
+            let json = JSON(data: d)
+            
+            var res = [News]()
+            
+            for (_, v) in json {
+                let n = News(json: v)
+                res.append(n)
+            }
+            
+            DispatchQueue.main.async(execute: { 
+                success?(res)
+            })
+        })
+        
+        task.resume()
+    }
+    
     func requestTrendingTopicsWithDate (_ date: Date,
                                         count: Int,
                                         success: ((_ result: [Topic]?) -> ())?,
