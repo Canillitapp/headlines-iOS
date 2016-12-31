@@ -89,6 +89,7 @@ class MasterViewController: UICollectionViewController {
             let dateFormatter = DateFormatter()
             dateFormatter.dateStyle = .short
             dateFormatter.timeStyle = .none
+            dateFormatter.doesRelativeDateFormatting = true
             cell.dateLabel.text = dateFormatter.string(from: newsDate)
             
             let timeFormatter = DateFormatter()
