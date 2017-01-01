@@ -6,6 +6,7 @@ use_frameworks!
 target 'Headlines' do
   platform :ios, '9.0'
   pod 'SwiftyJSON', '3.1.1'
+  pod 'SDWebImage'
 end
 
 target 'Watch Extension' do

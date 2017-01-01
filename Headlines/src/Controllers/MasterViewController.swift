@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MasterViewController: UICollectionViewController {
 
@@ -46,7 +47,7 @@ class MasterViewController: UICollectionViewController {
         }
         
         flowLayout.minimumLineSpacing = 10
-        flowLayout.itemSize = CGSize(width: collectionViewSize.width - 20, height: 180)
+        flowLayout.itemSize = CGSize(width: collectionViewSize.width - 20, height: 260)
         
         requestTrendingTopicsWithDate(Date())
     }
@@ -102,6 +103,11 @@ class MasterViewController: UICollectionViewController {
         cell.bodyLabel.text = firstNews.title
         cell.sourceLabel.text = firstNews.source
         cell.newsQuantityLabel.text = "\(news.count) noticias"
+        
+        if let imgUrl = firstNews.imageUrl {
+            cell.imageView.sd_setImage(with: imgUrl, completed: nil)
+        }
+        
         return cell
     }
     

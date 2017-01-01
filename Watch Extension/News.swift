@@ -12,18 +12,21 @@ import SwiftyJSON
 class News: NSObject {
     
     var title: String?
-    var url: NSURL?
+    var url: URL?
     var date: Date?
     var source: String?
+    var imageUrl: URL?
     
     init(json: JSON) {
         title = json["title"].string
-        url = json["url"].URL as NSURL?
+        url = json["url"].URL
         
         let timestamp = json["date"].doubleValue
         date = Date(timeIntervalSince1970: timestamp)
         
         source = json["source_name"].string
+        
+        imageUrl = json["img_url"].URL
         super.init()
     }
 }

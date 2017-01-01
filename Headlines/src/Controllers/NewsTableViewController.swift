@@ -60,7 +60,7 @@ class NewsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let n = news[indexPath.row]
-        if let url = n.url as? URL {
+        if let url = n.url {
             let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
             present(vc, animated: true, completion: nil)
         }

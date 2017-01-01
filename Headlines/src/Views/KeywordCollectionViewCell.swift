@@ -15,6 +15,7 @@ class KeywordCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var newsQuantityLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
