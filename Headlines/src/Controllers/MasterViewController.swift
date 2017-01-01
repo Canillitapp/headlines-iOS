@@ -106,6 +106,8 @@ class MasterViewController: UICollectionViewController {
         
         if let imgUrl = firstNews.imageUrl {
             cell.imageView.sd_setImage(with: imgUrl, completed: nil)
+        } else {
+            cell.imageView.image = nil
         }
         
         return cell
