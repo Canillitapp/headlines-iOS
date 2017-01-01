@@ -45,6 +45,13 @@ class NewsTableViewController: UITableViewController {
             cell.timeLabel.text = timeFormatter.string(from: date)
         }
         
+        if let imgUrl = item.imageUrl {
+            cell.newsImageView.isHidden = false
+            cell.newsImageView.sd_setImage(with: imgUrl, completed: nil)
+        } else {
+            cell.newsImageView.isHidden = true
+        }
+        
         return cell
     }
     
