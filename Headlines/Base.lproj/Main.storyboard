@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -204,47 +203,62 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="90" id="mN5-fD-rl0" customClass="NewsTableViewCell" customModule="Headlines" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="90" id="h1q-iX-iOu" customClass="NewsTableViewCell" customModule="Headlines" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="90"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="mN5-fD-rl0" id="Awx-nJ-Mtp">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89.5"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h1q-iX-iOu" id="Z7d-Ow-oQX">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="89"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Con Macri, Carrió y Sanz, Cambiemos presenta su Mesa Nacional." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bCy-1h-F7m">
-                                            <rect key="frame" x="10" y="10" width="355" height="44.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ci9-Pi-eYw">
-                                            <rect key="frame" x="39.5" y="59.5" width="38.5" height="17"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cs2-gz-BcQ">
-                                            <rect key="frame" x="10" y="59.5" width="19.5" height="17"/>
-                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="zZr-9Z-iSp">
+                                            <rect key="frame" x="5" y="5" width="365" height="79.5"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="diT-OO-2XN">
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="79.5"/>
+                                                    <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="80" id="Zs1-de-40C"/>
+                                                        <constraint firstAttribute="width" secondItem="diT-OO-2XN" secondAttribute="height" multiplier="1:1" id="prC-5N-jem"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="rEx-1t-CMq">
+                                                    <rect key="frame" x="85" y="3" width="280" height="73.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Con Macri, Carrió y Sanz, Cambiemos presenta su Mesa Nacional." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Qe-iY-3Pn">
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="33.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ET2-ca-LWi">
+                                                            <rect key="frame" x="0.0" y="36.5" width="38.5" height="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15c-pf-bTt">
+                                                            <rect key="frame" x="0.0" y="56.5" width="19.5" height="17"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="Cs2-gz-BcQ" firstAttribute="top" secondItem="bCy-1h-F7m" secondAttribute="bottom" constant="5" id="1q5-tf-SBS"/>
-                                        <constraint firstItem="ci9-Pi-eYw" firstAttribute="leading" secondItem="Cs2-gz-BcQ" secondAttribute="trailing" constant="10" id="3iu-1x-tUE"/>
-                                        <constraint firstAttribute="trailing" secondItem="bCy-1h-F7m" secondAttribute="trailing" constant="10" id="ORd-UY-fYP"/>
-                                        <constraint firstItem="bCy-1h-F7m" firstAttribute="leading" secondItem="Awx-nJ-Mtp" secondAttribute="leading" constant="10" id="POW-v7-pdm"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="Cs2-gz-BcQ" secondAttribute="bottom" constant="5" id="XsB-uh-e2E"/>
-                                        <constraint firstItem="ci9-Pi-eYw" firstAttribute="baseline" secondItem="Cs2-gz-BcQ" secondAttribute="baseline" id="iDs-dO-bF6"/>
-                                        <constraint firstItem="Cs2-gz-BcQ" firstAttribute="leading" secondItem="bCy-1h-F7m" secondAttribute="leading" id="shM-15-g9f"/>
-                                        <constraint firstItem="bCy-1h-F7m" firstAttribute="top" secondItem="Awx-nJ-Mtp" secondAttribute="top" constant="10" id="ucY-y7-H38"/>
+                                        <constraint firstAttribute="bottom" secondItem="zZr-9Z-iSp" secondAttribute="bottom" constant="5" id="4Y7-V1-DdC"/>
+                                        <constraint firstAttribute="trailing" secondItem="zZr-9Z-iSp" secondAttribute="trailing" constant="5" id="Gwy-Z2-PzR"/>
+                                        <constraint firstItem="zZr-9Z-iSp" firstAttribute="leading" secondItem="Z7d-Ow-oQX" secondAttribute="leading" constant="5" id="vqF-iH-Ldw"/>
+                                        <constraint firstItem="zZr-9Z-iSp" firstAttribute="top" secondItem="Z7d-Ow-oQX" secondAttribute="top" constant="5" id="zF7-Hh-Yi7"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="sourceLabel" destination="Cs2-gz-BcQ" id="1UY-Oc-R8H"/>
-                                    <outlet property="timeLabel" destination="ci9-Pi-eYw" id="A0B-K4-fk6"/>
-                                    <outlet property="titleLabel" destination="bCy-1h-F7m" id="Vwg-fa-850"/>
+                                    <outlet property="newsImageView" destination="diT-OO-2XN" id="yhj-cg-6qI"/>
+                                    <outlet property="sourceLabel" destination="15c-pf-bTt" id="Oyf-zC-j5U"/>
+                                    <outlet property="timeLabel" destination="ET2-ca-LWi" id="XXg-ZZ-RJC"/>
+                                    <outlet property="titleLabel" destination="2Qe-iY-3Pn" id="ZVP-KB-pVg"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

@@ -55,6 +55,13 @@ class RecentNewsViewController: UITableViewController {
             cell.timeLabel.text = timeFormatter.string(from: date)
         }
         
+        if let imgUrl = n.imageUrl {
+            cell.newsImageView.isHidden = false
+            cell.newsImageView.sd_setImage(with: imgUrl, completed: nil)
+        } else {
+            cell.newsImageView.isHidden = true
+        }
+        
         return cell
     }
     
