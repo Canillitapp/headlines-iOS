@@ -21,6 +21,19 @@ class MasterViewController: UICollectionViewController {
                 return
             }
             
+            /*  
+             *  Horrible recursive hot-fix to avoid not showing anything because
+             *  that current date has no results
+             */
+            
+            if r.count == 0 {
+                let calendar = Calendar.current
+                if let newDate = calendar.date(byAdding: .day, value: -1, to: date) {
+                    self.requestTrendingTopicsWithDate(newDate)
+                }
+                return
+            }
+            
             var indexPaths = [IndexPath]()
             let startIndex = self.topics.count
             let endIndex = startIndex + r.count-1
@@ -47,7 +60,7 @@ class MasterViewController: UICollectionViewController {
         }
         
         flowLayout.minimumLineSpacing = 10
-        flowLayout.itemSize = CGSize(width: collectionViewSize.width - 20, height: 260)
+        flowLayout.itemSize = CGSize(width: collectionViewSize.width - 20, height: 235)
         
         requestTrendingTopicsWithDate(Date())
     }
