@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol NewsTableViewCellDelegate: UICollectionViewDataSource {
+protocol NewsTableViewCellDelegate: UICollectionViewDataSource, UICollectionViewDelegate {
 }
 
 class NewsTableViewCell: UITableViewCell {
@@ -21,10 +21,10 @@ class NewsTableViewCell: UITableViewCell {
     
     weak var delegate: NewsTableViewCellDelegate? {
         didSet {            
-            reactionsCollectionView.dataSource = delegate
+            reactionsCollectionView?.dataSource = delegate
         }
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }

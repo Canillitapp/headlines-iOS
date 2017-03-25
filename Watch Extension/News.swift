@@ -16,6 +16,7 @@ class News: NSObject {
     var date: Date?
     var source: String?
     var imageUrl: URL?
+    var reactions: [Reaction]?
     
     init(json: JSON) {
         title = json["title"].string
@@ -27,6 +28,13 @@ class News: NSObject {
         source = json["source_name"].string
         
         imageUrl = json["img_url"].URL
+        
+        reactions = []
+        for _ in 1...5 {
+            let r = Reaction.randomReaction()
+            reactions?.append(r)
+        }
+        
         super.init()
     }
 }

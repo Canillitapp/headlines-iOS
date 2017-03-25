@@ -78,13 +78,24 @@ class NewsTableViewController: UITableViewController, NewsTableViewCellDelegate 
     //  MARK: NewsTableViewCellDelegate
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        guard let count = news.first?.reactions?.count else {
+            return 0
+        }
+        
+        return count
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reactionCell", for: indexPath)
         cell.layer.borderColor = UIColor(white: 236/255.0, alpha: 1).cgColor
+        
+        if let c = cell as? ReactionCollectionViewCell {
+            if let r = news.first?.reactions?[indexPath.row] {
+                c.reactionLabel.text = "\(r.reaction) \(r.amount)"
+            }
+        }
+        
         return cell
     }
 }
