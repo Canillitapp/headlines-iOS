@@ -41,7 +41,9 @@ class RecentNewsViewController: UITableViewController {
         
         let n = news[indexPath.row]
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? NewsTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            as? NewsTableViewCell else {
+                
             return UITableViewCell()
         }
         

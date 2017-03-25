@@ -9,7 +9,7 @@
 import UIKit
 import SafariServices
 
-class NewsTableViewController: UITableViewController {
+class NewsTableViewController: UITableViewController, NewsTableViewCellDelegate {
 
     var news: [News] = []
 
@@ -52,6 +52,8 @@ class NewsTableViewController: UITableViewController {
             cell.newsImageView.isHidden = true
         }
         
+        cell.delegate = self
+        
         return cell
     }
     
@@ -71,5 +73,18 @@ class NewsTableViewController: UITableViewController {
             let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
             present(vc, animated: true, completion: nil)
         }
+    }
+    
+    //  MARK: NewsTableViewCellDelegate
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reactionCell", for: indexPath)
+        cell.layer.borderColor = UIColor(white: 236/255.0, alpha: 1).cgColor
+        return cell
     }
 }

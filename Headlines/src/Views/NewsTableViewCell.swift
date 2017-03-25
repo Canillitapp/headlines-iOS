@@ -8,22 +8,28 @@
 
 import UIKit
 
+protocol NewsTableViewCellDelegate: UICollectionViewDataSource {
+}
+
 class NewsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var newsImageView: UIImageView!
+    @IBOutlet weak var reactionsCollectionView: UICollectionView!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    weak var delegate: NewsTableViewCellDelegate? {
+        didSet {            
+            reactionsCollectionView.dataSource = delegate
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+    }
 }
