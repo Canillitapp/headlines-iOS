@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol NewsCellViewModelDelegate {
+    func newsViewModel(_ viewModel: NewsCellViewModel, didSelectReaction reaction: Reaction)
+    func newsViewModelDidSelectReactionPicker(_ viewModel: NewsCellViewModel)
+}
+
 class NewsCellViewModel: NSObject,
                         UICollectionViewDataSource,
                         UICollectionViewDelegate,
@@ -37,6 +42,8 @@ class NewsCellViewModel: NSObject,
     var imageURL: URL? {
         return news.imageUrl
     }
+    
+    var delegate: NewsCellViewModelDelegate?
     
     init(news: News) {
         self.news = news
@@ -77,7 +84,6 @@ class NewsCellViewModel: NSObject,
     }
     
     //  MARK: UICollectionViewDelegate
-    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -96,5 +102,23 @@ class NewsCellViewModel: NSObject,
                                                                     attributes: attributes,
                                                                     context: nil).size.width
         return CGSize(width: width + 10, height: 30)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        if indexPath.row >= (news.reactions?.count)! {
+            if let d = delegate {
+                d.newsViewModelDidSelectReactionPicker(self)
+            }
+            return
+        }
+        
+        guard let r = news.reactions?[indexPath.row] else {
+            return
+        }
+        
+        if let d = delegate {
+            d.newsViewModel(self, didSelectReaction: r)
+        }
     }
 }

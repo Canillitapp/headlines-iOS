@@ -435,10 +435,110 @@
                             <outlet property="delegate" destination="MYF-Oh-yyD" id="Yw9-6h-70I"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <segue destination="oq4-rR-HNf" kind="presentation" identifier="reaction" id="oOA-Dv-4K4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EJs-cm-0um" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1594" y="-335"/>
+        </scene>
+        <!--Reacciones-->
+        <scene sceneID="gsQ-pD-mQw">
+            <objects>
+                <viewController title="Reacciones" automaticallyAdjustsScrollViewInsets="NO" id="Sf8-6H-BKE" customClass="ReactionPickerViewController" customModule="Headlines" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="XXi-GU-c6R"/>
+                        <viewControllerLayoutGuide type="bottom" id="nUr-q0-BuR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DOA-T5-qSF">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LI0-7u-aWa">
+                                <rect key="frame" x="5" y="69" width="365" height="598"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="DdB-ch-5QL">
+                                    <size key="itemSize" width="40" height="40"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="EG6-1v-Nnz" customClass="ReactionCollectionViewCell" customModule="Headlines" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😀" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QXq-Th-d2K">
+                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="50"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="QXq-Th-d2K" secondAttribute="trailing" id="P97-Pc-bGr"/>
+                                            <constraint firstItem="QXq-Th-d2K" firstAttribute="top" secondItem="EG6-1v-Nnz" secondAttribute="top" id="ZMH-xy-w1B"/>
+                                            <constraint firstAttribute="bottom" secondItem="QXq-Th-d2K" secondAttribute="bottom" id="bIr-AX-FrD"/>
+                                            <constraint firstItem="QXq-Th-d2K" firstAttribute="leading" secondItem="EG6-1v-Nnz" secondAttribute="leading" id="sXW-Ff-Vuk"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="reactionLabel" destination="QXq-Th-d2K" id="Fj4-Ub-Iof"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Sf8-6H-BKE" id="IUs-Df-hR3"/>
+                                    <outlet property="delegate" destination="Sf8-6H-BKE" id="ul4-xR-C6i"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LI0-7u-aWa" firstAttribute="leading" secondItem="DOA-T5-qSF" secondAttribute="leading" constant="5" id="E8a-x1-Dfp"/>
+                            <constraint firstItem="LI0-7u-aWa" firstAttribute="top" secondItem="XXi-GU-c6R" secondAttribute="bottom" constant="5" id="R2f-5K-Ob5"/>
+                            <constraint firstAttribute="trailing" secondItem="LI0-7u-aWa" secondAttribute="trailing" constant="5" id="bVK-4z-KfO"/>
+                            <constraint firstItem="nUr-q0-BuR" firstAttribute="top" secondItem="LI0-7u-aWa" secondAttribute="bottom" id="paq-Qc-C2O"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Reacciones" id="ygW-5j-L5U">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="stop" id="eqQ-ah-rB8">
+                            <connections>
+                                <action selector="closeButtonPressed:" destination="Sf8-6H-BKE" id="8Oc-yT-vG7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="LI0-7u-aWa" id="lt4-J0-Z9I"/>
+                        <segue destination="UDp-6G-eGN" kind="unwind" identifier="unwindToNews" unwindAction="unwindToNewsWithSegue:" id="vuX-JL-a6G"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fc3-SC-6u2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="UDp-6G-eGN" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3198" y="-335"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="fsd-Ma-r7C">
+            <objects>
+                <navigationController id="oq4-rR-HNf" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="tRE-mk-0im">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Sf8-6H-BKE" kind="relationship" relationship="rootViewController" id="Ff7-On-Ywf"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LYI-zy-0V4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2385" y="-335"/>
         </scene>
         <!--Recientes-->
         <scene sceneID="eEL-zC-ewf">

@@ -9,12 +9,13 @@
 import UIKit
 import SafariServices
 
-class NewsTableViewController: UITableViewController {
+class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate {
 
     var news: [News] = [] {
         didSet {
             news.forEach({ (n) in
                 let viewModel = NewsCellViewModel(news: n)
+                viewModel.delegate = self
                 newsViewModels.append(viewModel)
             })
         }
@@ -26,7 +27,30 @@ class NewsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else {
+            return
+        }
+        
+        switch identifier {
+        case "reaction":
+            guard let nav = segue.destination as? UINavigationController,
+                let vc = nav.topViewController as? ReactionPickerViewController,
+                let news = sender as? News else {
+                return
+            }
+            
+            vc.news = news
+            break
+            
+        default:
+            return
+        }
+    }
 
+    @IBAction func unwindToNews(segue: UIStoryboardSegue) {}
+    
     // MARK: UITableViewDataSource
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -77,5 +101,15 @@ class NewsTableViewController: UITableViewController {
             let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
             present(vc, animated: true, completion: nil)
         }
+    }
+    
+    //  MARK: NewsCellViewModelDelegate
+    
+    func newsViewModel(_ viewModel: NewsCellViewModel, didSelectReaction reaction: Reaction) {
+        print("\(reaction.reaction) -> \(reaction.amount + 1) @ \(viewModel.news.url!)")
+    }
+
+    func newsViewModelDidSelectReactionPicker(_ viewModel: NewsCellViewModel) {
+        performSegue(withIdentifier: "reaction", sender: viewModel)
     }
 }
