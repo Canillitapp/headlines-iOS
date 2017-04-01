@@ -23,12 +23,24 @@ class Reaction: NSObject {
     }
     
     class func randomReaction() -> Reaction {
-        let emojis = ["🙃", "👍", "👎", "🙄", "🙁", "😺"]
+        let emojis = availableReactions()
         let emojisRandomIndex = Int(arc4random_uniform(UInt32(emojis.count)))
         let reaction = emojis[emojisRandomIndex]
         
         let amount = Int(arc4random_uniform(UInt32(999)))
 
         return Reaction(reaction: reaction, amount: amount)
+    }
+    
+    class func availableReactions() -> [String] {
+        return [
+            "😀", "😄", "😆", "😅", "😂", "😊", "😇", "🙂", "🙃", "😍", "😘", "😗", "😜",
+            "😝", "🤑", "🤓", "😎", "🤡", "🤠", "😏", "😒", "☹️", "😣", "😩", "😡", "😶",
+            "😐", "😯", "😦", "😵", "😳", "😱", "😨", "😢", "🤤", "😭", "😴", "🙄", "🤔",
+            "🤥", "😬", "🤐", "🤢", "😷", "🤒", "🤕", "😈", "👿", "💩", "👻", "☠️", "👽",
+            "👾", "🤖", "🎃", "😺", "😸", "😹", "😻", "😼", "😽", "🙀", "😿", "😾", "👐",
+            "🙌", "👏", "🙏", "🤝", "👍", "👎", "👊", "🤞", "✌️", "🤘", "👌", "🖖", "💪",
+            "🖕", "💅", "👳🏽", "👮🏾", "💁🏻", "💁🏻‍♂️", "🙅🏻", "🙅🏻‍♂️", "🤦🏻‍♀️", "🤦🏻‍♂️", "🤷🏻‍♀️", "🤷🏻‍♂️", "👯"
+        ]
     }
 }
