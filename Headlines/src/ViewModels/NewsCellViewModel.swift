@@ -8,7 +8,11 @@
 
 import UIKit
 
-class NewsCellViewModel: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
+class NewsCellViewModel: NSObject,
+                        UICollectionViewDataSource,
+                        UICollectionViewDelegate,
+                        UICollectionViewDelegateFlowLayout {
+    
     var news: News
     
     var timeString: String? {
@@ -66,9 +70,31 @@ class NewsCellViewModel: NSObject, UICollectionViewDataSource, UICollectionViewD
             
             if let c = cell as? ReactionCollectionViewCell {
                 let r = reactions[indexPath.row]
-                c.reactionLabel.text = "\(r.reaction) \(r.amount)"
+                c.reactionLabel.text = r.reactionString
             }
             return cell
         }
+    }
+    
+    //  MARK: UICollectionViewDelegate
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        guard indexPath.row < (news.reactions?.count)!,
+            let r = news.reactions?[indexPath.row] else {
+            return CGSize(width: 30, height: 30)
+        }
+        
+        let size = CGSize(width: Double.greatestFiniteMagnitude, height: 30)
+        let options: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]
+        let attributes = [NSFontAttributeName: UIFont.systemFont(ofSize: 14)]
+        
+        let width = NSString(string: r.reactionString).boundingRect(with: size,
+                                                                    options: options,
+                                                                    attributes: attributes,
+                                                                    context: nil).size.width
+        return CGSize(width: width + 10, height: 30)
     }
 }

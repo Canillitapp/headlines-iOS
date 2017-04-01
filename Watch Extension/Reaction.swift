@@ -12,6 +12,10 @@ class Reaction: NSObject {
     var reaction: String
     var amount: Int
     
+    var reactionString: String {
+        return "\(self.reaction) \(self.amount)"
+    }
+    
     init(reaction: String, amount: Int) {
         self.reaction = reaction
         self.amount = amount
