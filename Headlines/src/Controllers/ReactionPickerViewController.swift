@@ -10,6 +10,7 @@ import UIKit
 
 class ReactionPickerViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var collectionView: UICollectionView!
+    var selectedReaction: String?
     var news: News?
     var availableReactions: [String] = [
                                         "😀", "😄", "😆", "😅", "😂", "😊", "😇", "🙂", "🙃", "😍", "😘", "😗", "😜",
@@ -33,7 +34,8 @@ class ReactionPickerViewController: UIViewController, UICollectionViewDelegate, 
     //  MARK: UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        selectedReaction = availableReactions[indexPath.row]
+        performSegue(withIdentifier: "unwindToNews", sender: self)
     }
     
     //  MARK: UICollectionViewDataSource
