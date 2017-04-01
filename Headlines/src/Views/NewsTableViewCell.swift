@@ -8,9 +8,6 @@
 
 import UIKit
 
-protocol NewsTableViewCellDelegate: UICollectionViewDataSource, UICollectionViewDelegate {
-}
-
 class NewsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -19,9 +16,15 @@ class NewsTableViewCell: UITableViewCell {
     @IBOutlet weak var newsImageView: UIImageView!
     @IBOutlet weak var reactionsCollectionView: UICollectionView!
     
-    weak var delegate: NewsTableViewCellDelegate? {
+    weak var reactionsDataSource: UICollectionViewDataSource? {
         didSet {            
-            reactionsCollectionView?.dataSource = delegate
+            reactionsCollectionView?.dataSource = reactionsDataSource
+        }
+    }
+    
+    weak var reactionsDelegate: UICollectionViewDelegate? {
+        didSet {
+            reactionsCollectionView?.delegate = reactionsDelegate
         }
     }
     

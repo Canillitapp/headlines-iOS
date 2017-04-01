@@ -9,9 +9,18 @@
 import UIKit
 import SafariServices
 
-class NewsTableViewController: UITableViewController, NewsTableViewCellDelegate {
+class NewsTableViewController: UITableViewController {
 
-    var news: [News] = []
+    var news: [News] = [] {
+        didSet {
+            news.forEach({ (n) in
+                let viewModel = NewsCellViewModel(news: n)
+                newsViewModels.append(viewModel)
+            })
+        }
+    }
+    
+    var newsViewModels: [NewsCellViewModel] = []
 
     //  MARK: UIViewController
     override func viewDidLoad() {
@@ -34,25 +43,20 @@ class NewsTableViewController: UITableViewController, NewsTableViewCellDelegate 
             return UITableViewCell()
         }
         
-        let item = news[indexPath.row]
-        cell.titleLabel.text = item.title
-        cell.sourceLabel.text = item.source
+        let viewModel = newsViewModels[indexPath.row]
         
-        if let date = item.date {
-            let timeFormatter = DateFormatter()
-            timeFormatter.dateStyle = .none
-            timeFormatter.timeStyle = .short
-            cell.timeLabel.text = timeFormatter.string(from: date)
-        }
+        cell.titleLabel.text = viewModel.title
+        cell.sourceLabel.text = viewModel.source
+        cell.timeLabel.text = viewModel.timeString
+        cell.reactionsDataSource = viewModel
+        cell.reactionsDelegate = viewModel
         
-        if let imgUrl = item.imageUrl {
+        if let imgURL = viewModel.imageURL {
             cell.newsImageView.isHidden = false
-            cell.newsImageView.sd_setImage(with: imgUrl, completed: nil)
+            cell.newsImageView.sd_setImage(with: imgURL, completed: nil)
         } else {
             cell.newsImageView.isHidden = true
         }
-        
-        cell.delegate = self
         
         return cell
     }
@@ -73,29 +77,5 @@ class NewsTableViewController: UITableViewController, NewsTableViewCellDelegate 
             let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
             present(vc, animated: true, completion: nil)
         }
-    }
-    
-    //  MARK: NewsTableViewCellDelegate
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let count = news.first?.reactions?.count else {
-            return 0
-        }
-        
-        return count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reactionCell", for: indexPath)
-        cell.layer.borderColor = UIColor(white: 236/255.0, alpha: 1).cgColor
-        
-        if let c = cell as? ReactionCollectionViewCell {
-            if let r = news.first?.reactions?[indexPath.row] {
-                c.reactionLabel.text = "\(r.reaction) \(r.amount)"
-            }
-        }
-        
-        return cell
     }
 }
