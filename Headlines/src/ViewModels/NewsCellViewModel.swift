@@ -42,24 +42,33 @@ class NewsCellViewModel: NSObject, UICollectionViewDataSource, UICollectionViewD
     //  MARK: UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let count = news.reactions?.count else {
-            return 0
+            return 1
         }
         
-        return count
+        return count+1
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reactionCell", for: indexPath)
-        cell.layer.borderColor = UIColor(white: 236/255.0, alpha: 1).cgColor
         
-        if let c = cell as? ReactionCollectionViewCell {
-            if let r = news.reactions?[indexPath.row] {
-                c.reactionLabel.text = "\(r.reaction) \(r.amount)"
-            }
+        guard let reactions = news.reactions else {
+            return UICollectionViewCell()
         }
         
-        return cell
+        if indexPath.row >= reactions.count {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addCell", for: indexPath)
+            cell.layer.borderColor = UIColor(white: 236/255.0, alpha: 1).cgColor
+            return cell
+            
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reactionCell", for: indexPath)
+            cell.layer.borderColor = UIColor(white: 236/255.0, alpha: 1).cgColor
+            
+            if let c = cell as? ReactionCollectionViewCell {
+                let r = reactions[indexPath.row]
+                c.reactionLabel.text = "\(r.reaction) \(r.amount)"
+            }
+            return cell
+        }
     }
-
 }
