@@ -29,11 +29,14 @@ class News: NSObject {
         
         imageUrl = json["img_url"].URL
         
-        reactions = []
-        for _ in 1...5 {
-            let r = Reaction.randomReaction()
-            reactions?.append(r)
-        }
+        var tmp: [Reaction] = []
+        
+        json["reactions"].forEach ({ (str, j) in
+            let r = Reaction(json: j)
+            tmp.append(r)
+        })
+        
+        reactions = tmp
         
         super.init()
     }

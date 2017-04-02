@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 class Reaction: NSObject {
     var reaction: String
@@ -14,6 +15,23 @@ class Reaction: NSObject {
     
     var reactionString: String {
         return "\(self.reaction) \(self.amount)"
+    }
+    
+    init(json: JSON) {
+        
+        if let r = json["reaction"].string {
+            reaction = r
+        } else {
+            reaction = "🤦🏿‍♂️"
+        }
+        
+        if let i = json["amount"].int {
+            amount = i
+        } else {
+            amount = 0
+        }
+
+        super.init()
     }
     
     init(reaction: String, amount: Int) {

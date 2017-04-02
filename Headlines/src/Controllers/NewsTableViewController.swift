@@ -23,6 +23,26 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     
     var newsViewModels: [NewsCellViewModel] = []
 
+    //  MARK: Private
+    
+    func addReaction(_ currentReaction: String, toNews currentNews: News) {
+        let n = news.filter ({$0 == currentNews}).first
+        if n != nil {
+            var reaction = n?.reactions?.filter({$0.reaction == currentReaction}).first
+            if reaction != nil {
+                reaction?.amount += 1
+            } else {
+                reaction = Reaction(reaction: currentReaction, amount: 1)
+                n?.reactions?.append(reaction!)
+            }
+            
+            if let i = news.index(of: currentNews) {
+                let indexPathToReload = IndexPath(row: i, section: 0)
+                tableView.reloadRows(at: [indexPathToReload], with: .none)
+            }
+        }
+    }
+    
     //  MARK: UIViewController
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,11 +57,11 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         case "reaction":
             guard let nav = segue.destination as? UINavigationController,
                 let vc = nav.topViewController as? ReactionPickerViewController,
-                let news = sender as? News else {
+                let newsViewModel = sender as? NewsCellViewModel else {
                 return
             }
             
-            vc.news = news
+            vc.news = newsViewModel.news
             break
             
         default:
@@ -49,7 +69,18 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         }
     }
 
-    @IBAction func unwindToNews(segue: UIStoryboardSegue) {}
+    @IBAction func unwindToNews(segue: UIStoryboardSegue) {
+        guard let vc = segue.source as? ReactionPickerViewController else {
+            return
+        }
+        
+        guard let currentNews = vc.news,
+            let selectedReaction = vc.selectedReaction else {
+            return
+        }
+
+        addReaction(selectedReaction, toNews: currentNews)
+    }
     
     // MARK: UITableViewDataSource
 
@@ -106,7 +137,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     //  MARK: NewsCellViewModelDelegate
     
     func newsViewModel(_ viewModel: NewsCellViewModel, didSelectReaction reaction: Reaction) {
-        print("\(reaction.reaction) -> \(reaction.amount + 1) @ \(viewModel.news.url!)")
+        addReaction(reaction.reaction, toNews: viewModel.news)
     }
 
     func newsViewModelDidSelectReactionPicker(_ viewModel: NewsCellViewModel) {
