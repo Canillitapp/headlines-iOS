@@ -21,10 +21,11 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         }
     }
     
+    let reactionsService = ReactionsService()
+    
     var newsViewModels: [NewsCellViewModel] = []
 
     //  MARK: Private
-    
     func addReaction(_ currentReaction: String, toNews currentNews: News) {
         let n = news.filter ({$0 == currentNews}).first
         if n != nil {
@@ -79,7 +80,13 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
             return
         }
 
-        addReaction(selectedReaction, toNews: currentNews)
+        reactionsService.postReaction(selectedReaction,
+                                      atNews: currentNews,
+                                      success: { (res) in
+                                        self.addReaction(selectedReaction, toNews: currentNews)
+        }) { (err) in
+            print("#ERROR \(err.localizedDescription)")
+        }
     }
     
     // MARK: UITableViewDataSource
@@ -137,7 +144,13 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     //  MARK: NewsCellViewModelDelegate
     
     func newsViewModel(_ viewModel: NewsCellViewModel, didSelectReaction reaction: Reaction) {
-        addReaction(reaction.reaction, toNews: viewModel.news)
+        reactionsService.postReaction(reaction.reaction,
+                                      atNews: viewModel.news,
+                                      success: { (res) in
+                                        self.addReaction(reaction.reaction, toNews: viewModel.news)
+        }) { (err) in
+            print("#ERROR \(err.localizedDescription)")
+        }
     }
 
     func newsViewModelDidSelectReactionPicker(_ viewModel: NewsCellViewModel) {

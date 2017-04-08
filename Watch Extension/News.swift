@@ -10,7 +10,7 @@ import Foundation
 import SwiftyJSON
 
 class News: NSObject {
-    
+    var identifier: String?
     var title: String?
     var url: URL?
     var date: Date?
@@ -19,6 +19,11 @@ class News: NSObject {
     var reactions: [Reaction]?
     
     init(json: JSON) {
+        
+        if let news_id = json["news_id"].int {
+            identifier = "\(news_id)"
+        }
+        
         title = json["title"].string
         url = json["url"].URL
         
