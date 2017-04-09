@@ -2,8 +2,8 @@
 //  NewsTableViewController.swift
 //  Headlines
 //
-//  Created by Ezequiel Becerra on 11/16/16.
-//  Copyright © 2016 Ezequiel Becerra. All rights reserved.
+//  Created by Ezequiel Becerra on 4/8/17.
+//  Copyright © 2017 Ezequiel Becerra. All rights reserved.
 //
 
 import UIKit
@@ -23,7 +23,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     
     let reactionsService = ReactionsService()
     var newsViewModels: [NewsCellViewModel] = []
-
+    
     //  MARK: Private
     func addReaction(_ currentReaction: String, toNews currentNews: News) {
         let n = news.filter ({$0 == currentNews}).first
@@ -43,11 +43,6 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         }
     }
     
-    //  MARK: UIViewController
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else {
             return
@@ -58,7 +53,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
             guard let nav = segue.destination as? UINavigationController,
                 let vc = nav.topViewController as? ReactionPickerViewController,
                 let newsViewModel = sender as? NewsCellViewModel else {
-                return
+                    return
             }
             
             vc.news = newsViewModel.news
@@ -68,7 +63,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
             return
         }
     }
-
+    
     @IBAction func unwindToNews(segue: UIStoryboardSegue) {
         guard let vc = segue.source as? ReactionPickerViewController else {
             return
@@ -76,9 +71,9 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         
         guard let currentNews = vc.news,
             let selectedReaction = vc.selectedReaction else {
-            return
+                return
         }
-
+        
         reactionsService.postReaction(selectedReaction,
                                       atNews: currentNews,
                                       success: { (res) in
@@ -89,19 +84,19 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     }
     
     // MARK: UITableViewDataSource
-
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return news.count
     }
-
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             as? NewsTableViewCell else {
-            return UITableViewCell()
+                return UITableViewCell()
         }
         
         let viewModel = newsViewModels[indexPath.row]
@@ -151,7 +146,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
             print("#ERROR \(err.localizedDescription)")
         }
     }
-
+    
     func newsViewModelDidSelectReactionPicker(_ viewModel: NewsCellViewModel) {
         performSegue(withIdentifier: "reaction", sender: viewModel)
     }

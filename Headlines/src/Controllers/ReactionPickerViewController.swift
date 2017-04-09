@@ -16,7 +16,6 @@ class ReactionPickerViewController: UIViewController, UICollectionViewDelegate, 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     @IBAction func closeButtonPressed(_ sender: Any) {

@@ -9,7 +9,7 @@
 import UIKit
 import SDWebImage
 
-class MasterViewController: UICollectionViewController {
+class TrendingCardsViewController: UICollectionViewController {
 
     var topics = [Topic]()
     let newsService = NewsService()
