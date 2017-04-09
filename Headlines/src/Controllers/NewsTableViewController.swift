@@ -22,7 +22,6 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     }
     
     let reactionsService = ReactionsService()
-    
     var newsViewModels: [NewsCellViewModel] = []
 
     //  MARK: Private

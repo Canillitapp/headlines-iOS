@@ -9,11 +9,42 @@
 import UIKit
 import SafariServices
 
-class RecentNewsViewController: UITableViewController {
+class RecentNewsViewController: UITableViewController, NewsCellViewModelDelegate {
 
     let newsService = NewsService()
-    var news = [News]()
+    var news: [News] = [] {
+        didSet {
+            news.forEach({ (n) in
+                let viewModel = NewsCellViewModel(news: n)
+                viewModel.delegate = self
+                newsViewModels.append(viewModel)
+            })
+        }
+    }
     
+    let reactionsService = ReactionsService()
+    var newsViewModels: [NewsCellViewModel] = []
+    
+    //  MARK: Private
+    func addReaction(_ currentReaction: String, toNews currentNews: News) {
+        let n = news.filter ({$0 == currentNews}).first
+        if n != nil {
+            var reaction = n?.reactions?.filter({$0.reaction == currentReaction}).first
+            if reaction != nil {
+                reaction?.amount += 1
+            } else {
+                reaction = Reaction(reaction: currentReaction, amount: 1)
+                n?.reactions?.append(reaction!)
+            }
+            
+            if let i = news.index(of: currentNews) {
+                let indexPathToReload = IndexPath(row: i, section: 0)
+                tableView.reloadRows(at: [indexPathToReload], with: .none)
+            }
+        }
+    }
+    
+    //  MARK: Public
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,6 +63,46 @@ class RecentNewsViewController: UITableViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let identifier = segue.identifier else {
+            return
+        }
+        
+        switch identifier {
+        case "reaction":
+            guard let nav = segue.destination as? UINavigationController,
+                let vc = nav.topViewController as? ReactionPickerViewController,
+                let newsViewModel = sender as? NewsCellViewModel else {
+                    return
+            }
+            
+            vc.news = newsViewModel.news
+            break
+            
+        default:
+            return
+        }
+    }
+    
+    @IBAction func unwindToNews(segue: UIStoryboardSegue) {
+        guard let vc = segue.source as? ReactionPickerViewController else {
+            return
+        }
+        
+        guard let currentNews = vc.news,
+            let selectedReaction = vc.selectedReaction else {
+                return
+        }
+        
+        reactionsService.postReaction(selectedReaction,
+                                      atNews: currentNews,
+                                      success: { (res) in
+                                        self.addReaction(selectedReaction, toNews: currentNews)
+        }) { (err) in
+            print("#ERROR \(err.localizedDescription)")
+        }
+    }
+    
     // MARK: - UITableViewDataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return news.count
@@ -39,7 +110,7 @@ class RecentNewsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let n = news[indexPath.row]
+        let viewModel = newsViewModels[indexPath.row]
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             as? NewsTableViewCell else {
@@ -47,19 +118,15 @@ class RecentNewsViewController: UITableViewController {
             return UITableViewCell()
         }
         
-        cell.titleLabel.text = n.title
-        cell.sourceLabel.text = n.source
+        cell.titleLabel.text = viewModel.title
+        cell.sourceLabel.text = viewModel.source
+        cell.timeLabel.text = viewModel.timeString
+        cell.reactionsDelegate = viewModel
+        cell.reactionsDataSource = viewModel
         
-        if let date = n.date {
-            let timeFormatter = DateFormatter()
-            timeFormatter.dateStyle = .short
-            timeFormatter.timeStyle = .short
-            cell.timeLabel.text = timeFormatter.string(from: date)
-        }
-        
-        if let imgUrl = n.imageUrl {
+        if let imgURL = viewModel.imageURL {
             cell.newsImageView.isHidden = false
-            cell.newsImageView.sd_setImage(with: imgUrl, completed: nil)
+            cell.newsImageView.sd_setImage(with: imgURL, completed: nil)
         } else {
             cell.newsImageView.isHidden = true
         }
@@ -83,5 +150,21 @@ class RecentNewsViewController: UITableViewController {
             let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
             present(vc, animated: true, completion: nil)
         }
+    }
+    
+    //  MARK: NewsCellViewModelDelegate
+    
+    func newsViewModel(_ viewModel: NewsCellViewModel, didSelectReaction reaction: Reaction) {
+        reactionsService.postReaction(reaction.reaction,
+                                      atNews: viewModel.news,
+                                      success: { (res) in
+                                        self.addReaction(reaction.reaction, toNews: viewModel.news)
+        }) { (err) in
+            print("#ERROR \(err.localizedDescription)")
+        }
+    }
+    
+    func newsViewModelDidSelectReactionPicker(_ viewModel: NewsCellViewModel) {
+        performSegue(withIdentifier: "reaction", sender: viewModel)
     }
 }
