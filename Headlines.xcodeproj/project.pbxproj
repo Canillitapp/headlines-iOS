@@ -29,6 +29,7 @@
 		677AE3461D6E7D0E00CD710D /* NewsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677AE3451D6E7D0E00CD710D /* NewsInterfaceController.swift */; };
 		677AE3481D6E7FE900CD710D /* NewsRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677AE3471D6E7FE900CD710D /* NewsRowController.swift */; };
 		6787F8251DFBA3B900DB1D85 /* RecentNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6787F8241DFBA3B900DB1D85 /* RecentNewsViewController.swift */; };
+		67897EB21EA70B2B0084F598 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67897EB11EA70B2B0084F598 /* CloudKit.framework */; };
 		6798E8CF1D88F3390032D350 /* KeywordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798E8CE1D88F3390032D350 /* KeywordCollectionViewCell.swift */; };
 		67BD94D71D73BAD600AC47E9 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677AE3431D6E626700CD710D /* News.swift */; };
 		67BD94D91D73BB1100AC47E9 /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BD94D81D73BB1100AC47E9 /* NewsService.swift */; };
@@ -131,6 +132,8 @@
 		677AE3451D6E7D0E00CD710D /* NewsInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsInterfaceController.swift; sourceTree = "<group>"; };
 		677AE3471D6E7FE900CD710D /* NewsRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsRowController.swift; sourceTree = "<group>"; };
 		6787F8241DFBA3B900DB1D85 /* RecentNewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentNewsViewController.swift; sourceTree = "<group>"; };
+		67897EB01EA70B280084F598 /* Headlines.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Headlines.entitlements; sourceTree = "<group>"; };
+		67897EB11EA70B2B0084F598 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		6798E8CE1D88F3390032D350 /* KeywordCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeywordCollectionViewCell.swift; sourceTree = "<group>"; };
 		67BD94D81D73BB1100AC47E9 /* NewsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
 		67C3CD3C1D6D1876003CC04E /* TrendingInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingInterfaceController.swift; sourceTree = "<group>"; };
@@ -160,6 +163,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CB5776E0C1E4A0AD0C481A5C /* Pods_Headlines.framework in Frameworks */,
+				67897EB21EA70B2B0084F598 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,6 +256,7 @@
 		675A81DE1D6BF6E8000DC680 /* Headlines */ = {
 			isa = PBXGroup;
 			children = (
+				67897EB01EA70B280084F598 /* Headlines.entitlements */,
 				675A81DF1D6BF6E8000DC680 /* AppDelegate.swift */,
 				67FD84D71D6BF85D00BACAFC /* src */,
 				675A81E51D6BF6E8000DC680 /* Main.storyboard */,
@@ -323,6 +328,7 @@
 		7F5377F9DE7CA1E0A38F9F13 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				67897EB11EA70B2B0084F598 /* CloudKit.framework */,
 				884A5BFA52E8811A2C5A6A7D /* Pods_Headlines.framework */,
 				E7CA813EE9F2943ACC02746E /* Pods_Watch_Extension.framework */,
 			);
@@ -466,6 +472,14 @@
 						DevelopmentTeam = 2334RGUT2P;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					675A81F11D6BF6E8000DC680 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -936,6 +950,7 @@
 			baseConfigurationReference = CBCA2736BC05D788D049F5CF /* Pods-Headlines.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Headlines/Headlines.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
@@ -955,6 +970,7 @@
 			baseConfigurationReference = 76124FBA967C0DCF6FC87B1F /* Pods-Headlines.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Headlines/Headlines.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = "";
