@@ -36,7 +36,7 @@ class ReactionsService: NSObject {
                 return
             }
             
-            let url = URL(string: "http://127.0.0.1:4567/reactions/\(newsId)")
+            let url = URL(string: "http://45.55.247.52:4567/reactions/\(newsId)")
             var request = URLRequest(url: url!)
             request.httpMethod = "POST"
             
