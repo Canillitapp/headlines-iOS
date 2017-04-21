@@ -90,13 +90,16 @@ class TrendingCardsViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+            as? KeywordCollectionViewCell else {
+                
+            return UICollectionViewCell()
+        }
+        
         let topic = topics[indexPath.row]
         
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-            as? KeywordCollectionViewCell,
-            let news = topic.news,
-            let firstNews = news.first else {
-            return UICollectionViewCell()
+        guard let news = topic.news, let firstNews = news.first else {
+            return cell
         }
         
         if let newsDate = firstNews.date {
