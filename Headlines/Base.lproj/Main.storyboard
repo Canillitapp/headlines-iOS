@@ -214,7 +214,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Sw8-qo-M0g">
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Sw8-qo-M0g">
                                             <rect key="frame" x="5" y="5" width="365" height="79.5"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MbL-Tj-mXM">
@@ -224,9 +224,14 @@
                                                         <constraint firstAttribute="width" secondItem="MbL-Tj-mXM" secondAttribute="height" multiplier="1:1" id="cTx-XA-Qwu"/>
                                                         <constraint firstAttribute="width" constant="80" id="qWa-zt-AWD"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="6"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="wOV-R1-IAq">
-                                                    <rect key="frame" x="85" y="3" width="280" height="73.5"/>
+                                                    <rect key="frame" x="85" y="0.0" width="280" height="73.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Con Macri, Carrió y Sanz, Cambiemos presenta su Mesa Nacional." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNF-Tu-LLe">
                                                             <rect key="frame" x="0.0" y="0.0" width="0.0" height="33.5"/>
@@ -382,7 +387,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ovz-qB-5AX">
+                                        <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ovz-qB-5AX">
                                             <rect key="frame" x="5" y="5" width="365" height="79.5"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8fN-8e-KYn">
@@ -392,9 +397,14 @@
                                                         <constraint firstAttribute="width" secondItem="8fN-8e-KYn" secondAttribute="height" multiplier="1:1" id="5rO-BV-fbn"/>
                                                         <constraint firstAttribute="width" constant="80" id="nyn-l9-oYO"/>
                                                     </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                            <integer key="value" value="6"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="CZC-LR-t5Z">
-                                                    <rect key="frame" x="85" y="3" width="280" height="73.5"/>
+                                                    <rect key="frame" x="85" y="0.0" width="280" height="73.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Con Macri, Carrió y Sanz, Cambiemos presenta su Mesa Nacional." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jEW-QW-uUD">
                                                             <rect key="frame" x="0.0" y="0.0" width="0.0" height="33.5"/>
@@ -545,7 +555,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LI0-7u-aWa">
-                                <rect key="frame" x="5" y="69" width="365" height="549"/>
+                                <rect key="frame" x="5" y="69" width="365" height="598"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="DdB-ch-5QL">
                                     <size key="itemSize" width="40" height="40"/>
@@ -653,6 +663,6 @@
         <image name="trending_icon" width="31" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tlq-Yw-szp"/>
+        <segue reference="oOA-Dv-4K4"/>
     </inferredMetricsTieBreakers>
 </document>
