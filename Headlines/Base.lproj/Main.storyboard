@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xiz-Fc-oPZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xiz-Fc-oPZ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -34,7 +34,7 @@
         <scene sceneID="puQ-12-U3T">
             <objects>
                 <collectionViewController title="Destacados" id="pGg-2V-AiX" customClass="TrendingCardsViewController" customModule="Headlines" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="DKO-eO-dVO">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="DKO-eO-dVO">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.13725490196078433" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
@@ -344,6 +344,7 @@
                                 <connections>
                                     <outlet property="newsImageView" destination="MbL-Tj-mXM" id="fpw-8b-Wmv"/>
                                     <outlet property="reactionsCollectionView" destination="FNm-jX-dl6" id="ip2-BA-m12"/>
+                                    <outlet property="reactionsHeightConstraint" destination="4Lc-Kv-RGo" id="jZI-Ex-FEL"/>
                                     <outlet property="sourceLabel" destination="Pc5-uz-tLr" id="n4I-RE-fos"/>
                                     <outlet property="timeLabel" destination="XWd-aC-eVX" id="OqZ-uv-Wfc"/>
                                     <outlet property="titleLabel" destination="tNF-Tu-LLe" id="Wqo-KD-YL5"/>
@@ -511,6 +512,7 @@
                                 <connections>
                                     <outlet property="newsImageView" destination="8fN-8e-KYn" id="4dh-Vu-bSG"/>
                                     <outlet property="reactionsCollectionView" destination="iWL-fz-JlP" id="wxA-Zh-HFW"/>
+                                    <outlet property="reactionsHeightConstraint" destination="6px-fx-E0G" id="IAo-iW-O3D"/>
                                     <outlet property="sourceLabel" destination="iKa-8o-k3F" id="dKM-gV-AUW"/>
                                     <outlet property="timeLabel" destination="kOW-dm-jzy" id="1EB-hc-NlS"/>
                                     <outlet property="titleLabel" destination="jEW-QW-uUD" id="A3P-vi-qPA"/>
@@ -543,7 +545,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LI0-7u-aWa">
-                                <rect key="frame" x="5" y="69" width="365" height="598"/>
+                                <rect key="frame" x="5" y="69" width="365" height="549"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="DdB-ch-5QL">
                                     <size key="itemSize" width="40" height="40"/>
@@ -651,6 +653,6 @@
         <image name="trending_icon" width="31" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oOA-Dv-4K4"/>
+        <segue reference="Tlq-Yw-szp"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -43,6 +43,14 @@ class NewsCellViewModel: NSObject,
         return news.imageUrl
     }
     
+    var shouldShowReactions: Bool {
+        guard let r = news.reactions else {
+            return false
+        }
+        
+        return r.count > 0
+    }
+    
     var delegate: NewsCellViewModelDelegate?
     
     init(news: News) {

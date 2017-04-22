@@ -15,6 +15,7 @@ class NewsTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var newsImageView: UIImageView!
     @IBOutlet weak var reactionsCollectionView: UICollectionView!
+    @IBOutlet weak var reactionsHeightConstraint: NSLayoutConstraint!
     
     weak var reactionsDataSource: UICollectionViewDataSource? {
         didSet {            
