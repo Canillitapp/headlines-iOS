@@ -64,6 +64,33 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         }
     }
     
+    @objc func handleLongPress(gesture: UILongPressGestureRecognizer!) {
+        
+        if gesture.state != .began {
+            return
+        }
+        
+        let p = gesture.location(in: tableView)
+        
+        guard let indexPath = tableView.indexPathForRow(at: p) else {
+            return
+        }
+        
+        let viewModel = newsViewModels[indexPath.row]
+        performSegue(withIdentifier: "reaction", sender: viewModel)
+
+    }
+    
+    //  MARK: UIViewController
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress))
+        longPressRecognizer.delaysTouchesBegan = true
+        tableView.addGestureRecognizer(longPressRecognizer)
+    }
+    
     @IBAction func unwindToNews(segue: UIStoryboardSegue) {
         guard let vc = segue.source as? ReactionPickerViewController else {
             return
