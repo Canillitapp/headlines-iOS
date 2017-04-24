@@ -14,8 +14,19 @@ class TrendingCardsViewController: UICollectionViewController {
     var topics = [Topic]()
     let newsService = NewsService()
     
+    func fetchTrendingTopics() {
+        collectionView?.refreshControl?.beginRefreshing()
+        
+        topics.removeAll()
+        collectionView?.reloadData()
+        
+        requestTrendingTopicsWithDate(Date())
+    }
+    
     func requestTrendingTopicsWithDate(_ date: Date) {
         newsService.requestTrendingTopicsWithDate(date, count:3, success: { (result) in
+            
+            self.collectionView?.refreshControl?.endRefreshing()
             
             guard let r = result else {
                 return
@@ -62,7 +73,16 @@ class TrendingCardsViewController: UICollectionViewController {
         flowLayout.minimumLineSpacing = 10
         flowLayout.itemSize = CGSize(width: collectionViewSize.width - 20, height: 235)
         
-        requestTrendingTopicsWithDate(Date())
+        let refreshCtrl = UIRefreshControl()
+        collectionView?.refreshControl = refreshCtrl
+        refreshCtrl.tintColor = UIColor(red:0.99, green:0.29, blue:0.39, alpha:1.00)
+        refreshCtrl.addTarget(self, action: #selector(fetchTrendingTopics), for: .valueChanged)
+        
+        //  Had to set content offset because of UIRefreshControl bug
+        //  http://stackoverflow.com/a/31224299/994129
+        collectionView?.contentOffset = CGPoint(x:0, y:-refreshCtrl.frame.size.height)
+        
+        fetchTrendingTopics()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

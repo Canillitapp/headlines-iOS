@@ -12,11 +12,13 @@ class RecentNewsViewController: NewsTableViewController {
 
     let newsService = NewsService()
     
-    //  MARK: Public
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    //  MARK: Private
+    func fetchRequestNews() {
+        refreshControl?.beginRefreshing()
         
         newsService.requestRecentNewsWithDate(Date(), success: { (result) in
+            
+            self.refreshControl?.endRefreshing()
             
             guard let r = result else {
                 return
@@ -29,6 +31,24 @@ class RecentNewsViewController: NewsTableViewController {
         }) { (error) in
             print(":-(")
         }
+    }
+    
+    //  MARK: Public
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        //  Setup refresh control
+        let refreshCtrl = UIRefreshControl()
+        tableView.refreshControl = refreshCtrl
+        
+        refreshCtrl.tintColor = UIColor(red:0.99, green:0.29, blue:0.39, alpha:1.00)
+        refreshCtrl.addTarget(self, action: #selector(fetchRequestNews), for: .valueChanged)
+        
+        //  Had to set content offset because of UIRefreshControl bug 
+        //  http://stackoverflow.com/a/31224299/994129
+        tableView.contentOffset = CGPoint(x:0, y:-refreshCtrl.frame.size.height)
+        
+        fetchRequestNews()
     }
     
 }
