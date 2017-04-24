@@ -115,7 +115,7 @@
 		6719DA761D6D143E00D1E214 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6734EA601E99A97600493C86 /* ReactionsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReactionsService.swift; path = Services/ReactionsService.swift; sourceTree = "<group>"; };
 		674770241E99D28E003D5AF1 /* NewsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewController.swift; sourceTree = "<group>"; };
-		675A81DC1D6BF6E8000DC680 /* Headlines.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Headlines.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		675A81DC1D6BF6E8000DC680 /* Canillitapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Canillitapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		675A81DF1D6BF6E8000DC680 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		675A81E61D6BF6E8000DC680 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		675A81E81D6BF6E8000DC680 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -244,7 +244,7 @@
 		675A81DD1D6BF6E8000DC680 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				675A81DC1D6BF6E8000DC680 /* Headlines.app */,
+				675A81DC1D6BF6E8000DC680 /* Canillitapp.app */,
 				675A81F21D6BF6E8000DC680 /* HeadlinesTests.xctest */,
 				675A81FD1D6BF6E8000DC680 /* HeadlinesUITests.xctest */,
 				6719DA5F1D6D143E00D1E214 /* Watch.app */,
@@ -387,9 +387,9 @@
 			productReference = 6719DA6B1D6D143E00D1E214 /* Watch Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
-		675A81DB1D6BF6E8000DC680 /* Headlines */ = {
+		675A81DB1D6BF6E8000DC680 /* Canillitapp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 675A82061D6BF6E8000DC680 /* Build configuration list for PBXNativeTarget "Headlines" */;
+			buildConfigurationList = 675A82061D6BF6E8000DC680 /* Build configuration list for PBXNativeTarget "Canillitapp" */;
 			buildPhases = (
 				ACDDC73AB3F5EA8DC32646D3 /* [CP] Check Pods Manifest.lock */,
 				675A81D81D6BF6E8000DC680 /* Sources */,
@@ -405,9 +405,9 @@
 			dependencies = (
 				6719DA781D6D143E00D1E214 /* PBXTargetDependency */,
 			);
-			name = Headlines;
+			name = Canillitapp;
 			productName = Headlines;
-			productReference = 675A81DC1D6BF6E8000DC680 /* Headlines.app */;
+			productReference = 675A81DC1D6BF6E8000DC680 /* Canillitapp.app */;
 			productType = "com.apple.product-type.application";
 		};
 		675A81F11D6BF6E8000DC680 /* HeadlinesTests */ = {
@@ -508,7 +508,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				675A81DB1D6BF6E8000DC680 /* Headlines */,
+				675A81DB1D6BF6E8000DC680 /* Canillitapp */,
 				675A81F11D6BF6E8000DC680 /* HeadlinesTests */,
 				675A81FC1D6BF6E8000DC680 /* HeadlinesUITests */,
 				6719DA5E1D6D143E00D1E214 /* Watch */,
@@ -737,12 +737,12 @@
 		};
 		675A81F41D6BF6E8000DC680 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 675A81DB1D6BF6E8000DC680 /* Headlines */;
+			target = 675A81DB1D6BF6E8000DC680 /* Canillitapp */;
 			targetProxy = 675A81F31D6BF6E8000DC680 /* PBXContainerItemProxy */;
 		};
 		675A81FF1D6BF6E8000DC680 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 675A81DB1D6BF6E8000DC680 /* Headlines */;
+			target = 675A81DB1D6BF6E8000DC680 /* Canillitapp */;
 			targetProxy = 675A81FE1D6BF6E8000DC680 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -1069,7 +1069,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		675A82061D6BF6E8000DC680 /* Build configuration list for PBXNativeTarget "Headlines" */ = {
+		675A82061D6BF6E8000DC680 /* Build configuration list for PBXNativeTarget "Canillitapp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				675A82071D6BF6E8000DC680 /* Debug */,
