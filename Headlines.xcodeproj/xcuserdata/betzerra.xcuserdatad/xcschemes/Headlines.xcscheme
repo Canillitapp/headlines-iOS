@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "675A81DB1D6BF6E8000DC680"
-               BuildableName = "Headlines.app"
-               BlueprintName = "Headlines"
+               BuildableName = "Canillitapp.app"
+               BlueprintName = "Canillitapp"
                ReferencedContainer = "container:Headlines.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -53,8 +53,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "675A81DB1D6BF6E8000DC680"
-            BuildableName = "Headlines.app"
-            BlueprintName = "Headlines"
+            BuildableName = "Canillitapp.app"
+            BlueprintName = "Canillitapp"
             ReferencedContainer = "container:Headlines.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -76,8 +76,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "675A81DB1D6BF6E8000DC680"
-            BuildableName = "Headlines.app"
-            BlueprintName = "Headlines"
+            BuildableName = "Canillitapp.app"
+            BlueprintName = "Canillitapp"
             ReferencedContainer = "container:Headlines.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -95,8 +95,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "675A81DB1D6BF6E8000DC680"
-            BuildableName = "Headlines.app"
-            BlueprintName = "Headlines"
+            BuildableName = "Canillitapp.app"
+            BlueprintName = "Canillitapp"
             ReferencedContainer = "container:Headlines.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

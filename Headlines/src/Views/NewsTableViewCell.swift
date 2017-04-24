@@ -14,16 +14,26 @@ class NewsTableViewCell: UITableViewCell {
     @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var newsImageView: UIImageView!
+    @IBOutlet weak var reactionsCollectionView: UICollectionView!
+    @IBOutlet weak var reactionsHeightConstraint: NSLayoutConstraint!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    weak var reactionsDataSource: UICollectionViewDataSource? {
+        didSet {            
+            reactionsCollectionView?.dataSource = reactionsDataSource
+        }
     }
-
+    
+    weak var reactionsDelegate: UICollectionViewDelegate? {
+        didSet {
+            reactionsCollectionView?.delegate = reactionsDelegate
+        }
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+        super.setHighlighted(highlighted, animated: animated)
+    }
 }
