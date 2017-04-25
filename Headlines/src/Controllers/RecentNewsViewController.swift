@@ -24,6 +24,7 @@ class RecentNewsViewController: NewsTableViewController {
                 return
             }
             
+            self.news.removeAll()
             self.news.append(contentsOf: r)
             
             self.tableView.reloadData()
