@@ -33,7 +33,7 @@
         <!--Destacados-->
         <scene sceneID="puQ-12-U3T">
             <objects>
-                <collectionViewController title="Destacados" id="pGg-2V-AiX" customClass="TrendingCardsViewController" customModule="Headlines" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController title="Destacados" id="pGg-2V-AiX" customClass="TrendingCardsViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="DKO-eO-dVO">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -45,7 +45,7 @@
                             <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="100"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="loB-i9-0C7" customClass="KeywordCollectionViewCell" customModule="Headlines" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="loB-i9-0C7" customClass="KeywordCollectionViewCell" customModule="Canillitapp" customModuleProvider="target">
                                 <rect key="frame" x="37.5" y="10" width="300" height="260"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -192,6 +192,7 @@
                     <connections>
                         <segue destination="RMx-3f-FxP" kind="relationship" relationship="viewControllers" id="66h-od-L4Z"/>
                         <segue destination="Abw-Ux-NCb" kind="relationship" relationship="viewControllers" id="ksO-3d-GfU"/>
+                        <segue destination="mD5-4X-c0s" kind="relationship" relationship="viewControllers" id="tBl-Kq-ywt"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMH-AH-cxw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -201,13 +202,13 @@
         <!--Recientes-->
         <scene sceneID="JGw-go-m4X">
             <objects>
-                <tableViewController title="Recientes" id="UHm-7N-iFa" customClass="RecentNewsViewController" customModule="Headlines" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Recientes" id="UHm-7N-iFa" customClass="RecentNewsViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="3tS-WI-A6H">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="120" id="M6e-e7-zzJ" customClass="NewsTableViewCell" customModule="Headlines" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="120" id="M6e-e7-zzJ" customClass="NewsTableViewCell" customModule="Canillitapp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="M6e-e7-zzJ" id="53g-Fs-dwB">
@@ -268,7 +269,7 @@
                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
-                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="reactionCell" id="scr-W9-JJl" customClass="ReactionCollectionViewCell" customModule="Headlines" customModuleProvider="target">
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="reactionCell" id="scr-W9-JJl" customClass="ReactionCollectionViewCell" customModule="Canillitapp" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="40" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -374,13 +375,13 @@
         <!--Cambiemos-->
         <scene sceneID="rjg-1C-8Pp">
             <objects>
-                <tableViewController title="Cambiemos" id="MYF-Oh-yyD" customClass="NewsTableViewController" customModule="Headlines" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Cambiemos" id="MYF-Oh-yyD" customClass="NewsTableViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5Bm-b3-Mm7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="120" id="7Sz-iH-b0N" customClass="NewsTableViewCell" customModule="Headlines" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="120" id="7Sz-iH-b0N" customClass="NewsTableViewCell" customModule="Canillitapp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Sz-iH-b0N" id="eSd-uj-gqa">
@@ -441,7 +442,7 @@
                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
-                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="reactionCell" id="NUR-Tb-Lj5" customClass="ReactionCollectionViewCell" customModule="Headlines" customModuleProvider="target">
+                                                <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="reactionCell" id="NUR-Tb-Lj5" customClass="ReactionCollectionViewCell" customModule="Canillitapp" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="0.0" width="40" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -545,7 +546,7 @@
         <!--Reacciones-->
         <scene sceneID="gsQ-pD-mQw">
             <objects>
-                <viewController title="Reacciones" automaticallyAdjustsScrollViewInsets="NO" id="Sf8-6H-BKE" customClass="ReactionPickerViewController" customModule="Headlines" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Reacciones" automaticallyAdjustsScrollViewInsets="NO" id="Sf8-6H-BKE" customClass="ReactionPickerViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="XXi-GU-c6R"/>
                         <viewControllerLayoutGuide type="bottom" id="nUr-q0-BuR"/>
@@ -555,7 +556,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="LI0-7u-aWa">
-                                <rect key="frame" x="5" y="69" width="365" height="598"/>
+                                <rect key="frame" x="5" y="69" width="365" height="549"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="DdB-ch-5QL">
                                     <size key="itemSize" width="45" height="45"/>
@@ -564,7 +565,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="EG6-1v-Nnz" customClass="ReactionCollectionViewCell" customModule="Headlines" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="EG6-1v-Nnz" customClass="ReactionCollectionViewCell" customModule="Canillitapp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -657,12 +658,72 @@
             </objects>
             <point key="canvasLocation" x="-58" y="554"/>
         </scene>
+        <!--Reacciones-->
+        <scene sceneID="71L-A2-b0k">
+            <objects>
+                <navigationController id="mD5-4X-c0s" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Reacciones" id="ESI-ez-g9q"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WLO-q8-zMC">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="I3d-cv-AXv" kind="relationship" relationship="rootViewController" id="ynH-9F-AJv"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6Wr-9K-c72" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-58" y="1344"/>
+        </scene>
+        <!--My Reactions View Controller-->
+        <scene sceneID="Jp5-N0-w1p">
+            <objects>
+                <tableViewController id="I3d-cv-AXv" customClass="MyReactionsViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cWW-nS-EQi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Cx9-mI-86C" customClass="ReactionTableViewCell" customModule="Canillitapp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cx9-mI-86C" id="LLZ-Lb-3XI">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zg-3g-QMs">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="2zg-3g-QMs" secondAttribute="bottom" id="3f5-WM-JO8"/>
+                                        <constraint firstAttribute="trailing" secondItem="2zg-3g-QMs" secondAttribute="trailing" id="8mJ-lK-kgK"/>
+                                        <constraint firstItem="2zg-3g-QMs" firstAttribute="top" secondItem="LLZ-Lb-3XI" secondAttribute="top" id="eYM-nn-Bwi"/>
+                                        <constraint firstItem="2zg-3g-QMs" firstAttribute="leading" secondItem="LLZ-Lb-3XI" secondAttribute="leading" id="ua4-61-iyb"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="I3d-cv-AXv" id="PnY-lG-qJt"/>
+                            <outlet property="delegate" destination="I3d-cv-AXv" id="0I1-mL-A6W"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="3fj-IJ-wcb"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ws9-7O-hqs" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="768" y="1343"/>
+        </scene>
     </scenes>
     <resources>
         <image name="recent_icon" width="25" height="25"/>
         <image name="trending_icon" width="31" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="oOA-Dv-4K4"/>
+        <segue reference="Tlq-Yw-szp"/>
     </inferredMetricsTieBreakers>
 </document>
