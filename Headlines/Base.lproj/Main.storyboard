@@ -662,7 +662,7 @@
         <scene sceneID="71L-A2-b0k">
             <objects>
                 <navigationController id="mD5-4X-c0s" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Reacciones" id="ESI-ez-g9q"/>
+                    <tabBarItem key="tabBarItem" title="Reacciones" image="reactions_icon" id="ESI-ez-g9q"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="WLO-q8-zMC">
@@ -755,6 +755,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="reactions_icon" width="27" height="22"/>
         <image name="recent_icon" width="25" height="25"/>
         <image name="trending_icon" width="31" height="21"/>
     </resources>
