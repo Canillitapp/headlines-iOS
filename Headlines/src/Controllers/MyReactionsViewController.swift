@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SDWebImage
 
 class MyReactionsViewController: UITableViewController {
     let reactionsService = ReactionsService()
@@ -36,9 +37,18 @@ class MyReactionsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            as? NewsTableViewCell else {
+            as? ReactionTableViewCell else {
                 return UITableViewCell()
         }
+        
+        let r = self.reactions[indexPath.row]
+        guard let n = r.news else {
+            return cell
+        }
+        
+        cell.emojiLabel.text = r.reaction
+        cell.reactionLabel.text = n.title
+        cell.reactionImageView.sd_setImage(with: n.imageUrl)
         
         return cell
     }

@@ -16,7 +16,7 @@
             <objects>
                 <navigationController title="Destacados" id="RMx-3f-FxP" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Destacados" image="trending_icon" id="yfu-kf-6Q2"/>
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" barStyle="black" id="Pmd-2v-anx">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="Pmd-2v-anx">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -34,7 +34,7 @@
         <scene sceneID="puQ-12-U3T">
             <objects>
                 <collectionViewController title="Destacados" id="pGg-2V-AiX" customClass="TrendingCardsViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="DKO-eO-dVO">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="DKO-eO-dVO">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.13725490196078433" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
@@ -645,7 +645,7 @@
             <objects>
                 <navigationController title="Recientes" id="Abw-Ux-NCb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Reciente" image="recent_icon" id="Qp8-zi-e3Q"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="2nT-WF-g68">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="2nT-WF-g68">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
@@ -663,9 +663,13 @@
             <objects>
                 <navigationController id="mD5-4X-c0s" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Reacciones" id="ESI-ez-g9q"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WLO-q8-zMC">
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="WLO-q8-zMC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="I3d-cv-AXv" kind="relationship" relationship="rootViewController" id="ynH-9F-AJv"/>
@@ -675,36 +679,67 @@
             </objects>
             <point key="canvasLocation" x="-58" y="1344"/>
         </scene>
-        <!--My Reactions View Controller-->
+        <!--Reacciones-->
         <scene sceneID="Jp5-N0-w1p">
             <objects>
                 <tableViewController id="I3d-cv-AXv" customClass="MyReactionsViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="cWW-nS-EQi">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="cWW-nS-EQi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="Cx9-mI-86C" customClass="ReactionTableViewCell" customModule="Canillitapp" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cx9-mI-86C" id="LLZ-Lb-3XI">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zg-3g-QMs">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Presentación dinámica del Lamborghini Aventador S = Video y fotos." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2zg-3g-QMs">
+                                            <rect key="frame" x="60" y="0.0" width="305" height="59.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y8j-lB-3ek">
+                                            <rect key="frame" x="10" y="10" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="y8j-lB-3ek" secondAttribute="height" multiplier="1:1" id="LZY-Dz-Tq8"/>
+                                                <constraint firstAttribute="height" constant="40" id="fjR-AX-jXZ"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="6"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😄" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mtr-ri-aBk">
+                                            <rect key="frame" x="10" y="10" width="40" height="40"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.2813837756849315" colorSpace="calibratedRGB"/>
+                                            <size key="shadowOffset" width="1" height="1"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="mtr-ri-aBk" firstAttribute="top" secondItem="y8j-lB-3ek" secondAttribute="top" id="2Uo-cP-Hvs"/>
                                         <constraint firstAttribute="bottom" secondItem="2zg-3g-QMs" secondAttribute="bottom" id="3f5-WM-JO8"/>
-                                        <constraint firstAttribute="trailing" secondItem="2zg-3g-QMs" secondAttribute="trailing" id="8mJ-lK-kgK"/>
+                                        <constraint firstAttribute="trailing" secondItem="2zg-3g-QMs" secondAttribute="trailing" constant="10" id="8mJ-lK-kgK"/>
+                                        <constraint firstItem="2zg-3g-QMs" firstAttribute="leading" secondItem="y8j-lB-3ek" secondAttribute="trailing" constant="10" id="CBa-HT-eGf"/>
+                                        <constraint firstItem="mtr-ri-aBk" firstAttribute="bottom" secondItem="y8j-lB-3ek" secondAttribute="bottom" id="Q6t-Qe-5Lr"/>
+                                        <constraint firstItem="y8j-lB-3ek" firstAttribute="leading" secondItem="LLZ-Lb-3XI" secondAttribute="leading" constant="10" id="QXT-ro-hne"/>
+                                        <constraint firstItem="mtr-ri-aBk" firstAttribute="leading" secondItem="y8j-lB-3ek" secondAttribute="leading" id="SZF-6K-c8B"/>
+                                        <constraint firstItem="mtr-ri-aBk" firstAttribute="trailing" secondItem="y8j-lB-3ek" secondAttribute="trailing" id="bsP-7D-bQG"/>
                                         <constraint firstItem="2zg-3g-QMs" firstAttribute="top" secondItem="LLZ-Lb-3XI" secondAttribute="top" id="eYM-nn-Bwi"/>
-                                        <constraint firstItem="2zg-3g-QMs" firstAttribute="leading" secondItem="LLZ-Lb-3XI" secondAttribute="leading" id="ua4-61-iyb"/>
+                                        <constraint firstItem="y8j-lB-3ek" firstAttribute="centerY" secondItem="LLZ-Lb-3XI" secondAttribute="centerY" id="xlN-Wv-KwW"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="emojiLabel" destination="mtr-ri-aBk" id="KP2-C8-udp"/>
+                                    <outlet property="reactionImageView" destination="y8j-lB-3ek" id="neJ-3u-aaf"/>
+                                    <outlet property="reactionLabel" destination="2zg-3g-QMs" id="OaZ-QT-3O4"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -712,7 +747,7 @@
                             <outlet property="delegate" destination="I3d-cv-AXv" id="0I1-mL-A6W"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="3fj-IJ-wcb"/>
+                    <navigationItem key="navigationItem" title="Reacciones" id="3fj-IJ-wcb"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ws9-7O-hqs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

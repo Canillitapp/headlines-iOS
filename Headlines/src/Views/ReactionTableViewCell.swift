@@ -10,5 +10,7 @@ import Foundation
 import UIKit
 
 class ReactionTableViewCell: UITableViewCell {
-    
+    @IBOutlet weak var emojiLabel: UILabel!
+    @IBOutlet weak var reactionLabel: UILabel!
+    @IBOutlet weak var reactionImageView: UIImageView!
 }
