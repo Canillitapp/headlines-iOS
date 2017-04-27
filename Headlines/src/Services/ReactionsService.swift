@@ -8,6 +8,7 @@
 
 import UIKit
 import CloudKit
+import SwiftyJSON
 
 class ReactionsService: NSObject {
 
@@ -54,6 +55,58 @@ class ReactionsService: NSObject {
                 
                 DispatchQueue.main.async(execute: {
                     success?(response)
+                })
+            })
+            
+            task.resume()
+        }
+    }
+    
+    func getReactions(success: ((_ response: URLResponse?, [Reaction]) -> ())?,
+                      fail: ((_ error: Error) -> ())?) {
+        
+        let container = CKContainer.default()
+        container.fetchUserRecordID { (recordId, error) in
+            if let err = error {
+                fail?(err)
+                return
+            }
+            
+            guard let userId = recordId else {
+                let errUserInfo = [NSLocalizedDescriptionKey : "No user record id"]
+                let err = NSError(domain: NSStringFromClass(self.classForCoder),
+                                  code: 1,
+                                  userInfo: errUserInfo)
+                fail?(err)
+                return
+            }
+            
+            let url = URL(string: "http://45.55.247.52:4567/reactions/\(userId.recordName)/iOS")
+            let request = URLRequest(url: url!)
+            
+            let config = URLSessionConfiguration.default
+            let session = URLSession(configuration: config)
+            
+            let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
+                if let e = error {
+                    fail?(e as NSError)
+                    return
+                }
+                
+                guard let d = data else {
+                    return
+                }
+                
+                let json = JSON(data: d)
+                
+                var reactions = [Reaction]()
+                json.forEach ({ (str, j) in
+                    let r = Reaction(json: j)
+                    reactions.append(r)
+                })
+                
+                DispatchQueue.main.async(execute: {
+                    success?(response, reactions)
                 })
             })
             
