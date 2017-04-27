@@ -30,6 +30,8 @@ class RecentNewsViewController: NewsTableViewController {
             self.tableView.reloadData()
             
         }) { (error) in
+            self.refreshControl?.endRefreshing()
+            
             print(":-(")
         }
     }
