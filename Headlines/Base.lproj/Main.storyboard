@@ -16,7 +16,7 @@
             <objects>
                 <navigationController title="Destacados" id="RMx-3f-FxP" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Destacados" image="trending_icon" id="yfu-kf-6Q2"/>
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="Pmd-2v-anx">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" barStyle="black" id="Pmd-2v-anx">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -34,7 +34,7 @@
         <scene sceneID="puQ-12-U3T">
             <objects>
                 <collectionViewController title="Destacados" id="pGg-2V-AiX" customClass="TrendingCardsViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="DKO-eO-dVO">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="DKO-eO-dVO">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.13725490196078433" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
@@ -193,11 +193,12 @@
                         <segue destination="RMx-3f-FxP" kind="relationship" relationship="viewControllers" id="66h-od-L4Z"/>
                         <segue destination="Abw-Ux-NCb" kind="relationship" relationship="viewControllers" id="ksO-3d-GfU"/>
                         <segue destination="mD5-4X-c0s" kind="relationship" relationship="viewControllers" id="tBl-Kq-ywt"/>
+                        <segue destination="qph-JK-AyF" kind="relationship" relationship="viewControllers" id="N99-Zj-WD2"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMH-AH-cxw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1314" y="109"/>
+            <point key="canvasLocation" x="-1385" y="554"/>
         </scene>
         <!--Recientes-->
         <scene sceneID="JGw-go-m4X">
@@ -645,7 +646,7 @@
             <objects>
                 <navigationController title="Recientes" id="Abw-Ux-NCb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Reciente" image="recent_icon" id="Qp8-zi-e3Q"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="2nT-WF-g68">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="2nT-WF-g68">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
@@ -665,7 +666,7 @@
                     <tabBarItem key="tabBarItem" title="Reacciones" image="reactions_icon" id="ESI-ez-g9q"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="WLO-q8-zMC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="WLO-q8-zMC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -753,10 +754,66 @@
             </objects>
             <point key="canvasLocation" x="768" y="1343"/>
         </scene>
+        <!--Buscar-->
+        <scene sceneID="b6K-lt-r1u">
+            <objects>
+                <tableViewController id="YA2-Hd-pbO" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="s2d-Pz-N2b">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <searchBar key="tableHeaderView" contentMode="redraw" barStyle="black" searchBarStyle="prominent" placeholder="Buscar" showsCancelButton="YES" id="OTR-so-tYN">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </searchBar>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Wj4-ky-pqh">
+                                <rect key="frame" x="0.0" y="72" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wj4-ky-pqh" id="h0B-3x-1aL">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="YA2-Hd-pbO" id="qFm-au-GHA"/>
+                            <outlet property="delegate" destination="YA2-Hd-pbO" id="VmP-Nr-adM"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Buscar" id="Evf-h0-fLC"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N1E-uW-aOx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="767" y="2121"/>
+        </scene>
+        <!--Buscar-->
+        <scene sceneID="GG1-WQ-ahD">
+            <objects>
+                <navigationController id="qph-JK-AyF" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Buscar" image="search_icon" id="Iim-hM-fUr"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="MAt-YH-kTW">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="YA2-Hd-pbO" kind="relationship" relationship="rootViewController" id="1zK-t8-TvH"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FQH-I8-Wcd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-38" y="2121"/>
+        </scene>
     </scenes>
     <resources>
         <image name="reactions_icon" width="27" height="22"/>
         <image name="recent_icon" width="25" height="25"/>
+        <image name="search_icon" width="22" height="22"/>
         <image name="trending_icon" width="31" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
