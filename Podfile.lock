@@ -1,17 +1,20 @@
 PODS:
+  - MBProgressHUD (1.0.0)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - SwiftyJSON (3.1.0)
 
 DEPENDENCIES:
+  - MBProgressHUD
   - SDWebImage
   - SwiftyJSON (= 3.1.0)
 
 SPEC CHECKSUMS:
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   SDWebImage: '098e97e6176540799c27e804c96653ee0833d13c'
   SwiftyJSON: 29b9f2a64f118c07e691667c2ba1efe536acfe0b
 
-PODFILE CHECKSUM: ab60beee1a08b756c92aa974c8d4839020e5c0a2
+PODFILE CHECKSUM: '030187562b7730693fb1d3817d071244cc23e3ea'
 
 COCOAPODS: 1.2.0

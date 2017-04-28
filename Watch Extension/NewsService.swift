@@ -105,4 +105,44 @@ class NewsService: NSObject {
         // do whatever you need with the task e.g. run
         task.resume()
     }
+    
+    func searchNews(_ text: String, success: ((_ result: [News]?) -> ())?, fail: ((_ error: NSError) -> ())?) {
+        
+        guard let encodedText = text.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
+            return
+        }
+        
+        let url = URL(string: "http://45.55.247.52:4567/search/\(encodedText)")
+        let request = URLRequest(url: url!)
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        
+        let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
+            if let e = error {
+                fail?(e as NSError)
+                return
+            }
+            
+            guard let d = data else {
+                return
+            }
+            
+            let json = JSON(data: d)
+            
+            var res = [News]()
+            
+            for (_, v) in json {
+                let n = News(json: v)
+                res.append(n)
+            }
+            
+            DispatchQueue.main.async(execute: {
+                success?(res)
+            })
+        })
+        
+        // do whatever you need with the task e.g. run
+        task.resume()
+    }
 }

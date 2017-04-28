@@ -7,6 +7,7 @@ target 'Canillitapp' do
   platform :ios, '9.0'
   pod 'SwiftyJSON', '3.1.0'
   pod 'SDWebImage'
+  pod 'MBProgressHUD'
 end
 
 target 'Watch Extension' do
