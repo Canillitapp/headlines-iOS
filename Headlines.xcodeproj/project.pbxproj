@@ -44,6 +44,7 @@
 		67D434F31EB01827001A79D8 /* ReactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D434F21EB01827001A79D8 /* ReactionTableViewCell.swift */; };
 		67E1A7A61DDD3744002AADEA /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E1A7A51DDD3744002AADEA /* Topic.swift */; };
 		67E1A7A71DDD3881002AADEA /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E1A7A51DDD3744002AADEA /* Topic.swift */; };
+		67F39C1A1EB2DEE600CF99F2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F39C191EB2DEE600CF99F2 /* SearchViewController.swift */; };
 		67FD84DE1D6BF85D00BACAFC /* TrendingCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD84DA1D6BF85D00BACAFC /* TrendingCardsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -147,6 +148,7 @@
 		67D434F01EB0000C001A79D8 /* MyReactionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyReactionsViewController.swift; sourceTree = "<group>"; };
 		67D434F21EB01827001A79D8 /* ReactionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionTableViewCell.swift; sourceTree = "<group>"; };
 		67E1A7A51DDD3744002AADEA /* Topic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
+		67F39C191EB2DEE600CF99F2 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		67FD84DA1D6BF85D00BACAFC /* TrendingCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingCardsViewController.swift; sourceTree = "<group>"; };
 		76124FBA967C0DCF6FC87B1F /* Pods-Headlines.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Headlines.release.xcconfig"; path = "Pods/Target Support Files/Pods-Headlines/Pods-Headlines.release.xcconfig"; sourceTree = "<group>"; };
 		884A5BFA52E8811A2C5A6A7D /* Pods_Headlines.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Headlines.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -330,6 +332,7 @@
 				67CE08B21E903B2D00D5911E /* ReactionPickerViewController.swift */,
 				6787F8241DFBA3B900DB1D85 /* RecentNewsViewController.swift */,
 				67FD84DA1D6BF85D00BACAFC /* TrendingCardsViewController.swift */,
+				67F39C191EB2DEE600CF99F2 /* SearchViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -704,6 +707,7 @@
 				6798E8CF1D88F3390032D350 /* KeywordCollectionViewCell.swift in Sources */,
 				67FD84DE1D6BF85D00BACAFC /* TrendingCardsViewController.swift in Sources */,
 				670D2C7C1DDC09D000237C39 /* NewsTableViewCell.swift in Sources */,
+				67F39C1A1EB2DEE600CF99F2 /* SearchViewController.swift in Sources */,
 				67CE08B11E9012F700D5911E /* NewsCellViewModel.swift in Sources */,
 				675A81E01D6BF6E8000DC680 /* AppDelegate.swift in Sources */,
 				67D434F31EB01827001A79D8 /* ReactionTableViewCell.swift in Sources */,
