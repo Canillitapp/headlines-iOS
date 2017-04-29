@@ -28,7 +28,9 @@ class NewsService: NSObject {
         
         let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
             if let e = error {
-                fail?(e as NSError)
+                DispatchQueue.main.async(execute: {
+                    fail?(e as NSError)
+                }
                 return
             }
             
@@ -71,7 +73,9 @@ class NewsService: NSObject {
         
         let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
             if let e = error {
-                fail?(e as NSError)
+                DispatchQueue.main.async(execute: {
+                    fail?(e as NSError)
+                }
                 return
             }
             
@@ -120,7 +124,9 @@ class NewsService: NSObject {
         
         let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
             if let e = error {
-                fail?(e as NSError)
+                DispatchQueue.main.async {
+                    fail?(e as NSError)
+                }
                 return
             }
             
