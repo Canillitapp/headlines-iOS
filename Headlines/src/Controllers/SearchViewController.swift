@@ -14,12 +14,9 @@ class SearchViewController: NewsTableViewController, UISearchBarDelegate {
     
     let newsService = NewsService()
     
-    @IBOutlet weak var searchBar: UISearchBar!
+    var loadingIndicator: MBProgressHUD?
     
-    //  MARK: Public
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+    @IBOutlet weak var searchBar: UISearchBar!
     
     //  MARK: UISearchBarDelegate
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -33,10 +30,11 @@ class SearchViewController: NewsTableViewController, UISearchBarDelegate {
             return
         }
         
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+        loadingIndicator = MBProgressHUD.showAdded(to: self.view, animated: true)
+        loadingIndicator?.mode = .indeterminate
 
         newsService.searchNews(text, success: { (news) in
-            MBProgressHUD.hide(for: self.view, animated: true)
+            self.loadingIndicator?.hide(animated: true)
             guard let n = news else {
                 return
             }
@@ -46,7 +44,7 @@ class SearchViewController: NewsTableViewController, UISearchBarDelegate {
             self.tableView.reloadData()
             
         }) { (error) in
-            MBProgressHUD.hide(for: self.view, animated: true)
+            self.loadingIndicator?.hide(animated: true)
             print("\(error.localizedDescription)")
         }
     }
