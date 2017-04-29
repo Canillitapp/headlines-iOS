@@ -13,6 +13,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
 
     var news: [News] = [] {
         didSet {
+            newsViewModels.removeAll()
             news.forEach({ (n) in
                 let viewModel = NewsCellViewModel(news: n)
                 viewModel.delegate = self
