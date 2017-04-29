@@ -118,7 +118,17 @@ class TrendingCardsViewController: UICollectionViewController {
         
         let topic = topics[indexPath.row]
         
-        guard let news = topic.news, let firstNews = news.first else {
+        guard let news = topic.news else {
+            return cell
+        }
+        
+        //  Tries to show a news on the topic card that contains an image,
+        //  it will show a news without an image if all the news of that topic don't
+        //  contain an image.
+        
+        let newsWithImages = news.filter({$0.imageUrl != nil})
+        
+        guard let firstNews = newsWithImages.first != nil ? newsWithImages.first : news.first else {
             return cell
         }
         
