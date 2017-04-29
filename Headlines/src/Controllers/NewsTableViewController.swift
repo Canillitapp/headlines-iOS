@@ -144,6 +144,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         
         cell.reactionsCollectionView.isHidden = !viewModel.shouldShowReactions
         cell.reactionsHeightConstraint.constant = cell.reactionsCollectionView.isHidden ? 0 : 30
+        cell.reactionsCollectionView.reloadData()
         
         return cell
     }
