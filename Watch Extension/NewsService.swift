@@ -30,7 +30,7 @@ class NewsService: NSObject {
             if let e = error {
                 DispatchQueue.main.async(execute: {
                     fail?(e as NSError)
-                }
+                })
                 return
             }
             
@@ -75,7 +75,7 @@ class NewsService: NSObject {
             if let e = error {
                 DispatchQueue.main.async(execute: {
                     fail?(e as NSError)
-                }
+                })
                 return
             }
             
