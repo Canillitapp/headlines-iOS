@@ -37,6 +37,7 @@
 		6798B6801EBAA78F0079B8E1 /* ConfigHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798B67E1EBAA78F0079B8E1 /* ConfigHelper.swift */; };
 		6798B6821EBAA98B0079B8E1 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798B6811EBAA98B0079B8E1 /* BaseService.swift */; };
 		6798B6831EBAA98B0079B8E1 /* BaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798B6811EBAA98B0079B8E1 /* BaseService.swift */; };
+		6798B6871EBACDB70079B8E1 /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = 6798B6851EBAC6260079B8E1 /* fabric.apikey */; };
 		6798E8CF1D88F3390032D350 /* KeywordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798E8CE1D88F3390032D350 /* KeywordCollectionViewCell.swift */; };
 		67BD94D71D73BAD600AC47E9 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677AE3431D6E626700CD710D /* News.swift */; };
 		67BD94D91D73BB1100AC47E9 /* NewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BD94D81D73BB1100AC47E9 /* NewsService.swift */; };
@@ -147,6 +148,8 @@
 		6798B67B1EBAA7270079B8E1 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = config.plist; path = src/config.plist; sourceTree = "<group>"; };
 		6798B67E1EBAA78F0079B8E1 /* ConfigHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigHelper.swift; sourceTree = "<group>"; };
 		6798B6811EBAA98B0079B8E1 /* BaseService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseService.swift; sourceTree = "<group>"; };
+		6798B6851EBAC6260079B8E1 /* fabric.apikey */ = {isa = PBXFileReference; lastKnownFileType = text; path = fabric.apikey; sourceTree = SOURCE_ROOT; };
+		6798B6861EBAC6260079B8E1 /* fabric.buildsecret */ = {isa = PBXFileReference; lastKnownFileType = text; path = fabric.buildsecret; sourceTree = SOURCE_ROOT; };
 		6798E8CE1D88F3390032D350 /* KeywordCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeywordCollectionViewCell.swift; sourceTree = "<group>"; };
 		67BD94D81D73BB1100AC47E9 /* NewsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsService.swift; sourceTree = "<group>"; };
 		67C3CD3C1D6D1876003CC04E /* TrendingInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingInterfaceController.swift; sourceTree = "<group>"; };
@@ -276,6 +279,8 @@
 		675A81DE1D6BF6E8000DC680 /* Headlines */ = {
 			isa = PBXGroup;
 			children = (
+				6798B6851EBAC6260079B8E1 /* fabric.apikey */,
+				6798B6861EBAC6260079B8E1 /* fabric.buildsecret */,
 				67897EB01EA70B280084F598 /* Headlines.entitlements */,
 				675A81DF1D6BF6E8000DC680 /* AppDelegate.swift */,
 				6798B67B1EBAA7270079B8E1 /* config.plist */,
@@ -426,6 +431,7 @@
 				391B4F8B792FBE42FF97B710 /* [CP] Copy Pods Resources */,
 				67FD84E11D6BF89D00BACAFC /* SwiftLint */,
 				6719DA811D6D143E00D1E214 /* Embed Watch Content */,
+				6798B6841EBABFB50079B8E1 /* Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -569,6 +575,7 @@
 			files = (
 				6798B67C1EBAA7270079B8E1 /* config.plist in Resources */,
 				675A81EC1D6BF6E8000DC680 /* LaunchScreen.storyboard in Resources */,
+				6798B6871EBACDB70079B8E1 /* fabric.apikey in Resources */,
 				675A81E91D6BF6E8000DC680 /* Assets.xcassets in Resources */,
 				675A81E71D6BF6E8000DC680 /* Main.storyboard in Resources */,
 			);
@@ -635,6 +642,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Watch Extension/Pods-Watch Extension-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		6798B6841EBABFB50079B8E1 /* Crashlytics */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Crashlytics;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# https://www.herzbube.ch/blog/2016/08/how-hide-fabric-api-key-and-build-secret-open-source-project\nFABRIC_APIKEY_FILE=\"${SRCROOT}/fabric.apikey\"\nFABRIC_BUILDSECRET_FILE=\"${SRCROOT}/fabric.buildsecret\"\n\nFABRIC_APIKEY=$(cat \"$FABRIC_APIKEY_FILE\")\nFABRIC_BUILDSECRET=$(cat \"$FABRIC_BUILDSECRET_FILE\")\n\nif test \"$FABRIC_APIKEY\" -a \"$FABRIC_BUILDSECRET\"; then\n    echo \"Crashlytics - $FABRIC_APIKEY $FABRIC_BUILDSECRET\"\n    \"${PODS_ROOT}/Fabric/run\" \"$FABRIC_APIKEY\" \"$FABRIC_BUILDSECRET\"\nfi";
 		};
 		67FD84E11D6BF89D00BACAFC /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
