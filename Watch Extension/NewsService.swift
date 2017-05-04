@@ -9,7 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-class NewsService: NSObject {
+class NewsService: BaseService {
     
     func requestRecentNewsWithDate (_ date: Date,
                                     success: ((_ result: [News]?) -> ())?,
@@ -20,7 +20,7 @@ class NewsService: NSObject {
         
         let datePath = String(format: "%d-%02d-%02d", components.year!, components.month!, components.day!)
         
-        let url = URL(string: "http://45.55.247.52:4567/latest/\(datePath)")
+        let url = URL(string: "\(baseURL())/latest/\(datePath)")
         let request = URLRequest(url: url!)
         
         let config = URLSessionConfiguration.default
@@ -65,7 +65,7 @@ class NewsService: NSObject {
         
         let datePath = String(format: "%d-%02d-%02d", components.year!, components.month!, components.day!)
         
-        let url = URL(string: "http://45.55.247.52:4567/trending/\(datePath)/\(count)")
+        let url = URL(string: "\(baseURL())/trending/\(datePath)/\(count)")
         let request = URLRequest(url: url!)
         
         let config = URLSessionConfiguration.default
@@ -116,7 +116,7 @@ class NewsService: NSObject {
             return
         }
         
-        let url = URL(string: "http://45.55.247.52:4567/search/\(encodedText)")
+        let url = URL(string: "\(baseURL())/search/\(encodedText)")
         let request = URLRequest(url: url!)
         
         let config = URLSessionConfiguration.default
