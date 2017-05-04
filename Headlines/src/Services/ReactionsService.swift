@@ -10,7 +10,7 @@ import UIKit
 import CloudKit
 import SwiftyJSON
 
-class ReactionsService: NSObject {
+class ReactionsService: BaseService {
 
     func postReaction(_ reaction: String,
                       atNews news: News,
@@ -37,7 +37,7 @@ class ReactionsService: NSObject {
                 return
             }
             
-            let url = URL(string: "http://45.55.247.52:4567/reactions/\(newsId)")
+            let url = URL(string: "\(self.baseURL())/reactions/\(newsId)")
             var request = URLRequest(url: url!)
             request.httpMethod = "POST"
             
@@ -81,7 +81,7 @@ class ReactionsService: NSObject {
                 return
             }
             
-            let url = URL(string: "http://45.55.247.52:4567/reactions/\(userId.recordName)/iOS")
+            let url = URL(string: "\(self.baseURL())/reactions/\(userId.recordName)/iOS")
             let request = URLRequest(url: url!)
             
             let config = URLSessionConfiguration.default
