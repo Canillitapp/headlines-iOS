@@ -99,7 +99,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" red="0.0" green="0.46274509803921571" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="H6f-he-bVk" firstAttribute="leading" secondItem="7cQ-z5-4ma" secondAttribute="leading" id="1E0-G5-Spb"/>
                                                 <constraint firstItem="4OC-XO-It2" firstAttribute="bottom" secondItem="DfI-4V-z3Z" secondAttribute="bottom" id="2vU-4O-pvK"/>
@@ -178,10 +178,10 @@
             </objects>
             <point key="canvasLocation" x="757.60000000000002" y="-335.08245877061472"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Orientation Aware Tab Bar Controller-->
         <scene sceneID="KnC-bg-nHC">
             <objects>
-                <tabBarController id="xiz-Fc-oPZ" sceneMemberID="viewController">
+                <tabBarController id="xiz-Fc-oPZ" customClass="OrientationAwareTabBarController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="dl5-Qv-G5n">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -965,6 +965,6 @@
         <image name="trending_icon" width="31" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="p1w-9l-Khi"/>
+        <segue reference="oOA-Dv-4K4"/>
     </inferredMetricsTieBreakers>
 </document>
