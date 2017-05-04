@@ -35,7 +35,12 @@ platform :ios do
     )
 
     gym(scheme: "Headlines") # Build your app - more options available
-    pilot
+    
+    pilot(
+      skip_waiting_for_build_processing: true,
+      beta_app_feedback_email: "ezequiel@betzerra.com.ar"
+    )
+
     crashlytics
   end
 
