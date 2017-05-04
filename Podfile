@@ -8,6 +8,8 @@ target 'Canillitapp' do
   pod 'SwiftyJSON', '3.1.0'
   pod 'SDWebImage'
   pod 'MBProgressHUD'
+  pod 'Fabric'
+  pod 'Crashlytics'
 end
 
 target 'Watch Extension' do
