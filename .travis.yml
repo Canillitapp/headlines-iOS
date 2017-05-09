@@ -4,7 +4,5 @@ xcode-project: Headlines.xcworkspace
 xcode_scheme: Headlines
 xcode_sdk: iphonesimulator10.0
 
-script:
-  - set -o pipefail
-  - xcodebuild -workspace Headlines.xcworkspace -scheme Headlines -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
+before_script:
   - bundle exec danger
