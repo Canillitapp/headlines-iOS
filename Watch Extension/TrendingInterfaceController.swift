@@ -23,7 +23,8 @@ class TrendingInterfaceController: WKInterfaceController {
             loadingImageView.setHidden(false)
             loadingImageView.setImageNamed("Activity")
             loadingImageView.startAnimatingWithImages(in: NSRange(location:1, length:15), duration: 1, repeatCount: 0)
-        } else {
+        }
+        else {
             self.loadingImageView.stopAnimating()
             self.loadingImageView.setHidden(true)
         }
