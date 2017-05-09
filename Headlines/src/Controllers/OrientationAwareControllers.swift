@@ -16,13 +16,12 @@ class OrientationAwareTabBarController: UITabBarController {
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         if UIDevice.current.userInterfaceIdiom == .pad {
             return .all
-        }
-        else {
+        } else {
             return .portrait
         }
     }
     
     override var shouldAutorotate: Bool {
-        get { return UIDevice.current.userInterfaceIdiom == .pad }
+        return UIDevice.current.userInterfaceIdiom == .pad
     }
 }
