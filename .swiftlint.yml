@@ -4,7 +4,6 @@ excluded:
 disabled_rules:
   - force_cast
   - trailing_whitespace
-  - conditional_binding_cascade
 
 line_length: 120
 identifier_name:
