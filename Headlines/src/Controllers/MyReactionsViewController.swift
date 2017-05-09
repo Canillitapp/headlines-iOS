@@ -15,11 +15,11 @@ class MyReactionsViewController: UITableViewController {
     let reactionsService = ReactionsService()
     var reactions = [Reaction]()
     
-    //  MARK: Private
+    // MARK: Private
     func fetchMyReactions() {
         refreshControl?.beginRefreshing()
         
-        let success: (URLResponse?, [Reaction]) -> () = { response, reactions in
+        let success: (URLResponse?, [Reaction]) -> Void = { response, reactions in
             self.refreshControl?.endRefreshing()
             
             self.reactions.removeAll()
@@ -27,7 +27,7 @@ class MyReactionsViewController: UITableViewController {
             self.tableView.reloadData()
         }
         
-        let fail: (Error) -> () = { error in
+        let fail: (Error) -> Void = { error in
             self.refreshControl?.endRefreshing()
             
             print(error.localizedDescription)
@@ -36,7 +36,7 @@ class MyReactionsViewController: UITableViewController {
         reactionsService.getReactions(success: success, fail: fail)
     }
     
-    //  MARK: Public
+    // MARK: Public
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,7 +54,7 @@ class MyReactionsViewController: UITableViewController {
         fetchMyReactions()
     }
     
-    //  MARK: UITableViewDataSource
+    // MARK: UITableViewDataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return reactions.count
     }
@@ -77,7 +77,7 @@ class MyReactionsViewController: UITableViewController {
         return cell
     }
     
-    //  MARK: UITableViewDelegate
+    // MARK: UITableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let r = reactions[indexPath.row]
         

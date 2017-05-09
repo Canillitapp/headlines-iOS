@@ -18,7 +18,7 @@ class SearchViewController: NewsTableViewController, UISearchBarDelegate {
     
     @IBOutlet weak var searchBar: UISearchBar!
     
-    //  MARK: UISearchBarDelegate
+    // MARK: UISearchBarDelegate
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
     }

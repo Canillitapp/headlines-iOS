@@ -12,7 +12,7 @@ class RecentNewsViewController: NewsTableViewController {
 
     let newsService = NewsService()
     
-    //  MARK: Private
+    // MARK: Private
     func fetchRequestNews() {
         refreshControl?.beginRefreshing()
         
@@ -32,11 +32,11 @@ class RecentNewsViewController: NewsTableViewController {
         }) { (error) in
             self.refreshControl?.endRefreshing()
             
-            print(":-(")
+            print("\(error.localizedDescription)")
         }
     }
     
-    //  MARK: Public
+    // MARK: Public
     override func viewDidLoad() {
         super.viewDidLoad()
         

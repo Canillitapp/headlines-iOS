@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol NewsCellViewModelDelegate {
+protocol NewsCellViewModelDelegate: class {
     func newsViewModel(_ viewModel: NewsCellViewModel, didSelectReaction reaction: Reaction)
     func newsViewModelDidSelectReactionPicker(_ viewModel: NewsCellViewModel)
 }
@@ -51,14 +51,14 @@ class NewsCellViewModel: NSObject,
         return r.count > 0
     }
     
-    var delegate: NewsCellViewModelDelegate?
+    weak var delegate: NewsCellViewModelDelegate?
     
     init(news: News) {
         self.news = news
         super.init()
     }
     
-    //  MARK: UICollectionViewDataSource
+    // MARK: UICollectionViewDataSource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         guard let count = news.reactions?.count else {
             return 1
@@ -91,7 +91,7 @@ class NewsCellViewModel: NSObject,
         }
     }
     
-    //  MARK: UICollectionViewDelegate
+    // MARK: UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -25,7 +25,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     let reactionsService = ReactionsService()
     var newsViewModels: [NewsCellViewModel] = []
     
-    //  MARK: Private
+    // MARK: Private
     func addReaction(_ currentReaction: String, toNews currentNews: News) {
         let n = news.filter ({$0 == currentNews}).first
         if n != nil {
@@ -82,7 +82,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
 
     }
     
-    //  MARK: UIViewController
+    // MARK: UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,7 +104,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         
         reactionsService.postReaction(selectedReaction,
                                       atNews: currentNews,
-                                      success: { (res) in
+                                      success: { (_) in
                                         self.addReaction(selectedReaction, toNews: currentNews)
         }) { (err) in
             print("#ERROR \(err.localizedDescription)")
@@ -157,7 +157,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         return UITableViewAutomaticDimension
     }
     
-    //  MARK: UITableViewDelegate
+    // MARK: UITableViewDelegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let n = news[indexPath.row]
@@ -167,12 +167,12 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         }
     }
     
-    //  MARK: NewsCellViewModelDelegate
+    // MARK: NewsCellViewModelDelegate
     
     func newsViewModel(_ viewModel: NewsCellViewModel, didSelectReaction reaction: Reaction) {
         reactionsService.postReaction(reaction.reaction,
                                       atNews: viewModel.news,
-                                      success: { (res) in
+                                      success: { (_) in
                                         self.addReaction(reaction.reaction, toNews: viewModel.news)
         }) { (err) in
             print("#ERROR \(err.localizedDescription)")
