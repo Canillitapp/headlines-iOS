@@ -35,6 +35,11 @@ xcode-select --install
 fastlane ios test
 ```
 Runs all the tests
+### ios has_fabric_tokens
+```
+fastlane ios has_fabric_tokens
+```
+
 ### ios beta
 ```
 fastlane ios beta

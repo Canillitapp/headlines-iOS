@@ -17,9 +17,7 @@ default_platform :ios
 
 platform :ios do
   before_all do
-    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
     cocoapods
-    
   end
 
   desc "Runs all the tests"
@@ -27,15 +25,25 @@ platform :ios do
     scan
   end
 
+  lane :has_fabric_tokens do
+    api_key = sh "cat ../fabric.apikey"
+    build_secret = sh "cat ../fabric.buildsecret"
+    !api_key.to_s.empty? && !build_secret.to_s.empty?
+  end
+
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do
+    unless has_fabric_tokens
+      UI.user_error!("ERROR: Your fabric tokens are empty. You won't track anything.")
+    end
+
     increment_build_number(
       build_number: latest_testflight_build_number + 1,
     )
 
     gym(scheme: "Headlines") # Build your app - more options available
-    
+
     pilot(
       skip_waiting_for_build_processing: true,
       beta_app_feedback_email: "ezequiel@betzerra.com.ar"
