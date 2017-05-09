@@ -12,8 +12,8 @@ import SwiftyJSON
 class NewsService: BaseService {
     
     func requestRecentNewsWithDate (_ date: Date,
-                                    success: ((_ result: [News]?) -> ())?,
-                                    fail: ((_ error: NSError) -> ())?) {
+                                    success: ((_ result: [News]?) -> Void)?,
+                                    fail: ((_ error: NSError) -> Void)?) {
 
         let calendar = Calendar.current
         let components = (calendar as NSCalendar).components([.day, .month, .year], from: date)
@@ -26,7 +26,7 @@ class NewsService: BaseService {
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
         
-        let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
+        let task = session.dataTask(with: request, completionHandler: {(data, _, error) in
             if let e = error {
                 DispatchQueue.main.async(execute: {
                     fail?(e as NSError)
@@ -57,8 +57,8 @@ class NewsService: BaseService {
     
     func requestTrendingTopicsWithDate (_ date: Date,
                                         count: Int,
-                                        success: ((_ result: [Topic]?) -> ())?,
-                                        fail: ((_ error: NSError) -> ())?) {
+                                        success: ((_ result: [Topic]?) -> Void)?,
+                                        fail: ((_ error: NSError) -> Void)?) {
         
         let calendar = Calendar.current
         let components = (calendar as NSCalendar).components([.day, .month, .year], from: date)
@@ -71,7 +71,7 @@ class NewsService: BaseService {
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
         
-        let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
+        let task = session.dataTask(with: request, completionHandler: {(data, _, error) in
             if let e = error {
                 DispatchQueue.main.async(execute: {
                     fail?(e as NSError)
@@ -110,7 +110,7 @@ class NewsService: BaseService {
         task.resume()
     }
     
-    func searchNews(_ text: String, success: ((_ result: [News]?) -> ())?, fail: ((_ error: NSError) -> ())?) {
+    func searchNews(_ text: String, success: ((_ result: [News]?) -> Void)?, fail: ((_ error: NSError) -> Void)?) {
         
         guard let encodedText = text.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
             return
@@ -122,7 +122,7 @@ class NewsService: BaseService {
         let config = URLSessionConfiguration.default
         let session = URLSession(configuration: config)
         
-        let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
+        let task = session.dataTask(with: request, completionHandler: {(data, _, error) in
             if let e = error {
                 DispatchQueue.main.async {
                     fail?(e as NSError)

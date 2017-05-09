@@ -22,14 +22,14 @@ class ReactionPickerViewController: UIViewController, UICollectionViewDelegate, 
         performSegue(withIdentifier: "unwindToNews", sender: self)
     }
     
-    //  MARK: UICollectionViewDelegate
+    // MARK: UICollectionViewDelegate
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedReaction = availableReactions[indexPath.row]
         performSegue(withIdentifier: "unwindToNews", sender: self)
     }
     
-    //  MARK: UICollectionViewDataSource
+    // MARK: UICollectionViewDataSource
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

@@ -14,8 +14,8 @@ class ReactionsService: BaseService {
 
     func postReaction(_ reaction: String,
                       atNews news: News,
-                      success: ((_ response: URLResponse?) -> ())?,
-                      fail: ((_ error: Error) -> ())?) {
+                      success: ((_ response: URLResponse?) -> Void)?,
+                      fail: ((_ error: Error) -> Void)?) {
         
         guard let newsId = news.identifier else {
             return
@@ -29,7 +29,7 @@ class ReactionsService: BaseService {
             }
             
             guard let userId = recordId else {
-                let errUserInfo = [NSLocalizedDescriptionKey : "No user record id"]
+                let errUserInfo = [NSLocalizedDescriptionKey: "No user record id"]
                 let err = NSError(domain: NSStringFromClass(self.classForCoder),
                                   code: 1,
                                   userInfo: errUserInfo)
@@ -47,7 +47,7 @@ class ReactionsService: BaseService {
             let config = URLSessionConfiguration.default
             let session = URLSession(configuration: config)
             
-            let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
+            let task = session.dataTask(with: request, completionHandler: {(_, response, error) in
                 if let e = error {
                     fail?(e as NSError)
                     return
@@ -62,8 +62,8 @@ class ReactionsService: BaseService {
         }
     }
     
-    func getReactions(success: ((_ response: URLResponse?, [Reaction]) -> ())?,
-                      fail: ((_ error: Error) -> ())?) {
+    func getReactions(success: ((_ response: URLResponse?, [Reaction]) -> Void)?,
+                      fail: ((_ error: Error) -> Void)?) {
         
         let container = CKContainer.default()
         container.fetchUserRecordID { (recordId, error) in
@@ -73,7 +73,7 @@ class ReactionsService: BaseService {
             }
             
             guard let userId = recordId else {
-                let errUserInfo = [NSLocalizedDescriptionKey : "No user record id"]
+                let errUserInfo = [NSLocalizedDescriptionKey: "No user record id"]
                 let err = NSError(domain: NSStringFromClass(self.classForCoder),
                                   code: 1,
                                   userInfo: errUserInfo)
@@ -100,7 +100,7 @@ class ReactionsService: BaseService {
                 let json = JSON(data: d)
                 
                 var reactions = [Reaction]()
-                json.forEach ({ (str, j) in
+                json.forEach ({ (_, j) in
                     let r = Reaction(json: j)
                     reactions.append(r)
                 })

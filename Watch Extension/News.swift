@@ -36,7 +36,7 @@ class News: NSObject {
         
         var tmp: [Reaction] = []
         
-        json["reactions"].forEach ({ (str, j) in
+        json["reactions"].forEach ({ (_, j) in
             let r = Reaction(json: j)
             tmp.append(r)
         })
