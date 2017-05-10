@@ -12,7 +12,7 @@ class BaseService: NSObject {
     
     func baseURL() -> String {
         guard let baseURL = ConfigHelper.configForKey("base_url") as? String else {
-            return "http://45.55.247.52:4567"
+            return "http://api.canillitapp.com"
         }
         
         return baseURL
