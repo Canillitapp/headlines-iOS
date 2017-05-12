@@ -31,7 +31,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
             return
         }
         
-        n.reactions = currentNews.reactions
+        n.reactions = currentNews.reactions?.sorted(by: { $0.date < $1.date })
         
         if let i = news.index(of: n) {
             let indexPathToReload = IndexPath(row: i, section: 0)
