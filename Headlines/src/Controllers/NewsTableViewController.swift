@@ -27,20 +27,15 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     
     // MARK: Private
     func addReaction(_ currentReaction: String, toNews currentNews: News) {
-        let n = news.filter ({$0 == currentNews}).first
-        if n != nil {
-            var reaction = n?.reactions?.filter({$0.reaction == currentReaction}).first
-            if reaction != nil {
-                reaction?.amount += 1
-            } else {
-                reaction = Reaction(reaction: currentReaction, amount: 1)
-                n?.reactions?.append(reaction!)
-            }
-            
-            if let i = news.index(of: currentNews) {
-                let indexPathToReload = IndexPath(row: i, section: 0)
-                tableView.reloadRows(at: [indexPathToReload], with: .none)
-            }
+        guard let n = news.filter ({$0.identifier == currentNews.identifier}).first else {
+            return
+        }
+        
+        n.reactions = currentNews.reactions?.sorted(by: { $0.date < $1.date })
+        
+        if let i = news.index(of: n) {
+            let indexPathToReload = IndexPath(row: i, section: 0)
+            tableView.reloadRows(at: [indexPathToReload], with: .none)
         }
     }
     
@@ -104,8 +99,11 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         
         reactionsService.postReaction(selectedReaction,
                                       atNews: currentNews,
-                                      success: { (_) in
-                                        self.addReaction(selectedReaction, toNews: currentNews)
+                                      success: { (_, updatedNews) in
+                                        guard let n = updatedNews else {
+                                            return
+                                        }
+                                        self.addReaction(selectedReaction, toNews: n)
         }) { (err) in
             print("#ERROR \(err.localizedDescription)")
         }
@@ -172,8 +170,11 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     func newsViewModel(_ viewModel: NewsCellViewModel, didSelectReaction reaction: Reaction) {
         reactionsService.postReaction(reaction.reaction,
                                       atNews: viewModel.news,
-                                      success: { (_) in
-                                        self.addReaction(reaction.reaction, toNews: viewModel.news)
+                                      success: { (_, updatedNews) in
+                                        guard let n = updatedNews else {
+                                            return
+                                        }
+                                        self.addReaction(reaction.reaction, toNews: n)
         }) { (err) in
             print("#ERROR \(err.localizedDescription)")
         }

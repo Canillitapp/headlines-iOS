@@ -13,6 +13,7 @@ class Reaction: NSObject {
     var reaction: String
     var amount: Int
     var news: News?
+    var date: Date
     
     var reactionString: String {
         return "\(self.reaction) \(self.amount)"
@@ -32,7 +33,12 @@ class Reaction: NSObject {
             amount = 0
         }
         
-        news = News(json: json["news"])
+        let timestamp = json["date"].doubleValue
+        date = Date(timeIntervalSince1970: timestamp)
+        
+        if json["news"].exists() {
+            news = News(json: json["news"])
+        }
 
         super.init()
     }
@@ -40,6 +46,7 @@ class Reaction: NSObject {
     init(reaction: String, amount: Int) {
         self.reaction = reaction
         self.amount = amount
+        self.date = Date()
         super.init()
     }
     
