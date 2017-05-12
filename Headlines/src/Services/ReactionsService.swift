@@ -14,7 +14,7 @@ class ReactionsService: BaseService {
 
     func postReaction(_ reaction: String,
                       atNews news: News,
-                      success: ((_ response: URLResponse?) -> Void)?,
+                      success: ((_ response: URLResponse?, News?) -> Void)?,
                       fail: ((_ error: Error) -> Void)?) {
         
         guard let newsId = news.identifier else {
@@ -47,14 +47,22 @@ class ReactionsService: BaseService {
             let config = URLSessionConfiguration.default
             let session = URLSession(configuration: config)
             
-            let task = session.dataTask(with: request, completionHandler: {(_, response, error) in
+            let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
                 if let e = error {
                     fail?(e as NSError)
                     return
                 }
                 
+                guard let d = data else {
+                    return
+                }
+                
+                let json = JSON(data: d)
+                
+                let n = News(json: json)
+                
                 DispatchQueue.main.async(execute: {
-                    success?(response)
+                    success?(response, n)
                 })
             })
             

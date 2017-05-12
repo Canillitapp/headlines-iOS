@@ -32,7 +32,9 @@ class Reaction: NSObject {
             amount = 0
         }
         
-        news = News(json: json["news"])
+        if json["news"].exists() {
+            news = News(json: json["news"])
+        }
 
         super.init()
     }
