@@ -646,7 +646,7 @@
         <scene sceneID="eEL-zC-ewf">
             <objects>
                 <navigationController title="Recientes" id="Abw-Ux-NCb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Reciente" image="recent_icon" id="Qp8-zi-e3Q"/>
+                    <tabBarItem key="tabBarItem" title="Reciente" image="recents_icon" id="Qp8-zi-e3Q"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="2nT-WF-g68">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -664,7 +664,7 @@
         <scene sceneID="71L-A2-b0k">
             <objects>
                 <navigationController id="mD5-4X-c0s" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Reacciones" image="reactions_icon" id="ESI-ez-g9q"/>
+                    <tabBarItem key="tabBarItem" title="Reacciones" image="reactions_icon" selectedImage="reactions_icon_selected" id="ESI-ez-g9q"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="WLO-q8-zMC">
@@ -759,7 +759,7 @@
         <scene sceneID="r38-TD-SfR">
             <objects>
                 <navigationController id="2R2-7f-vQa" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Popular" image="trending_icon" id="52d-rF-xza"/>
+                    <tabBarItem key="tabBarItem" title="Popular" image="popular_icon" selectedImage="popular_icon_selected" id="52d-rF-xza"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="ihT-Kv-ZXN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1148,9 +1148,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="reactions_icon" width="27" height="22"/>
-        <image name="recent_icon" width="25" height="25"/>
-        <image name="search_icon" width="22" height="22"/>
+        <image name="popular_icon" width="22" height="20"/>
+        <image name="popular_icon_selected" width="21" height="20"/>
+        <image name="reactions_icon" width="23" height="20"/>
+        <image name="reactions_icon_selected" width="24" height="20"/>
+        <image name="recents_icon" width="21" height="20"/>
+        <image name="search_icon" width="21" height="20"/>
         <image name="trending_icon" width="31" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
