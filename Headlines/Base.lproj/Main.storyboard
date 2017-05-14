@@ -168,13 +168,21 @@
                         </connections>
                     </collectionView>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" title="Destacados" id="SVr-Np-BvU"/>
+                    <navigationItem key="navigationItem" title="Destacados" id="SVr-Np-BvU">
+                        <barButtonItem key="rightBarButtonItem" image="search_icon" id="GjH-gD-eog">
+                            <connections>
+                                <segue destination="qph-JK-AyF" kind="presentation" id="i31-6Q-OcY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="MYF-Oh-yyD" kind="show" identifier="news" id="1T8-GN-JGj"/>
+                        <segue destination="GoJ-Bd-dCd" kind="unwind" unwindAction="unwindFromSearchWithSegue:" id="a8n-XW-vl4"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aM6-Vr-VFH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="GoJ-Bd-dCd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="757.60000000000002" y="-335.08245877061472"/>
         </scene>
@@ -194,7 +202,6 @@
                         <segue destination="2R2-7f-vQa" kind="relationship" relationship="viewControllers" id="rEE-tD-kjD"/>
                         <segue destination="Abw-Ux-NCb" kind="relationship" relationship="viewControllers" id="ksO-3d-GfU"/>
                         <segue destination="mD5-4X-c0s" kind="relationship" relationship="viewControllers" id="tBl-Kq-ywt"/>
-                        <segue destination="qph-JK-AyF" kind="relationship" relationship="viewControllers" id="N99-Zj-WD2"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZMH-AH-cxw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -679,7 +686,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6Wr-9K-c72" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-58" y="2131"/>
+            <point key="canvasLocation" x="-55" y="1341"/>
         </scene>
         <!--Reacciones-->
         <scene sceneID="Jp5-N0-w1p">
@@ -753,7 +760,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ws9-7O-hqs" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="758" y="2131"/>
+            <point key="canvasLocation" x="761" y="1341"/>
         </scene>
         <!--Popular-->
         <scene sceneID="r38-TD-SfR">
@@ -771,7 +778,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G4h-Wg-KJh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-55" y="2887"/>
+            <point key="canvasLocation" x="-52" y="2105"/>
         </scene>
         <!--Buscar-->
         <scene sceneID="b6K-lt-r1u">
@@ -945,15 +952,24 @@
                             <outlet property="delegate" destination="YA2-Hd-pbO" id="VmP-Nr-adM"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Buscar" id="Evf-h0-fLC"/>
+                    <navigationItem key="navigationItem" title="Buscar" id="Evf-h0-fLC">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="HdX-ho-k9D">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <action selector="closeButtonDidTap:" destination="YA2-Hd-pbO" id="bwd-PX-tyo"/>
+                                <segue destination="fe6-cs-R4V" kind="unwind" unwindAction="unwindFromSearchWithSegue:" id="3Oa-Dv-iIR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="OTR-so-tYN" id="GHl-Tq-IX3"/>
                         <segue destination="oq4-rR-HNf" kind="presentation" identifier="reaction" id="p1w-9l-Khi"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N1E-uW-aOx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="fe6-cs-R4V" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="758" y="1313"/>
+            <point key="canvasLocation" x="2409" y="-1071"/>
         </scene>
         <!--Buscar-->
         <scene sceneID="GG1-WQ-ahD">
@@ -974,7 +990,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FQH-I8-Wcd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-58" y="1313"/>
+            <point key="canvasLocation" x="1593" y="-1071"/>
         </scene>
         <!--Recientes-->
         <scene sceneID="fxM-oN-Yon">
@@ -1141,10 +1157,13 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Item" id="mmS-VP-DeG"/>
                     <navigationItem key="navigationItem" title="Populares" id="TBS-Fh-YKz"/>
+                    <connections>
+                        <segue destination="oq4-rR-HNf" kind="presentation" identifier="reaction" id="e1d-Xx-u9h"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZxY-YH-Uan" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="758" y="2886"/>
+            <point key="canvasLocation" x="761" y="2104"/>
         </scene>
     </scenes>
     <resources>
@@ -1157,6 +1176,6 @@
         <image name="trending_icon" width="31" height="21"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Tlq-Yw-szp"/>
+        <segue reference="p1w-9l-Khi"/>
     </inferredMetricsTieBreakers>
 </document>
