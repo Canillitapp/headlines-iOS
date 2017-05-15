@@ -122,6 +122,9 @@ class TrendingCardsViewController: UICollectionViewController {
             }
         }
     }
+    
+    @IBAction func unwindFromSearch(segue: UIStoryboardSegue) {
+    }
 
     // MARK: - UICollectionViewDataSource
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -11,6 +11,44 @@ import SwiftyJSON
 
 class NewsService: BaseService {
     
+    func requestPopularNews (success: ((_ result: [News]?) -> Void)?,
+                             fail: ((_ error: NSError) -> Void)?) {
+        
+        let url = URL(string: "\(baseURL())/popular")
+        let request = URLRequest(url: url!)
+        
+        let config = URLSessionConfiguration.default
+        let session = URLSession(configuration: config)
+        
+        let task = session.dataTask(with: request, completionHandler: {(data, _, error) in
+            if let e = error {
+                DispatchQueue.main.async(execute: {
+                    fail?(e as NSError)
+                })
+                return
+            }
+            
+            guard let d = data else {
+                return
+            }
+            
+            let json = JSON(data: d)
+            
+            var res = [News]()
+            
+            for (_, v) in json {
+                let n = News(json: v)
+                res.append(n)
+            }
+            
+            DispatchQueue.main.async(execute: {
+                success?(res)
+            })
+        })
+        
+        task.resume()
+    }
+    
     func requestRecentNewsWithDate (_ date: Date,
                                     success: ((_ result: [News]?) -> Void)?,
                                     fail: ((_ error: NSError) -> Void)?) {
