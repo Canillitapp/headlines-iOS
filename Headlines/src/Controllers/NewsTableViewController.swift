@@ -132,6 +132,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         cell.timeLabel.text = viewModel.timeString
         cell.reactionsDataSource = viewModel
         cell.reactionsDelegate = viewModel
+        cell.viewModel = viewModel
         
         if let imgURL = viewModel.imageURL {
             cell.newsImageView.isHidden = false
@@ -142,6 +143,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         
         cell.reactionsCollectionView.isHidden = !viewModel.shouldShowReactions
         cell.reactionsHeightConstraint.constant = cell.reactionsCollectionView.isHidden ? 0 : 30
+        cell.addReactionButton.isHidden = viewModel.shouldShowReactions
         cell.reactionsCollectionView.reloadData()
         
         return cell

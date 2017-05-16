@@ -16,6 +16,7 @@ class NewsTableViewCell: UITableViewCell {
     @IBOutlet weak var newsImageView: UIImageView!
     @IBOutlet weak var reactionsCollectionView: UICollectionView!
     @IBOutlet weak var reactionsHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var addReactionButton: UIButton!
     
     weak var reactionsDataSource: UICollectionViewDataSource? {
         didSet {            
@@ -29,11 +30,19 @@ class NewsTableViewCell: UITableViewCell {
         }
     }
     
+    weak var viewModel: NewsCellViewModel?
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
     
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
+    }
+    
+    @IBAction func reactionButtonPressed(_ sender: Any) {
+        if let d = viewModel?.delegate {
+            d.newsViewModelDidSelectReactionPicker(viewModel!)
+        }
     }
 }
