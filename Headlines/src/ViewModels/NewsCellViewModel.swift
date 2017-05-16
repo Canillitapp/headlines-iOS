@@ -98,7 +98,7 @@ class NewsCellViewModel: NSObject,
         
         guard indexPath.row < (news.reactions?.count)!,
             let r = news.reactions?[indexPath.row] else {
-            return CGSize(width: 30, height: 30)
+            return CGSize(width: 40, height: 30)
         }
         
         let size = CGSize(width: Double.greatestFiniteMagnitude, height: 30)
