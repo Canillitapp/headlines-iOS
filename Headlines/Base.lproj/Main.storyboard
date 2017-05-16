@@ -343,7 +343,11 @@
                                             </cells>
                                         </collectionView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T7k-bG-wPM">
-                                            <rect key="frame" x="345" y="95.5" width="20" height="22"/>
+                                            <rect key="frame" x="340" y="92.5" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="JwB-PH-8aX"/>
+                                                <constraint firstAttribute="width" constant="30" id="wEQ-76-6xt"/>
+                                            </constraints>
                                             <state key="normal" image="add_reaction_icon"/>
                                             <connections>
                                                 <action selector="reactionButtonPressed:" destination="M6e-e7-zzJ" eventType="touchUpInside" id="4q0-mp-PIt"/>
@@ -358,8 +362,8 @@
                                         <constraint firstAttribute="trailing" secondItem="FNm-jX-dl6" secondAttribute="trailing" constant="5" id="YnA-v2-oPy"/>
                                         <constraint firstItem="Sw8-qo-M0g" firstAttribute="top" secondItem="53g-Fs-dwB" secondAttribute="top" constant="5" id="ZP9-dl-Jfm"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="FNm-jX-dl6" secondAttribute="bottom" id="dCa-af-oPb"/>
-                                        <constraint firstAttribute="bottom" secondItem="T7k-bG-wPM" secondAttribute="bottom" constant="10" id="dS5-3U-3ts"/>
-                                        <constraint firstAttribute="trailing" secondItem="T7k-bG-wPM" secondAttribute="trailing" constant="10" id="dTi-g9-2gP"/>
+                                        <constraint firstAttribute="bottom" secondItem="T7k-bG-wPM" secondAttribute="bottom" constant="5" id="dS5-3U-3ts"/>
+                                        <constraint firstAttribute="trailing" secondItem="T7k-bG-wPM" secondAttribute="trailing" constant="5" id="dTi-g9-2gP"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -523,7 +527,11 @@
                                             </cells>
                                         </collectionView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wm9-7r-2UL">
-                                            <rect key="frame" x="345" y="95.5" width="20" height="22"/>
+                                            <rect key="frame" x="340" y="92.5" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="hjP-Qt-ClC"/>
+                                                <constraint firstAttribute="width" constant="30" id="tRo-7F-Ufe"/>
+                                            </constraints>
                                             <state key="normal" image="add_reaction_icon"/>
                                             <connections>
                                                 <action selector="reactionButtonPressed:" destination="prY-8c-dab" eventType="touchUpInside" id="bEC-oU-OK1"/>
@@ -533,11 +541,11 @@
                                     <constraints>
                                         <constraint firstItem="RZi-6S-Wwg" firstAttribute="top" secondItem="TTO-pu-eIh" secondAttribute="bottom" constant="5" id="93c-Tj-FA6"/>
                                         <constraint firstAttribute="trailing" secondItem="TTO-pu-eIh" secondAttribute="trailing" constant="5" id="fDC-5i-sN9"/>
-                                        <constraint firstAttribute="trailing" secondItem="Wm9-7r-2UL" secondAttribute="trailing" constant="10" id="hZ0-oV-AEf"/>
+                                        <constraint firstAttribute="trailing" secondItem="Wm9-7r-2UL" secondAttribute="trailing" constant="5" id="hZ0-oV-AEf"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="RZi-6S-Wwg" secondAttribute="bottom" id="pHv-DV-OrM"/>
                                         <constraint firstItem="TTO-pu-eIh" firstAttribute="leading" secondItem="TJT-vh-6iu" secondAttribute="leading" constant="5" id="qE9-DN-wrN"/>
                                         <constraint firstAttribute="trailing" secondItem="RZi-6S-Wwg" secondAttribute="trailing" constant="5" id="t30-mV-mDm"/>
-                                        <constraint firstAttribute="bottom" secondItem="Wm9-7r-2UL" secondAttribute="bottom" constant="10" id="tyJ-4l-z0e"/>
+                                        <constraint firstAttribute="bottom" secondItem="Wm9-7r-2UL" secondAttribute="bottom" constant="5" id="tyJ-4l-z0e"/>
                                         <constraint firstItem="RZi-6S-Wwg" firstAttribute="leading" secondItem="TTO-pu-eIh" secondAttribute="leading" id="xt9-Jg-Z4G"/>
                                         <constraint firstItem="TTO-pu-eIh" firstAttribute="top" secondItem="TJT-vh-6iu" secondAttribute="top" constant="5" id="yad-ns-rrz"/>
                                     </constraints>
@@ -938,7 +946,11 @@
                                             </cells>
                                         </collectionView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YeP-lW-nsx">
-                                            <rect key="frame" x="345" y="95.5" width="20" height="22"/>
+                                            <rect key="frame" x="340" y="92.5" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="FOl-cN-T0G"/>
+                                                <constraint firstAttribute="width" constant="30" id="QkY-Ua-QX8"/>
+                                            </constraints>
                                             <state key="normal" image="add_reaction_icon"/>
                                             <connections>
                                                 <action selector="reactionButtonPressed:" destination="xtB-sC-thH" eventType="touchUpInside" id="Nyi-9I-QgS"/>
@@ -953,8 +965,8 @@
                                         <constraint firstItem="T0M-X6-BRg" firstAttribute="top" secondItem="5Rs-uH-0Wg" secondAttribute="top" constant="5" id="UkW-ig-o36"/>
                                         <constraint firstAttribute="trailing" secondItem="T0M-X6-BRg" secondAttribute="trailing" constant="5" id="Vi5-LA-vfT"/>
                                         <constraint firstItem="T0M-X6-BRg" firstAttribute="leading" secondItem="5Rs-uH-0Wg" secondAttribute="leading" constant="5" id="WoG-1s-xdg"/>
-                                        <constraint firstAttribute="bottom" secondItem="YeP-lW-nsx" secondAttribute="bottom" constant="10" id="p0m-8v-yDo"/>
-                                        <constraint firstAttribute="trailing" secondItem="YeP-lW-nsx" secondAttribute="trailing" constant="10" id="v97-7v-gKA"/>
+                                        <constraint firstAttribute="bottom" secondItem="YeP-lW-nsx" secondAttribute="bottom" constant="5" id="p0m-8v-yDo"/>
+                                        <constraint firstAttribute="trailing" secondItem="YeP-lW-nsx" secondAttribute="trailing" constant="5" id="v97-7v-gKA"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -1148,7 +1160,11 @@
                                             </cells>
                                         </collectionView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ijR-Kd-TnV">
-                                            <rect key="frame" x="345" y="95.5" width="20" height="22"/>
+                                            <rect key="frame" x="340" y="92.5" width="30" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="WJt-eJ-EP0"/>
+                                                <constraint firstAttribute="width" constant="30" id="jGd-Tg-6bg"/>
+                                            </constraints>
                                             <state key="normal" image="add_reaction_icon"/>
                                             <connections>
                                                 <action selector="reactionButtonPressed:" destination="q4e-x5-dlf" eventType="touchUpInside" id="4Jk-eB-PqK"/>
@@ -1158,9 +1174,9 @@
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="3NV-7N-XxG" secondAttribute="trailing" constant="5" id="2H0-Pt-NK8"/>
                                         <constraint firstItem="3NV-7N-XxG" firstAttribute="top" secondItem="bwA-87-q4h" secondAttribute="top" constant="5" id="E8x-bH-esC"/>
-                                        <constraint firstAttribute="trailing" secondItem="ijR-Kd-TnV" secondAttribute="trailing" constant="10" id="OSE-tt-qFV"/>
+                                        <constraint firstAttribute="trailing" secondItem="ijR-Kd-TnV" secondAttribute="trailing" constant="5" id="OSE-tt-qFV"/>
                                         <constraint firstItem="Vnc-Fm-hyY" firstAttribute="top" secondItem="3NV-7N-XxG" secondAttribute="bottom" constant="5" id="SLc-L3-hve"/>
-                                        <constraint firstAttribute="bottom" secondItem="ijR-Kd-TnV" secondAttribute="bottom" constant="10" id="WB5-eo-BGj"/>
+                                        <constraint firstAttribute="bottom" secondItem="ijR-Kd-TnV" secondAttribute="bottom" constant="5" id="WB5-eo-BGj"/>
                                         <constraint firstItem="3NV-7N-XxG" firstAttribute="leading" secondItem="bwA-87-q4h" secondAttribute="leading" constant="5" id="eed-XB-Zf5"/>
                                         <constraint firstAttribute="bottomMargin" secondItem="Vnc-Fm-hyY" secondAttribute="bottom" id="ou3-35-w8Y"/>
                                         <constraint firstAttribute="trailing" secondItem="Vnc-Fm-hyY" secondAttribute="trailing" constant="5" id="pJZ-XC-zz8"/>
