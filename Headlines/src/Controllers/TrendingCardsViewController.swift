@@ -13,6 +13,7 @@ class TrendingCardsViewController: UICollectionViewController {
 
     var topics = [Topic]()
     let newsService = NewsService()
+    var newsDataTask: URLSessionDataTask?
     
     func fetchTrendingTopics() {
         collectionView?.refreshControl?.beginRefreshing()
@@ -24,7 +25,7 @@ class TrendingCardsViewController: UICollectionViewController {
     }
     
     func requestTrendingTopicsWithDate(_ date: Date) {
-        newsService.requestTrendingTopicsWithDate(date, count:3, success: { (result) in
+        newsDataTask = newsService.requestTrendingTopicsWithDate(date, count:3, success: { (result) in
             
             self.collectionView?.refreshControl?.endRefreshing()
             
@@ -56,10 +57,26 @@ class TrendingCardsViewController: UICollectionViewController {
             
             self.topics.append(contentsOf: r)
             self.collectionView?.insertItems(at: indexPaths)
+            self.updateFooterView()
             
         }, fail: { (error) in
             print(error.localizedDescription)
+            self.updateFooterView()
         })
+        
+        updateFooterView()
+    }
+    
+    func updateFooterView() {
+        guard let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout,
+            let collectionViewSize = self.collectionView?.bounds.size else {
+            return
+        }
+        
+        let shouldShowFooter = topics.count > 0 && newsDataTask?.state == .running
+        let height: CGFloat = shouldShowFooter ? 50.0 : 0.0
+        
+        flowLayout.footerReferenceSize = CGSize(width: collectionViewSize.width, height: height)
     }
     
     override func viewDidLayoutSubviews() {
@@ -186,6 +203,15 @@ class TrendingCardsViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let topic = topics[indexPath.row]
         performSegue(withIdentifier: "news", sender: topic)
+    }
+    
+    override func collectionView(_ collectionView: UICollectionView,
+                                 viewForSupplementaryElementOfKind kind: String,
+                                 at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        return collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                               withReuseIdentifier: "footer",
+                                                               for: indexPath)
     }
     
     // MARK: - UICollectionViewDelegate

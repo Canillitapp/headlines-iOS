@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xiz-Fc-oPZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="xiz-Fc-oPZ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -34,15 +34,15 @@
         <scene sceneID="puQ-12-U3T">
             <objects>
                 <collectionViewController title="Destacados" id="pGg-2V-AiX" customClass="TrendingCardsViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="DKO-eO-dVO">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="DKO-eO-dVO">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.13725490196078433" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6Cd-9y-33H">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="100"/>
+                            <size key="footerReferenceSize" width="50" height="50"/>
+                            <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="loB-i9-0C7" customClass="KeywordCollectionViewCell" customModule="Canillitapp" customModuleProvider="target">
@@ -162,6 +162,26 @@
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="footer" id="tqW-Zx-iut">
+                            <rect key="frame" x="0.0" y="280" width="375" height="50"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VoQ-3j-s0a">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                </view>
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="qP0-YE-7ez">
+                                    <rect key="frame" x="177" y="15" width="20" height="20"/>
+                                </activityIndicatorView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="qP0-YE-7ez" firstAttribute="centerX" secondItem="tqW-Zx-iut" secondAttribute="centerX" id="ACe-6f-eBv"/>
+                                <constraint firstAttribute="trailing" secondItem="VoQ-3j-s0a" secondAttribute="trailing" id="Pzc-CJ-l71"/>
+                                <constraint firstAttribute="bottom" secondItem="VoQ-3j-s0a" secondAttribute="bottom" id="aAz-pr-wO3"/>
+                                <constraint firstItem="VoQ-3j-s0a" firstAttribute="top" secondItem="tqW-Zx-iut" secondAttribute="top" id="cHu-NZ-xPi"/>
+                                <constraint firstItem="VoQ-3j-s0a" firstAttribute="leading" secondItem="tqW-Zx-iut" secondAttribute="leading" id="ent-ae-QUu"/>
+                                <constraint firstItem="qP0-YE-7ez" firstAttribute="centerY" secondItem="tqW-Zx-iut" secondAttribute="centerY" id="wck-lj-nGM"/>
+                            </constraints>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="pGg-2V-AiX" id="xWL-5G-LWb"/>
                             <outlet property="delegate" destination="pGg-2V-AiX" id="vKA-Qv-hvg"/>

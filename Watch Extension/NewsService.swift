@@ -96,7 +96,7 @@ class NewsService: BaseService {
     func requestTrendingTopicsWithDate (_ date: Date,
                                         count: Int,
                                         success: ((_ result: [Topic]?) -> Void)?,
-                                        fail: ((_ error: NSError) -> Void)?) {
+                                        fail: ((_ error: NSError) -> Void)?) -> URLSessionDataTask {
         
         let calendar = Calendar.current
         let components = (calendar as NSCalendar).components([.day, .month, .year], from: date)
@@ -146,6 +146,8 @@ class NewsService: BaseService {
         
         // do whatever you need with the task e.g. run
         task.resume()
+        
+        return task
     }
     
     func searchNews(_ text: String, success: ((_ result: [News]?) -> Void)?, fail: ((_ error: NSError) -> Void)?) {
