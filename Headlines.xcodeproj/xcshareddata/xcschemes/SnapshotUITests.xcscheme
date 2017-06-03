@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0800"
+   LastUpgradeVersion = "0830"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -9,14 +9,14 @@
          <BuildActionEntry
             buildForTesting = "YES"
             buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "675A81DB1D6BF6E8000DC680"
-               BuildableName = "Canillitapp.app"
-               BlueprintName = "Canillitapp"
+               BlueprintIdentifier = "671DC3721EE35FB3000CBAF0"
+               BuildableName = "SnapshotUITests.xctest"
+               BlueprintName = "SnapshotUITests"
                ReferencedContainer = "container:Headlines.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -32,26 +32,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "675A81F11D6BF6E8000DC680"
-               BuildableName = "HeadlinesTests.xctest"
-               BlueprintName = "HeadlinesTests"
-               ReferencedContainer = "container:Headlines.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "675A81FC1D6BF6E8000DC680"
-               BuildableName = "HeadlinesUITests.xctest"
-               BlueprintName = "HeadlinesUITests"
-               ReferencedContainer = "container:Headlines.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "671DC3721EE35FB3000CBAF0"
                BuildableName = "SnapshotUITests.xctest"
                BlueprintName = "SnapshotUITests"
@@ -59,15 +39,6 @@
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "675A81DB1D6BF6E8000DC680"
-            BuildableName = "Canillitapp.app"
-            BlueprintName = "Canillitapp"
-            ReferencedContainer = "container:Headlines.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -81,16 +52,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "675A81DB1D6BF6E8000DC680"
-            BuildableName = "Canillitapp.app"
-            BlueprintName = "Canillitapp"
+            BlueprintIdentifier = "671DC3721EE35FB3000CBAF0"
+            BuildableName = "SnapshotUITests.xctest"
+            BlueprintName = "SnapshotUITests"
             ReferencedContainer = "container:Headlines.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -100,16 +70,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "675A81DB1D6BF6E8000DC680"
-            BuildableName = "Canillitapp.app"
-            BlueprintName = "Canillitapp"
+            BlueprintIdentifier = "671DC3721EE35FB3000CBAF0"
+            BuildableName = "SnapshotUITests.xctest"
+            BlueprintName = "SnapshotUITests"
             ReferencedContainer = "container:Headlines.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
