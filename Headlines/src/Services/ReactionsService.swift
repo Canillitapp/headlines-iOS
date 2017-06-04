@@ -10,7 +10,13 @@ import UIKit
 import CloudKit
 import SwiftyJSON
 
-class ReactionsService: BaseService {
+class ReactionsService {
+    
+    let service: HTTPService
+    
+    init() {
+        service = HTTPService()
+    }
 
     func postReaction(_ reaction: String,
                       atNews news: News,
@@ -30,29 +36,14 @@ class ReactionsService: BaseService {
             
             guard let userId = recordId else {
                 let errUserInfo = [NSLocalizedDescriptionKey: "No user record id"]
-                let err = NSError(domain: NSStringFromClass(self.classForCoder),
+                let err = NSError(domain: "ReactionsService",
                                   code: 1,
                                   userInfo: errUserInfo)
                 fail?(err)
                 return
             }
             
-            let url = URL(string: "\(self.baseURL())/reactions/\(newsId)")
-            var request = URLRequest(url: url!)
-            request.httpMethod = "POST"
-            
-            let postString = "reaction=\(reaction)&source=iOS&user_id=\(userId.recordName)"
-            request.httpBody = postString.data(using: .utf8)
-            
-            let config = URLSessionConfiguration.default
-            let session = URLSession(configuration: config)
-            
-            let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
-                if let e = error {
-                    fail?(e as NSError)
-                    return
-                }
-                
+            let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
                 guard let d = data else {
                     return
                 }
@@ -64,9 +55,25 @@ class ReactionsService: BaseService {
                 DispatchQueue.main.async(execute: {
                     success?(response, n)
                 })
-            })
+            }
             
-            task.resume()
+            let failBlock: (_ error: NSError) -> Void = { (e) in
+                DispatchQueue.main.async(execute: {
+                    fail?(e as NSError)
+                })
+            }
+            
+            let params = [
+                "reaction": reaction,
+                "source": "iOS",
+                "user_id": userId.recordName
+            ]
+            
+            _ = self.service.request(method: .POST,
+                                     path: "reactions/\(newsId)",
+                                     params: params,
+                                     success: successBlock,
+                                     fail: failBlock)
         }
     }
     
@@ -82,25 +89,14 @@ class ReactionsService: BaseService {
             
             guard let userId = recordId else {
                 let errUserInfo = [NSLocalizedDescriptionKey: "No user record id"]
-                let err = NSError(domain: NSStringFromClass(self.classForCoder),
+                let err = NSError(domain: "ReactionsService",
                                   code: 1,
                                   userInfo: errUserInfo)
                 fail?(err)
                 return
             }
             
-            let url = URL(string: "\(self.baseURL())/reactions/\(userId.recordName)/iOS")
-            let request = URLRequest(url: url!)
-            
-            let config = URLSessionConfiguration.default
-            let session = URLSession(configuration: config)
-            
-            let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
-                if let e = error {
-                    fail?(e as NSError)
-                    return
-                }
-                
+            let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
                 guard let d = data else {
                     return
                 }
@@ -116,9 +112,19 @@ class ReactionsService: BaseService {
                 DispatchQueue.main.async(execute: {
                     success?(response, reactions)
                 })
-            })
+            }
             
-            task.resume()
+            let failBlock: (_ error: NSError) -> Void = { (e) in
+                DispatchQueue.main.async(execute: {
+                    fail?(e as NSError)
+                })
+            }
+            
+            _ = self.service.request(method: .GET,
+                                     path: "reactions/\(userId.recordName)/iOS",
+                                     params: nil,
+                                     success: successBlock,
+                                     fail: failBlock)
         }
     }
 }
