@@ -74,6 +74,38 @@ class ReactionsService: HTTPService {
     func getReactions(success: ((_ response: URLResponse?, [Reaction]) -> Void)?,
                       fail: ((_ error: Error) -> Void)?) {
         
+        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
+            guard let d = data else {
+                return
+            }
+            
+            let json = JSON(data: d)
+            
+            var reactions = [Reaction]()
+            json.forEach ({ (_, j) in
+                let r = Reaction(json: j)
+                reactions.append(r)
+            })
+            
+            DispatchQueue.main.async(execute: {
+                success?(response, reactions)
+            })
+        }
+        
+        let failBlock: (_ error: NSError) -> Void = { (e) in
+            DispatchQueue.main.async(execute: {
+                fail?(e as NSError)
+            })
+        }
+        
+        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            let mockService = MockService()
+            _ = mockService.request(file: "GET-reactions",
+                                    success: successBlock,
+                                    fail: failBlock)
+            return
+        }
+        
         let container = CKContainer.default()
         container.fetchUserRecordID { (recordId, error) in
             if let err = error {
@@ -90,42 +122,11 @@ class ReactionsService: HTTPService {
                 return
             }
             
-            let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-                guard let d = data else {
-                    return
-                }
-                
-                let json = JSON(data: d)
-                
-                var reactions = [Reaction]()
-                json.forEach ({ (_, j) in
-                    let r = Reaction(json: j)
-                    reactions.append(r)
-                })
-                
-                DispatchQueue.main.async(execute: {
-                    success?(response, reactions)
-                })
-            }
-            
-            let failBlock: (_ error: NSError) -> Void = { (e) in
-                DispatchQueue.main.async(execute: {
-                    fail?(e as NSError)
-                })
-            }
-            
-            if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-                let mockService = MockService()
-                _ = mockService.request(file: "GET-reactions",
-                                        success: successBlock,
-                                        fail: failBlock)
-            } else {
-                _ = self.request(method: .GET,
-                                 path: "reactions/\(userId.recordName)/iOS",
-                                 params: nil,
-                                 success: successBlock,
-                                 fail: failBlock)
-            }
+            _ = self.request(method: .GET,
+                             path: "reactions/\(userId.recordName)/iOS",
+                             params: nil,
+                             success: successBlock,
+                             fail: failBlock)
         }
     }
 }
