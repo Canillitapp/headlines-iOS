@@ -809,7 +809,7 @@
         <scene sceneID="r38-TD-SfR">
             <objects>
                 <navigationController id="2R2-7f-vQa" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Popular" image="popular_icon" selectedImage="popular_icon_selected" id="52d-rF-xza"/>
+                    <tabBarItem key="tabBarItem" title="Popular" image="popular_icon" id="52d-rF-xza"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="ihT-Kv-ZXN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1233,13 +1233,12 @@
     </scenes>
     <resources>
         <image name="add_reaction_icon" width="20" height="20"/>
-        <image name="popular_icon" width="22" height="20"/>
-        <image name="popular_icon_selected" width="21" height="20"/>
+        <image name="popular_icon" width="29" height="20"/>
         <image name="reactions_icon" width="23" height="20"/>
         <image name="reactions_icon_selected" width="24" height="20"/>
         <image name="recents_icon" width="21" height="20"/>
         <image name="search_icon" width="21" height="20"/>
-        <image name="trending_icon" width="31" height="21"/>
+        <image name="trending_icon" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="p1w-9l-Khi"/>
