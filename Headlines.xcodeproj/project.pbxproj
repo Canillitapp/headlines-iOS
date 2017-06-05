@@ -1229,7 +1229,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.HeadlinesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Headlines.app/Headlines";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Canillitapp.app/Canillitapp";
 			};
 			name = Debug;
 		};
@@ -1243,7 +1243,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.HeadlinesTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Headlines.app/Headlines";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Canillitapp.app/Canillitapp";
 			};
 			name = Release;
 		};
