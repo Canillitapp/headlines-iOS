@@ -10,7 +10,7 @@ import UIKit
 import CloudKit
 import SwiftyJSON
 
-class ReactionsService: BaseService {
+class ReactionsService: HTTPService {
 
     func postReaction(_ reaction: String,
                       atNews news: News,
@@ -30,29 +30,14 @@ class ReactionsService: BaseService {
             
             guard let userId = recordId else {
                 let errUserInfo = [NSLocalizedDescriptionKey: "No user record id"]
-                let err = NSError(domain: NSStringFromClass(self.classForCoder),
+                let err = NSError(domain: "ReactionsService",
                                   code: 1,
                                   userInfo: errUserInfo)
                 fail?(err)
                 return
             }
             
-            let url = URL(string: "\(self.baseURL())/reactions/\(newsId)")
-            var request = URLRequest(url: url!)
-            request.httpMethod = "POST"
-            
-            let postString = "reaction=\(reaction)&source=iOS&user_id=\(userId.recordName)"
-            request.httpBody = postString.data(using: .utf8)
-            
-            let config = URLSessionConfiguration.default
-            let session = URLSession(configuration: config)
-            
-            let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
-                if let e = error {
-                    fail?(e as NSError)
-                    return
-                }
-                
+            let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
                 guard let d = data else {
                     return
                 }
@@ -64,14 +49,62 @@ class ReactionsService: BaseService {
                 DispatchQueue.main.async(execute: {
                     success?(response, n)
                 })
-            })
+            }
             
-            task.resume()
+            let failBlock: (_ error: NSError) -> Void = { (e) in
+                DispatchQueue.main.async(execute: {
+                    fail?(e as NSError)
+                })
+            }
+            
+            let params = [
+                "reaction": reaction,
+                "source": "iOS",
+                "user_id": userId.recordName
+            ]
+            
+            _ = self.request(method: .POST,
+                             path: "reactions/\(newsId)",
+                             params: params,
+                             success: successBlock,
+                             fail: failBlock)
         }
     }
     
     func getReactions(success: ((_ response: URLResponse?, [Reaction]) -> Void)?,
                       fail: ((_ error: Error) -> Void)?) {
+        
+        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
+            guard let d = data else {
+                return
+            }
+            
+            let json = JSON(data: d)
+            
+            var reactions = [Reaction]()
+            json.forEach ({ (_, j) in
+                let r = Reaction(json: j)
+                reactions.append(r)
+            })
+            
+            DispatchQueue.main.async(execute: {
+                success?(response, reactions)
+            })
+        }
+        
+        let failBlock: (_ error: NSError) -> Void = { (e) in
+            DispatchQueue.main.async(execute: {
+                fail?(e as NSError)
+            })
+        }
+        
+        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            let mockService = MockService()
+            _ = mockService.request(file: "GET-reactions",
+                                    success: successBlock,
+                                    fail: failBlock)
+            return
+        }
         
         let container = CKContainer.default()
         container.fetchUserRecordID { (recordId, error) in
@@ -82,43 +115,18 @@ class ReactionsService: BaseService {
             
             guard let userId = recordId else {
                 let errUserInfo = [NSLocalizedDescriptionKey: "No user record id"]
-                let err = NSError(domain: NSStringFromClass(self.classForCoder),
+                let err = NSError(domain: "ReactionsService",
                                   code: 1,
                                   userInfo: errUserInfo)
                 fail?(err)
                 return
             }
             
-            let url = URL(string: "\(self.baseURL())/reactions/\(userId.recordName)/iOS")
-            let request = URLRequest(url: url!)
-            
-            let config = URLSessionConfiguration.default
-            let session = URLSession(configuration: config)
-            
-            let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
-                if let e = error {
-                    fail?(e as NSError)
-                    return
-                }
-                
-                guard let d = data else {
-                    return
-                }
-                
-                let json = JSON(data: d)
-                
-                var reactions = [Reaction]()
-                json.forEach ({ (_, j) in
-                    let r = Reaction(json: j)
-                    reactions.append(r)
-                })
-                
-                DispatchQueue.main.async(execute: {
-                    success?(response, reactions)
-                })
-            })
-            
-            task.resume()
+            _ = self.request(method: .GET,
+                             path: "reactions/\(userId.recordName)/iOS",
+                             params: nil,
+                             success: successBlock,
+                             fail: failBlock)
         }
     }
 }

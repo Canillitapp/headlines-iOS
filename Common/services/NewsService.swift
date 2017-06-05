@@ -9,25 +9,12 @@
 import Foundation
 import SwiftyJSON
 
-class NewsService: BaseService {
+class NewsService: HTTPService {
     
     func requestPopularNews (success: ((_ result: [News]?) -> Void)?,
                              fail: ((_ error: NSError) -> Void)?) {
-        
-        let url = URL(string: "\(baseURL())/popular")
-        let request = URLRequest(url: url!)
-        
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
-        
-        let task = session.dataTask(with: request, completionHandler: {(data, _, error) in
-            if let e = error {
-                DispatchQueue.main.async(execute: {
-                    fail?(e as NSError)
-                })
-                return
-            }
-            
+
+        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
             guard let d = data else {
                 return
             }
@@ -44,9 +31,15 @@ class NewsService: BaseService {
             DispatchQueue.main.async(execute: {
                 success?(res)
             })
-        })
+        }
         
-        task.resume()
+        let failBlock: (_ error: NSError) -> Void = { (e) in
+            DispatchQueue.main.async(execute: {
+                fail?(e as NSError)
+            })
+        }
+        
+        _ = request(method: .GET, path: "popular", params: nil, success: successBlock, fail: failBlock)
     }
     
     func requestRecentNewsWithDate (_ date: Date,
@@ -57,21 +50,8 @@ class NewsService: BaseService {
         let components = (calendar as NSCalendar).components([.day, .month, .year], from: date)
         
         let datePath = String(format: "%d-%02d-%02d", components.year!, components.month!, components.day!)
-        
-        let url = URL(string: "\(baseURL())/latest/\(datePath)")
-        let request = URLRequest(url: url!)
-        
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
-        
-        let task = session.dataTask(with: request, completionHandler: {(data, _, error) in
-            if let e = error {
-                DispatchQueue.main.async(execute: {
-                    fail?(e as NSError)
-                })
-                return
-            }
-            
+
+        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
             guard let d = data else {
                 return
             }
@@ -85,12 +65,18 @@ class NewsService: BaseService {
                 res.append(n)
             }
             
-            DispatchQueue.main.async(execute: { 
+            DispatchQueue.main.async(execute: {
                 success?(res)
             })
-        })
+        }
         
-        task.resume()
+        let failBlock: (_ error: NSError) -> Void = { (e) in
+            DispatchQueue.main.async(execute: {
+                fail?(e as NSError)
+            })
+        }
+        
+        _ = request(method: .GET, path: "latest/\(datePath)", params: nil, success: successBlock, fail: failBlock)
     }
     
     func requestTrendingTopicsWithDate (_ date: Date,
@@ -103,20 +89,7 @@ class NewsService: BaseService {
         
         let datePath = String(format: "%d-%02d-%02d", components.year!, components.month!, components.day!)
         
-        let url = URL(string: "\(baseURL())/trending/\(datePath)/\(count)")
-        let request = URLRequest(url: url!)
-        
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
-        
-        let task = session.dataTask(with: request, completionHandler: {(data, _, error) in
-            if let e = error {
-                DispatchQueue.main.async(execute: {
-                    fail?(e as NSError)
-                })
-                return
-            }
-            
+        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
             guard let d = data else {
                 return
             }
@@ -139,15 +112,22 @@ class NewsService: BaseService {
                 res.append(a)
             }
             
-            DispatchQueue.main.async(execute: { 
-                success?(res)                
+            DispatchQueue.main.async(execute: {
+                success?(res)
             })
-        })
+        }
         
-        // do whatever you need with the task e.g. run
-        task.resume()
+        let failBlock: (_ error: NSError) -> Void = { (e) in
+            DispatchQueue.main.async(execute: {
+                fail?(e as NSError)
+            })
+        }
         
-        return task
+        return request(method: .GET,
+                       path: "trending/\(datePath)/\(count)",
+                       params: nil,
+                       success: successBlock,
+                       fail: failBlock)!
     }
     
     func searchNews(_ text: String, success: ((_ result: [News]?) -> Void)?, fail: ((_ error: NSError) -> Void)?) {
@@ -156,20 +136,7 @@ class NewsService: BaseService {
             return
         }
         
-        let url = URL(string: "\(baseURL())/search/\(encodedText)")
-        let request = URLRequest(url: url!)
-        
-        let config = URLSessionConfiguration.default
-        let session = URLSession(configuration: config)
-        
-        let task = session.dataTask(with: request, completionHandler: {(data, _, error) in
-            if let e = error {
-                DispatchQueue.main.async {
-                    fail?(e as NSError)
-                }
-                return
-            }
-            
+        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
             guard let d = data else {
                 return
             }
@@ -186,9 +153,14 @@ class NewsService: BaseService {
             DispatchQueue.main.async(execute: {
                 success?(res)
             })
-        })
+        }
         
-        // do whatever you need with the task e.g. run
-        task.resume()
+        let failBlock: (_ error: NSError) -> Void = { (e) in
+            DispatchQueue.main.async(execute: {
+                fail?(e as NSError)
+            })
+        }
+        
+        _ = request(method: .GET, path: "search/\(encodedText)", params: nil, success: successBlock, fail: failBlock)
     }
 }
