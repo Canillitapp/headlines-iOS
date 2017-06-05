@@ -8,7 +8,11 @@
 
 import Foundation
 
-class HTTPService: ServiceProtocol {
+enum Method {
+    case DELETE, GET, POST, PUT
+}
+
+class HTTPService {
     
     func baseURL() -> String {
         guard let baseURL = ConfigHelper.configForKey("base_url") as? String else {

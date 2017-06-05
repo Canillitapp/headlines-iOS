@@ -10,13 +10,7 @@ import UIKit
 import CloudKit
 import SwiftyJSON
 
-class ReactionsService {
-    
-    let service: HTTPService
-    
-    init() {
-        service = HTTPService()
-    }
+class ReactionsService: HTTPService {
 
     func postReaction(_ reaction: String,
                       atNews news: News,
@@ -69,11 +63,11 @@ class ReactionsService {
                 "user_id": userId.recordName
             ]
             
-            _ = self.service.request(method: .POST,
-                                     path: "reactions/\(newsId)",
-                                     params: params,
-                                     success: successBlock,
-                                     fail: failBlock)
+            _ = self.request(method: .POST,
+                             path: "reactions/\(newsId)",
+                             params: params,
+                             success: successBlock,
+                             fail: failBlock)
         }
     }
     
@@ -120,11 +114,18 @@ class ReactionsService {
                 })
             }
             
-            _ = self.service.request(method: .GET,
-                                     path: "reactions/\(userId.recordName)/iOS",
-                                     params: nil,
-                                     success: successBlock,
-                                     fail: failBlock)
+            if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+                let mockService = MockService()
+                _ = mockService.request(file: "GET-reactions",
+                                        success: successBlock,
+                                        fail: failBlock)
+            } else {
+                _ = self.request(method: .GET,
+                                 path: "reactions/\(userId.recordName)/iOS",
+                                 params: nil,
+                                 success: successBlock,
+                                 fail: failBlock)
+            }
         }
     }
 }

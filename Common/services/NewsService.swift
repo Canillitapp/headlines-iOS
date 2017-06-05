@@ -9,12 +9,7 @@
 import Foundation
 import SwiftyJSON
 
-class NewsService {
-    var service: ServiceProtocol
-    
-    init () {
-        service = HTTPService()
-    }
+class NewsService: HTTPService {
     
     func requestPopularNews (success: ((_ result: [News]?) -> Void)?,
                              fail: ((_ error: NSError) -> Void)?) {
@@ -44,7 +39,7 @@ class NewsService {
             })
         }
         
-        _ = service.request(method: .GET, path: "popular", params: nil, success: successBlock, fail: failBlock)
+        _ = request(method: .GET, path: "popular", params: nil, success: successBlock, fail: failBlock)
     }
     
     func requestRecentNewsWithDate (_ date: Date,
@@ -81,11 +76,7 @@ class NewsService {
             })
         }
         
-        _ = service.request(method: .GET,
-                            path: "latest/\(datePath)",
-                            params: nil,
-                            success: successBlock,
-                            fail: failBlock)
+        _ = request(method: .GET, path: "latest/\(datePath)", params: nil, success: successBlock, fail: failBlock)
     }
     
     func requestTrendingTopicsWithDate (_ date: Date,
@@ -132,11 +123,11 @@ class NewsService {
             })
         }
         
-        return service.request(method: .GET,
-                               path: "trending/\(datePath)/\(count)",
-                               params: nil,
-                               success: successBlock,
-                               fail: failBlock)!
+        return request(method: .GET,
+                       path: "trending/\(datePath)/\(count)",
+                       params: nil,
+                       success: successBlock,
+                       fail: failBlock)!
     }
     
     func searchNews(_ text: String, success: ((_ result: [News]?) -> Void)?, fail: ((_ error: NSError) -> Void)?) {
@@ -170,10 +161,6 @@ class NewsService {
             })
         }
         
-        _ = service.request(method: .GET,
-                            path: "search/\(encodedText)",
-                            params: nil,
-                            success: successBlock,
-                            fail: failBlock)
+        _ = request(method: .GET, path: "search/\(encodedText)", params: nil, success: successBlock, fail: failBlock)
     }
 }

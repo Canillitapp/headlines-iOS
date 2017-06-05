@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import UIKit
 
 class SnapshotUITests: XCTestCase {
     
@@ -20,6 +21,8 @@ class SnapshotUITests: XCTestCase {
         
         let app = XCUIApplication()
         setupSnapshot(app)
+
+        app.launchArguments.append("mockRequests")
         app.launch()
     }
     
@@ -70,10 +73,21 @@ class SnapshotUITests: XCTestCase {
         //  Go to Reacciones tab
         app.tabBars.buttons["Reacciones"].tap()
         
+        //  There should be at least 1 cell rendered
         let cell = app.tables.cells.element(boundBy: 0)
         let exists = NSPredicate(format: "exists == 1")
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
-        wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
+        
+        //  On iPad we need at least 9 actually
+        var expectations = [cellExistsExpectation]
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            let cellCountExpectation = expectation(for: NSPredicate(format: "count >= 9"),
+                                                   evaluatedWith: app.tables.cells,
+                                                   handler: nil)
+            expectations.append(cellCountExpectation)
+        }
+        
+        wait(for: expectations, timeout: defaultWaitThreshold)
         snapshot("04-reactions")
     }
     
