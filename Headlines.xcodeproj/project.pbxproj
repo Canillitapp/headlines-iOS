@@ -61,6 +61,7 @@
 		67CE08B51E904F2000D5911E /* ReactionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CE08B41E904F2000D5911E /* ReactionCollectionViewCell.swift */; };
 		67D434F11EB0000C001A79D8 /* MyReactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D434F01EB0000C001A79D8 /* MyReactionsViewController.swift */; };
 		67D434F31EB01827001A79D8 /* ReactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D434F21EB01827001A79D8 /* ReactionTableViewCell.swift */; };
+		67E6168F1EE52AEA0073997F /* HeadlinesUIMockedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E6168E1EE52AEA0073997F /* HeadlinesUIMockedTests.swift */; };
 		67F39C1A1EB2DEE600CF99F2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F39C191EB2DEE600CF99F2 /* SearchViewController.swift */; };
 		67FD84DE1D6BF85D00BACAFC /* TrendingCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD84DA1D6BF85D00BACAFC /* TrendingCardsViewController.swift */; };
 /* End PBXBuildFile section */
@@ -185,6 +186,7 @@
 		67CE08B41E904F2000D5911E /* ReactionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionCollectionViewCell.swift; sourceTree = "<group>"; };
 		67D434F01EB0000C001A79D8 /* MyReactionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyReactionsViewController.swift; sourceTree = "<group>"; };
 		67D434F21EB01827001A79D8 /* ReactionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionTableViewCell.swift; sourceTree = "<group>"; };
+		67E6168E1EE52AEA0073997F /* HeadlinesUIMockedTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadlinesUIMockedTests.swift; sourceTree = "<group>"; };
 		67F39C191EB2DEE600CF99F2 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		67FD84DA1D6BF85D00BACAFC /* TrendingCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingCardsViewController.swift; sourceTree = "<group>"; };
 		76124FBA967C0DCF6FC87B1F /* Pods-Headlines.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Headlines.release.xcconfig"; path = "Pods/Target Support Files/Pods-Headlines/Pods-Headlines.release.xcconfig"; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				675A82011D6BF6E8000DC680 /* HeadlinesUITests.swift */,
+				67E6168E1EE52AEA0073997F /* HeadlinesUIMockedTests.swift */,
 				675A82031D6BF6E8000DC680 /* Info.plist */,
 			);
 			path = HeadlinesUITests;
@@ -912,6 +915,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				43CC643F1EBBE7E90066D49E /* OrientationAwareControllers.swift in Sources */,
+				67E6168F1EE52AEA0073997F /* HeadlinesUIMockedTests.swift in Sources */,
 				675A82021D6BF6E8000DC680 /* HeadlinesUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
