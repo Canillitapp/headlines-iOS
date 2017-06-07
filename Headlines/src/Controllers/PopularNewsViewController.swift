@@ -29,9 +29,11 @@ class PopularNewsViewController: NewsTableViewController {
             self.tableView.reloadData()
             
         }) { (error) in
-            self.refreshControl?.endRefreshing()
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
+                self.refreshControl?.endRefreshing()
+            }
             
-            print("\(error.localizedDescription)")
+            self.showControllerWithError(error)
         }
     }
     
