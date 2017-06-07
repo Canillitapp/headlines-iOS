@@ -10,17 +10,25 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Rubik-Light.ttf">
+            <string>Rubik-Light</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Destacados-->
         <scene sceneID="pY4-Hu-kfo">
             <objects>
                 <navigationController title="Destacados" id="RMx-3f-FxP" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Destacados" image="trending_icon" id="yfu-kf-6Q2"/>
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" barStyle="black" id="Pmd-2v-anx">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="Pmd-2v-anx">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="18"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="pGg-2V-AiX" kind="relationship" relationship="rootViewController" id="kCa-Sq-CZq"/>
@@ -34,86 +42,108 @@
         <scene sceneID="puQ-12-U3T">
             <objects>
                 <collectionViewController title="Destacados" id="pGg-2V-AiX" customClass="TrendingCardsViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="DKO-eO-dVO">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="DKO-eO-dVO">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.13725490196078433" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6Cd-9y-33H">
                             <size key="itemSize" width="50" height="50"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="50" height="50"/>
-                            <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
+                            <inset key="sectionInset" minX="0.0" minY="5" maxX="0.0" maxY="5"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="loB-i9-0C7" customClass="KeywordCollectionViewCell" customModule="Canillitapp" customModuleProvider="target">
-                                <rect key="frame" x="37.5" y="10" width="300" height="260"/>
+                                <rect key="frame" x="37.5" y="5" width="300" height="260"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="300" height="260"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7cQ-z5-4ma">
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7cQ-z5-4ma">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="160"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H6f-he-bVk">
                                                     <rect key="frame" x="0.0" y="0.0" width="300" height="160"/>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="DfI-4V-z3Z">
-                                                    <rect key="frame" x="10" y="103" width="134" height="50"/>
+                                                    <rect key="frame" x="0.0" y="110" width="132" height="50"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Hoy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4o-gp-gZY">
-                                                            <rect key="frame" x="0.0" y="0.0" width="26" height="21"/>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0GT-0H-3X0">
+                                                            <rect key="frame" x="0.0" y="0.0" width="39" height="21"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="750" text="Hoy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4o-gp-gZY">
+                                                                    <rect key="frame" x="7" y="4" width="25" height="17"/>
+                                                                    <fontDescription key="fontDescription" name="Rubik-Light" family="Rubik" pointSize="14"/>
+                                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="753" text="Cambiemos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8T-In-q8u">
-                                                            <rect key="frame" x="0.0" y="21" width="134" height="29"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="p4o-gp-gZY" secondAttribute="bottom" id="12G-Iq-gbs"/>
+                                                                <constraint firstItem="p4o-gp-gZY" firstAttribute="top" secondItem="0GT-0H-3X0" secondAttribute="top" constant="4" id="Dlv-oK-cZd"/>
+                                                                <constraint firstAttribute="trailing" secondItem="p4o-gp-gZY" secondAttribute="trailing" constant="7" id="SaN-1h-Nym"/>
+                                                                <constraint firstItem="p4o-gp-gZY" firstAttribute="leading" secondItem="0GT-0H-3X0" secondAttribute="leading" constant="7" id="aUM-3M-bBA"/>
+                                                            </constraints>
+                                                        </view>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MY3-EG-Duv">
+                                                            <rect key="frame" x="0.0" y="21" width="132" height="29"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" verticalCompressionResistancePriority="753" text="Cambiemos" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E8T-In-q8u">
+                                                                    <rect key="frame" x="7" y="0.0" width="118" height="29"/>
+                                                                    <fontDescription key="fontDescription" name="Rubik-Light" family="Rubik" pointSize="22"/>
+                                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
                                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="24"/>
-                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                            <constraints>
+                                                                <constraint firstAttribute="bottom" secondItem="E8T-In-q8u" secondAttribute="bottom" id="KWa-pE-lIy"/>
+                                                                <constraint firstItem="E8T-In-q8u" firstAttribute="leading" secondItem="MY3-EG-Duv" secondAttribute="leading" constant="7" id="RJG-PQ-egE"/>
+                                                                <constraint firstAttribute="trailing" secondItem="E8T-In-q8u" secondAttribute="trailing" constant="7" id="fsI-kK-shg"/>
+                                                                <constraint firstItem="E8T-In-q8u" firstAttribute="top" secondItem="MY3-EG-Duv" secondAttribute="top" id="ou2-QY-GTx"/>
+                                                            </constraints>
+                                                        </view>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="50" id="Jpt-dw-0Tb"/>
                                                     </constraints>
                                                 </stackView>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4OC-XO-It2">
-                                                    <rect key="frame" x="226" y="130.5" width="64" height="22.5"/>
+                                                    <rect key="frame" x="222" y="0.0" width="78" height="25"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7 noticias" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Aex-lC-0WV">
-                                                            <rect key="frame" x="4" y="4" width="56" height="14.5"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="12"/>
+                                                            <rect key="frame" x="8" y="4" width="62" height="17"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
                                                     <color key="backgroundColor" red="0.99607843137254903" green="0.15686274509803921" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
                                                     <constraints>
-                                                        <constraint firstItem="Aex-lC-0WV" firstAttribute="leading" secondItem="4OC-XO-It2" secondAttribute="leading" constant="4" id="HkT-te-2YU"/>
-                                                        <constraint firstAttribute="trailing" secondItem="Aex-lC-0WV" secondAttribute="trailing" constant="4" id="chq-ha-dYM"/>
+                                                        <constraint firstItem="Aex-lC-0WV" firstAttribute="leading" secondItem="4OC-XO-It2" secondAttribute="leading" constant="8" id="HkT-te-2YU"/>
+                                                        <constraint firstAttribute="trailing" secondItem="Aex-lC-0WV" secondAttribute="trailing" constant="8" id="chq-ha-dYM"/>
                                                         <constraint firstAttribute="bottom" secondItem="Aex-lC-0WV" secondAttribute="bottom" constant="4" id="i8r-RL-Dmr"/>
                                                         <constraint firstItem="Aex-lC-0WV" firstAttribute="top" secondItem="4OC-XO-It2" secondAttribute="top" constant="4" id="wyn-u4-aIZ"/>
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" white="0.75603210034013602" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="H6f-he-bVk" firstAttribute="leading" secondItem="7cQ-z5-4ma" secondAttribute="leading" id="1E0-G5-Spb"/>
-                                                <constraint firstItem="4OC-XO-It2" firstAttribute="bottom" secondItem="DfI-4V-z3Z" secondAttribute="bottom" id="2vU-4O-pvK"/>
                                                 <constraint firstAttribute="height" constant="160" id="7XG-Ia-OHg"/>
-                                                <constraint firstItem="DfI-4V-z3Z" firstAttribute="leading" secondItem="7cQ-z5-4ma" secondAttribute="leading" constant="10" id="8mh-4Q-DMP"/>
+                                                <constraint firstItem="DfI-4V-z3Z" firstAttribute="leading" secondItem="7cQ-z5-4ma" secondAttribute="leading" id="8mh-4Q-DMP"/>
                                                 <constraint firstItem="H6f-he-bVk" firstAttribute="top" secondItem="7cQ-z5-4ma" secondAttribute="top" id="HVy-6Q-6kc"/>
-                                                <constraint firstAttribute="bottom" secondItem="DfI-4V-z3Z" secondAttribute="bottom" constant="7" id="THi-r3-Ipa"/>
-                                                <constraint firstAttribute="trailing" secondItem="4OC-XO-It2" secondAttribute="trailing" constant="10" id="XEC-sg-wq5"/>
+                                                <constraint firstAttribute="bottom" secondItem="DfI-4V-z3Z" secondAttribute="bottom" id="THi-r3-Ipa"/>
+                                                <constraint firstAttribute="trailing" secondItem="4OC-XO-It2" secondAttribute="trailing" id="XEC-sg-wq5"/>
                                                 <constraint firstAttribute="bottom" secondItem="H6f-he-bVk" secondAttribute="bottom" id="gVd-Lh-txH"/>
+                                                <constraint firstItem="4OC-XO-It2" firstAttribute="top" secondItem="H6f-he-bVk" secondAttribute="top" id="iUf-j3-qO6"/>
                                                 <constraint firstAttribute="trailing" secondItem="H6f-he-bVk" secondAttribute="trailing" id="yC4-tC-aAR"/>
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Con Macri, Carrió y Sanz, Cambiemos presenta su Mesa Nacional." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gFB-Rz-eHd">
-                                            <rect key="frame" x="10" y="168" width="280" height="33.5"/>
+                                            <rect key="frame" x="7" y="168" width="283" height="33.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -139,8 +169,8 @@
                                 </view>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="4OC-XO-It2" firstAttribute="trailing" secondItem="gFB-Rz-eHd" secondAttribute="trailing" id="2ax-Fo-RTd"/>
-                                    <constraint firstItem="gFB-Rz-eHd" firstAttribute="leading" secondItem="DfI-4V-z3Z" secondAttribute="leading" id="LM8-RH-vAD"/>
+                                    <constraint firstItem="4OC-XO-It2" firstAttribute="trailing" secondItem="gFB-Rz-eHd" secondAttribute="trailing" constant="10" id="2ax-Fo-RTd"/>
+                                    <constraint firstItem="gFB-Rz-eHd" firstAttribute="leading" secondItem="DfI-4V-z3Z" secondAttribute="leading" constant="7" id="LM8-RH-vAD"/>
                                     <constraint firstItem="gFB-Rz-eHd" firstAttribute="top" secondItem="7cQ-z5-4ma" secondAttribute="bottom" constant="8" id="NXR-Xh-7fR"/>
                                     <constraint firstItem="wkI-YZ-kx1" firstAttribute="top" secondItem="gFB-Rz-eHd" secondAttribute="bottom" constant="6" id="RwQ-YG-5vL"/>
                                     <constraint firstItem="7cQ-z5-4ma" firstAttribute="leading" secondItem="loB-i9-0C7" secondAttribute="leading" id="Ub0-RI-0Hr"/>
@@ -163,13 +193,13 @@
                             </collectionViewCell>
                         </cells>
                         <collectionReusableView key="sectionFooterView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="footer" id="tqW-Zx-iut">
-                            <rect key="frame" x="0.0" y="280" width="375" height="50"/>
+                            <rect key="frame" x="0.0" y="270" width="375" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VoQ-3j-s0a">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
                                 </view>
-                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="qP0-YE-7ez">
+                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="qP0-YE-7ez">
                                     <rect key="frame" x="177" y="15" width="20" height="20"/>
                                 </activityIndicatorView>
                             </subviews>
@@ -234,7 +264,7 @@
             <objects>
                 <tableViewController title="Recientes" id="UHm-7N-iFa" customClass="RecentNewsViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="3tS-WI-A6H">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -418,7 +448,7 @@
             <objects>
                 <tableViewController title="Cambiemos" id="MYF-Oh-yyD" customClass="NewsTableViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="5Bm-b3-Mm7">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -678,7 +708,7 @@
         <scene sceneID="fsd-Ma-r7C">
             <objects>
                 <navigationController id="oq4-rR-HNf" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="tRE-mk-0im">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="tRE-mk-0im">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -697,10 +727,13 @@
             <objects>
                 <navigationController title="Recientes" id="Abw-Ux-NCb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Reciente" image="recents_icon" id="Qp8-zi-e3Q"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="2nT-WF-g68">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="2nT-WF-g68">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="18"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="UHm-7N-iFa" kind="relationship" relationship="rootViewController" id="Zly-ul-qAa"/>
@@ -717,11 +750,14 @@
                     <tabBarItem key="tabBarItem" title="Reacciones" image="reactions_icon" selectedImage="reactions_icon_selected" id="ESI-ez-g9q"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="WLO-q8-zMC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="WLO-q8-zMC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="I3d-cv-AXv" kind="relationship" relationship="rootViewController" id="ynH-9F-AJv"/>
@@ -736,7 +772,7 @@
             <objects>
                 <tableViewController id="I3d-cv-AXv" customClass="MyReactionsViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="cWW-nS-EQi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -810,10 +846,13 @@
             <objects>
                 <navigationController id="2R2-7f-vQa" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Popular" image="popular_icon" id="52d-rF-xza"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="ihT-Kv-ZXN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="ihT-Kv-ZXN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="18"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="dUI-Vz-Xeu" kind="relationship" relationship="rootViewController" id="yJB-B7-Q6j"/>
@@ -828,7 +867,7 @@
             <objects>
                 <tableViewController id="YA2-Hd-pbO" customClass="SearchViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="s2d-Pz-N2b">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <searchBar key="tableHeaderView" contentMode="redraw" barStyle="black" searchBarStyle="prominent" placeholder="Buscar" showsCancelButton="YES" id="OTR-so-tYN">
@@ -1030,11 +1069,12 @@
             <objects>
                 <navigationController id="qph-JK-AyF" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Buscar" image="search_icon" id="Iim-hM-fUr"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="MAt-YH-kTW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="MAt-YH-kTW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="Rubik-Regular" family="Rubik" pointSize="18"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </textAttributes>
                     </navigationBar>
@@ -1051,7 +1091,7 @@
             <objects>
                 <tableViewController title="Recientes" id="dUI-Vz-Xeu" customClass="PopularNewsViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="OHL-fO-E91">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>

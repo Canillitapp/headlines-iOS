@@ -12,6 +12,9 @@
 		43CC643E1EBBE7E90066D49E /* OrientationAwareControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CC643C1EBBE7E90066D49E /* OrientationAwareControllers.swift */; };
 		43CC643F1EBBE7E90066D49E /* OrientationAwareControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CC643C1EBBE7E90066D49E /* OrientationAwareControllers.swift */; };
 		597E81BAC05CC01C523956BE /* Pods_Watch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7CA813EE9F2943ACC02746E /* Pods_Watch_Extension.framework */; };
+		670C0A651EE7BE8300C40338 /* Rubik-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 670C0A621EE7BE8300C40338 /* Rubik-Light.ttf */; };
+		670C0A661EE7BE8300C40338 /* Rubik-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 670C0A631EE7BE8300C40338 /* Rubik-Medium.ttf */; };
+		670C0A671EE7BE8300C40338 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 670C0A641EE7BE8300C40338 /* Rubik-Regular.ttf */; };
 		670D2C7C1DDC09D000237C39 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670D2C7B1DDC09D000237C39 /* NewsTableViewCell.swift */; };
 		671432EE1EC8CC3E0016A0EA /* PopularNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671432ED1EC8CC3E0016A0EA /* PopularNewsViewController.swift */; };
 		6719DA631D6D143E00D1E214 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6719DA611D6D143E00D1E214 /* Interface.storyboard */; };
@@ -134,6 +137,9 @@
 		1E364D941A8F5CACBFF8FD34 /* Pods_Canillitapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canillitapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CC643C1EBBE7E90066D49E /* OrientationAwareControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrientationAwareControllers.swift; sourceTree = "<group>"; };
 		5EA3242399336F7A8DE27E42 /* Pods-Watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Watch Extension/Pods-Watch Extension.release.xcconfig"; sourceTree = "<group>"; };
+		670C0A621EE7BE8300C40338 /* Rubik-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Light.ttf"; sourceTree = "<group>"; };
+		670C0A631EE7BE8300C40338 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Medium.ttf"; sourceTree = "<group>"; };
+		670C0A641EE7BE8300C40338 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		670D2C7B1DDC09D000237C39 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		671432ED1EC8CC3E0016A0EA /* PopularNewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularNewsViewController.swift; sourceTree = "<group>"; };
 		6719DA5F1D6D143E00D1E214 /* Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -246,6 +252,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		670C0A601EE7BE2700C40338 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				670C0A611EE7BE8300C40338 /* fonts */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+		670C0A611EE7BE8300C40338 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				670C0A621EE7BE8300C40338 /* Rubik-Light.ttf */,
+				670C0A631EE7BE8300C40338 /* Rubik-Medium.ttf */,
+				670C0A641EE7BE8300C40338 /* Rubik-Regular.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
 		6719DA601D6D143E00D1E214 /* Watch */ = {
 			isa = PBXGroup;
 			children = (
@@ -328,6 +352,7 @@
 				67FD84D71D6BF85D00BACAFC /* src */,
 				675A81E51D6BF6E8000DC680 /* Main.storyboard */,
 				675A81E81D6BF6E8000DC680 /* Assets.xcassets */,
+				670C0A601EE7BE2700C40338 /* resources */,
 				675A81EA1D6BF6E8000DC680 /* LaunchScreen.storyboard */,
 				675A81ED1D6BF6E8000DC680 /* Info.plist */,
 			);
@@ -701,8 +726,11 @@
 				675A81EC1D6BF6E8000DC680 /* LaunchScreen.storyboard in Resources */,
 				6798B6871EBACDB70079B8E1 /* fabric.apikey in Resources */,
 				675A81E91D6BF6E8000DC680 /* Assets.xcassets in Resources */,
+				670C0A671EE7BE8300C40338 /* Rubik-Regular.ttf in Resources */,
 				675A81E71D6BF6E8000DC680 /* Main.storyboard in Resources */,
+				670C0A651EE7BE8300C40338 /* Rubik-Light.ttf in Resources */,
 				6797F8C01EE4D7F700B8EAA5 /* GET-reactions.json in Resources */,
+				670C0A661EE7BE8300C40338 /* Rubik-Medium.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
