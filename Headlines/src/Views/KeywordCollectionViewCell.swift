@@ -19,6 +19,24 @@ class KeywordCollectionViewCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.layer.cornerRadius = 10
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        contentView.layer.cornerRadius = 10
+        contentView.layer.masksToBounds = true
+        contentView.layer.backgroundColor = UIColor.white.cgColor
+        contentView.layer.borderColor = UIColor(white: 216/255.0, alpha: 1).cgColor
+        contentView.layer.borderWidth = 1
+        
+        layer.backgroundColor = UIColor.clear.cgColor
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        layer.shadowRadius = 4.0
+        layer.shadowOpacity = 0.10
+        layer.masksToBounds = false
+        layer.shadowPath = UIBezierPath(roundedRect: self.bounds,
+                                        cornerRadius: self.contentView.layer.cornerRadius).cgPath
     }
 }
