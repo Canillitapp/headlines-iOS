@@ -26,6 +26,15 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     var newsViewModels: [NewsCellViewModel] = []
     
     // MARK: Private
+    func showControllerWithError(_ error: NSError) {
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        let alertController = UIAlertController(title: "Sorry",
+                                                message: error.localizedDescription,
+                                                preferredStyle: .alert)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
     func addReaction(_ currentReaction: String, toNews currentNews: News) {
         guard let n = news.filter ({$0.identifier == currentNews.identifier}).first else {
             return
@@ -74,7 +83,6 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         
         let viewModel = newsViewModels[indexPath.row]
         performSegue(withIdentifier: "reaction", sender: viewModel)
-
     }
     
     // MARK: UIViewController
@@ -104,8 +112,8 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
                                             return
                                         }
                                         self.addReaction(selectedReaction, toNews: n)
-        }) { (err) in
-            print("#ERROR \(err.localizedDescription)")
+        }) { [unowned self] err in
+            self.showControllerWithError(err as NSError)
         }
     }
     
@@ -177,8 +185,8 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
                                             return
                                         }
                                         self.addReaction(reaction.reaction, toNews: n)
-        }) { (err) in
-            print("#ERROR \(err.localizedDescription)")
+        }) { [unowned self] err in
+            self.showControllerWithError(err as NSError)
         }
     }
     

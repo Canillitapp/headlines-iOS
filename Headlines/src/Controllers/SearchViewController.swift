@@ -45,7 +45,8 @@ class SearchViewController: NewsTableViewController, UISearchBarDelegate {
             
         }) { (error) in
             self.loadingIndicator?.hide(animated: true)
-            print("\(error.localizedDescription)")
+            
+            self.showControllerWithError(error)
         }
     }
 }
