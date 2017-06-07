@@ -109,7 +109,9 @@ class ReactionsService: HTTPService {
         let container = CKContainer.default()
         container.fetchUserRecordID { (recordId, error) in
             if let err = error {
-                fail?(err)
+                DispatchQueue.main.async(execute: {
+                    fail?(err)
+                })
                 return
             }
             
@@ -118,7 +120,10 @@ class ReactionsService: HTTPService {
                 let err = NSError(domain: "ReactionsService",
                                   code: 1,
                                   userInfo: errUserInfo)
-                fail?(err)
+                
+                DispatchQueue.main.async(execute: {
+                    fail?(err)
+                })
                 return
             }
             

@@ -16,10 +16,19 @@ class MyReactionsViewController: UITableViewController {
     var reactions = [Reaction]()
     
     // MARK: Private
+    func showControllerWithError(_ error: NSError) {
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        let alertController = UIAlertController(title: "Sorry",
+                                                message: error.localizedDescription,
+                                                preferredStyle: .alert)
+        alertController.addAction(okAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
     func fetchMyReactions() {
         refreshControl?.beginRefreshing()
         
-        let success: (URLResponse?, [Reaction]) -> Void = { response, reactions in
+        let success: (URLResponse?, [Reaction]) -> Void = { [unowned self] response, reactions in
             self.refreshControl?.endRefreshing()
             
             self.reactions.removeAll()
@@ -27,10 +36,11 @@ class MyReactionsViewController: UITableViewController {
             self.tableView.reloadData()
         }
         
-        let fail: (Error) -> Void = { error in
-            self.refreshControl?.endRefreshing()
-            
-            print(error.localizedDescription)
+        let fail: (Error) -> Void = { [unowned self] error in
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
+                self.refreshControl?.endRefreshing()
+            }
+            self.showControllerWithError(error as NSError)
         }
         
         reactionsService.getReactions(success: success, fail: fail)
