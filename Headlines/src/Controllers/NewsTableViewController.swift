@@ -18,11 +18,13 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
             news.forEach({ (n) in
                 let viewModel = NewsCellViewModel(news: n)
                 viewModel.delegate = self
+                viewModel.dateStyle = preferredDateStyle
                 newsViewModels.append(viewModel)
             })
         }
     }
     
+    var preferredDateStyle: DateFormatter.Style = .none
     let reactionsService = ReactionsService()
     var newsViewModels: [NewsCellViewModel] = []
     

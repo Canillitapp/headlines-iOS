@@ -51,6 +51,8 @@ class PopularNewsViewController: NewsTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        preferredDateStyle = .short
+        
         //  Setup refresh control
         let refreshCtrl = UIRefreshControl()
         tableView.refreshControl = refreshCtrl
