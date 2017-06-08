@@ -165,9 +165,22 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         cell.reactionsDelegate = viewModel
         cell.viewModel = viewModel
         
+        cell.newsImageView.contentMode = .center
+        
         if let imgURL = viewModel.imageURL {
             cell.newsImageView.isHidden = false
-            cell.newsImageView.sd_setImage(with: imgURL, completed: nil)
+            cell.newsImageView.sd_setImage(
+                with: imgURL,
+                placeholderImage: UIImage(named:"icon_placeholder_small"),
+                options: [],
+                completed: { (_, error, _, _) in
+                    
+                    if error != nil {
+                        return
+                    }
+                    
+                    cell.newsImageView.contentMode = .scaleAspectFill
+            })
         } else {
             cell.newsImageView.isHidden = true
         }

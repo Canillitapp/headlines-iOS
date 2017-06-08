@@ -21,7 +21,7 @@
             <objects>
                 <navigationController title="Destacados" id="RMx-3f-FxP" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Destacados" image="trending_icon" id="yfu-kf-6Q2"/>
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="Pmd-2v-anx">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" barStyle="black" translucent="NO" id="Pmd-2v-anx">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -42,7 +42,7 @@
         <scene sceneID="puQ-12-U3T">
             <objects>
                 <collectionViewController title="Destacados" id="pGg-2V-AiX" customClass="TrendingCardsViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="DKO-eO-dVO">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="DKO-eO-dVO">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -129,7 +129,7 @@
                                                     </constraints>
                                                 </view>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.75603210034013602" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="H6f-he-bVk" firstAttribute="leading" secondItem="7cQ-z5-4ma" secondAttribute="leading" id="1E0-G5-Spb"/>
                                                 <constraint firstAttribute="height" constant="160" id="7XG-Ia-OHg"/>
@@ -149,7 +149,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <stackView opaque="NO" contentMode="scaleAspectFill" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="wkI-YZ-kx1">
-                                            <rect key="frame" x="10" y="207.5" width="280" height="44.5"/>
+                                            <rect key="frame" x="7" y="207.5" width="283" height="44.5"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" text="TN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfW-To-5Td">
                                                     <rect key="frame" x="0.0" y="27.5" width="19.5" height="17"/>
@@ -158,7 +158,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tBE-Jl-EtC">
-                                                    <rect key="frame" x="29.5" y="27.5" width="250.5" height="17"/>
+                                                    <rect key="frame" x="29.5" y="27.5" width="253.5" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -178,7 +178,7 @@
                                     <constraint firstItem="7cQ-z5-4ma" firstAttribute="top" secondItem="loB-i9-0C7" secondAttribute="top" id="fT8-VU-puh"/>
                                     <constraint firstAttribute="bottom" secondItem="wkI-YZ-kx1" secondAttribute="bottom" constant="8" id="luj-n0-nuJ"/>
                                     <constraint firstAttribute="trailing" secondItem="wkI-YZ-kx1" secondAttribute="trailing" constant="10" id="uFx-XF-xhI"/>
-                                    <constraint firstItem="wkI-YZ-kx1" firstAttribute="leading" secondItem="loB-i9-0C7" secondAttribute="leading" constant="10" id="uYi-iR-Wz9"/>
+                                    <constraint firstItem="wkI-YZ-kx1" firstAttribute="leading" secondItem="loB-i9-0C7" secondAttribute="leading" constant="7" id="uYi-iR-Wz9"/>
                                 </constraints>
                                 <size key="customSize" width="300" height="260"/>
                                 <connections>
@@ -708,7 +708,7 @@
         <scene sceneID="fsd-Ma-r7C">
             <objects>
                 <navigationController id="oq4-rR-HNf" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" id="tRE-mk-0im">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="tRE-mk-0im">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -727,7 +727,7 @@
             <objects>
                 <navigationController title="Recientes" id="Abw-Ux-NCb" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Reciente" image="recents_icon" id="Qp8-zi-e3Q"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="2nT-WF-g68">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="2nT-WF-g68">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -750,7 +750,7 @@
                     <tabBarItem key="tabBarItem" title="Reacciones" image="reactions_icon" selectedImage="reactions_icon_selected" id="ESI-ez-g9q"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="WLO-q8-zMC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="WLO-q8-zMC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -846,7 +846,7 @@
             <objects>
                 <navigationController id="2R2-7f-vQa" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Popular" image="popular_icon" id="52d-rF-xza"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="ihT-Kv-ZXN">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="ihT-Kv-ZXN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -1069,7 +1069,7 @@
             <objects>
                 <navigationController id="qph-JK-AyF" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Buscar" image="search_icon" id="Iim-hM-fUr"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="MAt-YH-kTW">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="MAt-YH-kTW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -1281,6 +1281,6 @@
         <image name="trending_icon" width="22" height="22"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="p1w-9l-Khi"/>
+        <segue reference="oOA-Dv-4K4"/>
     </inferredMetricsTieBreakers>
 </document>
