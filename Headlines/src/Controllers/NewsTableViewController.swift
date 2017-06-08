@@ -188,11 +188,12 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
             present(vc, animated: true, completion: nil)
         }
         
-        Answers.logCustomEvent(
-            withName: "news_item_tapped",
+        Answers.logContentView(
+            withName: n.title ?? "no_title",
+            contentType: "news",
+            contentId: n.url?.absoluteString ?? "no_url",
             customAttributes: [
-                "source": n.source ?? "no_source",
-                "title": n.title ?? "no_title"
+                "source": n.source ?? "no_source"
             ]
         )
     }
