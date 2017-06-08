@@ -8,7 +8,6 @@
 
 import Foundation
 import SwiftyJSON
-import Crashlytics
 
 class NewsService: HTTPService {
     
@@ -38,14 +37,6 @@ class NewsService: HTTPService {
             DispatchQueue.main.async(execute: {
                 fail?(e as NSError)
             })
-            
-            Answers.logCustomEvent(
-                withName: "request_failed",
-                customAttributes: [
-                    "request": "GET-popular",
-                    "error": e.localizedDescription
-                ]
-            )
         }
         
         _ = request(method: .GET, path: "popular", params: nil, success: successBlock, fail: failBlock)
@@ -83,14 +74,6 @@ class NewsService: HTTPService {
             DispatchQueue.main.async(execute: {
                 fail?(e as NSError)
             })
-            
-            Answers.logCustomEvent(
-                withName: "request_failed",
-                customAttributes: [
-                    "request": "GET-latest",
-                    "error": e.localizedDescription
-                ]
-            )
         }
         
         _ = request(method: .GET, path: "latest/\(datePath)", params: nil, success: successBlock, fail: failBlock)
@@ -138,14 +121,6 @@ class NewsService: HTTPService {
             DispatchQueue.main.async(execute: {
                 fail?(e as NSError)
             })
-            
-            Answers.logCustomEvent(
-                withName: "request_failed",
-                customAttributes: [
-                    "request": "GET-trending",
-                    "error": e.localizedDescription
-                ]
-            )
         }
         
         return request(method: .GET,
@@ -184,14 +159,6 @@ class NewsService: HTTPService {
             DispatchQueue.main.async(execute: {
                 fail?(e as NSError)
             })
-            
-            Answers.logCustomEvent(
-                withName: "request_failed",
-                customAttributes: [
-                    "request": "GET-search",
-                    "error": e.localizedDescription
-                ]
-            )
         }
         
         _ = request(method: .GET, path: "search/\(encodedText)", params: nil, success: successBlock, fail: failBlock)

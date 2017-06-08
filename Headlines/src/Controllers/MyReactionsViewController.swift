@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import SDWebImage
 import SafariServices
+import Crashlytics
 
 class MyReactionsViewController: UITableViewController {
     let reactionsService = ReactionsService()
@@ -62,6 +63,12 @@ class MyReactionsViewController: UITableViewController {
         tableView.contentOffset = CGPoint(x:0, y:-refreshCtrl.frame.size.height)
         
         fetchMyReactions()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Answers.logCustomEvent(withName: "my_reactions_appear", customAttributes: nil)
     }
     
     // MARK: UITableViewDataSource

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class ReactionPickerViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var collectionView: UICollectionView!
@@ -14,8 +15,10 @@ class ReactionPickerViewController: UIViewController, UICollectionViewDelegate, 
     var news: News?
     var availableReactions: [String] = Reaction.availableReactions()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Answers.logCustomEvent(withName: "reactions_picker_appear", customAttributes: nil)
     }
 
     @IBAction func closeButtonPressed(_ sender: Any) {
