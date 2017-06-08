@@ -8,6 +8,7 @@
 
 import UIKit
 import SafariServices
+import Crashlytics
 
 class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate {
 
@@ -80,6 +81,8 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         guard let indexPath = tableView.indexPathForRow(at: p) else {
             return
         }
+        
+        Answers.logCustomEvent(withName: "add_reaction_long_press", customAttributes: nil)
         
         let viewModel = newsViewModels[indexPath.row]
         performSegue(withIdentifier: "reaction", sender: viewModel)
