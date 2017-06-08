@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import MBProgressHUD
+import Crashlytics
 
 class SearchViewController: NewsTableViewController, UISearchBarDelegate {
     
@@ -48,5 +49,10 @@ class SearchViewController: NewsTableViewController, UISearchBarDelegate {
             
             self.showControllerWithError(error)
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        Answers.logCustomEvent(withName: "search_appear", customAttributes: nil)
     }
 }
