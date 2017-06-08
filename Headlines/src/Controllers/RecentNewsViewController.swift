@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class RecentNewsViewController: NewsTableViewController {
 
@@ -34,6 +35,15 @@ class RecentNewsViewController: NewsTableViewController {
                 self.refreshControl?.endRefreshing()
             }
             
+            Answers.logCustomEvent(
+                withName: "request_failed",
+                customAttributes: [
+                    "service": "GET-latest",
+                    "error-debug": error.debugDescription,
+                    "error-localized": error.localizedDescription
+                ]
+            )
+            
             self.showControllerWithError(error)
         }
     }
@@ -56,4 +66,9 @@ class RecentNewsViewController: NewsTableViewController {
         fetchRequestNews()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Answers.logCustomEvent(withName: "recent_appear", customAttributes: nil)
+    }
 }

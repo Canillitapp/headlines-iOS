@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import Crashlytics
 
 class TrendingCardsViewController: UICollectionViewController {
 
@@ -62,6 +63,15 @@ class TrendingCardsViewController: UICollectionViewController {
         }, fail: { (error) in
             print(error.localizedDescription)
             self.updateFooterView()
+            
+            Answers.logCustomEvent(
+                withName: "request_failed",
+                customAttributes: [
+                    "service": "GET-trending",
+                    "error-debug": error.debugDescription,
+                    "error-localized": error.localizedDescription
+                ]
+            )
         })
         
         updateFooterView()
@@ -121,6 +131,12 @@ class TrendingCardsViewController: UICollectionViewController {
         collectionView?.contentOffset = CGPoint(x:0, y:-refreshCtrl.frame.size.height)
         
         fetchTrendingTopics()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Answers.logCustomEvent(withName: "trending_appear", customAttributes: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -203,6 +219,13 @@ class TrendingCardsViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let topic = topics[indexPath.row]
         performSegue(withIdentifier: "news", sender: topic)
+        
+        Answers.logCustomEvent(
+            withName: "trending_item_tapped",
+            customAttributes: [
+                "topic": topic.name ?? "no_name"
+            ]
+        )
     }
     
     override func collectionView(_ collectionView: UICollectionView,

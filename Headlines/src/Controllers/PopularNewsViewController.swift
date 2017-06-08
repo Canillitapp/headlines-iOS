@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class PopularNewsViewController: NewsTableViewController {
     
@@ -33,6 +34,15 @@ class PopularNewsViewController: NewsTableViewController {
                 self.refreshControl?.endRefreshing()
             }
             
+            Answers.logCustomEvent(
+                withName: "request_failed",
+                customAttributes: [
+                    "service": "GET-popular",
+                    "error-debug": error.debugDescription,
+                    "error-localized": error.localizedDescription
+                ]
+            )
+            
             self.showControllerWithError(error)
         }
     }
@@ -53,5 +63,11 @@ class PopularNewsViewController: NewsTableViewController {
         tableView.contentOffset = CGPoint(x:0, y:-refreshCtrl.frame.size.height)
         
         fetchRequestNews()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Answers.logCustomEvent(withName: "popular_appear", customAttributes: nil)
     }
 }

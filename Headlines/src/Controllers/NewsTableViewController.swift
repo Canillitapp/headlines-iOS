@@ -8,6 +8,7 @@
 
 import UIKit
 import SafariServices
+import Crashlytics
 
 class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate {
 
@@ -81,6 +82,8 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
             return
         }
         
+        Answers.logCustomEvent(withName: "add_reaction_long_press", customAttributes: nil)
+        
         let viewModel = newsViewModels[indexPath.row]
         performSegue(withIdentifier: "reaction", sender: viewModel)
     }
@@ -113,7 +116,18 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
                                         }
                                         self.addReaction(selectedReaction, toNews: n)
         }) { [unowned self] err in
-            self.showControllerWithError(err as NSError)
+            let error = err as NSError
+            
+            self.showControllerWithError(error)
+            
+            Answers.logCustomEvent(
+                withName: "request_failed",
+                customAttributes: [
+                    "service": "POST-reactions",
+                    "error-debug": error.debugDescription,
+                    "error-localized": error.localizedDescription
+                ]
+            )
         }
     }
     
@@ -173,6 +187,15 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
             let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
             present(vc, animated: true, completion: nil)
         }
+        
+        Answers.logContentView(
+            withName: n.title ?? "no_title",
+            contentType: "news",
+            contentId: n.url?.absoluteString ?? "no_url",
+            customAttributes: [
+                "source": n.source ?? "no_source"
+            ]
+        )
     }
     
     // MARK: NewsCellViewModelDelegate
