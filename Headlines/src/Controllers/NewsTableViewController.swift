@@ -47,6 +47,13 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
             let indexPathToReload = IndexPath(row: i, section: 0)
             tableView.reloadRows(at: [indexPathToReload], with: .none)
         }
+        
+        Answers.logCustomEvent(
+            withName: "posted_reaction",
+            customAttributes: [
+                "reaction": currentReaction
+            ]
+        )
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
