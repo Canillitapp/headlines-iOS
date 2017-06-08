@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import Crashlytics
 
 class TrendingCardsViewController: UICollectionViewController {
 
@@ -121,6 +122,12 @@ class TrendingCardsViewController: UICollectionViewController {
         collectionView?.contentOffset = CGPoint(x:0, y:-refreshCtrl.frame.size.height)
         
         fetchTrendingTopics()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Answers.logCustomEvent(withName: "trending_appear", customAttributes: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

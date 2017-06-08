@@ -54,4 +54,10 @@ class PopularNewsViewController: NewsTableViewController {
         
         fetchRequestNews()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Answers.logCustomEvent(withName: "popular_appear", customAttributes: nil)
+    }
 }

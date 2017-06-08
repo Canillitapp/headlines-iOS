@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 class RecentNewsViewController: NewsTableViewController {
 
@@ -56,4 +57,9 @@ class RecentNewsViewController: NewsTableViewController {
         fetchRequestNews()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        Answers.logCustomEvent(withName: "recent_appear", customAttributes: nil)
+    }
 }
