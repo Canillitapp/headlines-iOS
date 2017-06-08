@@ -187,6 +187,15 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
             let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
             present(vc, animated: true, completion: nil)
         }
+        
+        Answers.logCustomEvent(
+            withName: "news_item_tapped",
+            customAttributes: [
+                "source": n.source ?? "no_source",
+                "url": n.url ?? "no_url",
+                "title": n.title ?? "no_title"
+            ]
+        )
     }
     
     // MARK: NewsCellViewModelDelegate
