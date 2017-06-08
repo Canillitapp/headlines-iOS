@@ -116,7 +116,18 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
                                         }
                                         self.addReaction(selectedReaction, toNews: n)
         }) { [unowned self] err in
-            self.showControllerWithError(err as NSError)
+            let error = err as NSError
+            
+            self.showControllerWithError(error)
+            
+            Answers.logCustomEvent(
+                withName: "request_failed",
+                customAttributes: [
+                    "service": "POST-reactions",
+                    "error-debug": error.debugDescription,
+                    "error-localized": error.localizedDescription
+                ]
+            )
         }
     }
     

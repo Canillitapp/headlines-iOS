@@ -35,6 +35,15 @@ class RecentNewsViewController: NewsTableViewController {
                 self.refreshControl?.endRefreshing()
             }
             
+            Answers.logCustomEvent(
+                withName: "request_failed",
+                customAttributes: [
+                    "service": "GET-latest",
+                    "error-debug": error.debugDescription,
+                    "error-localized": error.localizedDescription
+                ]
+            )
+            
             self.showControllerWithError(error)
         }
     }

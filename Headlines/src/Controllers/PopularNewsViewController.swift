@@ -34,6 +34,15 @@ class PopularNewsViewController: NewsTableViewController {
                 self.refreshControl?.endRefreshing()
             }
             
+            Answers.logCustomEvent(
+                withName: "request_failed",
+                customAttributes: [
+                    "service": "GET-popular",
+                    "error-debug": error.debugDescription,
+                    "error-localized": error.localizedDescription
+                ]
+            )
+            
             self.showControllerWithError(error)
         }
     }

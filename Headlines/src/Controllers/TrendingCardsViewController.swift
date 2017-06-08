@@ -63,6 +63,15 @@ class TrendingCardsViewController: UICollectionViewController {
         }, fail: { (error) in
             print(error.localizedDescription)
             self.updateFooterView()
+            
+            Answers.logCustomEvent(
+                withName: "request_failed",
+                customAttributes: [
+                    "service": "GET-trending",
+                    "error-debug": error.debugDescription,
+                    "error-localized": error.localizedDescription
+                ]
+            )
         })
         
         updateFooterView()
