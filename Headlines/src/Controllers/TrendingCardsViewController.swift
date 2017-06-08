@@ -207,8 +207,21 @@ class TrendingCardsViewController: UICollectionViewController {
         cell.sourceLabel.text = firstNews.source
         cell.newsQuantityLabel.text = "\(news.count) noticias"
         
-        if let imgUrl = firstNews.imageUrl {
-            cell.imageView.sd_setImage(with: imgUrl, completed: nil)
+        cell.imageView.contentMode = .center
+        
+        if let imgURL = firstNews.imageUrl {
+            cell.imageView.sd_setImage(
+                with: imgURL,
+                placeholderImage: UIImage(named:"icon_placeholder_big"),
+                options: [],
+                completed: { (_, error, _, _) in
+                    
+                    if error != nil {
+                        return
+                    }
+                    
+                    cell.imageView.contentMode = .scaleAspectFill
+            })
         } else {
             cell.imageView.image = nil
         }
