@@ -192,7 +192,6 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
             withName: "news_item_tapped",
             customAttributes: [
                 "source": n.source ?? "no_source",
-                "url": n.url ?? "no_url",
                 "title": n.title ?? "no_title"
             ]
         )
