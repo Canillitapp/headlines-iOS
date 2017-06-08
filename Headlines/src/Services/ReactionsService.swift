@@ -66,6 +66,14 @@ class ReactionsService: HTTPService {
                 DispatchQueue.main.async(execute: {
                     fail?(e as NSError)
                 })
+                
+                Answers.logCustomEvent(
+                    withName: "request_failed",
+                    customAttributes: [
+                        "request": "POST-reactions",
+                        "error": e.localizedDescription
+                    ]
+                )
             }
             
             let params = [
@@ -107,6 +115,14 @@ class ReactionsService: HTTPService {
             DispatchQueue.main.async(execute: {
                 fail?(e as NSError)
             })
+            
+            Answers.logCustomEvent(
+                withName: "request_failed",
+                customAttributes: [
+                    "request": "GET-reactions",
+                    "error": e.localizedDescription
+                ]
+            )
         }
         
         if ProcessInfo.processInfo.arguments.contains("mockRequests") {
