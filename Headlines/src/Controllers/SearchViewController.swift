@@ -49,6 +49,8 @@ class SearchViewController: NewsTableViewController, UISearchBarDelegate {
             
             self.showControllerWithError(error)
         }
+        
+        Answers.logSearch(withQuery: text, customAttributes: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
