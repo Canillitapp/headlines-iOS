@@ -9,6 +9,7 @@
 import UIKit
 import CloudKit
 import SwiftyJSON
+import Crashlytics
 
 class ReactionsService: HTTPService {
 
@@ -25,6 +26,11 @@ class ReactionsService: HTTPService {
         container.fetchUserRecordID { (recordId, error) in
             if let err = error {
                 fail?(err)
+                
+                Answers.logCustomEvent(
+                    withName: "no_iCloud_account",
+                    customAttributes: ["request":"POST-reactions"]
+                )
                 return
             }
             
@@ -34,6 +40,11 @@ class ReactionsService: HTTPService {
                                   code: 1,
                                   userInfo: errUserInfo)
                 fail?(err)
+                
+                Answers.logCustomEvent(
+                    withName: "no_iCloud_account",
+                    customAttributes: ["request":"POST-reactions"]
+                )
                 return
             }
             
@@ -112,6 +123,11 @@ class ReactionsService: HTTPService {
                 DispatchQueue.main.async(execute: {
                     fail?(err)
                 })
+                
+                Answers.logCustomEvent(
+                    withName: "no_iCloud_account",
+                    customAttributes: ["request":"GET-reactions"]
+                )
                 return
             }
             
@@ -124,6 +140,11 @@ class ReactionsService: HTTPService {
                 DispatchQueue.main.async(execute: {
                     fail?(err)
                 })
+
+                Answers.logCustomEvent(
+                    withName: "no_iCloud_account",
+                    customAttributes: ["request":"GET-reactions"]
+                )
                 return
             }
             
