@@ -219,6 +219,13 @@ class TrendingCardsViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let topic = topics[indexPath.row]
         performSegue(withIdentifier: "news", sender: topic)
+        
+        Answers.logCustomEvent(
+            withName: "trending_item_tapped",
+            customAttributes: [
+                "topic": topic.name ?? "no_name"
+            ]
+        )
     }
     
     override func collectionView(_ collectionView: UICollectionView,
