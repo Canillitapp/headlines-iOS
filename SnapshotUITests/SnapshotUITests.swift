@@ -41,8 +41,8 @@ class SnapshotUITests: XCTestCase {
         //  On iPad we need at least 9 actually
         var expectations = [cellExistsExpectation]
         if UIDevice.current.userInterfaceIdiom == .pad {
-            let cellCountExpectation = expectation(for: NSPredicate(format: "count >= 9"),
-                                                   evaluatedWith: app.tables.cells,
+            let cellCountExpectation = expectation(for: NSPredicate(format: "count >= 8"),
+                                                   evaluatedWith: app.collectionViews.cells,
                                                    handler: nil)
             expectations.append(cellCountExpectation)
         }
