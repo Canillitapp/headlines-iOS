@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import Headlines
 
 class HeadlinesTests: XCTestCase {
 
