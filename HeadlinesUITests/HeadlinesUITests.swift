@@ -10,7 +10,7 @@ import XCTest
 
 class HeadlinesUITests: XCTestCase {
 
-    let defaultWaitThreshold = 20.0
+    let defaultWaitThreshold = 60.0
     
     override func setUp() {
         super.setUp()
