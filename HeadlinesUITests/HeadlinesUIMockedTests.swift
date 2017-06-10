@@ -10,7 +10,7 @@ import XCTest
 
 class HeadlinesUIMockedTests: XCTestCase {
 
-    let defaultWaitThreshold = 20.0
+    let defaultWaitThreshold = 60.0
     
     override func setUp() {
         super.setUp()
@@ -37,6 +37,15 @@ class HeadlinesUIMockedTests: XCTestCase {
         app.tabBars.buttons["Reacciones"].tap()
         
         let cell = app.tables.cells.element(boundBy: 0)
+        let exists = NSPredicate(format: "exists == 1")
+        let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
+        wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
+    }
+    
+    func testMockedTrendingCards() {
+        let app = XCUIApplication()
+        let cell = app.collectionViews.cells.element(boundBy: 0)
+        
         let exists = NSPredicate(format: "exists == 1")
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
         wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)

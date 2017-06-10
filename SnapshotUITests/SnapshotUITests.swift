@@ -11,7 +11,7 @@ import UIKit
 
 class SnapshotUITests: XCTestCase {
     
-    let defaultWaitThreshold = 20.0
+    let defaultWaitThreshold = 60.0
     
     override func setUp() {
         super.setUp()
@@ -37,7 +37,17 @@ class SnapshotUITests: XCTestCase {
         
         let exists = NSPredicate(format: "exists == 1")
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
-        wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
+        
+        //  On iPad we need at least 9 actually
+        var expectations = [cellExistsExpectation]
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            let cellCountExpectation = expectation(for: NSPredicate(format: "count >= 8"),
+                                                   evaluatedWith: app.collectionViews.cells,
+                                                   handler: nil)
+            expectations.append(cellCountExpectation)
+        }
+        
+        wait(for: expectations, timeout: defaultWaitThreshold)
         snapshot("01-trending")
     }
     
@@ -78,16 +88,7 @@ class SnapshotUITests: XCTestCase {
         let exists = NSPredicate(format: "exists == 1")
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
         
-        //  On iPad we need at least 9 actually
-        var expectations = [cellExistsExpectation]
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            let cellCountExpectation = expectation(for: NSPredicate(format: "count >= 9"),
-                                                   evaluatedWith: app.tables.cells,
-                                                   handler: nil)
-            expectations.append(cellCountExpectation)
-        }
-        
-        wait(for: expectations, timeout: defaultWaitThreshold)
+        wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
         snapshot("04-reactions")
     }
     

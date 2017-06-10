@@ -82,7 +82,7 @@ class NewsService: HTTPService {
     func requestTrendingTopicsWithDate (_ date: Date,
                                         count: Int,
                                         success: ((_ result: [Topic]?) -> Void)?,
-                                        fail: ((_ error: NSError) -> Void)?) -> URLSessionDataTask {
+                                        fail: ((_ error: NSError) -> Void)?) -> URLSessionDataTask? {
         
         let calendar = Calendar.current
         let components = (calendar as NSCalendar).components([.day, .month, .year], from: date)
@@ -112,6 +112,14 @@ class NewsService: HTTPService {
                 res.append(a)
             }
             
+            res.sort(by: { (a, b) -> Bool in
+                guard let dateA = a.news?.first?.date, let dateB = b.news?.first?.date else {
+                    return false
+                }
+                
+                return dateA.compare(dateB) == .orderedDescending
+            })
+            
             DispatchQueue.main.async(execute: {
                 success?(res)
             })
@@ -121,6 +129,14 @@ class NewsService: HTTPService {
             DispatchQueue.main.async(execute: {
                 fail?(e as NSError)
             })
+        }
+        
+        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            let mockService = MockService()
+            _ = mockService.request(file: "GET-trending",
+                                    success: successBlock,
+                                    fail: failBlock)
+            return nil
         }
         
         return request(method: .GET,
