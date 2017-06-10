@@ -1,5 +1,6 @@
 {
   "keywords": [
+    "Canillitapp",
     "Merkel",
     "Argentina",
     "Cristina",
@@ -11,6 +12,18 @@
     "River"
   ],
   "news": {
+    "Canillitapp" : [
+      {
+         "news_id": 168517,
+         "url": "http://www.clarin.com/politica/centolla-lomo-macarons-cena-mauricio-macri-angela-merkel_0_r1H4krPM-.html",
+         "title": "Canillitapp, no se puede creer lo buena que está esta app.",
+         "date": 1496959235,
+         "source_id": 2,
+         "img_url": "https://www.dropbox.com/s/9e26jon47alei1v/icon_banner.png?dl=1",
+         "source_name": "Clarin",
+         "reactions": []
+      }
+      ],
     "Merkel": [
       {
         "news_id": 168517,
