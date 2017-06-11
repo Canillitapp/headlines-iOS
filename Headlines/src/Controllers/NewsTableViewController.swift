@@ -29,6 +29,18 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     var newsViewModels: [NewsCellViewModel] = []
     
     // MARK: Private
+    func endRefreshing() {
+        if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            self.refreshControl?.endRefreshing()
+        }
+    }
+    
+    func startRefreshing() {
+        if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            refreshControl?.beginRefreshing()
+        }
+    }
+    
     func showControllerWithError(_ error: NSError) {
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
         let alertController = UIAlertController(title: "Sorry",

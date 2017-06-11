@@ -17,6 +17,18 @@ class MyReactionsViewController: UITableViewController {
     var reactions = [Reaction]()
     
     // MARK: Private
+    func endRefreshing() {
+        if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            self.refreshControl?.endRefreshing()
+        }
+    }
+    
+    func startRefreshing() {
+        if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            refreshControl?.beginRefreshing()
+        }
+    }
+    
     func showControllerWithError(_ error: NSError) {
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
         let alertController = UIAlertController(title: "Sorry",
@@ -27,10 +39,10 @@ class MyReactionsViewController: UITableViewController {
     }
     
     func fetchMyReactions() {
-        refreshControl?.beginRefreshing()
+        self.startRefreshing()
         
         let success: (URLResponse?, [Reaction]) -> Void = { [unowned self] response, reactions in
-            self.refreshControl?.endRefreshing()
+            self.endRefreshing()
             
             self.reactions.removeAll()
             self.reactions.append(contentsOf: reactions)
@@ -39,7 +51,7 @@ class MyReactionsViewController: UITableViewController {
         
         let fail: (Error) -> Void = { [unowned self] error in
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-                self.refreshControl?.endRefreshing()
+                self.endRefreshing()
             }
             self.showControllerWithError(error as NSError)
         }
