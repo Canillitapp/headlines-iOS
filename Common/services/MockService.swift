@@ -18,7 +18,9 @@ class MockService {
         let url = URL(fileURLWithPath: path!)
         do {
             let data = try Data(contentsOf: url)
-            success?(data, nil)
+            DispatchQueue.main.async(execute: {
+                success?(data, nil)
+            })
         } catch {}
     }
 }
