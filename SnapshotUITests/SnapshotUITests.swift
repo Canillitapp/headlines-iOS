@@ -48,6 +48,7 @@ class SnapshotUITests: XCTestCase {
         }
         
         wait(for: expectations, timeout: defaultWaitThreshold)
+        sleep(5)
         snapshot("01-trending")
     }
     
@@ -61,6 +62,7 @@ class SnapshotUITests: XCTestCase {
         let exists = NSPredicate(format: "exists == 1")
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
         wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
+        sleep(5)
         snapshot("02-popular")
     }
     
@@ -74,6 +76,7 @@ class SnapshotUITests: XCTestCase {
         let exists = NSPredicate(format: "exists == 1")
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
         wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
+        sleep(5)
         snapshot("03-recent-news")
     }
     
@@ -89,6 +92,7 @@ class SnapshotUITests: XCTestCase {
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
         
         wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
+        sleep(5)
         snapshot("04-reactions")
     }
     
