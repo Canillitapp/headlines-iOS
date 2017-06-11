@@ -44,6 +44,7 @@ class NewsService: HTTPService {
             _ = mockService.request(file: "GET-popular",
                                     success: successBlock,
                                     fail: failBlock)
+            return
         }
         
         _ = request(method: .GET, path: "popular", params: nil, success: successBlock, fail: failBlock)
@@ -88,6 +89,7 @@ class NewsService: HTTPService {
             _ = mockService.request(file: "GET-recent",
                                     success: successBlock,
                                     fail: failBlock)
+            return
         }
         
         _ = request(method: .GET, path: "latest/\(datePath)", params: nil, success: successBlock, fail: failBlock)
