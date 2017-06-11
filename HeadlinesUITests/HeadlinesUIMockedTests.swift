@@ -50,5 +50,28 @@ class HeadlinesUIMockedTests: XCTestCase {
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
         wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
     }
+    
+    func testPopularNews() {
+        let app = XCUIApplication()
+        
+        //  Go to Popular tab
+        app.tabBars.buttons["Popular"].tap()
+        
+        let cell = app.tables.cells.element(boundBy: 0)
+        let exists = NSPredicate(format: "exists == 1")
+        let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
+        wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
+    }
 
+    func testRecentNews() {
+        let app = XCUIApplication()
+        
+        //  Go to Reciente tab
+        app.tabBars.buttons["Reciente"].tap()
+        
+        let cell = app.tables.cells.element(boundBy: 0)
+        let exists = NSPredicate(format: "exists == 1")
+        let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
+        wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
+    }
 }

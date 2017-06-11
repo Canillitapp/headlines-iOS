@@ -39,6 +39,13 @@ class NewsService: HTTPService {
             })
         }
         
+        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            let mockService = MockService()
+            _ = mockService.request(file: "GET-popular",
+                                    success: successBlock,
+                                    fail: failBlock)
+        }
+        
         _ = request(method: .GET, path: "popular", params: nil, success: successBlock, fail: failBlock)
     }
     
@@ -74,6 +81,13 @@ class NewsService: HTTPService {
             DispatchQueue.main.async(execute: {
                 fail?(e as NSError)
             })
+        }
+        
+        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            let mockService = MockService()
+            _ = mockService.request(file: "GET-recent",
+                                    success: successBlock,
+                                    fail: failBlock)
         }
         
         _ = request(method: .GET, path: "latest/\(datePath)", params: nil, success: successBlock, fail: failBlock)
