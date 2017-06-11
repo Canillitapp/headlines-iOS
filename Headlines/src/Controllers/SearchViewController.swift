@@ -55,6 +55,9 @@ class SearchViewController: NewsTableViewController, UISearchBarDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        self.preferredDateStyle = .short
+        
         Answers.logCustomEvent(withName: "search_appear", customAttributes: nil)
     }
 }
