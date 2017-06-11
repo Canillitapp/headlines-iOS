@@ -15,11 +15,10 @@ class RecentNewsViewController: NewsTableViewController {
     
     // MARK: Private
     func fetchRequestNews() {
-        refreshControl?.beginRefreshing()
+        self.startRefreshing()
         
         newsService.requestRecentNewsWithDate(Date(), success: { (result) in
-            
-            self.refreshControl?.endRefreshing()
+            self.endRefreshing()
             
             guard let r = result else {
                 return
@@ -32,7 +31,7 @@ class RecentNewsViewController: NewsTableViewController {
             
         }) { (error) in
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-                self.refreshControl?.endRefreshing()
+                self.endRefreshing()
             }
             
             Answers.logCustomEvent(

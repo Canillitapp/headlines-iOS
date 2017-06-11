@@ -13,12 +13,12 @@ class PopularNewsViewController: NewsTableViewController {
     
     let newsService = NewsService()
     
-    // MARK: Private
+    // MARK: Private    
     func fetchRequestNews() {
-        refreshControl?.beginRefreshing()
+        self.startRefreshing()
         
         newsService.requestPopularNews(success: { (result) in
-            self.refreshControl?.endRefreshing()
+            self.endRefreshing()
             
             guard let r = result else {
                 return
@@ -31,7 +31,7 @@ class PopularNewsViewController: NewsTableViewController {
             
         }) { (error) in
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-                self.refreshControl?.endRefreshing()
+                self.endRefreshing()
             }
             
             Answers.logCustomEvent(

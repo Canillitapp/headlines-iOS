@@ -16,8 +16,20 @@ class TrendingCardsViewController: UICollectionViewController {
     let newsService = NewsService()
     var newsDataTask: URLSessionDataTask?
     
+    func endRefreshing() {
+        if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            self.collectionView?.refreshControl?.endRefreshing()
+        }
+    }
+    
+    func startRefreshing() {
+        if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            self.collectionView?.refreshControl?.beginRefreshing()
+        }
+    }
+    
     func fetchTrendingTopics() {
-        collectionView?.refreshControl?.beginRefreshing()
+        self.startRefreshing()
         
         topics.removeAll()
         collectionView?.reloadData()
@@ -28,7 +40,7 @@ class TrendingCardsViewController: UICollectionViewController {
     func requestTrendingTopicsWithDate(_ date: Date) {
         newsDataTask = newsService.requestTrendingTopicsWithDate(date, count:3, success: { (result) in
             
-            self.collectionView?.refreshControl?.endRefreshing()
+            self.endRefreshing()
             
             guard let r = result else {
                 return
