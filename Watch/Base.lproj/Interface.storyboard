@@ -57,9 +57,6 @@
                                         <items>
                                             <group width="1" alignment="left" id="afx-Yv-9MP">
                                                 <items>
-                                                    <separator height="1" alignment="left" id="8Y1-Ya-NJS">
-                                                        <color key="color" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </separator>
                                                     <group alignment="left" layout="vertical" id="FlQ-Wl-aJm">
                                                         <items>
                                                             <label width="1" alignment="left" text="Lorem ipsum dolor sit met" textAlignment="left" numberOfLines="7" minimumScaleFactor="0.5" id="FOF-6L-QUC">
