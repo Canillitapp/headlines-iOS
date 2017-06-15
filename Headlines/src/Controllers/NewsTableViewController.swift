@@ -29,6 +29,21 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     var newsViewModels: [NewsCellViewModel] = []
     
     // MARK: Private
+    func openURL(_ url: URL) {
+        guard let shouldOpenNewsInsideApp = ConfigHelper.configForKey("open_news_inside_app") as? Bool else {
+            //  By default, open the news using Safari outside the app
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            return
+        }
+        
+        if shouldOpenNewsInsideApp {
+            let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
+            present(vc, animated: true, completion: nil)
+        } else {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
     func endRefreshing() {
         if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
             self.refreshControl?.endRefreshing()
@@ -218,8 +233,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let n = news[indexPath.row]
         if let url = n.url {
-            let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
-            present(vc, animated: true, completion: nil)
+            openURL(url)
         }
         
         Answers.logContentView(

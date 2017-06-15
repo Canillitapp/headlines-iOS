@@ -4,5 +4,7 @@
 <dict>
 	<key>base_url</key>
 	<string>http://api.canillitapp.com</string>
+	<key>open_news_inside_app</key>
+	<false/>
 </dict>
 </plist>
