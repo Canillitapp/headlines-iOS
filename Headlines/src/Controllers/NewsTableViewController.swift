@@ -30,7 +30,8 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     
     // MARK: Private
     func openURL(_ url: URL) {
-        guard let shouldOpenNewsInsideApp = ConfigHelper.configForKey("open_news_inside_app") as? Bool else {
+        
+        guard let shouldOpenNewsInsideApp = UserDefaults.standard.object(forKey: "open_news_inside_app") as? Bool else {
             //  By default, open the news using Safari outside the app
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
             return
