@@ -13,6 +13,7 @@ import Crashlytics
 class TrendingCardsViewController: UICollectionViewController {
 
     var topics = [Topic]()
+    var footerView: UICollectionReusableView?
     let newsService = NewsService()
     var newsDataTask: URLSessionDataTask?
     
@@ -90,15 +91,10 @@ class TrendingCardsViewController: UICollectionViewController {
     }
     
     func updateFooterView() {
-        guard let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout,
-            let collectionViewSize = self.collectionView?.bounds.size else {
-            return
+        if let view = footerView {
+            let shouldShowFooter = topics.count > 0 && newsDataTask?.state == .running
+            view.isHidden = !shouldShowFooter
         }
-        
-        let shouldShowFooter = topics.count > 0 && newsDataTask?.state == .running
-        let height: CGFloat = shouldShowFooter ? 50.0 : 0.0
-        
-        flowLayout.footerReferenceSize = CGSize(width: collectionViewSize.width, height: height)
     }
     
     override func viewDidLayoutSubviews() {
@@ -257,9 +253,10 @@ class TrendingCardsViewController: UICollectionViewController {
                                  viewForSupplementaryElementOfKind kind: String,
                                  at indexPath: IndexPath) -> UICollectionReusableView {
         
-        return collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                               withReuseIdentifier: "footer",
-                                                               for: indexPath)
+        footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                     withReuseIdentifier: "footer",
+                                                                     for: indexPath)
+        return footerView!
     }
     
     // MARK: - UICollectionViewDelegate
