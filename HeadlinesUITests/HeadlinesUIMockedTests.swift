@@ -74,4 +74,68 @@ class HeadlinesUIMockedTests: XCTestCase {
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
         wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
     }
+    
+    func testReactionScreenFromTrendingCards() {
+        let app = XCUIApplication()
+        let cell = app.collectionViews.cells.element(boundBy: 0)
+        
+        let exists = NSPredicate(format: "exists == 1")
+        
+        let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
+        wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
+        
+        //  Go to news
+        cell.tap()
+
+        //  Go to reacciones
+        app.tables.buttons["add reaction icon"].tap()
+        
+        let reaccionesStaticText = app.navigationBars["Reacciones"].staticTexts["Reacciones"]
+        let reaccionesTitleLabelExpectation = expectation(for: exists,
+                                                          evaluatedWith: reaccionesStaticText,
+                                                          handler: nil)
+        wait(for: [reaccionesTitleLabelExpectation], timeout: defaultWaitThreshold)
+    }
+    
+    func testReactionScreenFromRecentNews() {
+        let app = XCUIApplication()
+        
+        //  Go to Reciente tab
+        app.tabBars.buttons["Reciente"].tap()
+        
+        let cell = app.tables.cells.element(boundBy: 0)
+        let exists = NSPredicate(format: "exists == 1")
+        let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
+        wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
+        
+        //  Go to reacciones
+        cell.press(forDuration: 10)
+        
+        let reaccionesStaticText = app.navigationBars["Reacciones"].staticTexts["Reacciones"]
+        let reaccionesTitleLabelExpectation = expectation(for: exists,
+                                                          evaluatedWith: reaccionesStaticText,
+                                                          handler: nil)
+        wait(for: [reaccionesTitleLabelExpectation], timeout: defaultWaitThreshold)
+    }
+    
+    func testReactionScreenFromPopularNews() {
+        let app = XCUIApplication()
+        
+        //  Go to Popular tab
+        app.tabBars.buttons["Popular"].tap()
+        
+        let cell = app.tables.cells.element(boundBy: 0)
+        let exists = NSPredicate(format: "exists == 1")
+        let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
+        wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
+        
+        //  Go to reacciones
+        cell.press(forDuration: 10)
+        
+        let reaccionesStaticText = app.navigationBars["Reacciones"].staticTexts["Reacciones"]
+        let reaccionesTitleLabelExpectation = expectation(for: exists,
+                                                          evaluatedWith: reaccionesStaticText,
+                                                          handler: nil)
+        wait(for: [reaccionesTitleLabelExpectation], timeout: defaultWaitThreshold)
+    }
 }

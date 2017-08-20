@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="RiJ-bz-eUj">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Reacciones-->
+        <scene sceneID="Ds6-vr-YNi">
+            <objects>
+                <viewController title="Reacciones" automaticallyAdjustsScrollViewInsets="NO" id="Oig-Ge-FUp" customClass="ReactionPickerViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VAk-zE-dHB"/>
+                        <viewControllerLayoutGuide type="bottom" id="BCV-62-8AV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="TzO-wf-sC9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FJk-yb-2es">
+                                <rect key="frame" x="5" y="69" width="365" height="598"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="4" minimumInteritemSpacing="4" id="Chu-GR-Tod">
+                                    <size key="itemSize" width="45" height="45"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="pwm-fX-iN2" customClass="ReactionCollectionViewCell" customModule="Canillitapp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😀" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ucG-2C-BT6">
+                                                    <rect key="frame" x="0.0" y="0.0" width="45" height="45"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="ucG-2C-BT6" secondAttribute="bottom" id="BmP-xr-EQO"/>
+                                            <constraint firstItem="ucG-2C-BT6" firstAttribute="leading" secondItem="pwm-fX-iN2" secondAttribute="leading" id="O3F-lu-jGC"/>
+                                            <constraint firstAttribute="trailing" secondItem="ucG-2C-BT6" secondAttribute="trailing" id="Pkr-Kt-rP6"/>
+                                            <constraint firstItem="ucG-2C-BT6" firstAttribute="top" secondItem="pwm-fX-iN2" secondAttribute="top" id="WeT-6S-J2v"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="reactionLabel" destination="ucG-2C-BT6" id="z7p-hT-ftz"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="Oig-Ge-FUp" id="8St-Pv-ZCq"/>
+                                    <outlet property="delegate" destination="Oig-Ge-FUp" id="63m-1N-UwT"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="FJk-yb-2es" firstAttribute="leading" secondItem="TzO-wf-sC9" secondAttribute="leading" constant="5" id="8Si-cc-TIx"/>
+                            <constraint firstItem="BCV-62-8AV" firstAttribute="top" secondItem="FJk-yb-2es" secondAttribute="bottom" id="A8o-gi-pED"/>
+                            <constraint firstAttribute="trailing" secondItem="FJk-yb-2es" secondAttribute="trailing" constant="5" id="PMl-cf-CqA"/>
+                            <constraint firstItem="FJk-yb-2es" firstAttribute="top" secondItem="VAk-zE-dHB" secondAttribute="bottom" constant="5" id="mNv-4I-D2n"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Reacciones" id="hwR-wW-Erq">
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="stop" id="q2l-2m-MbD">
+                            <connections>
+                                <action selector="closeButtonPressed:" destination="Oig-Ge-FUp" id="oji-9E-HBL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="FJk-yb-2es" id="BSt-Cp-HLH"/>
+                        <segue destination="JTh-yg-gIt" kind="unwind" identifier="unwindToNews" unwindAction="unwindToNewsWithSegue:" id="cTv-gY-ppq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TvP-By-VCC" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="JTh-yg-gIt" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3114" y="554"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="VvD-OS-Lio">
+            <objects>
+                <navigationController id="RiJ-bz-eUj" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" id="7Vn-hP-NYL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Oig-Ge-FUp" kind="relationship" relationship="rootViewController" id="7ki-07-gB6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="50t-P9-L8G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2276" y="554"/>
+        </scene>
+    </scenes>
+</document>
