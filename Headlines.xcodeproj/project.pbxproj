@@ -40,6 +40,7 @@
 		677AE3481D6E7FE900CD710D /* NewsRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677AE3471D6E7FE900CD710D /* NewsRowController.swift */; };
 		6787F8251DFBA3B900DB1D85 /* RecentNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6787F8241DFBA3B900DB1D85 /* RecentNewsViewController.swift */; };
 		67897EB21EA70B2B0084F598 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67897EB11EA70B2B0084F598 /* CloudKit.framework */; };
+		678A17441F4A1D9F00D84793 /* Reactions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 678A17421F4A1D9F00D84793 /* Reactions.storyboard */; };
 		6797F8AC1EE4B38E00B8EAA5 /* ConfigHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6797F8A41EE4B38E00B8EAA5 /* ConfigHelper.swift */; };
 		6797F8AD1EE4B38E00B8EAA5 /* ConfigHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6797F8A41EE4B38E00B8EAA5 /* ConfigHelper.swift */; };
 		6797F8AE1EE4B38E00B8EAA5 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6797F8A61EE4B38E00B8EAA5 /* News.swift */; };
@@ -180,6 +181,7 @@
 		6787F8241DFBA3B900DB1D85 /* RecentNewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentNewsViewController.swift; sourceTree = "<group>"; };
 		67897EB01EA70B280084F598 /* Headlines.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Headlines.entitlements; sourceTree = "<group>"; };
 		67897EB11EA70B2B0084F598 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		678A17431F4A1D9F00D84793 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Reactions.storyboard; sourceTree = "<group>"; };
 		6797F8A41EE4B38E00B8EAA5 /* ConfigHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigHelper.swift; sourceTree = "<group>"; };
 		6797F8A61EE4B38E00B8EAA5 /* News.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
 		6797F8A71EE4B38E00B8EAA5 /* Reaction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reaction.swift; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				6798B67B1EBAA7270079B8E1 /* config.plist */,
 				67FD84D71D6BF85D00BACAFC /* src */,
 				675A81E51D6BF6E8000DC680 /* Main.storyboard */,
+				678A17421F4A1D9F00D84793 /* Reactions.storyboard */,
 				675A81E81D6BF6E8000DC680 /* Assets.xcassets */,
 				670C0A601EE7BE2700C40338 /* resources */,
 				675A81EA1D6BF6E8000DC680 /* LaunchScreen.storyboard */,
@@ -735,6 +738,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6798B67C1EBAA7270079B8E1 /* config.plist in Resources */,
+				678A17441F4A1D9F00D84793 /* Reactions.storyboard in Resources */,
 				676E1C201EECA7EB00EC71A5 /* GET-recent.json in Resources */,
 				6775419C1EF234A30034FABD /* Settings.bundle in Resources */,
 				675A81EC1D6BF6E8000DC680 /* LaunchScreen.storyboard in Resources */,
@@ -1017,6 +1021,14 @@
 				675A81EB1D6BF6E8000DC680 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		678A17421F4A1D9F00D84793 /* Reactions.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				678A17431F4A1D9F00D84793 /* Base */,
+			);
+			name = Reactions.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
