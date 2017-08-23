@@ -21,7 +21,7 @@
             <objects>
                 <navigationController title="Destacados" id="1UQ-Jy-Q4a" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Destacados" image="trending_icon" id="KiJ-uS-n65"/>
-                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="3s2-Uh-FSt">
+                    <navigationBar key="navigationBar" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" barStyle="black" translucent="NO" id="3s2-Uh-FSt">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -42,7 +42,7 @@
         <scene sceneID="wgY-2O-a8G">
             <objects>
                 <collectionViewController title="Destacados" id="uSE-mI-Aug" customClass="TrendingCardsViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="SU9-qE-7b8">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="SU9-qE-7b8">
                         <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -440,6 +440,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="searchBar" destination="bOW-yt-F6l" id="srU-4w-IlH"/>
+                        <segue destination="nDt-Ko-SG1" kind="presentation" identifier="reaction" id="MpM-CH-RQk"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xmR-iJ-18T" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -447,12 +448,20 @@
             </objects>
             <point key="canvasLocation" x="2409" y="-1071"/>
         </scene>
+        <!--Reactions-->
+        <scene sceneID="L7z-zi-QmR">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Reactions" id="nDt-Ko-SG1" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CtW-wq-guT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3042" y="-1072"/>
+        </scene>
         <!--Buscar-->
         <scene sceneID="7iE-xu-DhO">
             <objects>
                 <navigationController id="h1l-8b-glg" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Buscar" image="search_icon" id="UPQ-gR-sKX"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="CXf-Hd-meX">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="CXf-Hd-meX">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
