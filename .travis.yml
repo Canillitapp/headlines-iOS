@@ -4,8 +4,6 @@ xcode-project: Headlines.xcworkspace
 xcode_scheme: Headlines
 xcode_sdk: iphonesimulator10.0
 
-before_script:
-  - bundle exec danger
-
 script:
   - fastlane test
+  - bundle exec danger
