@@ -23,6 +23,7 @@
 		671266071F4CEF0C0005CF4B /* Trending.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 671266051F4CEF0C0005CF4B /* Trending.storyboard */; };
 		671266091F4CEF980005CF4B /* InitialTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671266081F4CEF980005CF4B /* InitialTabBarController.swift */; };
 		6712661D1F4D08C10005CF4B /* HeadlinesMockedUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6712661C1F4D08C10005CF4B /* HeadlinesMockedUITests.swift */; };
+		6712661F1F4D30610005CF4B /* GET-search.json in Resources */ = {isa = PBXBuildFile; fileRef = 6712661E1F4D30610005CF4B /* GET-search.json */; };
 		6719DA631D6D143E00D1E214 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6719DA611D6D143E00D1E214 /* Interface.storyboard */; };
 		6719DA651D6D143E00D1E214 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6719DA641D6D143E00D1E214 /* Assets.xcassets */; };
 		6719DA6C1D6D143E00D1E214 /* Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6719DA6B1D6D143E00D1E214 /* Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -169,6 +170,7 @@
 		671266121F4D08610005CF4B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6712661B1F4D08C10005CF4B /* HeadlinesMockedUITests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HeadlinesMockedUITests-Bridging-Header.h"; sourceTree = "<group>"; };
 		6712661C1F4D08C10005CF4B /* HeadlinesMockedUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadlinesMockedUITests.swift; sourceTree = "<group>"; };
+		6712661E1F4D30610005CF4B /* GET-search.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "GET-search.json"; sourceTree = "<group>"; };
 		6719DA5F1D6D143E00D1E214 /* Watch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Watch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6719DA621D6D143E00D1E214 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		6719DA641D6D143E00D1E214 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -490,6 +492,7 @@
 				6797F8BF1EE4D7F700B8EAA5 /* GET-reactions.json */,
 				676E1C1D1EECA68400EC71A5 /* GET-popular.json */,
 				676E1C1F1EECA7EB00EC71A5 /* GET-recent.json */,
+				6712661E1F4D30610005CF4B /* GET-search.json */,
 			);
 			path = mocks;
 			sourceTree = "<group>";
@@ -838,6 +841,7 @@
 				671266041F4CEEBE0005CF4B /* MyReactions.storyboard in Resources */,
 				675A81E71D6BF6E8000DC680 /* Main.storyboard in Resources */,
 				670C0A651EE7BE8300C40338 /* Rubik-Light.ttf in Resources */,
+				6712661F1F4D30610005CF4B /* GET-search.json in Resources */,
 				6797F8C01EE4D7F700B8EAA5 /* GET-reactions.json in Resources */,
 				670C0A661EE7BE8300C40338 /* Rubik-Medium.ttf in Resources */,
 				671266071F4CEF0C0005CF4B /* Trending.storyboard in Resources */,
@@ -1524,6 +1528,7 @@
 				671266161F4D08610005CF4B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6719DA7E1D6D143E00D1E214 /* Build configuration list for PBXNativeTarget "Watch Extension" */ = {
 			isa = XCConfigurationList;
