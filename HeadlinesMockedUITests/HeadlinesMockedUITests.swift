@@ -8,7 +8,7 @@
 
 import XCTest
 
-class HeadlinesUIMockedTests: XCTestCase {
+class HeadlinesMockedUITests: XCTestCase {
 
     let defaultWaitThreshold = 60.0
     
@@ -51,7 +51,7 @@ class HeadlinesUIMockedTests: XCTestCase {
         wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
     }
     
-    func testPopularNews() {
+    func testMockedPopularNews() {
         let app = XCUIApplication()
         
         //  Go to Popular tab
@@ -63,7 +63,7 @@ class HeadlinesUIMockedTests: XCTestCase {
         wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
     }
 
-    func testRecentNews() {
+    func testMockedRecentNews() {
         let app = XCUIApplication()
         
         //  Go to Reciente tab
@@ -75,7 +75,7 @@ class HeadlinesUIMockedTests: XCTestCase {
         wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
     }
     
-    func testReactionScreenFromTrendingCards() {
+    func testReactionScreenFromMockedTrendingCards() {
         let app = XCUIApplication()
         let cell = app.collectionViews.cells.element(boundBy: 0)
         
@@ -97,7 +97,7 @@ class HeadlinesUIMockedTests: XCTestCase {
         wait(for: [reaccionesTitleLabelExpectation], timeout: defaultWaitThreshold)
     }
     
-    func testReactionScreenFromRecentNews() {
+    func testReactionScreenFromMockedRecentNews() {
         let app = XCUIApplication()
         
         //  Go to Reciente tab
@@ -118,7 +118,7 @@ class HeadlinesUIMockedTests: XCTestCase {
         wait(for: [reaccionesTitleLabelExpectation], timeout: defaultWaitThreshold)
     }
     
-    func testReactionScreenFromPopularNews() {
+    func testReactionScreenFromMockedPopularNews() {
         let app = XCUIApplication()
         
         //  Go to Popular tab
