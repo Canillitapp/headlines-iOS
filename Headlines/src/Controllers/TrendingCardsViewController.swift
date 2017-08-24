@@ -103,7 +103,7 @@ class TrendingCardsViewController: UICollectionViewController {
                 return
         }
         if UIDevice.current.userInterfaceIdiom == .pad {
-            let columns: CGFloat = floor(collectionViewSize.width / 310.0)
+            let columns: CGFloat = floor(collectionViewSize.width / 280.0)
             let itemWidth = floor(((collectionViewSize.width - 20 - (columns-1)*10) / columns))
             flowLayout.itemSize = CGSize(width: itemWidth, height: 235)
         } else {
