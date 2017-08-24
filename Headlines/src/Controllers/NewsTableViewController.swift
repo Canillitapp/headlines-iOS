@@ -27,6 +27,8 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     var preferredDateStyle: DateFormatter.Style = .none
     let reactionsService = ReactionsService()
     var newsViewModels: [NewsCellViewModel] = []
+    var newsDataSource: NewsTableViewControllerDataSource?
+    var analyticsIdentifier: String?
     
     // MARK: Private
     func openURL(_ url: URL) {
@@ -125,6 +127,54 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         performSegue(withIdentifier: "reaction", sender: viewModel)
     }
     
+    func fetchNews() {
+        guard let ds = self.newsDataSource else {
+            return
+        }
+        
+        self.startRefreshing()
+        
+        ds.fetchNews(success: { (result) in
+            self.endRefreshing()
+            
+            self.news.removeAll()
+            self.news.append(contentsOf: result)
+            
+            self.tableView.reloadData()
+            
+        }) { (error) in
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
+                self.endRefreshing()
+            }
+            
+            if let identifier = self.analyticsIdentifier {
+                Answers.logCustomEvent(
+                    withName: "request_failed",
+                    customAttributes: [
+                        "service": "\(identifier)_fetch",
+                        "error-debug": error.debugDescription,
+                        "error-localized": error.localizedDescription
+                    ]
+                )
+            }
+            
+            self.showControllerWithError(error)
+        }
+    }
+
+    func setupPullToRefreshControl() {
+        //  Setup refresh control
+        let refreshCtrl = UIRefreshControl()
+        tableView.refreshControl = refreshCtrl
+        
+        refreshCtrl.tintColor = UIColor(red:0.99, green:0.29, blue:0.39, alpha:1.00)
+        refreshCtrl.addTarget(self, action: #selector(fetchNews), for: .valueChanged)
+        
+        //  Had to set content offset because of UIRefreshControl bug
+        //  http://stackoverflow.com/a/31224299/994129
+        tableView.contentOffset = CGPoint(x:0, y:-refreshCtrl.frame.size.height)
+    }
+    
     // MARK: UIViewController
     
     override func viewDidLoad() {
@@ -133,6 +183,24 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress))
         longPressRecognizer.delaysTouchesBegan = true
         tableView.addGestureRecognizer(longPressRecognizer)
+        
+        guard let ds = self.newsDataSource else {
+            return
+        }
+        
+        if ds.shouldDisplayPullToRefreshControl {
+            setupPullToRefreshControl()
+        }
+        
+        self.fetchNews()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let identifier = analyticsIdentifier {
+            Answers.logCustomEvent(withName: "\(identifier)_appear", customAttributes: nil)
+        }
     }
     
     @IBAction func unwindToNews(segue: UIStoryboardSegue) {

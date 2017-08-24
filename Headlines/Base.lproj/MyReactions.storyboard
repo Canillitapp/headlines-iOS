@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="A1F-p7-8G2">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Reacciones-->
+        <scene sceneID="5CY-2P-ZP9">
+            <objects>
+                <navigationController id="A1F-p7-8G2" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Reacciones" image="reactions_icon" selectedImage="reactions_icon_selected" id="mKH-NW-428"/>
+                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="Kbg-YG-sjR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="smA-1P-cAx" kind="relationship" relationship="rootViewController" id="6YN-C1-U82"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5fP-1S-dSf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-55" y="1341"/>
+        </scene>
+        <!--Reacciones-->
+        <scene sceneID="Jq0-gB-z2K">
+            <objects>
+                <tableViewController id="smA-1P-cAx" customClass="MyReactionsViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="LML-tk-e9O">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="hfE-BJ-2Nf" customClass="ReactionTableViewCell" customModule="Canillitapp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hfE-BJ-2Nf" id="Ayg-El-Asn">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Presentación dinámica del Lamborghini Aventador S = Video y fotos." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Zs-1W-leu">
+                                            <rect key="frame" x="60" y="0.0" width="305" height="59.5"/>
+                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hri-ah-gsf">
+                                            <rect key="frame" x="10" y="10" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="07Z-Wy-37i"/>
+                                                <constraint firstAttribute="width" secondItem="hri-ah-gsf" secondAttribute="height" multiplier="1:1" id="3Kr-sj-jZw"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="6"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😄" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09J-Sj-KbC">
+                                            <rect key="frame" x="10" y="10" width="40" height="40"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.28138377570000001" colorSpace="calibratedRGB"/>
+                                            <size key="shadowOffset" width="1" height="1"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="2Zs-1W-leu" firstAttribute="leading" secondItem="hri-ah-gsf" secondAttribute="trailing" constant="10" id="8qv-AC-2Pr"/>
+                                        <constraint firstAttribute="bottom" secondItem="2Zs-1W-leu" secondAttribute="bottom" id="9kr-y5-bYj"/>
+                                        <constraint firstItem="hri-ah-gsf" firstAttribute="centerY" secondItem="Ayg-El-Asn" secondAttribute="centerY" id="HIs-i9-S66"/>
+                                        <constraint firstItem="09J-Sj-KbC" firstAttribute="top" secondItem="hri-ah-gsf" secondAttribute="top" id="IFF-lF-xaD"/>
+                                        <constraint firstItem="09J-Sj-KbC" firstAttribute="bottom" secondItem="hri-ah-gsf" secondAttribute="bottom" id="QhK-7r-dnt"/>
+                                        <constraint firstAttribute="trailing" secondItem="2Zs-1W-leu" secondAttribute="trailing" constant="10" id="UIG-8d-2LC"/>
+                                        <constraint firstItem="2Zs-1W-leu" firstAttribute="top" secondItem="Ayg-El-Asn" secondAttribute="top" id="dFg-0j-NgH"/>
+                                        <constraint firstItem="hri-ah-gsf" firstAttribute="leading" secondItem="Ayg-El-Asn" secondAttribute="leading" constant="10" id="gzV-gB-1rr"/>
+                                        <constraint firstItem="09J-Sj-KbC" firstAttribute="trailing" secondItem="hri-ah-gsf" secondAttribute="trailing" id="kGK-2n-cHf"/>
+                                        <constraint firstItem="09J-Sj-KbC" firstAttribute="leading" secondItem="hri-ah-gsf" secondAttribute="leading" id="mlP-pS-6QJ"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="emojiLabel" destination="09J-Sj-KbC" id="kzL-by-M4T"/>
+                                    <outlet property="reactionImageView" destination="hri-ah-gsf" id="Pa1-hY-bBj"/>
+                                    <outlet property="reactionLabel" destination="2Zs-1W-leu" id="6Sf-iV-vxz"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="smA-1P-cAx" id="2Gg-9R-Ceh"/>
+                            <outlet property="delegate" destination="smA-1P-cAx" id="45L-tn-IV1"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Reacciones" id="tBf-3c-wSb"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nrq-Rn-z3B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="761" y="1341"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="reactions_icon" width="23" height="20"/>
+        <image name="reactions_icon_selected" width="24" height="20"/>
+    </resources>
+</document>
