@@ -102,6 +102,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
             }
             
             vc.news = newsViewModel.news
+            nav.modalPresentationStyle = .formSheet
             break
             
         default:

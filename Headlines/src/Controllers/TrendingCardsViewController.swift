@@ -97,37 +97,39 @@ class TrendingCardsViewController: UICollectionViewController {
         }
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
+    func updateCollectionViewCellSize() {
         guard let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout,
             let collectionViewSize = self.collectionView?.bounds.size else {
                 return
         }
         if UIDevice.current.userInterfaceIdiom == .pad {
-            let columns: CGFloat = UIApplication.shared.statusBarOrientation.isLandscape ? 3.0 : 2.0
-            let itemWidth = ((collectionViewSize.width - 20 - (columns-1)*10) / columns)
+            let columns: CGFloat = floor(collectionViewSize.width / 280.0)
+            let itemWidth = floor(((collectionViewSize.width - 20 - (columns-1)*10) / columns))
             flowLayout.itemSize = CGSize(width: itemWidth, height: 235)
+        } else {
+            flowLayout.itemSize = CGSize(width: collectionViewSize.width - 20, height: 235)
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updateCollectionViewCellSize()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        guard let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout,
-            let collectionViewSize = self.collectionView?.bounds.size else {
+        guard let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout else {
             return
         }
         
         flowLayout.minimumLineSpacing = 10
+        
         if UIDevice.current.userInterfaceIdiom == .pad {
-            let columns: CGFloat = UIApplication.shared.statusBarOrientation.isLandscape ? 3.0 : 2.0
-            
-            let itemWidth = ((collectionViewSize.width - 20 - (columns-1)*10) / columns)
-            flowLayout.itemSize = CGSize(width: itemWidth, height: 235)
             flowLayout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
-        } else {
-            flowLayout.itemSize = CGSize(width: collectionViewSize.width - 20, height: 235)
         }
+        
+        updateCollectionViewCellSize()
         
         let refreshCtrl = UIRefreshControl()
         collectionView?.refreshControl = refreshCtrl
@@ -145,6 +147,11 @@ class TrendingCardsViewController: UICollectionViewController {
         super.viewDidAppear(animated)
         
         Answers.logCustomEvent(withName: "trending_appear", customAttributes: nil)
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        self.view.setNeedsLayout()
+        self.view.layoutIfNeeded()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
