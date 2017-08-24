@@ -96,4 +96,35 @@ class SnapshotUITests: XCTestCase {
         snapshot("04-reactions")
     }
     
+    func testReactionScreenFromMockedSearch() {
+        let app = XCUIApplication()
+        
+        //  Go to search
+        app.navigationBars["Destacados"].children(matching: .button).element.tap()
+        
+        //  Tap search text input
+        let buscarSearchField = app.tables["Empty list"].searchFields["Buscar"]
+        buscarSearchField.tap()
+        
+        //  Type "Calu rivero" and ENTER
+        buscarSearchField.typeText("Calu rivero\r")
+        
+        let cell = app.tables.cells.element(boundBy: 0)
+        let exists = NSPredicate(format: "exists == 1")
+        let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
+        wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
+        sleep(5)
+        snapshot("05-search")
+        
+        //  Go to reacciones
+        cell.press(forDuration: 10)
+        
+        let reaccionesStaticText = app.navigationBars["Reacciones"].staticTexts["Reacciones"]
+        let reaccionesTitleLabelExpectation = expectation(for: exists,
+                                                          evaluatedWith: reaccionesStaticText,
+                                                          handler: nil)
+        wait(for: [reaccionesTitleLabelExpectation], timeout: defaultWaitThreshold)
+        sleep(5)
+        snapshot("06-reactions")
+    }
 }

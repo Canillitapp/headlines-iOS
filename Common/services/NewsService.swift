@@ -193,6 +193,14 @@ class NewsService: HTTPService {
             })
         }
         
+        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            let mockService = MockService()
+            _ = mockService.request(file: "GET-search",
+                                    success: successBlock,
+                                    fail: failBlock)
+            return
+        }
+        
         _ = request(method: .GET, path: "search/\(encodedText)", params: nil, success: successBlock, fail: failBlock)
     }
 }

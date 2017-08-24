@@ -58,6 +58,16 @@
                ReferencedContainer = "container:Headlines.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6712660D1F4D08600005CF4B"
+               BuildableName = "HeadlinesMockedUITests.xctest"
+               BlueprintName = "HeadlinesMockedUITests"
+               ReferencedContainer = "container:Headlines.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
@@ -91,6 +101,12 @@
             ReferencedContainer = "container:Headlines.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <CommandLineArguments>
+         <CommandLineArgument
+            argument = "mockRequests"
+            isEnabled = "NO">
+         </CommandLineArgument>
+      </CommandLineArguments>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>

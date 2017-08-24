@@ -22,7 +22,7 @@ platform :ios do
 
   desc "Runs all the tests"
   lane :test do
-    scan(scheme: "HeadlinesUITests")
+    scan(scheme: "HeadlinesTests")
   end
 
   lane :has_fabric_tokens do

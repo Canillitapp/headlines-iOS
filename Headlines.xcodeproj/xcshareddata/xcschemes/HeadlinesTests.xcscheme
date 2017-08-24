@@ -16,9 +16,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "675A81FC1D6BF6E8000DC680"
-               BuildableName = "HeadlinesUITests.xctest"
-               BlueprintName = "HeadlinesUITests"
+               BlueprintIdentifier = "675A81F11D6BF6E8000DC680"
+               BuildableName = "HeadlinesTests.xctest"
+               BlueprintName = "HeadlinesTests"
                ReferencedContainer = "container:Headlines.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -74,6 +74,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "675A81DB1D6BF6E8000DC680"
+            BuildableName = "Canillitapp.app"
+            BlueprintName = "Canillitapp"
+            ReferencedContainer = "container:Headlines.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
