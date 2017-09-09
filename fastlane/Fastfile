@@ -43,7 +43,10 @@ platform :ios do
       build_number: build + 1,
     )
 
-    gym(scheme: "Headlines") # Build your app - more options available
+    gym(
+      scheme: "Headlines",
+      export_method: "app-store"
+    ) # Build your app - more options available
 
     pilot(
       skip_waiting_for_build_processing: true,

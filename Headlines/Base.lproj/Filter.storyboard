@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Qnm-lg-3Fw">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Filtro-->
+        <scene sceneID="z8H-w3-uGM">
+            <objects>
+                <viewController id="Qnm-lg-3Fw" customClass="FilterViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="t1U-3J-q3f"/>
+                        <viewControllerLayoutGuide type="bottom" id="3VP-9e-RnJ"/>
+                    </layoutGuides>
+                    <view key="view" opaque="NO" contentMode="scaleToFill" id="YIP-Fj-m8z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="rqv-up-kMp">
+                                <rect key="frame" x="10" y="439" width="355" height="214"/>
+                                <subviews>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6YR-Ih-GRv" customClass="DynamicHeightCollectionView" customModule="Canillitapp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="355" height="150"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" placeholder="YES" id="Km9-Hz-jZ0"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="auB-5Q-I4V">
+                                            <size key="itemSize" width="100" height="40"/>
+                                            <size key="headerReferenceSize" width="100" height="50"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="10"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="CcN-d3-lAD" customClass="FilterCollectionViewCell" customModule="Canillitapp" customModuleProvider="target">
+                                                <rect key="frame" x="10" y="50" width="100" height="40"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="La Nación" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HsZ-FS-9oT">
+                                                            <rect key="frame" x="10" y="10" width="80" height="20"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </view>
+                                                <color key="backgroundColor" red="0.84705882352941175" green="0.84705882352941175" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="HsZ-FS-9oT" secondAttribute="bottom" constant="10" id="5RP-hv-ROz"/>
+                                                    <constraint firstItem="HsZ-FS-9oT" firstAttribute="top" secondItem="CcN-d3-lAD" secondAttribute="top" constant="10" id="bAA-Vb-GIA"/>
+                                                    <constraint firstItem="HsZ-FS-9oT" firstAttribute="leading" secondItem="CcN-d3-lAD" secondAttribute="leading" constant="10" id="tHi-H4-nfg"/>
+                                                    <constraint firstAttribute="trailing" secondItem="HsZ-FS-9oT" secondAttribute="trailing" constant="10" id="yDz-zp-GCC"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="titleLabel" destination="HsZ-FS-9oT" id="orv-E3-t8t"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="0nN-ag-XgZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="355" height="50"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selecciona los medios que te interesan" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MpN-wb-bkE">
+                                                    <rect key="frame" x="0.0" y="0.0" width="355" height="50"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="0.52549019610000003" green="0.52549019610000003" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="MpN-wb-bkE" firstAttribute="leading" secondItem="0nN-ag-XgZ" secondAttribute="leading" id="Tbc-lB-nby"/>
+                                                <constraint firstItem="MpN-wb-bkE" firstAttribute="top" secondItem="0nN-ag-XgZ" secondAttribute="top" id="elQ-xD-zmO"/>
+                                                <constraint firstAttribute="bottom" secondItem="MpN-wb-bkE" secondAttribute="bottom" id="gYk-WK-Gci"/>
+                                                <constraint firstAttribute="trailing" secondItem="MpN-wb-bkE" secondAttribute="trailing" id="sYG-Au-St3"/>
+                                            </constraints>
+                                        </collectionReusableView>
+                                    </collectionView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67k-pp-cmn">
+                                        <rect key="frame" x="0.0" y="164" width="355" height="50"/>
+                                        <color key="backgroundColor" red="0.96470588239999999" green="0.13725490200000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="JhH-c9-q9z"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Aplicar">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="xZZ-hH-pLb" kind="unwind" identifier="" unwindAction="unwindFromFilterWithSegue:" id="LGv-fr-0sd"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="3VP-9e-RnJ" firstAttribute="top" secondItem="rqv-up-kMp" secondAttribute="bottom" constant="14" id="4pK-1r-WnJ"/>
+                            <constraint firstItem="rqv-up-kMp" firstAttribute="leading" secondItem="YIP-Fj-m8z" secondAttribute="leading" constant="10" id="U49-vV-gee"/>
+                            <constraint firstAttribute="trailing" secondItem="rqv-up-kMp" secondAttribute="trailing" constant="10" id="Vgz-P5-XFk"/>
+                        </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="JY9-Nd-3xd" appends="YES" id="jhI-Ox-u6E"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" title="Filtro" id="HSZ-QN-fwg">
+                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="lG7-0X-Mvc">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="collectionView" destination="6YR-Ih-GRv" id="GIy-Rh-w4i"/>
+                        <outlet property="containerStackView" destination="rqv-up-kMp" id="Ua2-cD-29b"/>
+                        <outlet property="filterButton" destination="67k-pp-cmn" id="EPp-lS-pCC"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0ff-jj-c7G" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="xZZ-hH-pLb" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="JY9-Nd-3xd">
+                    <connections>
+                        <outlet property="delegate" destination="Qnm-lg-3Fw" id="5l3-Cx-wSv"/>
+                        <segue destination="xZZ-hH-pLb" kind="unwind" identifier="dismiss" unwindAction="unwindFromFilterWithSegue:" id="tyq-hh-kRg"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="140" y="-13.043478260869566"/>
+        </scene>
+    </scenes>
+</document>

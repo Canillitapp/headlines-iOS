@@ -15,11 +15,13 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     var news: [News] = [] {
         didSet {
             newsViewModels.removeAll()
+            filteredNewsViewModels.removeAll()
             news.forEach({ (n) in
                 let viewModel = NewsCellViewModel(news: n)
                 viewModel.delegate = self
                 viewModel.dateStyle = preferredDateStyle
                 newsViewModels.append(viewModel)
+                filteredNewsViewModels.append(viewModel)
             })
         }
     }
@@ -27,6 +29,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     var preferredDateStyle: DateFormatter.Style = .none
     let reactionsService = ReactionsService()
     var newsViewModels: [NewsCellViewModel] = []
+    var filteredNewsViewModels: [NewsCellViewModel] = []
     var newsDataSource: NewsTableViewControllerDataSource?
     var analyticsIdentifier: String?
     
@@ -69,13 +72,13 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     }
     
     func addReaction(_ currentReaction: String, toNews currentNews: News) {
-        guard let n = news.filter ({$0.identifier == currentNews.identifier}).first else {
+        guard let n = filteredNewsViewModels.filter ({$0.news.identifier == currentNews.identifier}).first else {
             return
         }
         
-        n.reactions = currentNews.reactions?.sorted(by: { $0.date < $1.date })
+        n.news.reactions = currentNews.reactions?.sorted(by: { $0.date < $1.date })
         
-        if let i = news.index(of: n) {
+        if let i = filteredNewsViewModels.index(of: n) {
             let indexPathToReload = IndexPath(row: i, section: 0)
             tableView.reloadRows(at: [indexPathToReload], with: .none)
         }
@@ -104,6 +107,15 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
             vc.news = newsViewModel.news
             nav.modalPresentationStyle = .formSheet
             break
+        
+        case "filter":
+            guard let vc = segue.destination as? FilterViewController else {
+                return
+            }
+            
+            vc.news = news
+            vc.selectedNewsViewModels = filteredNewsViewModels
+            break
             
         default:
             return
@@ -124,7 +136,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         
         Answers.logCustomEvent(withName: "add_reaction_long_press", customAttributes: nil)
         
-        let viewModel = newsViewModels[indexPath.row]
+        let viewModel = filteredNewsViewModels[indexPath.row]
         performSegue(withIdentifier: "reaction", sender: viewModel)
     }
     
@@ -237,6 +249,19 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         }
     }
     
+    @IBAction func unwindFromFilter(segue: UIStoryboardSegue) {
+        guard let vc = segue.source as? FilterViewController else {
+            return
+        }
+        
+        if segue.identifier == "dismiss" {
+            return
+        }
+        
+        filteredNewsViewModels = newsViewModels.filter { vc.selectedSources.contains($0.source!) }
+        tableView.reloadData()
+    }
+    
     // MARK: UITableViewDataSource
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -244,7 +269,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return news.count
+        return filteredNewsViewModels.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -253,7 +278,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
                 return UITableViewCell()
         }
         
-        let viewModel = newsViewModels[indexPath.row]
+        let viewModel = filteredNewsViewModels[indexPath.row]
         
         cell.titleLabel.text = viewModel.title
         cell.sourceLabel.text = viewModel.source
@@ -301,7 +326,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     // MARK: UITableViewDelegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let n = news[indexPath.row]
+        let n = filteredNewsViewModels[indexPath.row].news
         if let url = n.url {
             openURL(url)
         }

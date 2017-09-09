@@ -186,7 +186,14 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Item" id="gvs-8x-g4x"/>
-                    <navigationItem key="navigationItem" title="Recientes" id="FQQ-Qj-qc1"/>
+                    <navigationItem key="navigationItem" title="Recientes" id="FQQ-Qj-qc1">
+                        <barButtonItem key="rightBarButtonItem" image="filter_icon" id="Rzb-mI-fpu">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <connections>
+                                <segue destination="S6X-Y1-eBl" kind="presentation" identifier="filter" modalPresentationStyle="overFullScreen" modalTransitionStyle="crossDissolve" id="zan-E4-KhL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="7bD-G1-haO" kind="presentation" identifier="reaction" id="A09-LX-jIf"/>
                     </connections>
@@ -200,7 +207,7 @@
             <objects>
                 <navigationController title="Recientes" id="9YQ-kV-tvh" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Reciente" image="recents_icon" id="R7C-ag-uBq"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="185-WA-3Ju">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" barStyle="black" translucent="NO" id="185-WA-3Ju">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -216,17 +223,26 @@
             </objects>
             <point key="canvasLocation" x="-58" y="554"/>
         </scene>
+        <!--Filter-->
+        <scene sceneID="yjV-i9-EUJ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Filter" id="S6X-Y1-eBl" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BuN-on-Q5j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1445" y="531"/>
+        </scene>
         <!--Reactions-->
         <scene sceneID="Nnz-K1-J7t">
             <objects>
                 <viewControllerPlaceholder storyboardName="Reactions" id="7bD-G1-haO" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c6c-B9-1Ym" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1445" y="553"/>
+            <point key="canvasLocation" x="1445" y="575"/>
         </scene>
     </scenes>
     <resources>
         <image name="add_reaction_icon" width="21" height="20"/>
+        <image name="filter_icon" width="19" height="21"/>
         <image name="recents_icon" width="21" height="20"/>
     </resources>
 </document>
