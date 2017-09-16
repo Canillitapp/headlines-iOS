@@ -10,5 +10,6 @@ import UIKit
 
 protocol NewsTableViewControllerDataSource {
     var shouldDisplayPullToRefreshControl: Bool { get }
+    var isFilterEnabled: Bool { get }
     func fetchNews(success: ((_: [News]) -> Void)?, fail: ((_ error: NSError) -> Void)?)
 }

@@ -13,7 +13,7 @@ import Crashlytics
 class NewsTableViewController: UITableViewController,
                                 NewsCellViewModelDelegate,
                                 UIViewControllerTransitioningDelegate {
-
+    
     var news: [News] = [] {
         didSet {
             newsViewModels.removeAll()
@@ -192,6 +192,22 @@ class NewsTableViewController: UITableViewController,
         tableView.contentOffset = CGPoint(x:0, y:-refreshCtrl.frame.size.height)
     }
     
+    func filterButtonTapped() {
+        performSegue(withIdentifier: "filter", sender: self)
+    }
+    
+    private func setupFilterButtonItem() {
+        let filterImage = UIImage(named: "filter_icon")
+        let filterButtonItem = UIBarButtonItem(
+                image: filterImage,
+                style: .plain,
+                target: self,
+                action: #selector(filterButtonTapped)
+        )
+        filterButtonItem.tintColor = UIColor.white
+        navigationItem.rightBarButtonItem = filterButtonItem
+    }
+    
     // MARK: UIViewController
     
     override func viewDidLoad() {
@@ -207,6 +223,10 @@ class NewsTableViewController: UITableViewController,
         
         if ds.shouldDisplayPullToRefreshControl {
             setupPullToRefreshControl()
+        }
+        
+        if ds.isFilterEnabled {
+            setupFilterButtonItem()
         }
         
         self.fetchNews()

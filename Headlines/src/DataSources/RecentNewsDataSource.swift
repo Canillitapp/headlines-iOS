@@ -15,6 +15,8 @@ class RecentNewsDataSource: NewsTableViewControllerDataSource {
     // MARK: NewsTableViewControllerDataSource
     var shouldDisplayPullToRefreshControl = true
     
+    var isFilterEnabled = true
+    
     func fetchNews(success: ((_: [News]) -> Void)?, fail: ((_ error: NSError) -> Void)?) {
         newsService.requestRecentNewsWithDate(Date(), success: { (result) in
             guard let r = result else {

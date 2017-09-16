@@ -15,6 +15,8 @@ class PopularNewsDataSource: NewsTableViewControllerDataSource {
     // MARK: NewsTableViewControllerDataSource
     var shouldDisplayPullToRefreshControl = true
     
+    var isFilterEnabled = false
+    
     func fetchNews(success: ((_: [News]) -> Void)?, fail: ((_ error: NSError) -> Void)?) {
         newsService.requestPopularNews(success: { (result) in
             guard let r = result else {
