@@ -34,17 +34,11 @@ class NewsTableViewController: UITableViewController,
     var filteredNewsViewModels: [NewsCellViewModel] = []
     var newsDataSource: NewsTableViewControllerDataSource?
     var analyticsIdentifier: String?
+    let userSettingsManager = UserSettingsManager()
     
     // MARK: Private
     func openURL(_ url: URL) {
-        
-        guard let shouldOpenNewsInsideApp = UserDefaults.standard.object(forKey: "open_news_inside_app") as? Bool else {
-            //  By default, open the news using Safari outside the app
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            return
-        }
-        
-        if shouldOpenNewsInsideApp {
+        if userSettingsManager.shouldOpenNewsInsideApp {
             let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
             present(vc, animated: true, completion: nil)
         } else {
@@ -156,6 +150,14 @@ class NewsTableViewController: UITableViewController,
             
             self.news.removeAll()
             self.news.append(contentsOf: result)
+            
+            if ds.isFilterEnabled {
+                if let whitelist = self.userSettingsManager.whitelistedSources {
+                    if whitelist.count > 0 {
+                        self.filteredNewsViewModels = self.newsViewModels.filter { whitelist.contains($0.source!) }
+                    }
+                }
+            }
             
             self.tableView.reloadData()
             
@@ -281,6 +283,8 @@ class NewsTableViewController: UITableViewController,
         if segue.identifier == "dismiss" {
             return
         }
+        
+        userSettingsManager.whitelistedSources = vc.selectedSources
         
         filteredNewsViewModels = newsViewModels.filter { vc.selectedSources.contains($0.source!) }
         UIView.transition(
