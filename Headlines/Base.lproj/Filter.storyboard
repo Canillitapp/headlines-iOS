@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Qnm-lg-3Fw">
-    <device id="retina4_7" orientation="portrait">
+    <device id="ipad12_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -18,14 +18,14 @@
                         <viewControllerLayoutGuide type="bottom" id="3VP-9e-RnJ"/>
                     </layoutGuides>
                     <view key="view" opaque="NO" contentMode="scaleToFill" id="YIP-Fj-m8z">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="rqv-up-kMp">
-                                <rect key="frame" x="10" y="439" width="355" height="214"/>
+                                <rect key="frame" x="312" y="1138" width="400" height="214"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6YR-Ih-GRv" customClass="DynamicHeightCollectionView" customModule="Canillitapp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="355" height="150"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="400" height="150"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="150" placeholder="YES" id="Km9-Hz-jZ0"/>
@@ -65,11 +65,11 @@
                                             </collectionViewCell>
                                         </cells>
                                         <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="0nN-ag-XgZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="355" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deselecciona los medios que no te interesan" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MpN-wb-bkE">
-                                                    <rect key="frame" x="0.0" y="0.0" width="355" height="50"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.52549019610000003" green="0.52549019610000003" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -85,7 +85,7 @@
                                         </collectionReusableView>
                                     </collectionView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67k-pp-cmn">
-                                        <rect key="frame" x="0.0" y="164" width="355" height="50"/>
+                                        <rect key="frame" x="0.0" y="164" width="400" height="50"/>
                                         <color key="backgroundColor" red="0.96470588239999999" green="0.13725490200000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="JhH-c9-q9z"/>
@@ -100,6 +100,19 @@
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="400" id="fdA-EJ-R2S"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="fdA-EJ-R2S"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="fdA-EJ-R2S"/>
+                                    </mask>
+                                </variation>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -108,7 +121,20 @@
                             <constraint firstItem="3VP-9e-RnJ" firstAttribute="top" secondItem="rqv-up-kMp" secondAttribute="bottom" constant="14" id="4pK-1r-WnJ"/>
                             <constraint firstItem="rqv-up-kMp" firstAttribute="leading" secondItem="YIP-Fj-m8z" secondAttribute="leading" constant="10" id="U49-vV-gee"/>
                             <constraint firstAttribute="trailing" secondItem="rqv-up-kMp" secondAttribute="trailing" constant="10" id="Vgz-P5-XFk"/>
+                            <constraint firstItem="rqv-up-kMp" firstAttribute="centerX" secondItem="YIP-Fj-m8z" secondAttribute="centerX" id="yIH-hA-tSd"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="yIH-hA-tSd"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="U49-vV-gee"/>
+                                <exclude reference="Vgz-P5-XFk"/>
+                                <include reference="yIH-hA-tSd"/>
+                            </mask>
+                        </variation>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="JY9-Nd-3xd" appends="YES" id="jhI-Ox-u6E"/>
                         </connections>
