@@ -263,7 +263,13 @@ class NewsTableViewController: UITableViewController,
         }
         
         filteredNewsViewModels = newsViewModels.filter { vc.selectedSources.contains($0.source!) }
-        tableView.reloadData()
+        UIView.transition(
+            with: tableView,
+            duration: 0.30,
+            options: .transitionCrossDissolve,
+            animations: {self.tableView.reloadData()},
+            completion: nil
+        )
     }
     
     // MARK: UITableViewDataSource
