@@ -10,7 +10,9 @@ import UIKit
 import SafariServices
 import Crashlytics
 
-class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate {
+class NewsTableViewController: UITableViewController,
+                                NewsCellViewModelDelegate,
+                                UIViewControllerTransitioningDelegate {
 
     var news: [News] = [] {
         didSet {
@@ -115,6 +117,8 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
             
             vc.news = news
             vc.selectedNewsViewModels = filteredNewsViewModels
+            vc.transitioningDelegate = self
+            vc.modalPresentationStyle = .overFullScreen
             break
             
         default:
@@ -358,5 +362,18 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     
     func newsViewModelDidSelectReactionPicker(_ viewModel: NewsCellViewModel) {
         performSegue(withIdentifier: "reaction", sender: viewModel)
+    }
+    
+    // MARK: UIViewControllerTransitioningDelegate
+    func animationController(forPresented presented: UIViewController,
+                             presenting: UIViewController,
+                             source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let animator = DimPresentAnimationController()
+        animator.isPresenting = true
+        return animator
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DimPresentAnimationController()
     }
 }

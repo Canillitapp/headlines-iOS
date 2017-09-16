@@ -42,6 +42,7 @@
 		675A81E91D6BF6E8000DC680 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 675A81E81D6BF6E8000DC680 /* Assets.xcassets */; };
 		675A81EC1D6BF6E8000DC680 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 675A81EA1D6BF6E8000DC680 /* LaunchScreen.storyboard */; };
 		675A82021D6BF6E8000DC680 /* HeadlinesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A82011D6BF6E8000DC680 /* HeadlinesUITests.swift */; };
+		67617F801F6CB2C200674320 /* DimPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67617F7F1F6CB2C200674320 /* DimPresentAnimationController.swift */; };
 		676E1C1E1EECA68400EC71A5 /* GET-popular.json in Resources */ = {isa = PBXBuildFile; fileRef = 676E1C1D1EECA68400EC71A5 /* GET-popular.json */; };
 		676E1C201EECA7EB00EC71A5 /* GET-recent.json in Resources */ = {isa = PBXBuildFile; fileRef = 676E1C1F1EECA7EB00EC71A5 /* GET-recent.json */; };
 		677392C31F6B42CE0076E8BB /* DynamicHeightCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677392C21F6B42CE0076E8BB /* DynamicHeightCollectionView.swift */; };
@@ -203,6 +204,7 @@
 		675A81FD1D6BF6E8000DC680 /* HeadlinesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HeadlinesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		675A82011D6BF6E8000DC680 /* HeadlinesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlinesUITests.swift; sourceTree = "<group>"; };
 		675A82031D6BF6E8000DC680 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		67617F7F1F6CB2C200674320 /* DimPresentAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DimPresentAnimationController.swift; path = Animators/DimPresentAnimationController.swift; sourceTree = "<group>"; };
 		676E1C1D1EECA68400EC71A5 /* GET-popular.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "GET-popular.json"; sourceTree = "<group>"; };
 		676E1C1F1EECA7EB00EC71A5 /* GET-recent.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "GET-recent.json"; sourceTree = "<group>"; };
 		677392C21F6B42CE0076E8BB /* DynamicHeightCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionView.swift; sourceTree = "<group>"; };
@@ -455,6 +457,14 @@
 			path = HeadlinesUITests;
 			sourceTree = "<group>";
 		};
+		67617F811F6CB2C700674320 /* Animators */ = {
+			isa = PBXGroup;
+			children = (
+				67617F7F1F6CB2C200674320 /* DimPresentAnimationController.swift */,
+			);
+			name = Animators;
+			sourceTree = "<group>";
+		};
 		6797F8931EE4B30600B8EAA5 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -530,11 +540,12 @@
 		67FD84D71D6BF85D00BACAFC /* src */ = {
 			isa = PBXGroup;
 			children = (
+				67617F811F6CB2C700674320 /* Animators */,
+				67FD84D81D6BF85D00BACAFC /* Controllers */,
 				6757C3081F4BD9030007C17F /* DataSources */,
+				6734EA621E99A97A00493C86 /* Services */,
 				67CE08AF1E9012F700D5911E /* ViewModels */,
 				6798E8CD1D88F3390032D350 /* Views */,
-				67FD84D81D6BF85D00BACAFC /* Controllers */,
-				6734EA621E99A97A00493C86 /* Services */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -1065,6 +1076,7 @@
 				671266091F4CEF980005CF4B /* InitialTabBarController.swift in Sources */,
 				67D434F11EB0000C001A79D8 /* MyReactionsViewController.swift in Sources */,
 				6797F8AE1EE4B38E00B8EAA5 /* News.swift in Sources */,
+				67617F801F6CB2C200674320 /* DimPresentAnimationController.swift in Sources */,
 				67E10AD21F6389C3009F017C /* FilterCollectionViewCell.swift in Sources */,
 				67CE08B31E903B2D00D5911E /* ReactionPickerViewController.swift in Sources */,
 			);
@@ -1236,7 +1248,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				IBSC_MODULE = Watch_Extension;
 				INFOPLIST_FILE = Watch/Info.plist;
@@ -1257,7 +1269,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				IBSC_MODULE = Watch_Extension;
 				INFOPLIST_FILE = Watch/Info.plist;
@@ -1279,7 +1291,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1301,7 +1313,7 @@
 			baseConfigurationReference = 5EA3242399336F7A8DE27E42 /* Pods-Watch Extension.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1447,7 +1459,7 @@
 				CODE_SIGN_ENTITLEMENTS = Headlines/Headlines.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = Headlines/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -1470,7 +1482,7 @@
 				CODE_SIGN_ENTITLEMENTS = Headlines/Headlines.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = Headlines/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
