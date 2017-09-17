@@ -189,6 +189,7 @@
                     <navigationItem key="navigationItem" title="Recientes" id="FQQ-Qj-qc1"/>
                     <connections>
                         <segue destination="7bD-G1-haO" kind="presentation" identifier="reaction" id="A09-LX-jIf"/>
+                        <segue destination="S6X-Y1-eBl" kind="presentation" identifier="filter" modalPresentationStyle="overFullScreen" id="ZV7-OQ-uVF"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XAv-qs-zlu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -216,13 +217,21 @@
             </objects>
             <point key="canvasLocation" x="-58" y="554"/>
         </scene>
+        <!--Filter-->
+        <scene sceneID="yjV-i9-EUJ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Filter" id="S6X-Y1-eBl" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BuN-on-Q5j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1422" y="510"/>
+        </scene>
         <!--Reactions-->
         <scene sceneID="Nnz-K1-J7t">
             <objects>
                 <viewControllerPlaceholder storyboardName="Reactions" id="7bD-G1-haO" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c6c-B9-1Ym" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1445" y="553"/>
+            <point key="canvasLocation" x="1445" y="575"/>
         </scene>
     </scenes>
     <resources>

@@ -39,7 +39,7 @@ class TrendingCardsViewController: UICollectionViewController {
     }
     
     func requestTrendingTopicsWithDate(_ date: Date) {
-        newsDataTask = newsService.requestTrendingTopicsWithDate(date, count:3, success: { (result) in
+        newsDataTask = newsService.requestTrendingTopicsWithDate(date, count:6, success: { (result) in
             
             self.endRefreshing()
             

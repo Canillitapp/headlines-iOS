@@ -10,16 +10,20 @@ import UIKit
 import SafariServices
 import Crashlytics
 
-class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate {
-
+class NewsTableViewController: UITableViewController,
+                                NewsCellViewModelDelegate,
+                                UIViewControllerTransitioningDelegate {
+    
     var news: [News] = [] {
         didSet {
             newsViewModels.removeAll()
+            filteredNewsViewModels.removeAll()
             news.forEach({ (n) in
                 let viewModel = NewsCellViewModel(news: n)
                 viewModel.delegate = self
                 viewModel.dateStyle = preferredDateStyle
                 newsViewModels.append(viewModel)
+                filteredNewsViewModels.append(viewModel)
             })
         }
     }
@@ -27,19 +31,14 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     var preferredDateStyle: DateFormatter.Style = .none
     let reactionsService = ReactionsService()
     var newsViewModels: [NewsCellViewModel] = []
+    var filteredNewsViewModels: [NewsCellViewModel] = []
     var newsDataSource: NewsTableViewControllerDataSource?
     var analyticsIdentifier: String?
+    let userSettingsManager = UserSettingsManager()
     
     // MARK: Private
     func openURL(_ url: URL) {
-        
-        guard let shouldOpenNewsInsideApp = UserDefaults.standard.object(forKey: "open_news_inside_app") as? Bool else {
-            //  By default, open the news using Safari outside the app
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            return
-        }
-        
-        if shouldOpenNewsInsideApp {
+        if userSettingsManager.shouldOpenNewsInsideApp {
             let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
             present(vc, animated: true, completion: nil)
         } else {
@@ -69,13 +68,13 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     }
     
     func addReaction(_ currentReaction: String, toNews currentNews: News) {
-        guard let n = news.filter ({$0.identifier == currentNews.identifier}).first else {
+        guard let n = filteredNewsViewModels.filter ({$0.news.identifier == currentNews.identifier}).first else {
             return
         }
         
-        n.reactions = currentNews.reactions?.sorted(by: { $0.date < $1.date })
+        n.news.reactions = currentNews.reactions?.sorted(by: { $0.date < $1.date })
         
-        if let i = news.index(of: n) {
+        if let i = filteredNewsViewModels.index(of: n) {
             let indexPathToReload = IndexPath(row: i, section: 0)
             tableView.reloadRows(at: [indexPathToReload], with: .none)
         }
@@ -104,6 +103,17 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
             vc.news = newsViewModel.news
             nav.modalPresentationStyle = .formSheet
             break
+        
+        case "filter":
+            guard let vc = segue.destination as? FilterViewController else {
+                return
+            }
+            
+            vc.news = news
+            vc.selectedNewsViewModels = filteredNewsViewModels
+            vc.transitioningDelegate = self
+            vc.modalPresentationStyle = .overFullScreen
+            break
             
         default:
             return
@@ -124,7 +134,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         
         Answers.logCustomEvent(withName: "add_reaction_long_press", customAttributes: nil)
         
-        let viewModel = newsViewModels[indexPath.row]
+        let viewModel = filteredNewsViewModels[indexPath.row]
         performSegue(withIdentifier: "reaction", sender: viewModel)
     }
     
@@ -140,6 +150,14 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
             
             self.news.removeAll()
             self.news.append(contentsOf: result)
+            
+            if ds.isFilterEnabled {
+                if let whitelist = self.userSettingsManager.whitelistedSources {
+                    if whitelist.count > 0 {
+                        self.filteredNewsViewModels = self.newsViewModels.filter { whitelist.contains($0.source!) }
+                    }
+                }
+            }
             
             self.tableView.reloadData()
             
@@ -176,6 +194,22 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         tableView.contentOffset = CGPoint(x:0, y:-refreshCtrl.frame.size.height)
     }
     
+    func filterButtonTapped() {
+        performSegue(withIdentifier: "filter", sender: self)
+    }
+    
+    private func setupFilterButtonItem() {
+        let filterImage = UIImage(named: "filter_icon")
+        let filterButtonItem = UIBarButtonItem(
+                image: filterImage,
+                style: .plain,
+                target: self,
+                action: #selector(filterButtonTapped)
+        )
+        filterButtonItem.tintColor = UIColor.white
+        navigationItem.rightBarButtonItem = filterButtonItem
+    }
+    
     // MARK: UIViewController
     
     override func viewDidLoad() {
@@ -191,6 +225,10 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         
         if ds.shouldDisplayPullToRefreshControl {
             setupPullToRefreshControl()
+        }
+        
+        if ds.isFilterEnabled {
+            setupFilterButtonItem()
         }
         
         self.fetchNews()
@@ -237,6 +275,27 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
         }
     }
     
+    @IBAction func unwindFromFilter(segue: UIStoryboardSegue) {
+        guard let vc = segue.source as? FilterViewController else {
+            return
+        }
+        
+        if segue.identifier == "dismiss" {
+            return
+        }
+        
+        userSettingsManager.whitelistedSources = vc.selectedSources
+        
+        filteredNewsViewModels = newsViewModels.filter { vc.selectedSources.contains($0.source!) }
+        UIView.transition(
+            with: tableView,
+            duration: 0.30,
+            options: .transitionCrossDissolve,
+            animations: {self.tableView.reloadData()},
+            completion: nil
+        )
+    }
+    
     // MARK: UITableViewDataSource
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -244,7 +303,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return news.count
+        return filteredNewsViewModels.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -253,7 +312,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
                 return UITableViewCell()
         }
         
-        let viewModel = newsViewModels[indexPath.row]
+        let viewModel = filteredNewsViewModels[indexPath.row]
         
         cell.titleLabel.text = viewModel.title
         cell.sourceLabel.text = viewModel.source
@@ -301,7 +360,7 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     // MARK: UITableViewDelegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let n = news[indexPath.row]
+        let n = filteredNewsViewModels[indexPath.row].news
         if let url = n.url {
             openURL(url)
         }
@@ -333,5 +392,18 @@ class NewsTableViewController: UITableViewController, NewsCellViewModelDelegate 
     
     func newsViewModelDidSelectReactionPicker(_ viewModel: NewsCellViewModel) {
         performSegue(withIdentifier: "reaction", sender: viewModel)
+    }
+    
+    // MARK: UIViewControllerTransitioningDelegate
+    func animationController(forPresented presented: UIViewController,
+                             presenting: UIViewController,
+                             source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        let animator = DimPresentAnimationController()
+        animator.isPresenting = true
+        return animator
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return DimPresentAnimationController()
     }
 }
