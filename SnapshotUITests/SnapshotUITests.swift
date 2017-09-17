@@ -80,6 +80,22 @@ class SnapshotUITests: XCTestCase {
         snapshot("03-recent-news")
     }
     
+    func testRecentNewsFilter() {
+        let app = XCUIApplication()
+        
+        //  Go to Reciente tab
+        app.tabBars.buttons["Reciente"].tap()
+        
+        let cell = app.tables.cells.element(boundBy: 0)
+        let exists = NSPredicate(format: "exists == 1")
+        let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
+        wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
+        sleep(2)
+        app.navigationBars["Reciente"].buttons["filter icon"].tap()
+        sleep(2)
+        snapshot("03-recent-news-filter")
+    }
+    
     func testReactions() {
         let app = XCUIApplication()
         
