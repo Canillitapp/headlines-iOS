@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import MBProgressHUD
 import Crashlytics
+import ViewAnimator
 
 class SearchViewController: NewsTableViewController, UISearchBarDelegate {
     
@@ -42,7 +43,21 @@ class SearchViewController: NewsTableViewController, UISearchBarDelegate {
             
             self.news.removeAll()
             self.news.append(contentsOf: n)
+            
+            self.tableView?.prepareViews()
+            
             self.tableView.reloadData()
+            
+            let animation = AnimationType.from(direction: .right, offset: 10.0)
+            self.tableView?.animateViews(
+                animations: [animation],
+                initialAlpha: 0.0,
+                finalAlpha: 1.0,
+                delay: 0.0,
+                duration: 0.3,
+                animationInterval: 0.1,
+                completion: nil
+            )
             
         }) { (error) in
             self.loadingIndicator?.hide(animated: true)
