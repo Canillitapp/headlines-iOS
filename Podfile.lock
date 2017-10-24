@@ -7,6 +7,7 @@ PODS:
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - SwiftyJSON (3.1.0)
+  - ViewAnimator (1.0.1)
 
 DEPENDENCIES:
   - Crashlytics
@@ -14,6 +15,7 @@ DEPENDENCIES:
   - MBProgressHUD
   - SDWebImage
   - SwiftyJSON (= 3.1.0)
+  - ViewAnimator
 
 SPEC CHECKSUMS:
   Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
@@ -21,7 +23,8 @@ SPEC CHECKSUMS:
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SwiftyJSON: 29b9f2a64f118c07e691667c2ba1efe536acfe0b
+  ViewAnimator: a094d13bc86e868e908d33e524fcb58a4ddcf98e
 
-PODFILE CHECKSUM: 473e2837f41d7ecc6251437bcf6f13485bfd682f
+PODFILE CHECKSUM: 1116a6cd693d1917a5b60a5d8246978bb397b6bc
 
 COCOAPODS: 1.2.1

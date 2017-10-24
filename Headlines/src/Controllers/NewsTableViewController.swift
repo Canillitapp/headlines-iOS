@@ -9,6 +9,7 @@
 import UIKit
 import SafariServices
 import Crashlytics
+import ViewAnimator
 
 class NewsTableViewController: UITableViewController,
                                 NewsCellViewModelDelegate,
@@ -159,7 +160,20 @@ class NewsTableViewController: UITableViewController,
                 }
             }
             
+            self.tableView?.prepareViews()
+            
             self.tableView.reloadData()
+            
+            let animation = AnimationType.from(direction: .right, offset: 10.0)
+            self.tableView?.animateViews(
+                animations: [animation],
+                initialAlpha: 0.0,
+                finalAlpha: 1.0,
+                delay: 0.0,
+                duration: 0.3,
+                animationInterval: 0.1,
+                completion: nil
+            )
             
         }) { (error) in
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
