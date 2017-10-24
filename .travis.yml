@@ -4,6 +4,9 @@ xcode-project: Headlines.xcworkspace
 xcode_scheme: Headlines
 xcode_sdk: iphonesimulator10.0
 
+before_install:
+  - pod repo update
+
 script:
   - fastlane test
   - bundle exec danger
