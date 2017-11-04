@@ -11,6 +11,7 @@ import UIKit
 import SDWebImage
 import SafariServices
 import Crashlytics
+import ViewAnimator
 
 class MyReactionsViewController: UITableViewController {
     let reactionsService = ReactionsService()
@@ -41,6 +42,7 @@ class MyReactionsViewController: UITableViewController {
     func startRefreshing() {
         if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
             refreshControl?.beginRefreshing()
+            self.tableView?.prepareViews()
         }
     }
     
@@ -62,6 +64,19 @@ class MyReactionsViewController: UITableViewController {
             self.reactions.removeAll()
             self.reactions.append(contentsOf: reactions)
             self.tableView.reloadData()
+            
+            if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
+                let animation = AnimationType.from(direction: .right, offset: 10.0)
+                self.tableView?.animateViews(
+                    animations: [animation],
+                    initialAlpha: 0.0,
+                    finalAlpha: 1.0,
+                    delay: 0.0,
+                    duration: 0.3,
+                    animationInterval: 0.1,
+                    completion: nil
+                )
+            }
         }
         
         let fail: (Error) -> Void = { [unowned self] error in
