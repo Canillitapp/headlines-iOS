@@ -2,9 +2,10 @@
 devices([
   "iPhone 6",
   "iPhone 6 Plus",
-  "iPhone 5",
+  "iPhone SE",
   "iPad Air 2",
-  "iPad Pro (12.9 inch)"
+  "iPad Pro (12.9-inch)",
+  "iPhone X"
 ])
 
 languages([
@@ -13,6 +14,8 @@ languages([
 
 # The name of the scheme which contains the UI Tests
 scheme "SnapshotUITests"
+
+ios_version '11.0.1'
 
 # Where should the resulting screenshots be stored?
 # output_directory "./screenshots"
