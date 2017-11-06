@@ -8,7 +8,11 @@
 
 import UIKit
 
-class FilterViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIGestureRecognizerDelegate {
+class FilterViewController: UIViewController,
+                            UICollectionViewDataSource,
+                            UICollectionViewDelegate,
+                            UIGestureRecognizerDelegate {
+    
     var news: [News]?
     var selectedNewsViewModels: [NewsCellViewModel]?
     var sources: [String]?

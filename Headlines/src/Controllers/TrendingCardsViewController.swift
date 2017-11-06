@@ -39,7 +39,7 @@ class TrendingCardsViewController: UICollectionViewController {
     }
     
     func requestTrendingTopicsWithDate(_ date: Date) {
-        newsDataTask = newsService.requestTrendingTopicsWithDate(date, count:6, success: { (result) in
+        newsDataTask = newsService.requestTrendingTopicsWithDate(date, count: 6, success: { (result) in
             
             self.endRefreshing()
             
@@ -133,12 +133,12 @@ class TrendingCardsViewController: UICollectionViewController {
         
         let refreshCtrl = UIRefreshControl()
         collectionView?.refreshControl = refreshCtrl
-        refreshCtrl.tintColor = UIColor(red:0.99, green:0.29, blue:0.39, alpha:1.00)
+        refreshCtrl.tintColor = UIColor(red: 0.99, green: 0.29, blue: 0.39, alpha: 1.00)
         refreshCtrl.addTarget(self, action: #selector(fetchTrendingTopics), for: .valueChanged)
         
         //  Had to set content offset because of UIRefreshControl bug
         //  http://stackoverflow.com/a/31224299/994129
-        collectionView?.contentOffset = CGPoint(x:0, y:-refreshCtrl.frame.size.height)
+        collectionView?.contentOffset = CGPoint(x: 0, y:-refreshCtrl.frame.size.height)
         
         fetchTrendingTopics()
     }
@@ -227,7 +227,7 @@ class TrendingCardsViewController: UICollectionViewController {
         if let imgURL = firstNews.imageUrl {
             cell.imageView.sd_setImage(
                 with: imgURL,
-                placeholderImage: UIImage(named:"icon_placeholder_big"),
+                placeholderImage: UIImage(named: "icon_placeholder_big"),
                 options: [],
                 completed: { (_, error, _, _) in
                     

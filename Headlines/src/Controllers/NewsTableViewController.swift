@@ -103,7 +103,6 @@ class NewsTableViewController: UITableViewController,
             
             vc.news = newsViewModel.news
             nav.modalPresentationStyle = .formSheet
-            break
         
         case "filter":
             guard let vc = segue.destination as? FilterViewController else {
@@ -114,7 +113,6 @@ class NewsTableViewController: UITableViewController,
             vc.selectedNewsViewModels = filteredNewsViewModels
             vc.transitioningDelegate = self
             vc.modalPresentationStyle = .overFullScreen
-            break
             
         default:
             return
@@ -200,12 +198,12 @@ class NewsTableViewController: UITableViewController,
         let refreshCtrl = UIRefreshControl()
         tableView.refreshControl = refreshCtrl
         
-        refreshCtrl.tintColor = UIColor(red:0.99, green:0.29, blue:0.39, alpha:1.00)
+        refreshCtrl.tintColor = UIColor(red: 0.99, green: 0.29, blue: 0.39, alpha: 1.00)
         refreshCtrl.addTarget(self, action: #selector(fetchNews), for: .valueChanged)
         
         //  Had to set content offset because of UIRefreshControl bug
         //  http://stackoverflow.com/a/31224299/994129
-        tableView.contentOffset = CGPoint(x:0, y:-refreshCtrl.frame.size.height)
+        tableView.contentOffset = CGPoint(x: 0, y: -refreshCtrl.frame.size.height)
     }
     
     func filterButtonTapped() {
@@ -341,7 +339,7 @@ class NewsTableViewController: UITableViewController,
             cell.newsImageView.isHidden = false
             cell.newsImageView.sd_setImage(
                 with: imgURL,
-                placeholderImage: UIImage(named:"icon_placeholder_small"),
+                placeholderImage: UIImage(named: "icon_placeholder_small"),
                 options: [],
                 completed: { (_, error, _, _) in
                     

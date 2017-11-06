@@ -18,7 +18,7 @@ class NewsInterfaceController: WKInterfaceController {
     override func awake(withContext context: Any?) {
         super.awake(withContext: context)
         
-        guard let dict = context as? [String : Any],
+        guard let dict = context as? [String: Any],
             let title = dict["title"] as? String,
             let news = dict["elements"] as? [News] else {
             return
