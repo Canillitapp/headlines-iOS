@@ -22,7 +22,7 @@ class TrendingInterfaceController: WKInterfaceController {
         if show {
             loadingImageView.setHidden(false)
             loadingImageView.setImageNamed("Activity")
-            loadingImageView.startAnimatingWithImages(in: NSRange(location:1, length:15), duration: 1, repeatCount: 0)
+            loadingImageView.startAnimatingWithImages(in: NSRange(location: 1, length:15), duration: 1, repeatCount: 0)
         } else {
             self.loadingImageView.stopAnimating()
             self.loadingImageView.setHidden(true)
@@ -83,7 +83,7 @@ class TrendingInterfaceController: WKInterfaceController {
             return
         }
         
-        let context: [String : Any] = ["title": t.name ?? "Topic", "elements": t.news as Any]
+        let context: [String: Any] = ["title": t.name ?? "Topic", "elements": t.news as Any]
         pushController(withName: "News", context: context)
     }
 

@@ -10,6 +10,7 @@ target 'Canillitapp' do
   pod 'MBProgressHUD'
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'ViewAnimator'
 end
 
 target 'Watch Extension' do

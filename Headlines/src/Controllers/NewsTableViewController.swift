@@ -9,6 +9,7 @@
 import UIKit
 import SafariServices
 import Crashlytics
+import ViewAnimator
 
 class NewsTableViewController: UITableViewController,
                                 NewsCellViewModelDelegate,
@@ -102,7 +103,6 @@ class NewsTableViewController: UITableViewController,
             
             vc.news = newsViewModel.news
             nav.modalPresentationStyle = .formSheet
-            break
         
         case "filter":
             guard let vc = segue.destination as? FilterViewController else {
@@ -113,7 +113,6 @@ class NewsTableViewController: UITableViewController,
             vc.selectedNewsViewModels = filteredNewsViewModels
             vc.transitioningDelegate = self
             vc.modalPresentationStyle = .overFullScreen
-            break
             
         default:
             return
@@ -159,7 +158,20 @@ class NewsTableViewController: UITableViewController,
                 }
             }
             
+            self.tableView?.prepareViews()
+            
             self.tableView.reloadData()
+            
+            let animation = AnimationType.from(direction: .right, offset: 10.0)
+            self.tableView?.animateViews(
+                animations: [animation],
+                initialAlpha: 0.0,
+                finalAlpha: 1.0,
+                delay: 0.0,
+                duration: 0.3,
+                animationInterval: 0.1,
+                completion: nil
+            )
             
         }) { (error) in
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
@@ -186,12 +198,12 @@ class NewsTableViewController: UITableViewController,
         let refreshCtrl = UIRefreshControl()
         tableView.refreshControl = refreshCtrl
         
-        refreshCtrl.tintColor = UIColor(red:0.99, green:0.29, blue:0.39, alpha:1.00)
+        refreshCtrl.tintColor = UIColor(red: 0.99, green: 0.29, blue: 0.39, alpha: 1.00)
         refreshCtrl.addTarget(self, action: #selector(fetchNews), for: .valueChanged)
         
         //  Had to set content offset because of UIRefreshControl bug
         //  http://stackoverflow.com/a/31224299/994129
-        tableView.contentOffset = CGPoint(x:0, y:-refreshCtrl.frame.size.height)
+        tableView.contentOffset = CGPoint(x: 0, y: -refreshCtrl.frame.size.height)
     }
     
     func filterButtonTapped() {
@@ -327,7 +339,7 @@ class NewsTableViewController: UITableViewController,
             cell.newsImageView.isHidden = false
             cell.newsImageView.sd_setImage(
                 with: imgURL,
-                placeholderImage: UIImage(named:"icon_placeholder_small"),
+                placeholderImage: UIImage(named: "icon_placeholder_small"),
                 options: [],
                 completed: { (_, error, _, _) in
                     

@@ -90,7 +90,7 @@ class HeadlinesMockedUITests: XCTestCase {
         //  Go to reacciones
         app.tables.buttons["add reaction icon"].tap()
         
-        let reaccionesStaticText = app.navigationBars["Reacciones"].staticTexts["Reacciones"]
+        let reaccionesStaticText = app.navigationBars["Reacciones"].otherElements["Reacciones"]
         let reaccionesTitleLabelExpectation = expectation(for: exists,
                                                           evaluatedWith: reaccionesStaticText,
                                                           handler: nil)
@@ -111,7 +111,7 @@ class HeadlinesMockedUITests: XCTestCase {
         //  Go to reacciones
         cell.press(forDuration: 10)
         
-        let reaccionesStaticText = app.navigationBars["Reacciones"].staticTexts["Reacciones"]
+        let reaccionesStaticText = app.navigationBars["Reacciones"].otherElements["Reacciones"]
         let reaccionesTitleLabelExpectation = expectation(for: exists,
                                                           evaluatedWith: reaccionesStaticText,
                                                           handler: nil)
@@ -132,7 +132,7 @@ class HeadlinesMockedUITests: XCTestCase {
         //  Go to reacciones
         cell.press(forDuration: 10)
         
-        let reaccionesStaticText = app.navigationBars["Reacciones"].staticTexts["Reacciones"]
+        let reaccionesStaticText = app.navigationBars["Reacciones"].otherElements["Reacciones"]
         let reaccionesTitleLabelExpectation = expectation(for: exists,
                                                           evaluatedWith: reaccionesStaticText,
                                                           handler: nil)
@@ -160,7 +160,7 @@ class HeadlinesMockedUITests: XCTestCase {
         //  Go to reacciones
         cell.press(forDuration: 10)
         
-        let reaccionesStaticText = app.navigationBars["Reacciones"].staticTexts["Reacciones"]
+        let reaccionesStaticText = app.navigationBars["Reacciones"].otherElements["Reacciones"]
         let reaccionesTitleLabelExpectation = expectation(for: exists,
                                                           evaluatedWith: reaccionesStaticText,
                                                           handler: nil)
