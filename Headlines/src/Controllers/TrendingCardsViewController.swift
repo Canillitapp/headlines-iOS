@@ -140,7 +140,9 @@ class TrendingCardsViewController: UICollectionViewController {
         //  http://stackoverflow.com/a/31224299/994129
         collectionView?.contentOffset = CGPoint(x: 0, y:-refreshCtrl.frame.size.height)
         
-        fetchTrendingTopics()
+        if topics.count == 0 {
+            fetchTrendingTopics()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -260,10 +262,15 @@ class TrendingCardsViewController: UICollectionViewController {
                                  viewForSupplementaryElementOfKind kind: String,
                                  at indexPath: IndexPath) -> UICollectionReusableView {
         
-        footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                     withReuseIdentifier: "footer",
-                                                                     for: indexPath)
-        return footerView!
+        guard let view = footerView else {
+            footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                         withReuseIdentifier: "footer",
+                                                                         for: indexPath)
+            updateFooterView()
+            return footerView!
+        }
+        
+        return view
     }
     
     // MARK: - UICollectionViewDelegate
