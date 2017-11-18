@@ -76,6 +76,9 @@
                             <constraint firstItem="zem-VQ-TmL" firstAttribute="top" secondItem="G8C-yy-1FD" secondAttribute="top" id="xjh-M5-fCS"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="logoImageView" destination="iGz-B3-LeX" id="Tpe-TK-9E7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NND-5z-VwR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
