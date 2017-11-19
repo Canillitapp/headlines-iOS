@@ -31,6 +31,31 @@ platform :ios do
     !api_key.to_s.empty? && !build_secret.to_s.empty?
   end
 
+  private_lane :get_build_number_from_plist do
+    #This is required because default action "get_build_number" is bugged
+    %x[/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "../PatientApp/PatientAppEnterprise-Info.plist"].strip
+  end
+
+  private_lane :get_version_from_plist do
+    %x[/usr/libexec/PlistBuddy -c "Print CFBundleShortVersionString" "../PatientApp/PatientAppEnterprise-Info.plist"].strip
+  end
+
+  private_lane :get_tag do
+    "#{get_version_from_plist}.#{get_build_number_from_plist}"
+  end
+
+  lane :version_bump do
+    version_from_git = sh "git rev-list HEAD --count"
+    version_from_plist = get_build_number_from_plist
+
+    if version_from_git != version_from_plist
+      new_version = version_from_git.to_i + 1
+      increment_build_number(
+        build_number: new_version
+      )
+    end
+  end
+
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do
@@ -38,10 +63,7 @@ platform :ios do
       UI.user_error!("ERROR: Your fabric tokens are empty. You won't track anything.")
     end
   
-    build = latest_testflight_build_number(version: get_version_number)
-    increment_build_number(
-      build_number: build + 1,
-    )
+    version_bump
 
     gym(
       scheme: "Headlines",

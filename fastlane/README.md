@@ -40,6 +40,11 @@ Runs all the tests
 fastlane ios has_fabric_tokens
 ```
 
+### ios version_bump
+```
+fastlane ios version_bump
+```
+
 ### ios beta
 ```
 fastlane ios beta
