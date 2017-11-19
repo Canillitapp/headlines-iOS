@@ -38,6 +38,21 @@ class TrendingCardsViewController: UICollectionViewController {
         requestTrendingTopicsWithDate(Date())
     }
     
+    func appendTopics(_ items: [Topic]) {
+        var indexPaths = [IndexPath]()
+        let startIndex = self.topics.count
+        let endIndex = startIndex + items.count-1
+        
+        for index in startIndex...endIndex {
+            let i = IndexPath(row: index, section: 0)
+            indexPaths.append(i)
+        }
+        
+        self.topics.append(contentsOf: items)
+        self.collectionView?.insertItems(at: indexPaths)
+        self.updateFooterView()
+    }
+    
     func requestTrendingTopicsWithDate(_ date: Date) {
         newsDataTask = newsService.requestTrendingTopicsWithDate(date, count: 6, success: { (result) in
             
@@ -60,18 +75,7 @@ class TrendingCardsViewController: UICollectionViewController {
                 return
             }
             
-            var indexPaths = [IndexPath]()
-            let startIndex = self.topics.count
-            let endIndex = startIndex + r.count-1
-            
-            for index in startIndex...endIndex {
-                let i = IndexPath(row: index, section: 0)
-                indexPaths.append(i)
-            }
-            
-            self.topics.append(contentsOf: r)
-            self.collectionView?.insertItems(at: indexPaths)
-            self.updateFooterView()
+            self.appendTopics(r)
             
         }, fail: { (error) in
             print(error.localizedDescription)
@@ -140,7 +144,12 @@ class TrendingCardsViewController: UICollectionViewController {
         //  http://stackoverflow.com/a/31224299/994129
         collectionView?.contentOffset = CGPoint(x: 0, y:-refreshCtrl.frame.size.height)
         
-        if topics.count == 0 {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            self.newsDataTask = appDelegate.newsDataTask
+            startRefreshing()
+        }
+        
+        if topics.count == 0 && self.newsDataTask?.state != .running {
             fetchTrendingTopics()
         }
         
@@ -151,16 +160,13 @@ class TrendingCardsViewController: UICollectionViewController {
     
     func catchNotification(notification:Notification) -> Void {
         DispatchQueue.main.async {
-            self.newsDataTask?.cancel()
-            
             self.endRefreshing()
             
             guard let t = notification.userInfo?["topics"] as? [Topic] else {
                 return
             }
             
-            self.topics = t
-            self.collectionView?.reloadData()
+            self.appendTopics(t)
         }
     }
     
