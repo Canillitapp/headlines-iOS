@@ -13,8 +13,10 @@ import Crashlytics
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
     var window: UIWindow?
+    
     var newsService = NewsService()
     var newsDataTask: URLSessionDataTask?
+    var newsFetched: [Topic]?
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -33,6 +35,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
         }
         
         let success: ([Topic]?) -> () = { (topics) in
+            self.newsFetched = topics
+            
             let notification = Notification.Name(rawValue:"trendingTopicFinished")
             let nc = NotificationCenter.default
             nc.post(

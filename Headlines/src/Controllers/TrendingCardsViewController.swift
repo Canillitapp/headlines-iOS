@@ -146,11 +146,18 @@ class TrendingCardsViewController: UICollectionViewController {
         
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             self.newsDataTask = appDelegate.newsDataTask
-            startRefreshing()
+            
+            if let n = appDelegate.newsFetched {
+                self.topics.append(contentsOf: n)
+            }
         }
         
-        if topics.count == 0 && self.newsDataTask?.state != .running {
-            fetchTrendingTopics()
+        if topics.count == 0 {
+            startRefreshing()
+            
+            if self.newsDataTask?.state != .running {
+                fetchTrendingTopics()
+            }
         }
         
         let notification = Notification.Name(rawValue:"trendingTopicFinished")
