@@ -38,18 +38,51 @@ class TrendingCardsViewController: UICollectionViewController {
         requestTrendingTopicsWithDate(Date())
     }
     
-    func appendTopics(_ items: [Topic]) {
-        var indexPaths = [IndexPath]()
-        let startIndex = self.topics.count
-        let endIndex = startIndex + items.count-1
+    func stringFromData(_ date: Date) -> String {
+        let calendar = Calendar.current
+        let components = (calendar as NSCalendar).components([.day, .month, .year], from: date)
         
-        for index in startIndex...endIndex {
-            let i = IndexPath(row: index, section: 0)
-            indexPaths.append(i)
+        let datePath = String(format: "%d-%02d-%02d", components.year!, components.month!, components.day!)
+        return datePath
+    }
+    
+    func appendTopics(_ items: [Topic]) {
+        /**
+         *  Added some logic to avoid appending items for a date
+         *  that was already posted.
+         *
+         *  First we filter topics with all items with valid date
+         *  (this should be everyone) but just to make sure of that
+         *  to avoid a crash.
+         *
+         *  Then we obtain every posted date and save it on itemsDates.
+         */
+        
+        let itemsDates = Set(topics
+                                .filter { $0.date != nil }
+                                .map { self.stringFromData($0.date!) }
+        )
+        
+        // After that, we make sure that every new item is from a new date.
+        let filteredItems = items.filter { (t) -> Bool in
+            return !itemsDates.contains(self.stringFromData(t.date!))
         }
         
-        self.topics.append(contentsOf: items)
-        self.collectionView?.insertItems(at: indexPaths)
+        // If there's no new posts, just skip everything and update the footer view
+        if filteredItems.count > 0 {
+            var indexPaths = [IndexPath]()
+            let startIndex = self.topics.count
+            let endIndex = startIndex + filteredItems.count-1
+            
+            for index in startIndex...endIndex {
+                let i = IndexPath(row: index, section: 0)
+                indexPaths.append(i)
+            }
+            
+            self.topics.append(contentsOf: filteredItems)
+            self.collectionView?.insertItems(at: indexPaths)
+        }
+        
         self.updateFooterView()
     }
     
