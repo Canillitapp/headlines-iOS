@@ -143,12 +143,38 @@ class TrendingCardsViewController: UICollectionViewController {
         if topics.count == 0 {
             fetchTrendingTopics()
         }
+        
+        let notification = Notification.Name(rawValue:"trendingTopicFinished")
+        let nc = NotificationCenter.default
+        nc.addObserver(forName:notification, object:nil, queue:nil, using:catchNotification)
+    }
+    
+    func catchNotification(notification:Notification) -> Void {
+        DispatchQueue.main.async {
+            self.newsDataTask?.cancel()
+            
+            self.endRefreshing()
+            
+            guard let t = notification.userInfo?["topics"] as? [Topic] else {
+                return
+            }
+            
+            self.topics = t
+            self.collectionView?.reloadData()
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         Answers.logCustomEvent(withName: "trending_appear", customAttributes: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        let nc = NotificationCenter.default
+        nc.removeObserver(self)
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
