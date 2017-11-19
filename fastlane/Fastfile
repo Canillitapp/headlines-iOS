@@ -64,6 +64,9 @@ platform :ios do
     end
   
     version_bump
+    commit_version_bump(
+      force: true
+    )
 
     gym(
       scheme: "Headlines",
