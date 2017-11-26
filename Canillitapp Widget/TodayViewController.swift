@@ -40,7 +40,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             })
             
             let maxElements = min(3, itemsTitles?.count ?? 0)
-            guard let text = itemsTitles?[0..<maxElements].joined(separator: " / ") else {
+            guard let text = itemsTitles?[0..<maxElements].joined(separator: "\n") else {
                 return
             }
             
