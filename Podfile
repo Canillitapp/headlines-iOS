@@ -4,7 +4,7 @@ inhibit_all_warnings!
 use_frameworks!
 
 target 'Canillitapp' do
-  platform :ios, '9.0'
+  platform :ios, '10.0'
   pod 'SwiftyJSON', '3.1.0'
   pod 'SDWebImage'
   pod 'MBProgressHUD'
@@ -14,6 +14,11 @@ target 'Canillitapp' do
 end
 
 target 'Watch Extension' do
-  platform :watchos, '2.0'
+  platform :watchos, '3.0'
+  pod 'SwiftyJSON', '3.1.0'
+end
+
+target 'Canillitapp Widget' do
+  platform :ios, '10.0'
   pod 'SwiftyJSON', '3.1.0'
 end
