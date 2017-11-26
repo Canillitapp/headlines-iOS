@@ -12,9 +12,9 @@ xcode-select --install
 
 <table width="100%" >
 <tr>
-<th width="33%"><a href="http://brew.sh">Homebrew</a></td>
-<th width="33%">Installer Script</td>
-<th width="33%">RubyGems</td>
+<th width="33%"><a href="http://brew.sh">Homebrew</a></th>
+<th width="33%">Installer Script</th>
+<th width="33%">RubyGems</th>
 </tr>
 <tr>
 <td width="33%" align="center">macOS</td>
@@ -38,6 +38,11 @@ Runs all the tests
 ### ios has_fabric_tokens
 ```
 fastlane ios has_fabric_tokens
+```
+
+### ios version_bump
+```
+fastlane ios version_bump
 ```
 
 ### ios beta

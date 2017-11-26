@@ -16,6 +16,7 @@ class TrendingCardsViewController: UICollectionViewController {
     var footerView: UICollectionReusableView?
     let newsService = NewsService()
     var newsDataTask: URLSessionDataTask?
+    var apiCallCompletionObserver: NSObjectProtocol?
     
     func endRefreshing() {
         if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
@@ -36,6 +37,54 @@ class TrendingCardsViewController: UICollectionViewController {
         collectionView?.reloadData()
         
         requestTrendingTopicsWithDate(Date())
+    }
+    
+    func stringFromData(_ date: Date) -> String {
+        let calendar = Calendar.current
+        let components = (calendar as NSCalendar).components([.day, .month, .year], from: date)
+        
+        let datePath = String(format: "%d-%02d-%02d", components.year!, components.month!, components.day!)
+        return datePath
+    }
+    
+    func appendTopics(_ items: [Topic]) {
+        /**
+         *  Added some logic to avoid appending items for a date
+         *  that was already posted.
+         *
+         *  First we filter topics with all items with valid date
+         *  (this should be everyone) but just to make sure of that
+         *  to avoid a crash.
+         *
+         *  Then we obtain every posted date and save it on itemsDates.
+         */
+        
+        let itemsDates = Set(topics
+                                .filter { $0.date != nil }
+                                .map { self.stringFromData($0.date!) }
+        )
+        
+        // After that, we make sure that every new item is from a new date.
+        let filteredItems = items.filter { (t) -> Bool in
+            return !itemsDates.contains(self.stringFromData(t.date!))
+        }
+        
+        // If there's no new posts, just skip everything and update the footer view
+        if filteredItems.count > 0 {
+            var indexPaths = [IndexPath]()
+            let startIndex = self.topics.count
+            let endIndex = startIndex + filteredItems.count-1
+            
+            for index in startIndex...endIndex {
+                let i = IndexPath(row: index, section: 0)
+                indexPaths.append(i)
+            }
+            
+            self.topics.append(contentsOf: filteredItems)
+            self.collectionView?.insertItems(at: indexPaths)
+        }
+        
+        self.updateFooterView()
     }
     
     func requestTrendingTopicsWithDate(_ date: Date) {
@@ -60,18 +109,7 @@ class TrendingCardsViewController: UICollectionViewController {
                 return
             }
             
-            var indexPaths = [IndexPath]()
-            let startIndex = self.topics.count
-            let endIndex = startIndex + r.count-1
-            
-            for index in startIndex...endIndex {
-                let i = IndexPath(row: index, section: 0)
-                indexPaths.append(i)
-            }
-            
-            self.topics.append(contentsOf: r)
-            self.collectionView?.insertItems(at: indexPaths)
-            self.updateFooterView()
+            self.appendTopics(r)
             
         }, fail: { (error) in
             print(error.localizedDescription)
@@ -138,15 +176,54 @@ class TrendingCardsViewController: UICollectionViewController {
         
         //  Had to set content offset because of UIRefreshControl bug
         //  http://stackoverflow.com/a/31224299/994129
-        collectionView?.contentOffset = CGPoint(x: 0, y:-refreshCtrl.frame.size.height)
+        collectionView?.contentOffset = CGPoint(x: 0, y: -refreshCtrl.frame.size.height)
         
-        fetchTrendingTopics()
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            self.newsDataTask = appDelegate.newsDataTask
+            
+            if let n = appDelegate.newsFetched {
+                self.topics.append(contentsOf: n)
+            }
+        }
+        
+        if topics.count == 0 {
+            startRefreshing()
+            
+            if self.newsDataTask?.state != .running {
+                fetchTrendingTopics()
+            }
+        }
+        
+        apiCallCompletionObserver = NotificationCenter.default.addObserver(
+            forName: Notification.Name(rawValue: "trendingTopicFinished"),
+            object: nil,
+            queue: nil,
+            using: catchNotification
+        )
+    }
+    
+    func catchNotification(notification: Notification) {
+        DispatchQueue.main.async {
+            self.endRefreshing()
+            
+            guard let t = notification.userInfo?["topics"] as? [Topic] else {
+                return
+            }
+            
+            self.appendTopics(t)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         Answers.logCustomEvent(withName: "trending_appear", customAttributes: nil)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(apiCallCompletionObserver)
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
@@ -260,10 +337,15 @@ class TrendingCardsViewController: UICollectionViewController {
                                  viewForSupplementaryElementOfKind kind: String,
                                  at indexPath: IndexPath) -> UICollectionReusableView {
         
-        footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                     withReuseIdentifier: "footer",
-                                                                     for: indexPath)
-        return footerView!
+        guard let view = footerView else {
+            footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                         withReuseIdentifier: "footer",
+                                                                         for: indexPath)
+            updateFooterView()
+            return footerView!
+        }
+        
+        return view
     }
     
     // MARK: - UICollectionViewDelegate

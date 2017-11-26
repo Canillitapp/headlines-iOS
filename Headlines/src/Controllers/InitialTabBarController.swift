@@ -10,6 +10,8 @@ import UIKit
 
 class InitialTabBarController: OrientationAwareTabBarController {
     
+    var trendingTopics: [Topic]?
+    
     func navigationControllerFrom(_ controller: UIViewController) -> UINavigationController {
         let navController = UINavigationController(rootViewController: controller)
         navController.navigationBar.barStyle = .black
@@ -28,7 +30,16 @@ class InitialTabBarController: OrientationAwareTabBarController {
     
     func trendingTabViewController() -> UIViewController? {
         let trendingStoryboard = UIStoryboard(name: "Trending", bundle: Bundle.main)
-        return trendingStoryboard.instantiateInitialViewController()
+        guard
+            let nav = trendingStoryboard.instantiateInitialViewController() as? UINavigationController,
+            let vc = nav.topViewController as? TrendingCardsViewController,
+            let topics = trendingTopics else {
+                
+                return trendingStoryboard.instantiateInitialViewController()
+        }
+        
+        vc.topics = topics
+        return nav
     }
     
     func popularTabViewController() -> UIViewController? {

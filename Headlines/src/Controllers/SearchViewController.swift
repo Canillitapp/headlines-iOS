@@ -35,9 +35,9 @@ class SearchViewController: NewsTableViewController, UISearchBarDelegate {
         loadingIndicator = MBProgressHUD.showAdded(to: self.view, animated: true)
         loadingIndicator?.mode = .indeterminate
 
-        newsService.searchNews(text, success: { (news) in
+        let success: ([News]?) -> Void = { [unowned self] (result) in
             self.loadingIndicator?.hide(animated: true)
-            guard let n = news else {
+            guard let n = result else {
                 return
             }
             
@@ -58,12 +58,14 @@ class SearchViewController: NewsTableViewController, UISearchBarDelegate {
                 animationInterval: 0.1,
                 completion: nil
             )
-            
-        }) { (error) in
+        }
+        
+        let fail: (NSError) -> Void = { [unowned self] (error) in
             self.loadingIndicator?.hide(animated: true)
-            
             self.showControllerWithError(error)
         }
+        
+        newsService.searchNews(text, success: success, fail: fail)
         
         Answers.logSearch(withQuery: text, customAttributes: nil)
     }
