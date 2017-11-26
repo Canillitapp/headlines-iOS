@@ -10,12 +10,10 @@ import UIKit
 
 extension UIViewController {
     var controllerSwitcher: ScreenSwitcherViewController? {
-        get {
-            var parentViewController = self.parent
-            while parentViewController != nil && !parentViewController!.isMember(of: ScreenSwitcherViewController.self) {
-                parentViewController = parentViewController?.parent
-            }
-            return parentViewController as? ScreenSwitcherViewController
+        var parentViewController = self.parent
+        while parentViewController != nil && !parentViewController!.isMember(of: ScreenSwitcherViewController.self) {
+            parentViewController = parentViewController?.parent
         }
+        return parentViewController as? ScreenSwitcherViewController
     }
 }

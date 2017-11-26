@@ -36,7 +36,7 @@ class TransitionContext: NSObject, UIViewControllerContextTransitioning {
         return CGAffineTransform.identity
     }
     
-    var completionHandler: ((_ animated: Bool) -> ())?
+    var completionHandler: ((_ animated: Bool) -> Void)?
     
     init(from fromViewController: UIViewController, to toViewController: UIViewController) {
         containerView = fromViewController.view.superview!

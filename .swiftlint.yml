@@ -1,5 +1,6 @@
 excluded:
   - Pods
+  - fastlane
 
 disabled_rules:
   - force_cast

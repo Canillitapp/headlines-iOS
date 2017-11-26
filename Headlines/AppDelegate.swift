@@ -34,10 +34,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             print(error.localizedDescription)
         }
         
-        let success: ([Topic]?) -> () = { (topics) in
+        let success: ([Topic]?) -> Void = { (topics) in
             self.newsFetched = topics
             
-            let notification = Notification.Name(rawValue:"trendingTopicFinished")
+            let notification = Notification.Name(rawValue: "trendingTopicFinished")
             let nc = NotificationCenter.default
             nc.post(
                 name: notification,

@@ -144,7 +144,7 @@ class NewsTableViewController: UITableViewController,
         
         self.startRefreshing()
         
-        ds.fetchNews(success: { (result) in
+        let success: ([News]) -> Void = { [unowned self] (result) in
             self.endRefreshing()
             
             self.news.removeAll()
@@ -172,8 +172,9 @@ class NewsTableViewController: UITableViewController,
                 animationInterval: 0.1,
                 completion: nil
             )
-            
-        }) { (error) in
+        }
+        
+        let fail: (NSError) -> Void = { [unowned self] (error) in
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
                 self.endRefreshing()
             }
@@ -191,6 +192,8 @@ class NewsTableViewController: UITableViewController,
             
             self.showControllerWithError(error)
         }
+        
+        ds.fetchNews(success: success, fail: fail)
     }
 
     func setupPullToRefreshControl() {
@@ -264,14 +267,15 @@ class NewsTableViewController: UITableViewController,
                 return
         }
         
-        reactionsService.postReaction(selectedReaction,
-                                      atNews: currentNews,
-                                      success: { (_, updatedNews) in
-                                        guard let n = updatedNews else {
-                                            return
-                                        }
-                                        self.addReaction(selectedReaction, toNews: n)
-        }) { [unowned self] err in
+        let success: (URLResponse?, News?) -> Void = { [unowned self] (_, updatedNews) in
+            guard let n = updatedNews else {
+                return
+            }
+            self.addReaction(selectedReaction, toNews: n)
+        }
+        
+        let fail: (Error) -> Void = { [unowned self] err in
+            
             let error = err as NSError
             
             self.showControllerWithError(error)
@@ -285,6 +289,13 @@ class NewsTableViewController: UITableViewController,
                 ]
             )
         }
+        
+        reactionsService.postReaction(
+            selectedReaction,
+            atNews: currentNews,
+            success: success,
+            fail: fail
+        )
     }
     
     @IBAction func unwindFromFilter(segue: UIStoryboardSegue) {
@@ -390,16 +401,24 @@ class NewsTableViewController: UITableViewController,
     // MARK: NewsCellViewModelDelegate
     
     func newsViewModel(_ viewModel: NewsCellViewModel, didSelectReaction reaction: Reaction) {
-        reactionsService.postReaction(reaction.reaction,
-                                      atNews: viewModel.news,
-                                      success: { (_, updatedNews) in
-                                        guard let n = updatedNews else {
-                                            return
-                                        }
-                                        self.addReaction(reaction.reaction, toNews: n)
-        }) { [unowned self] err in
+
+        let success: (URLResponse?, News?) -> Void = { [unowned self] (response, updatedNews) in
+            guard let n = updatedNews else {
+                return
+            }
+            self.addReaction(reaction.reaction, toNews: n)
+        }
+        
+        let fail: (Error) -> Void = { [unowned self] (err) in
             self.showControllerWithError(err as NSError)
         }
+        
+        reactionsService.postReaction(
+            reaction.reaction,
+            atNews: viewModel.news,
+            success: success,
+            fail: fail
+        )
     }
     
     func newsViewModelDidSelectReactionPicker(_ viewModel: NewsCellViewModel) {

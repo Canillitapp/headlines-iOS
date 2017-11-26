@@ -175,7 +175,7 @@ class TrendingCardsViewController: UICollectionViewController {
         
         //  Had to set content offset because of UIRefreshControl bug
         //  http://stackoverflow.com/a/31224299/994129
-        collectionView?.contentOffset = CGPoint(x: 0, y:-refreshCtrl.frame.size.height)
+        collectionView?.contentOffset = CGPoint(x: 0, y: -refreshCtrl.frame.size.height)
         
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             self.newsDataTask = appDelegate.newsDataTask
@@ -193,12 +193,12 @@ class TrendingCardsViewController: UICollectionViewController {
             }
         }
         
-        let notification = Notification.Name(rawValue:"trendingTopicFinished")
+        let notification = Notification.Name(rawValue: "trendingTopicFinished")
         let nc = NotificationCenter.default
-        nc.addObserver(forName:notification, object:nil, queue:nil, using:catchNotification)
+        nc.addObserver(forName: notification, object: nil, queue: nil, using: catchNotification)
     }
     
-    func catchNotification(notification:Notification) -> Void {
+    func catchNotification(notification: Notification) {
         DispatchQueue.main.async {
             self.endRefreshing()
             

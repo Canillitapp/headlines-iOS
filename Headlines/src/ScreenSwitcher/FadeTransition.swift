@@ -34,15 +34,21 @@ class FadeTransition: NSObject, UIViewControllerAnimatedTransitioning {
         
         toView.alpha = 0.0
         
+        let animation: () -> Void = {
+            toView.alpha = 1.0
+        }
+        
+        let completion: (Bool) -> Void = { (finished) in
+            fromView.removeFromSuperview()
+            transitionContext.completeTransition(true)
+        }
+        
         UIView.animate(
             withDuration: self.transitionDuration(using: transitionContext),
             delay: 0,
             options: [],
-            animations: {
-                toView.alpha = 1.0
-            }) { (finished) in
-                fromView.removeFromSuperview()
-                transitionContext.completeTransition(true)
-            }
+            animations: animation,
+            completion: completion
+        )
     }
 }

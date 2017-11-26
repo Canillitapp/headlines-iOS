@@ -16,11 +16,15 @@ class RecentNewsDataSourceTests: XCTestCase {
     func testFetchNews() {
         let exp = expectation(description: "Get fake response from JSON file")
         
-        self.dataSource.fetchNews(success: { (_) in
+        let success: ([News]) -> Void = { (_) in
             exp.fulfill()
-        }) { (error) in
+        }
+        
+        let fail: (NSError) -> Void = { (error) in
             XCTFail(error.localizedDescription)
         }
+        
+        self.dataSource.fetchNews(success: success, fail: fail)
         wait(for: [exp], timeout: 10)
     }
     
