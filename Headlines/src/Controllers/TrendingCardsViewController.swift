@@ -16,6 +16,7 @@ class TrendingCardsViewController: UICollectionViewController {
     var footerView: UICollectionReusableView?
     let newsService = NewsService()
     var newsDataTask: URLSessionDataTask?
+    var apiCallCompletionObserver: NSObjectProtocol?
     
     func endRefreshing() {
         if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
@@ -193,9 +194,12 @@ class TrendingCardsViewController: UICollectionViewController {
             }
         }
         
-        let notification = Notification.Name(rawValue: "trendingTopicFinished")
-        let nc = NotificationCenter.default
-        nc.addObserver(forName: notification, object: nil, queue: nil, using: catchNotification)
+        apiCallCompletionObserver = NotificationCenter.default.addObserver(
+            forName: Notification.Name(rawValue: "trendingTopicFinished"),
+            object: nil,
+            queue: nil,
+            using: catchNotification
+        )
     }
     
     func catchNotification(notification: Notification) {
@@ -219,8 +223,7 @@ class TrendingCardsViewController: UICollectionViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
-        let nc = NotificationCenter.default
-        nc.removeObserver(self)
+        NotificationCenter.default.removeObserver(apiCallCompletionObserver)
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
