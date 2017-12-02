@@ -15,13 +15,27 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     var newsDataTask: URLSessionDataTask?
     
     @IBOutlet weak var widgetLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     var todayViewModel = TodayViewModel()
+    
+    private func showActivity(_ showActivity: Bool) {
+        if showActivity {
+            activityIndicator.startAnimating()
+        } else {
+            activityIndicator.stopAnimating()
+        }
+        widgetLabel.isHidden = showActivity
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        showActivity(true)
+        
         let success: ([Topic]?) -> Void = { [unowned self] (topics) in
+            self.showActivity(false)
+            
             var items = topics
             
             items?.sort(by: { (topicA, topicB) -> Bool in
@@ -43,11 +57,15 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             self.widgetLabel.attributedText = attributedText
         }
         
+        let fail: (NSError) -> Void = { [unowned self] (error) in
+            self.showActivity(false)
+        }
+        
         newsDataTask = newsService.requestTrendingTopicsWithDate(
             Date(),
             count: 6,
             success: success,
-            fail: nil
+            fail: fail
         )
     }
     
