@@ -18,6 +18,16 @@ class News: NSObject {
     var imageUrl: URL?
     var reactions: [Reaction]?
     
+    var representativeReaction: Reaction? {
+        guard let r = reactions?.sorted(by: { (reactionA, reactionB) -> Bool in
+            return reactionA.amount > reactionB.amount
+        }) else {
+            return nil
+        }
+        
+        return r.first
+    }
+    
     init(json: JSON) {
         
         if let news_id = json["news_id"].int {

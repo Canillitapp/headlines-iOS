@@ -298,6 +298,7 @@ class TrendingCardsViewController: UICollectionViewController {
         cell.bodyLabel.text = firstNews.title
         cell.sourceLabel.text = firstNews.source
         cell.newsQuantityLabel.text = "\(news.count) noticias"
+        cell.reactionLabel.text = topic.representativeReaction?.reaction ?? ""
         
         cell.imageView.contentMode = .center
         
