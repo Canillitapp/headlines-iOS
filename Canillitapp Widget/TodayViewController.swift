@@ -16,6 +16,8 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     
     @IBOutlet weak var widgetLabel: UILabel!
     
+    var todayViewModel = TodayViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,19 +34,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
                 return newsA.count > newsB.count
             })
             
-            let itemsTitles = items?.map({ (aTopic) -> String in
-                let topicReactionEmoji = aTopic.representativeReaction?.reaction ?? ""
-                let topicTitle = aTopic.name?.lowercased() ?? "nil_topic"
-                let title = "\(topicTitle) \(topicReactionEmoji) (\(aTopic.news?.count ?? 0))"
-                return title
-            })
-            
-            let maxElements = min(3, itemsTitles?.count ?? 0)
-            guard let text = itemsTitles?[0..<maxElements].joined(separator: "\n") else {
+            self.todayViewModel.topics = items
+
+            guard let attributedText = self.todayViewModel.attributedTitlesString else {
                 return
             }
-            
-            self.widgetLabel.text = text
+
+            self.widgetLabel.attributedText = attributedText
         }
         
         newsDataTask = newsService.requestTrendingTopicsWithDate(
@@ -53,11 +49,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             success: success,
             fail: nil
         )
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
