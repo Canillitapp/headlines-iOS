@@ -22,3 +22,9 @@ target 'Canillitapp Widget' do
   platform :ios, '10.0'
   pod 'SwiftyJSON', '3.1.0'
 end
+
+target 'HeadlinesTests' do
+  platform :ios, '10.0'
+  pod 'SwiftyJSON', '3.1.0'
+end
+

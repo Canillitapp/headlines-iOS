@@ -14,17 +14,18 @@ class Topic: NSObject {
     var news: [News]?
     
     var representativeReaction: Reaction? {
-        var items = news?.map({ $0.representativeReaction })
-        items?.sort(by: { (reactionA, reactionB) -> Bool in
-            let amountA = reactionA?.amount ?? 0
-            let amountB = reactionB?.amount ?? 0
-            return amountA > amountB
+        var reactionMap = [String: Reaction]()
+        news?.forEach({ (n) in
+            n.reactions?.forEach({ (r) in
+                guard let fetchedReaction = reactionMap[r.reaction] else {
+                    reactionMap[r.reaction] = r.copy() as? Reaction
+                    return
+                }
+                fetchedReaction.amount += r.amount
+            })
         })
         
-        guard let r = items else {
-            return nil
-        }
-        
-        return r.first as? Reaction
+        let sortedReactions = reactionMap.values.sorted { return $0.amount > $1.amount }
+        return sortedReactions.first
     }
 }

@@ -50,6 +50,12 @@ class Reaction: NSObject {
         super.init()
     }
     
+    override func copy() -> Any {
+        let retVal = Reaction(reaction: reaction, amount: amount)
+        retVal.date = date
+        return retVal
+    }
+    
     class func randomReaction() -> Reaction {
         let emojis = availableReactions()
         let emojisRandomIndex = Int(arc4random_uniform(UInt32(emojis.count)))
