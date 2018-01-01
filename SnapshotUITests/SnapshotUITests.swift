@@ -135,11 +135,11 @@ class SnapshotUITests: XCTestCase {
         //  Go to reacciones
         cell.press(forDuration: 10)
         
-        let reaccionesBar = app.navigationBars["Reacciones"]
-        let reaccionesBarExpectation = expectation(for: exists,
-                                                   evaluatedWith: reaccionesBar,
-                                                   handler: nil)
-        wait(for: [reaccionesBarExpectation], timeout: defaultWaitThreshold)
+        let reaccionesStaticText = app.navigationBars["Reacciones"]
+        let reaccionesTitleLabelExpectation = expectation(for: exists,
+                                                          evaluatedWith: reaccionesStaticText,
+                                                          handler: nil)
+        wait(for: [reaccionesTitleLabelExpectation], timeout: defaultWaitThreshold)
         sleep(5)
         snapshot("06-reactions")
     }
