@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
     var newsService = NewsService()
     var newsDataTask: URLSessionDataTask?
     var newsFetched: [Topic]?
+    var userSettingsManager = UserSettingsManager()
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -32,6 +33,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             }
         } catch let error {
             print(error.localizedDescription)
+        }
+        
+        if userSettingsManager.firstOpenDate == nil {
+            userSettingsManager.firstOpenDate = Date()
         }
         
         let success: ([Topic]?) -> Void = { (topics) in
