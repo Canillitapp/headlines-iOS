@@ -8,7 +8,7 @@
 
 import UIKit
 
-class OrientationAwareTabBarController: UITabBarController {
+class OrientationAwareViewController: UIViewController {
     override open var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
         return .portrait
     }
