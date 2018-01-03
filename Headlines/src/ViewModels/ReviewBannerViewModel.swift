@@ -18,7 +18,7 @@ class ReviewBannerViewModel: NSObject {
         }
         
         //  Review are only for users on their 3rd day using the app
-        let timeIntervalThreshold = 10.0 // 259200.0
+        let timeIntervalThreshold = 259200.0
         if Date().timeIntervalSince(firstOpenDate) < timeIntervalThreshold {
             return false
         }
