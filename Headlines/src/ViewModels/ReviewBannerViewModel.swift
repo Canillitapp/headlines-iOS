@@ -13,6 +13,10 @@ class ReviewBannerViewModel: NSObject {
     let userManager = UserSettingsManager()
     
     func shouldShowBanner() -> Bool {
+        if !ProcessInfo.processInfo.arguments.contains("mockReviewBanner") {
+            return true
+        }
+        
         guard let firstOpenDate = userManager.firstOpenDate else {
             return false
         }
