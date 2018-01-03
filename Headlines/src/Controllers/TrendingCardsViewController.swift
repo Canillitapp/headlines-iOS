@@ -273,9 +273,11 @@ class TrendingCardsViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     @IBAction func reviewButtonPressed(_ sender: Any) {
+        view.layoutIfNeeded()
+        reviewHeight.constant = 0
         let animation = { [unowned self] in
-            self.reviewView.alpha = 0.0
-            self.reviewHeight.constant = 0
+            self.reviewView.alpha = 0
+            self.view.layoutIfNeeded()
         }
         
         let completion: (Bool) -> Void = { [unowned self] (completed) in
@@ -289,9 +291,11 @@ class TrendingCardsViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     @IBAction func reviewCancelButtonPressed(_ sender: Any) {
+        view.layoutIfNeeded()
+        reviewHeight.constant = 0
         let animation = { [unowned self] in
-            self.reviewView.alpha = 0.0
-            self.reviewHeight.constant = 0
+            self.reviewView.alpha = 0
+            self.view.layoutIfNeeded()
         }
         
         let completion: (Bool) -> Void = { [unowned self] (completed) in
