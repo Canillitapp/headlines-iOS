@@ -6,6 +6,7 @@ xcode_sdk: iphonesimulator10.3
 
 before_install:
   - pod repo update
+  - brew install swiftlint
 
 script:
   - fastlane test
