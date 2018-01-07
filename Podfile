@@ -11,6 +11,7 @@ target 'Canillitapp' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'ViewAnimator'
+  pod 'SwiftLint'
 end
 
 target 'Watch Extension' do
