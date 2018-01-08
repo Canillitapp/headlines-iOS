@@ -24,4 +24,37 @@ class UserSettingsManager: NSObject {
     var shouldOpenNewsInsideApp: Bool {
         return UserDefaults.standard.bool(forKey: "open_news_inside_app")
     }
+    
+    var firstOpenDate: Date? {
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "first_open_date")
+            UserDefaults.standard.synchronize()
+        }
+        
+        get {
+            return UserDefaults.standard.value(forKey: "first_open_date") as! Date?
+        }
+    }
+    
+    var canceledReviewDate: Date? {
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "canceled_review_date")
+            UserDefaults.standard.synchronize()
+        }
+        
+        get {
+            return UserDefaults.standard.value(forKey: "canceled_review_date") as! Date?
+        }
+    }
+    
+    var reviewDate: Date? {
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "review_date")
+            UserDefaults.standard.synchronize()
+        }
+        
+        get {
+            return UserDefaults.standard.value(forKey: "review_date") as! Date?
+        }
+    }
 }
