@@ -9,14 +9,23 @@
 import UIKit
 import SDWebImage
 import Crashlytics
+import StoreKit
 
-class TrendingCardsViewController: UICollectionViewController {
+class TrendingCardsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
     var topics = [Topic]()
     var footerView: UICollectionReusableView?
     let newsService = NewsService()
     var newsDataTask: URLSessionDataTask?
     var apiCallCompletionObserver: NSObjectProtocol?
+    var userSettingsManager = UserSettingsManager()
+    @IBOutlet weak var collectionView: UICollectionView!
+    
+    var reviewViewModel = ReviewBannerViewModel()
+    @IBOutlet weak var reviewButton: UIButton!
+    @IBOutlet weak var reviewCancelButton: UIButton!
+    @IBOutlet weak var reviewView: UIView!
+    @IBOutlet weak var reviewHeight: NSLayoutConstraint!
     
     func endRefreshing() {
         if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
@@ -154,6 +163,16 @@ class TrendingCardsViewController: UICollectionViewController {
         updateCollectionViewCellSize()
     }
     
+    func setupReviewButtons() {
+        reviewButton.layer.borderColor = UIColor.white.cgColor
+        reviewButton.layer.borderWidth = 1
+        reviewButton.layer.cornerRadius = 8
+        
+        reviewCancelButton.layer.borderColor = UIColor.white.cgColor
+        reviewCancelButton.layer.borderWidth = 1
+        reviewCancelButton.layer.cornerRadius = 8
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -168,6 +187,9 @@ class TrendingCardsViewController: UICollectionViewController {
         }
         
         updateCollectionViewCellSize()
+        
+        setupReviewButtons()
+        reviewView.isHidden = !self.reviewViewModel.shouldShowBanner()
         
         let refreshCtrl = UIRefreshControl()
         collectionView?.refreshControl = refreshCtrl
@@ -228,7 +250,6 @@ class TrendingCardsViewController: UICollectionViewController {
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         self.view.setNeedsLayout()
-        self.view.layoutIfNeeded()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -250,14 +271,49 @@ class TrendingCardsViewController: UICollectionViewController {
     
     @IBAction func unwindFromSearch(segue: UIStoryboardSegue) {
     }
+    
+    @IBAction func reviewButtonPressed(_ sender: Any) {
+        view.layoutIfNeeded()
+        reviewHeight.constant = 0
+        let animation = { [unowned self] in
+            self.reviewView.alpha = 0
+            self.view.layoutIfNeeded()
+        }
+        
+        let completion: (Bool) -> Void = { [unowned self] (completed) in
+            self.reviewView.isHidden = true
+            self.userSettingsManager.reviewDate = Date()
+            Answers.logCustomEvent(withName: "review_accept", customAttributes: nil)
+            SKStoreReviewController.requestReview()
+        }
+        
+        UIView.animate(withDuration: 0.3, animations: animation, completion: completion)
+    }
+    
+    @IBAction func reviewCancelButtonPressed(_ sender: Any) {
+        view.layoutIfNeeded()
+        reviewHeight.constant = 0
+        let animation = { [unowned self] in
+            self.reviewView.alpha = 0
+            self.view.layoutIfNeeded()
+        }
+        
+        let completion: (Bool) -> Void = { [unowned self] (completed) in
+            self.reviewView.isHidden = true
+            self.userSettingsManager.canceledReviewDate = Date()
+            Answers.logCustomEvent(withName: "review_cancel", customAttributes: nil)
+        }
+        
+        UIView.animate(withDuration: 0.3, animations: animation, completion: completion)
+    }
 
     // MARK: - UICollectionViewDataSource
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.topics.count
     }
     
-    override func collectionView(_ collectionView: UICollectionView,
-                                 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
             as? KeywordCollectionViewCell else {
@@ -322,7 +378,7 @@ class TrendingCardsViewController: UICollectionViewController {
         return cell
     }
     
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let topic = topics[indexPath.row]
         performSegue(withIdentifier: "news", sender: topic)
         
@@ -334,9 +390,9 @@ class TrendingCardsViewController: UICollectionViewController {
         )
     }
     
-    override func collectionView(_ collectionView: UICollectionView,
-                                 viewForSupplementaryElementOfKind kind: String,
-                                 at indexPath: IndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView,
+                        viewForSupplementaryElementOfKind kind: String,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
         
         guard let view = footerView else {
             footerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
@@ -350,9 +406,9 @@ class TrendingCardsViewController: UICollectionViewController {
     }
     
     // MARK: - UICollectionViewDelegate
-    override func collectionView(_ collectionView: UICollectionView,
-                                 willDisplay cell: UICollectionViewCell,
-                                 forItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
         
         if indexPath.row == topics.count-1 {
             let topic = topics[indexPath.row]

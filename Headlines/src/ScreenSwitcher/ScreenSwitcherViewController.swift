@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ScreenSwitcherViewController: UIViewController {
+class ScreenSwitcherViewController: OrientationAwareViewController {
 
     public var initialViewController: String?
     

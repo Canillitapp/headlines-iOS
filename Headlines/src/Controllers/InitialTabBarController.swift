@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InitialTabBarController: OrientationAwareTabBarController {
+class InitialTabBarController: UITabBarController {
     
     var trendingTopics: [Topic]?
     
