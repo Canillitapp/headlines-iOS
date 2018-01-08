@@ -11,6 +11,7 @@ import UIKit
 class LoadingViewController: UIViewController, CAAnimationDelegate {
 
     @IBOutlet weak var logoImageView: UIImageView!
+    @IBOutlet weak var backgroundImageView: UIImageView!
     
     private func transitionToNews() {
         DispatchQueue.main.async {
@@ -42,8 +43,24 @@ class LoadingViewController: UIViewController, CAAnimationDelegate {
         logoImageView.layer.add(groupAnimation, forKey: "group")
     }
     
+    private func animateBackgroundImageView() {
+        backgroundImageView.alpha = 0
+        
+        let alphaAnimation = CABasicAnimation(keyPath: "opacity")
+        alphaAnimation.duration = 1.0
+        alphaAnimation.fromValue = 0.0
+        alphaAnimation.toValue = 1.0
+        alphaAnimation.fillMode = kCAFillModeForwards
+        alphaAnimation.isRemovedOnCompletion = false
+        alphaAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        
+        backgroundImageView.layer.add(alphaAnimation, forKey: "opacity")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        animateBackgroundImageView()
         animateLogo()
     }
     
