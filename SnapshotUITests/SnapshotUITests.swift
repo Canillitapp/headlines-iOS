@@ -23,6 +23,7 @@ class SnapshotUITests: XCTestCase {
         setupSnapshot(app)
 
         app.launchArguments.append("mockRequests")
+        app.launchArguments.append("mockReviewBannerOff")
         app.launch()
     }
     
