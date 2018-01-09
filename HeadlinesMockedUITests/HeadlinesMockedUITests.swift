@@ -75,28 +75,6 @@ class HeadlinesMockedUITests: XCTestCase {
         wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
     }
     
-    func testReactionScreenFromMockedTrendingCards() {
-        let app = XCUIApplication()
-        let cell = app.collectionViews.cells.element(boundBy: 0)
-        
-        let exists = NSPredicate(format: "exists == 1")
-        
-        let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
-        wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
-        
-        //  Go to news
-        cell.tap()
-
-        //  Go to reacciones
-        app.tables.buttons["add reaction icon"].tap()
-        
-        let reaccionesStaticText = app.navigationBars["Reacciones"].otherElements["Reacciones"]
-        let reaccionesTitleLabelExpectation = expectation(for: exists,
-                                                          evaluatedWith: reaccionesStaticText,
-                                                          handler: nil)
-        wait(for: [reaccionesTitleLabelExpectation], timeout: defaultWaitThreshold)
-    }
-    
     func testReactionScreenFromMockedRecentNews() {
         let app = XCUIApplication()
         
