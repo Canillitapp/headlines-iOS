@@ -149,6 +149,7 @@ class TrendingCardsViewController: UIViewController, UICollectionViewDelegate, U
             let collectionViewSize = self.collectionView?.bounds.size else {
                 return
         }
+        
         if UIDevice.current.userInterfaceIdiom == .pad {
             let columns: CGFloat = floor(collectionViewSize.width / 280.0)
             let itemWidth = floor(((collectionViewSize.width - 20 - (columns-1)*10) / columns))
@@ -160,7 +161,10 @@ class TrendingCardsViewController: UIViewController, UICollectionViewDelegate, U
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        updateCollectionViewCellSize()
+        
+        DispatchQueue.main.async {
+            self.updateCollectionViewCellSize()
+        }
     }
     
     func setupReviewButtons() {
@@ -246,10 +250,6 @@ class TrendingCardsViewController: UIViewController, UICollectionViewDelegate, U
         super.viewDidDisappear(animated)
         
         NotificationCenter.default.removeObserver(apiCallCompletionObserver)
-    }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        self.view.setNeedsLayout()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
