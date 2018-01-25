@@ -89,6 +89,8 @@
 		6798B67D1EBAA7270079B8E1 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6798B67B1EBAA7270079B8E1 /* config.plist */; };
 		6798B6871EBACDB70079B8E1 /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = 6798B6851EBAC6260079B8E1 /* fabric.apikey */; };
 		6798E8CF1D88F3390032D350 /* KeywordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798E8CE1D88F3390032D350 /* KeywordCollectionViewCell.swift */; };
+		679A72C32018CE3F005CCCB5 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679A72C22018CE3F005CCCB5 /* NotificationService.swift */; };
+		679A72C72018CE3F005CCCB5 /* Notifications.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 679A72C02018CE3F005CCCB5 /* Notifications.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		67BA65C41FCB65B400411A06 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BA65C31FCB65B400411A06 /* NotificationCenter.framework */; };
 		67BA65C71FCB65B400411A06 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BA65C61FCB65B400411A06 /* TodayViewController.swift */; };
 		67BA65CA1FCB65B400411A06 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67BA65C81FCB65B400411A06 /* MainInterface.storyboard */; };
@@ -151,6 +153,13 @@
 			remoteGlobalIDString = 675A81DB1D6BF6E8000DC680;
 			remoteInfo = Headlines;
 		};
+		679A72C52018CE3F005CCCB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 675A81D41D6BF6E8000DC680 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 679A72BF2018CE3F005CCCB5;
+			remoteInfo = Notifications;
+		};
 		67BA65CC1FCB65B400411A06 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 675A81D41D6BF6E8000DC680 /* Project object */;
@@ -190,6 +199,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				67BA65CE1FCB65B400411A06 /* Canillitapp Widget.appex in Embed App Extensions */,
+				679A72C72018CE3F005CCCB5 /* Notifications.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,6 +286,9 @@
 		6798B6851EBAC6260079B8E1 /* fabric.apikey */ = {isa = PBXFileReference; lastKnownFileType = text; path = fabric.apikey; sourceTree = SOURCE_ROOT; };
 		6798B6861EBAC6260079B8E1 /* fabric.buildsecret */ = {isa = PBXFileReference; lastKnownFileType = text; path = fabric.buildsecret; sourceTree = SOURCE_ROOT; };
 		6798E8CE1D88F3390032D350 /* KeywordCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeywordCollectionViewCell.swift; sourceTree = "<group>"; };
+		679A72C02018CE3F005CCCB5 /* Notifications.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Notifications.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		679A72C22018CE3F005CCCB5 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		679A72C42018CE3F005CCCB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		67BA65C21FCB65B400411A06 /* Canillitapp Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Canillitapp Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67BA65C31FCB65B400411A06 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		67BA65C61FCB65B400411A06 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -348,6 +361,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		675A81FA1D6BF6E8000DC680 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		679A72BD2018CE3F005CCCB5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -485,6 +505,7 @@
 				6719DA6F1D6D143E00D1E214 /* Watch Extension */,
 				671DC3741EE35FB3000CBAF0 /* SnapshotUITests */,
 				67BA65C51FCB65B400411A06 /* Canillitapp Widget */,
+				679A72C12018CE3F005CCCB5 /* Notifications */,
 				675A81DD1D6BF6E8000DC680 /* Products */,
 				C9B35ED6280F70EB874A775A /* Pods */,
 				7F5377F9DE7CA1E0A38F9F13 /* Frameworks */,
@@ -502,6 +523,7 @@
 				671DC3731EE35FB3000CBAF0 /* SnapshotUITests.xctest */,
 				6712660E1F4D08600005CF4B /* HeadlinesMockedUITests.xctest */,
 				67BA65C21FCB65B400411A06 /* Canillitapp Widget.appex */,
+				679A72C02018CE3F005CCCB5 /* Notifications.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -620,6 +642,15 @@
 				67D434F21EB01827001A79D8 /* ReactionTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		679A72C12018CE3F005CCCB5 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				679A72C22018CE3F005CCCB5 /* NotificationService.swift */,
+				679A72C42018CE3F005CCCB5 /* Info.plist */,
+			);
+			path = Notifications;
 			sourceTree = "<group>";
 		};
 		67BA65C51FCB65B400411A06 /* Canillitapp Widget */ = {
@@ -801,6 +832,7 @@
 			dependencies = (
 				6719DA781D6D143E00D1E214 /* PBXTargetDependency */,
 				67BA65CD1FCB65B400411A06 /* PBXTargetDependency */,
+				679A72C62018CE3F005CCCB5 /* PBXTargetDependency */,
 			);
 			name = Canillitapp;
 			productName = Headlines;
@@ -846,6 +878,23 @@
 			productReference = 675A81FD1D6BF6E8000DC680 /* HeadlinesUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		679A72BF2018CE3F005CCCB5 /* Notifications */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 679A72CA2018CE3F005CCCB5 /* Build configuration list for PBXNativeTarget "Notifications" */;
+			buildPhases = (
+				679A72BC2018CE3F005CCCB5 /* Sources */,
+				679A72BD2018CE3F005CCCB5 /* Frameworks */,
+				679A72BE2018CE3F005CCCB5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Notifications;
+			productName = Notifications;
+			productReference = 679A72C02018CE3F005CCCB5 /* Notifications.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		67BA65C11FCB65B400411A06 /* Canillitapp Widget */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 67BA65D11FCB65B400411A06 /* Build configuration list for PBXNativeTarget "Canillitapp Widget" */;
@@ -871,7 +920,7 @@
 		675A81D41D6BF6E8000DC680 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0910;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Ezequiel Becerra";
 				TargetAttributes = {
@@ -926,6 +975,11 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 675A81DB1D6BF6E8000DC680;
 					};
+					679A72BF2018CE3F005CCCB5 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = 2334RGUT2P;
+						ProvisioningStyle = Automatic;
+					};
 					67BA65C11FCB65B400411A06 = {
 						CreatedOnToolsVersion = 9.1;
 						DevelopmentTeam = 2334RGUT2P;
@@ -954,6 +1008,7 @@
 				671DC3721EE35FB3000CBAF0 /* SnapshotUITests */,
 				6712660D1F4D08600005CF4B /* HeadlinesMockedUITests */,
 				67BA65C11FCB65B400411A06 /* Canillitapp Widget */,
+				679A72BF2018CE3F005CCCB5 /* Notifications */,
 			);
 		};
 /* End PBXProject section */
@@ -1027,6 +1082,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		675A81FB1D6BF6E8000DC680 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		679A72BE2018CE3F005CCCB5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1364,6 +1426,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		679A72BC2018CE3F005CCCB5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				679A72C32018CE3F005CCCB5 /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		67BA65BE1FCB65B400411A06 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1412,6 +1482,11 @@
 			isa = PBXTargetDependency;
 			target = 675A81DB1D6BF6E8000DC680 /* Canillitapp */;
 			targetProxy = 675A81FE1D6BF6E8000DC680 /* PBXContainerItemProxy */;
+		};
+		679A72C62018CE3F005CCCB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 679A72BF2018CE3F005CCCB5 /* Notifications */;
+			targetProxy = 679A72C52018CE3F005CCCB5 /* PBXContainerItemProxy */;
 		};
 		67BA65CD1FCB65B400411A06 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1747,6 +1822,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BF6FCFB06FB814847D111266 /* Pods-Canillitapp.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Headlines/Headlines.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1770,6 +1846,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D92054C908EB67709F7A5EC5 /* Pods-Canillitapp.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Headlines/Headlines.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1848,6 +1925,65 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Canillitapp;
+			};
+			name = Release;
+		};
+		679A72C82018CE3F005CCCB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2334RGUT2P;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Notifications/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.headlines.Notifications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		679A72C92018CE3F005CCCB5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2334RGUT2P;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Notifications/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.headlines.Notifications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1983,6 +2119,15 @@
 			buildConfigurations = (
 				675A820D1D6BF6E8000DC680 /* Debug */,
 				675A820E1D6BF6E8000DC680 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		679A72CA2018CE3F005CCCB5 /* Build configuration list for PBXNativeTarget "Notifications" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				679A72C82018CE3F005CCCB5 /* Debug */,
+				679A72C92018CE3F005CCCB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
