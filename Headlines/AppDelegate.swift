@@ -19,39 +19,37 @@ class AppDelegate: UIResponder,
     
     var window: UIWindow?
     
-    var newsService = NewsService()
+    let usersService = UsersService()
+    let newsService = NewsService()
     var newsDataTask: URLSessionDataTask?
     var newsFetched: [Topic]?
-    var userSettingsManager = UserSettingsManager()
-
-    func registerForRemoteNotifications(with application: UIApplication) {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (granted, error) in
-            DispatchQueue.main.async {
-                if granted {
-                    application.registerForRemoteNotifications()
-                }
-                
-                if error != nil {
-                    print("#ERROR: \(error?.localizedDescription ?? "unknown")")
+    let userSettingsManager = UserSettingsManager()
+    
+    func setupNotifications() {
+        
+        func registerNotificationActions() {
+            let viewAction = UNNotificationAction(identifier: "view", title: "Ver", options: [.foreground])
+            let likeAction = UNNotificationAction(identifier: "like", title: "👍", options: [])
+            let dislikeAction = UNNotificationAction(identifier: "dislike", title: "👎", options: [])
+            
+            let newsAPNCategory = UNNotificationCategory(
+                identifier: "news_apn",
+                actions: [viewAction, likeAction, dislikeAction],
+                intentIdentifiers: [],
+                options: []
+            )
+            UNUserNotificationCenter.current().setNotificationCategories([newsAPNCategory])
+            UNUserNotificationCenter.current().delegate = self
+        }
+        
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            if settings.authorizationStatus == .authorized {
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                    registerNotificationActions()
                 }
             }
         }
-    }
-    
-    func setupNotifications() {
-        let viewAction = UNNotificationAction(identifier: "view", title: "Ver", options: [.foreground])
-        let likeAction = UNNotificationAction(identifier: "like", title: "👍", options: [])
-        let dislikeAction = UNNotificationAction(identifier: "dislike", title: "👎", options: [])
-        
-        let newsAPNCategory = UNNotificationCategory(
-            identifier: "news_apn",
-            actions: [viewAction, likeAction, dislikeAction],
-            intentIdentifiers: [],
-            options: []
-        )
-        UNUserNotificationCenter.current().setNotificationCategories([newsAPNCategory])
-        
-        UNUserNotificationCenter.current().delegate = self
     }
     
     func application(_ application: UIApplication,
@@ -93,7 +91,6 @@ class AppDelegate: UIResponder,
             fail: nil
         )
         
-        registerForRemoteNotifications(with: application)
         setupNotifications()
         
         return true
@@ -101,7 +98,7 @@ class AppDelegate: UIResponder,
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        print(token)
+        usersService.postDeviceToken(token, success: nil, fail: nil)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -132,7 +129,6 @@ class AppDelegate: UIResponder,
         guard let postId = response.notification.request.content.userInfo["post-id"] as? String else {
             return
         }
-        print("#DEBUG \(response.actionIdentifier) - \(postId)")
         
         completionHandler()
     }

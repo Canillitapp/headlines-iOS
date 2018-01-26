@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="A1F-p7-8G2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="A1F-p7-8G2">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,7 +18,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="Kbg-YG-sjR">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -39,7 +39,7 @@
             <objects>
                 <tableViewController id="smA-1P-cAx" customClass="MyReactionsViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="LML-tk-e9O">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -102,14 +102,69 @@
                             <outlet property="delegate" destination="smA-1P-cAx" id="45L-tn-IV1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Reacciones" id="tBf-3c-wSb"/>
+                    <navigationItem key="navigationItem" title="Reacciones" id="tBf-3c-wSb">
+                        <barButtonItem key="rightBarButtonItem" title="Configuración" image="gear_icon" id="LLw-vY-Auk">
+                            <connections>
+                                <segue destination="1j1-mS-nHd" kind="show" id="tkj-hy-WUY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nrq-Rn-z3B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="761" y="1341"/>
         </scene>
+        <!--Configuración-->
+        <scene sceneID="dyw-1H-AGx">
+            <objects>
+                <viewController title="Configuración" id="1j1-mS-nHd" customClass="SettingsViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EYE-16-7IK"/>
+                        <viewControllerLayoutGuide type="bottom" id="yur-nc-qcM"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gKB-nf-yyA">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="z3J-UJ-DNr">
+                                <rect key="frame" x="20" y="20" width="335" height="67.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SP1-BB-aaE">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
+                                        <state key="normal" title="Suscribirse a notificaciones">
+                                            <color key="titleColor" red="0.99607843139999996" green="0.15686274510000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="subscribeButtonPressed:" destination="1j1-mS-nHd" eventType="touchUpInside" id="TLU-d7-1Do"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Al suscribirte, recibirás una notificación sobre una noticia importante una vez al día" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HhB-FB-VV3">
+                                        <rect key="frame" x="0.0" y="34" width="335" height="33.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="z3J-UJ-DNr" secondAttribute="trailing" constant="20" id="Xne-uB-eOy"/>
+                            <constraint firstItem="z3J-UJ-DNr" firstAttribute="top" secondItem="EYE-16-7IK" secondAttribute="bottom" constant="20" id="gIX-gl-H5b"/>
+                            <constraint firstItem="z3J-UJ-DNr" firstAttribute="leading" secondItem="gKB-nf-yyA" secondAttribute="leading" constant="20" id="k1l-eh-kmI"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="subscribeButton" destination="SP1-BB-aaE" id="LYf-Vm-xzf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="eBV-bO-cwH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1606" y="1341"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="gear_icon" width="25" height="25"/>
         <image name="reactions_icon" width="23" height="20"/>
         <image name="reactions_icon_selected" width="24" height="20"/>
     </resources>
