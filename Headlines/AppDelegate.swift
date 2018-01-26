@@ -25,28 +25,28 @@ class AppDelegate: UIResponder,
     var newsFetched: [Topic]?
     let userSettingsManager = UserSettingsManager()
     
-    func setupNotifications() {
+    func registerNotificationActions() {
+        let viewAction = UNNotificationAction(identifier: "view", title: "Ver", options: [.foreground])
+        let likeAction = UNNotificationAction(identifier: "like", title: "👍", options: [])
+        let dislikeAction = UNNotificationAction(identifier: "dislike", title: "👎", options: [])
         
-        func registerNotificationActions() {
-            let viewAction = UNNotificationAction(identifier: "view", title: "Ver", options: [.foreground])
-            let likeAction = UNNotificationAction(identifier: "like", title: "👍", options: [])
-            let dislikeAction = UNNotificationAction(identifier: "dislike", title: "👎", options: [])
-            
-            let newsAPNCategory = UNNotificationCategory(
-                identifier: "news_apn",
-                actions: [viewAction, likeAction, dislikeAction],
-                intentIdentifiers: [],
-                options: []
-            )
-            UNUserNotificationCenter.current().setNotificationCategories([newsAPNCategory])
-            UNUserNotificationCenter.current().delegate = self
-        }
+        let newsAPNCategory = UNNotificationCategory(
+            identifier: "news_apn",
+            actions: [viewAction, likeAction, dislikeAction],
+            intentIdentifiers: [],
+            options: []
+        )
+        UNUserNotificationCenter.current().setNotificationCategories([newsAPNCategory])
+        UNUserNotificationCenter.current().delegate = self
+    }
+    
+    func setupNotifications() {
+        registerNotificationActions()
         
         UNUserNotificationCenter.current().getNotificationSettings { (settings) in
             if settings.authorizationStatus == .authorized {
                 DispatchQueue.main.async {
                     UIApplication.shared.registerForRemoteNotifications()
-                    registerNotificationActions()
                 }
             }
         }
