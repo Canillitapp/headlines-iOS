@@ -19,6 +19,7 @@ class AppDelegate: UIResponder,
     
     var window: UIWindow?
     
+    let reactionsService = ReactionsService()
     let usersService = UsersService()
     let newsService = NewsService()
     var newsDataTask: URLSessionDataTask?
@@ -126,8 +127,31 @@ class AppDelegate: UIResponder,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         
-        guard let postId = response.notification.request.content.userInfo["post-id"] as? String else {
+        guard let postId = response.notification.request.content.userInfo["post-id"] as? Int else {
+            completionHandler()
             return
+        }
+        
+        switch response.actionIdentifier {
+        case "view":
+        // TO-DO: open a Safari ViewController as modal and open the URL
+            break
+        case "like":
+            reactionsService.postReaction(
+                "👍",
+                atPost: "\(postId)",
+                success: nil,
+                fail: nil
+            )
+        case "dislike":
+            reactionsService.postReaction(
+                "👎",
+                atPost: "\(postId)",
+                success: nil,
+                fail: nil
+            )
+        default:
+            break
         }
         
         completionHandler()

@@ -292,7 +292,7 @@ class NewsTableViewController: UITableViewController,
         
         reactionsService.postReaction(
             selectedReaction,
-            atNews: currentNews,
+            atPost: currentNews.identifier!,
             success: success,
             fail: fail
         )
@@ -415,7 +415,7 @@ class NewsTableViewController: UITableViewController,
         
         reactionsService.postReaction(
             reaction.reaction,
-            atNews: viewModel.news,
+            atPost: viewModel.news.identifier!,
             success: success,
             fail: fail
         )
