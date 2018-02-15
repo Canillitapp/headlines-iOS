@@ -15,6 +15,7 @@ class News: NSObject {
     var url: URL?
     var date: Date?
     var source: String?
+    var category: String?
     var imageUrl: URL?
     var reactions: [Reaction]?
     
@@ -41,6 +42,8 @@ class News: NSObject {
         date = Date(timeIntervalSince1970: timestamp)
         
         source = json["source_name"].string
+        
+        category = json["category"].string
         
         imageUrl = json["img_url"].URL
         
