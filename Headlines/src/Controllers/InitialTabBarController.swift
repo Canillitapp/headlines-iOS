@@ -63,6 +63,27 @@ class InitialTabBarController: UITabBarController {
         return navigationControllerFrom(popularViewController)
     }
     
+    func categoryTabViewController() -> UIViewController? {
+        let newsStoryboard = UIStoryboard(name: "News", bundle: Bundle.main)
+        
+        guard let categoriesViewController = newsStoryboard.instantiateViewController(withIdentifier: "news")
+            as? NewsTableViewController else {
+                return nil
+        }
+        
+        categoriesViewController.newsDataSource = CategoryNewsDataSource()
+        
+        let popularBarItem = UITabBarItem(title: "Categories",
+                                          image: UIImage(named: "popular_icon"),
+                                          selectedImage: nil)
+        categoriesViewController.tabBarItem = popularBarItem
+        categoriesViewController.title = "Categories"
+        categoriesViewController.analyticsIdentifier = "categories"
+        categoriesViewController.preferredDateStyle = .short
+        
+        return navigationControllerFrom(categoriesViewController)
+    }
+    
     func recentsTabViewController() -> UIViewController? {
         let newsStoryboard = UIStoryboard(name: "News", bundle: Bundle.main)
         
@@ -110,6 +131,11 @@ class InitialTabBarController: UITabBarController {
         //  "Reacciones" tab
         if let myReactionsViewController = myReactionsTabViewController() {
             controllers.append(myReactionsViewController)
+        }
+        
+        //  "Categories" tab
+        if let categoriesViewController = categoryTabViewController() {
+            controllers.append(categoriesViewController)
         }
         
         return controllers

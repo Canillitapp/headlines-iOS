@@ -11,6 +11,39 @@ import SwiftyJSON
 
 class NewsService: HTTPService {
     
+    func requestFromCategory (_ categoryId: String,
+                              success: ((_ result: [News]?) -> Void)?,
+                              fail: ((_ error: NSError) -> Void)?) {
+        
+        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
+            guard let d = data else {
+                return
+            }
+            
+            let json = JSON(data: d)
+            
+            var res = [News]()
+            
+            for (_, v) in json {
+                let n = News(json: v)
+                res.append(n)
+            }
+            
+            DispatchQueue.main.async(execute: {
+                success?(res)
+            })
+        }
+        
+        let failBlock: (_ error: NSError) -> Void = { (e) in
+            DispatchQueue.main.async(execute: {
+                fail?(e as NSError)
+            })
+        }
+        
+        let path = "news/category/\(categoryId)"
+        _ = request(method: .GET, path: path, params: nil, success: successBlock, fail: failBlock)
+    }
+    
     func requestPopularNews (success: ((_ result: [News]?) -> Void)?,
                              fail: ((_ error: NSError) -> Void)?) {
 
