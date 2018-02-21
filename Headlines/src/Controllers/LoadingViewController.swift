@@ -18,7 +18,7 @@ class LoadingViewController: UIViewController, CAAnimationDelegate {
             guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "tab_bar_controller") else {
                 return
             }
-            self.controllerSwitcher?.setViewController(vc, animator: FadeTransition())
+            self.controllerSwitcher?.setViewController(vc, animated: true)
         }
     }
     

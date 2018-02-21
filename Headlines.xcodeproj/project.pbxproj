@@ -21,8 +21,6 @@
 		670C0A671EE7BE8300C40338 /* Rubik-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 670C0A641EE7BE8300C40338 /* Rubik-Regular.ttf */; };
 		670D2C7C1DDC09D000237C39 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670D2C7B1DDC09D000237C39 /* NewsTableViewCell.swift */; };
 		670D6D081FB3E098003B5B33 /* ScreenSwitcherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670D6D061FB3E098003B5B33 /* ScreenSwitcherViewController.swift */; };
-		670D6D091FB3E098003B5B33 /* TransitionContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670D6D071FB3E098003B5B33 /* TransitionContext.swift */; };
-		670D6D0B1FB3E4BE003B5B33 /* FadeTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670D6D0A1FB3E4BE003B5B33 /* FadeTransition.swift */; };
 		670D6D0D1FB3F2DD003B5B33 /* UIViewController+Switcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670D6D0C1FB3F2DD003B5B33 /* UIViewController+Switcher.swift */; };
 		671266011F4CEDB60005CF4B /* News.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 671265FF1F4CEDB60005CF4B /* News.storyboard */; };
 		671266041F4CEEBE0005CF4B /* MyReactions.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 671266021F4CEEBE0005CF4B /* MyReactions.storyboard */; };
@@ -211,8 +209,6 @@
 		670C0A641EE7BE8300C40338 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		670D2C7B1DDC09D000237C39 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		670D6D061FB3E098003B5B33 /* ScreenSwitcherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenSwitcherViewController.swift; sourceTree = "<group>"; };
-		670D6D071FB3E098003B5B33 /* TransitionContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionContext.swift; sourceTree = "<group>"; };
-		670D6D0A1FB3E4BE003B5B33 /* FadeTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FadeTransition.swift; sourceTree = "<group>"; };
 		670D6D0C1FB3F2DD003B5B33 /* UIViewController+Switcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+Switcher.swift"; path = "Headlines/src/ScreenSwitcher/UIViewController+Switcher.swift"; sourceTree = SOURCE_ROOT; };
 		671266001F4CEDB60005CF4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/News.storyboard; sourceTree = "<group>"; };
 		671266031F4CEEBE0005CF4B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MyReactions.storyboard; sourceTree = "<group>"; };
@@ -401,8 +397,6 @@
 			children = (
 				670D6D0C1FB3F2DD003B5B33 /* UIViewController+Switcher.swift */,
 				670D6D061FB3E098003B5B33 /* ScreenSwitcherViewController.swift */,
-				670D6D071FB3E098003B5B33 /* TransitionContext.swift */,
-				670D6D0A1FB3E4BE003B5B33 /* FadeTransition.swift */,
 			);
 			path = ScreenSwitcher;
 			sourceTree = "<group>";
@@ -1316,7 +1310,6 @@
 			files = (
 				6798E8CF1D88F3390032D350 /* KeywordCollectionViewCell.swift in Sources */,
 				67FD84DE1D6BF85D00BACAFC /* TrendingCardsViewController.swift in Sources */,
-				670D6D091FB3E098003B5B33 /* TransitionContext.swift in Sources */,
 				670D2C7C1DDC09D000237C39 /* NewsTableViewCell.swift in Sources */,
 				6757C3071F4BD8FF0007C17F /* NewsTableViewControllerDataSource.swift in Sources */,
 				6797F8B61EE4B38E00B8EAA5 /* NewsService.swift in Sources */,
@@ -1344,7 +1337,6 @@
 				671266091F4CEF980005CF4B /* InitialTabBarController.swift in Sources */,
 				67D434F11EB0000C001A79D8 /* MyReactionsViewController.swift in Sources */,
 				67302DD21F6DA7E500C0A01E /* UserSettingsManager.swift in Sources */,
-				670D6D0B1FB3E4BE003B5B33 /* FadeTransition.swift in Sources */,
 				6797F8AE1EE4B38E00B8EAA5 /* News.swift in Sources */,
 				67617F801F6CB2C200674320 /* DimPresentAnimationController.swift in Sources */,
 				67E10AD21F6389C3009F017C /* FilterCollectionViewCell.swift in Sources */,
