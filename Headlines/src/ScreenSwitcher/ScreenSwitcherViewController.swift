@@ -46,44 +46,46 @@ class ScreenSwitcherViewController: OrientationAwareViewController {
                 return
         }
         
-        setViewController(vc, animator: nil)
+        setViewController(vc, animated: false)
     }
     
-    func setViewController(_ viewcontroller: UIViewController, animator: UIViewControllerAnimatedTransitioning?) {
+    func setViewController(_ viewcontroller: UIViewController, animated: Bool) {
         DispatchQueue.main.async { [unowned self] in
-            if animator == nil {
-                //  No animator, so there's no transition
-                self.willMove(toParentViewController: nil)
-                self.addChildViewController(viewcontroller)
-                self.view.addSubview(viewcontroller.view)
-                
-                self.currentViewController?.view.removeFromSuperview()
-                self.currentViewController?.removeFromParentViewController()
-                viewcontroller.didMove(toParentViewController: self)
-                
-                self.currentViewController = viewcontroller
-                self.setNeedsStatusBarAppearanceUpdate()
-                
-            } else {
-                //  Will use an animator
-                self.willMove(toParentViewController: nil)
-                self.addChildViewController(viewcontroller)
-                
-                let transitionContext = TransitionContext(from: self.currentViewController!, to: viewcontroller)
-                transitionContext.completionHandler = { (didComplete: Bool) -> Void in
-                    
-                    self.currentViewController?.view.removeFromSuperview()
-                    self.currentViewController?.removeFromParentViewController()
-                    viewcontroller.didMove(toParentViewController: self)
-                    
-                    //  If animator implements animationEnded: call it
-                    animator!.animationEnded?(didComplete)
-                    
-                    self.currentViewController = viewcontroller
-                    self.setNeedsStatusBarAppearanceUpdate()
+            
+            self.currentViewController?.willMove(toParentViewController: nil)
+            self.addChildViewController(viewcontroller)
+            self.view.addSubview(viewcontroller.view)
+            
+            let completion: (Bool) -> Void = { [weak self] completed in
+                guard let vc = self else {
+                    return
                 }
                 
-                animator?.animateTransition(using: transitionContext)
+                vc.currentViewController?.view.removeFromSuperview()
+                vc.currentViewController?.removeFromParentViewController()
+                viewcontroller.didMove(toParentViewController: self)
+                
+                vc.currentViewController = viewcontroller
+                vc.setNeedsStatusBarAppearanceUpdate()
+            }
+            
+            if animated {
+                viewcontroller.view.alpha = 0.0
+                
+                let animation: () -> Void = {
+                    viewcontroller.view.alpha = 1.0
+                }
+                
+                UIView.animate(
+                    withDuration: 0.3,
+                    delay: 0,
+                    options: [],
+                    animations: animation,
+                    completion: completion
+                )
+                
+            } else {
+                completion(true)
             }
         }
     }
