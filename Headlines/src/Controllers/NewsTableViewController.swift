@@ -13,7 +13,8 @@ import ViewAnimator
 
 class NewsTableViewController: UITableViewController,
                                 NewsCellViewModelDelegate,
-                                UIViewControllerTransitioningDelegate {
+                                UIViewControllerTransitioningDelegate,
+                                SFSafariViewControllerDelegate {
     
     var news: [News] = [] {
         didSet {
@@ -29,6 +30,8 @@ class NewsTableViewController: UITableViewController,
         }
     }
     
+    var selectedNews: News?
+    
     var preferredDateStyle: DateFormatter.Style = .none
     let reactionsService = ReactionsService()
     var newsViewModels: [NewsCellViewModel] = []
@@ -38,9 +41,15 @@ class NewsTableViewController: UITableViewController,
     let userSettingsManager = UserSettingsManager()
     
     // MARK: Private
-    func openURL(_ url: URL) {
+    func openNews(_ news: News) {
+        guard let url = news.url else {
+            return
+        }
+        
         if userSettingsManager.shouldOpenNewsInsideApp {
             let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
+            vc.delegate = self
+            self.selectedNews = news
             present(vc, animated: true, completion: nil)
         } else {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
@@ -131,10 +140,10 @@ class NewsTableViewController: UITableViewController,
             return
         }
         
-        Answers.logCustomEvent(withName: "add_reaction_long_press", customAttributes: nil)
-        
         let viewModel = filteredNewsViewModels[indexPath.row]
-        performSegue(withIdentifier: "reaction", sender: viewModel)
+        let activity = ShareCanillitapActivity(withNews: viewModel.news)
+        let vc = UIActivityViewController(activityItems: [], applicationActivities: [activity])
+        present(vc, animated: true, completion: nil)
     }
     
     func fetchNews() {
@@ -384,9 +393,7 @@ class NewsTableViewController: UITableViewController,
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let n = filteredNewsViewModels[indexPath.row].news
-        if let url = n.url {
-            openURL(url)
-        }
+        openNews(n)
         
         Answers.logContentView(
             withName: n.title ?? "no_title",
@@ -436,5 +443,18 @@ class NewsTableViewController: UITableViewController,
     
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return DimPresentAnimationController()
+    }
+    
+    // MARK: SFSafariViewControllerDelegate
+    func safariViewController(_ controller: SFSafariViewController,
+                              activityItemsFor URL: URL,
+                              title: String?) -> [UIActivity] {
+        
+        guard let n = self.selectedNews else {
+            return []
+        }
+        
+        let activity = ShareCanillitapActivity(withNews: n)
+        return [activity]
     }
 }

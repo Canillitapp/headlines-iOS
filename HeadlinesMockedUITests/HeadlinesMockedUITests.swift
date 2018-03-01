@@ -86,29 +86,8 @@ class HeadlinesMockedUITests: XCTestCase {
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
         wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
         
-        //  Go to reacciones
-        cell.press(forDuration: 10)
-        
-        let reaccionesStaticText = app.navigationBars["Reacciones"].otherElements["Reacciones"]
-        let reaccionesTitleLabelExpectation = expectation(for: exists,
-                                                          evaluatedWith: reaccionesStaticText,
-                                                          handler: nil)
-        wait(for: [reaccionesTitleLabelExpectation], timeout: defaultWaitThreshold)
-    }
-    
-    func testReactionScreenFromMockedPopularNews() {
-        let app = XCUIApplication()
-        
-        //  Go to Popular tab
-        app.tabBars.buttons["Popular"].tap()
-        
-        let cell = app.tables.cells.element(boundBy: 0)
-        let exists = NSPredicate(format: "exists == 1")
-        let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
-        wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
-        
-        //  Go to reacciones
-        cell.press(forDuration: 10)
+        //  Go to reacciones by tapping the "reaction cell"
+        cell.buttons["add reaction icon"].tap()
         
         let reaccionesStaticText = app.navigationBars["Reacciones"].otherElements["Reacciones"]
         let reaccionesTitleLabelExpectation = expectation(for: exists,
@@ -135,8 +114,8 @@ class HeadlinesMockedUITests: XCTestCase {
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
         wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
         
-        //  Go to reacciones
-        cell.press(forDuration: 10)
+        //  Go to reacciones by tapping the "reaction button"
+        cell.buttons["add reaction icon"].tap()
         
         let reaccionesStaticText = app.navigationBars["Reacciones"].otherElements["Reacciones"]
         let reaccionesTitleLabelExpectation = expectation(for: exists,

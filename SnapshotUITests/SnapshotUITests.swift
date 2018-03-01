@@ -133,8 +133,8 @@ class SnapshotUITests: XCTestCase {
         sleep(5)
         snapshot("05-search")
         
-        //  Go to reacciones
-        cell.press(forDuration: 10)
+        //  Go to reacciones by tapping the "reaction button"
+        cell.buttons["add reaction icon"].tap()
         
         let reaccionesStaticText = app.navigationBars["Reacciones"]
         let reaccionesTitleLabelExpectation = expectation(for: exists,
