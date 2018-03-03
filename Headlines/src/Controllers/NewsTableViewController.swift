@@ -110,7 +110,12 @@ class NewsTableViewController: UITableViewController,
             }
             
             vc.news = news
-            vc.selectedNewsViewModels = filteredNewsViewModels
+            
+            // Get selectedSources from the view models array and remove duplicates
+            var selectedSources = filteredNewsViewModels.map({$0.source}) as! [String]
+            selectedSources = Array(Set(selectedSources))
+            
+            vc.preSelectedSources = selectedSources
             vc.transitioningDelegate = self
             vc.modalPresentationStyle = .overFullScreen
             

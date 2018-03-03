@@ -14,22 +14,14 @@ class FilterViewController: UIViewController,
                             UIGestureRecognizerDelegate {
     
     var news: [News]?
-    var selectedNewsViewModels: [NewsCellViewModel]?
+    
     var sources: [String]?
+    var preSelectedSources: [String]?
     var selectedSources = [String]()
+    
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var containerStackView: UIStackView!
-    
-    func generateDistinctArrayFrom(_ array: [String]) -> [String] {
-        var distinct = [String]()
-        for item in array {
-            if !distinct.contains(item) {
-                distinct.append(item)
-            }
-        }
-        return distinct
-    }
     
     func generateSourcesList() -> [String] {
         guard let n = news else {
@@ -37,7 +29,7 @@ class FilterViewController: UIViewController,
         }
         
         var differentSources: [String] = n.filter({$0.source != nil}).map({$0.source!})
-        differentSources = generateDistinctArrayFrom(differentSources)
+        differentSources = Array(Set(differentSources))
         return differentSources.sorted(by: { $0.lowercased() < $1.lowercased() })
     }
     
@@ -58,18 +50,15 @@ class FilterViewController: UIViewController,
     }
     
     func setupSelectedCells() {
-        guard let s = selectedNewsViewModels else {
+        guard let s = preSelectedSources else {
             selectedSources.removeAll()
             selectedSources.append(contentsOf: sources!)
             markSelectedCellsFromSources(sources)
             return
         }
         
-        var tmp = s.map({$0.source}) as! [String]
-        tmp = generateDistinctArrayFrom(tmp)
-        
         selectedSources.removeAll()
-        selectedSources.append(contentsOf: tmp)
+        selectedSources.append(contentsOf: s)
         markSelectedCellsFromSources(selectedSources)
     }
     
