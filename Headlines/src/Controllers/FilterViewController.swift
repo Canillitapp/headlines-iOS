@@ -13,8 +13,6 @@ class FilterViewController: UIViewController,
                             UICollectionViewDelegate,
                             UIGestureRecognizerDelegate {
     
-    var news: [News]?
-    
     var sources: [String]?
     var preSelectedSources: [String]?
     var selectedSources = [String]()
@@ -22,16 +20,6 @@ class FilterViewController: UIViewController,
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var containerStackView: UIStackView!
-    
-    func generateSourcesList() -> [String] {
-        guard let n = news else {
-            return []
-        }
-        
-        var differentSources: [String] = n.filter({$0.source != nil}).map({$0.source!})
-        differentSources = Array(Set(differentSources))
-        return differentSources.sorted(by: { $0.lowercased() < $1.lowercased() })
-    }
     
     func markSelectedCellsFromSources(_ arrayOfSources: [String]?) {
         guard let s = arrayOfSources,
@@ -64,7 +52,6 @@ class FilterViewController: UIViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        sources = generateSourcesList()
         
         filterButton.layer.cornerRadius = 10
         
