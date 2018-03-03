@@ -10,6 +10,7 @@ import UIKit
 
 class NewsPreviewViewController: UIViewController {
     var news: News?
+    weak var newsViewController: NewsTableViewController?
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -24,7 +25,8 @@ class NewsPreviewViewController: UIViewController {
     }
     
     var previewActions: [UIPreviewActionItem] {
-        let shareAction =  UIPreviewAction(title: "Compartir Noticia", style: .default, handler: { (_, _) -> Void in
+        
+        let shareAction = UIPreviewAction(title: "Compartir Noticia", style: .default, handler: { (_, _) -> Void in
             guard let n = self.news else {
                 return
             }
@@ -32,6 +34,20 @@ class NewsPreviewViewController: UIViewController {
             UIPasteboard.general.string = ShareCanillitapActivity.canillitappURL(fromNews: n)
         })
         
-        return [shareAction]
+        var actions = [shareAction]
+        
+        if newsViewController != nil {
+            let reactionsAction = UIPreviewAction(title: "Agregar Reacción", style: .default, handler: { (_, _) -> Void in
+                guard let n = self.news else {
+                    return
+                }
+                
+                let vm = NewsCellViewModel(news: n)
+                self.newsViewController?.performSegue(withIdentifier: "reaction", sender: vm)
+            })
+            actions.append(reactionsAction)
+        }
+        
+        return actions
     }
 }

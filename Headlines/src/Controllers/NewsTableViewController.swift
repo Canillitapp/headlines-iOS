@@ -539,6 +539,7 @@ class NewsTableViewController: UITableViewController,
         let storyboard = UIStoryboard(name: "NewsPreview", bundle: nil)
         let vc: NewsPreviewViewController? = storyboard.instantiateInitialViewController() as? NewsPreviewViewController
         vc?.news = news
+        vc?.newsViewController = self
         vc?.preferredContentSize = CGSize(width: 300, height: 300)
         selectedNews = news
         return vc
