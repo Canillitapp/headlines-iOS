@@ -117,9 +117,16 @@ class NewsTableViewController: UITableViewController,
             guard let vc = segue.destination as? FilterViewController else {
                 return
             }
+
+            let sources = FilterSourcesDataSource.sources(fromNews: news)
+            let selectedSources = FilterSourcesDataSource.preSelectedSources(fromNewsViewModels: filteredNewsViewModels)
+            vc.filterSourcesDataSource = FilterSourcesDataSource(sources: sources, preSelectedSources: selectedSources)
             
-            vc.news = news
-            vc.selectedNewsViewModels = filteredNewsViewModels
+            let categories = FilterCategoriesDataSource.categories(fromNews: news)
+            let categoriesDataSource = FilterCategoriesDataSource(withCategories: categories)
+            categoriesDataSource.viewController = vc
+            vc.filterCategoriesDataSource = categoriesDataSource
+            
             vc.transitioningDelegate = self
             vc.modalPresentationStyle = .overFullScreen
             
@@ -301,7 +308,7 @@ class NewsTableViewController: UITableViewController,
         
         reactionsService.postReaction(
             selectedReaction,
-            atNews: currentNews,
+            atPost: currentNews.identifier!,
             success: success,
             fail: fail
         )
@@ -312,20 +319,58 @@ class NewsTableViewController: UITableViewController,
             return
         }
         
-        if segue.identifier == "dismiss" {
+        guard let identifier = segue.identifier else {
             return
         }
         
-        userSettingsManager.whitelistedSources = vc.selectedSources
+        switch identifier {
         
-        filteredNewsViewModels = newsViewModels.filter { vc.selectedSources.contains($0.source!) }
-        UIView.transition(
-            with: tableView,
-            duration: 0.30,
-            options: .transitionCrossDissolve,
-            animations: {self.tableView.reloadData()},
-            completion: nil
-        )
+        case "dismiss":
+            return
+            
+        case "sourcesApply":
+            guard let dataSource = vc.filterSourcesDataSource else {
+                return
+            }
+            
+            userSettingsManager.whitelistedSources = dataSource.selectedSources
+            
+            filteredNewsViewModels = newsViewModels.filter { dataSource.selectedSources.contains($0.source!) }
+            UIView.transition(
+                with: tableView,
+                duration: 0.30,
+                options: .transitionCrossDissolve,
+                animations: {self.tableView.reloadData()},
+                completion: nil
+            )
+            return
+            
+        case "categorySelected":
+            guard let dataSource = vc.filterCategoriesDataSource else {
+                return
+            }
+            
+            if dataSource.selectedCategory == nil {
+                filteredNewsViewModels = newsViewModels
+            } else {
+                filteredNewsViewModels = newsViewModels.filter { $0.news.category == dataSource.selectedCategory }
+            }
+            
+            self.tableView.reloadData()
+            tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
+            
+            UIView.transition(
+                with: tableView,
+                duration: 0.30,
+                options: .transitionCrossDissolve,
+                animations: {},
+                completion: nil
+            )
+            return
+            
+        default:
+            return
+        }
     }
     
     // MARK: UITableViewDataSource
@@ -422,7 +467,7 @@ class NewsTableViewController: UITableViewController,
         
         reactionsService.postReaction(
             reaction.reaction,
-            atNews: viewModel.news,
+            atPost: viewModel.news.identifier!,
             success: success,
             fail: fail
         )

@@ -55,12 +55,15 @@
 		6757C3071F4BD8FF0007C17F /* NewsTableViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6757C3061F4BD8FF0007C17F /* NewsTableViewControllerDataSource.swift */; };
 		6757C30A1F4BDA620007C17F /* RecentNewsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6757C3091F4BDA620007C17F /* RecentNewsDataSource.swift */; };
 		6757C30C1F4BE0810007C17F /* RecentNewsDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6757C30B1F4BE0810007C17F /* RecentNewsDataSourceTests.swift */; };
+		6757E982201AC9FE002AC331 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6757E981201AC9FE002AC331 /* SettingsViewController.swift */; };
+		6757E984201ACCF2002AC331 /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6757E983201ACCF2002AC331 /* UsersService.swift */; };
 		675A81E01D6BF6E8000DC680 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A81DF1D6BF6E8000DC680 /* AppDelegate.swift */; };
 		675A81E71D6BF6E8000DC680 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 675A81E51D6BF6E8000DC680 /* Main.storyboard */; };
 		675A81E91D6BF6E8000DC680 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 675A81E81D6BF6E8000DC680 /* Assets.xcassets */; };
 		675A81EC1D6BF6E8000DC680 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 675A81EA1D6BF6E8000DC680 /* LaunchScreen.storyboard */; };
 		675A82021D6BF6E8000DC680 /* HeadlinesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A82011D6BF6E8000DC680 /* HeadlinesUITests.swift */; };
 		67617F801F6CB2C200674320 /* DimPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67617F7F1F6CB2C200674320 /* DimPresentAnimationController.swift */; };
+		6767C59D204A4F6F00D909E1 /* FilterSourcesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6767C59C204A4F6F00D909E1 /* FilterSourcesDataSource.swift */; };
 		676E1C1E1EECA68400EC71A5 /* GET-popular.json in Resources */ = {isa = PBXBuildFile; fileRef = 676E1C1D1EECA68400EC71A5 /* GET-popular.json */; };
 		676E1C201EECA7EB00EC71A5 /* GET-recent.json in Resources */ = {isa = PBXBuildFile; fileRef = 676E1C1F1EECA7EB00EC71A5 /* GET-recent.json */; };
 		677392C31F6B42CE0076E8BB /* DynamicHeightCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677392C21F6B42CE0076E8BB /* DynamicHeightCollectionView.swift */; };
@@ -90,10 +93,13 @@
 		6798B67D1EBAA7270079B8E1 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6798B67B1EBAA7270079B8E1 /* config.plist */; };
 		6798B6871EBACDB70079B8E1 /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = 6798B6851EBAC6260079B8E1 /* fabric.apikey */; };
 		6798E8CF1D88F3390032D350 /* KeywordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798E8CE1D88F3390032D350 /* KeywordCollectionViewCell.swift */; };
+		679A72C32018CE3F005CCCB5 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679A72C22018CE3F005CCCB5 /* NotificationService.swift */; };
+		679A72C72018CE3F005CCCB5 /* Notifications.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 679A72C02018CE3F005CCCB5 /* Notifications.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		67BA65C41FCB65B400411A06 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BA65C31FCB65B400411A06 /* NotificationCenter.framework */; };
 		67BA65C71FCB65B400411A06 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BA65C61FCB65B400411A06 /* TodayViewController.swift */; };
 		67BA65CA1FCB65B400411A06 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67BA65C81FCB65B400411A06 /* MainInterface.storyboard */; };
 		67BA65CE1FCB65B400411A06 /* Canillitapp Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 67BA65C21FCB65B400411A06 /* Canillitapp Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		67C083CB204AF0F3006BA519 /* FilterCategoriesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C083CA204AF0F3006BA519 /* FilterCategoriesDataSource.swift */; };
 		67C3CD3D1D6D1876003CC04E /* TrendingInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C3CD3C1D6D1876003CC04E /* TrendingInterfaceController.swift */; };
 		67C3CD3F1D6D1A68003CC04E /* TrendingRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C3CD3E1D6D1A68003CC04E /* TrendingRowController.swift */; };
 		67C9CF9D1EEA0E95007216FE /* GET-trending.json in Resources */ = {isa = PBXBuildFile; fileRef = 67C9CF9C1EEA0E95007216FE /* GET-trending.json */; };
@@ -152,6 +158,13 @@
 			remoteGlobalIDString = 675A81DB1D6BF6E8000DC680;
 			remoteInfo = Headlines;
 		};
+		679A72C52018CE3F005CCCB5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 675A81D41D6BF6E8000DC680 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 679A72BF2018CE3F005CCCB5;
+			remoteInfo = Notifications;
+		};
 		67BA65CC1FCB65B400411A06 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 675A81D41D6BF6E8000DC680 /* Project object */;
@@ -191,6 +204,7 @@
 			dstSubfolderSpec = 13;
 			files = (
 				67BA65CE1FCB65B400411A06 /* Canillitapp Widget.appex in Embed App Extensions */,
+				679A72C72018CE3F005CCCB5 /* Notifications.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,6 +258,8 @@
 		6757C3061F4BD8FF0007C17F /* NewsTableViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsTableViewControllerDataSource.swift; path = DataSources/NewsTableViewControllerDataSource.swift; sourceTree = "<group>"; };
 		6757C3091F4BDA620007C17F /* RecentNewsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecentNewsDataSource.swift; path = DataSources/RecentNewsDataSource.swift; sourceTree = "<group>"; };
 		6757C30B1F4BE0810007C17F /* RecentNewsDataSourceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecentNewsDataSourceTests.swift; sourceTree = "<group>"; };
+		6757E981201AC9FE002AC331 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		6757E983201ACCF2002AC331 /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UsersService.swift; path = Services/UsersService.swift; sourceTree = "<group>"; };
 		675A81DC1D6BF6E8000DC680 /* Canillitapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Canillitapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		675A81DF1D6BF6E8000DC680 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		675A81E61D6BF6E8000DC680 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -256,6 +272,7 @@
 		675A82011D6BF6E8000DC680 /* HeadlinesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlinesUITests.swift; sourceTree = "<group>"; };
 		675A82031D6BF6E8000DC680 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		67617F7F1F6CB2C200674320 /* DimPresentAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DimPresentAnimationController.swift; path = Animators/DimPresentAnimationController.swift; sourceTree = "<group>"; };
+		6767C59C204A4F6F00D909E1 /* FilterSourcesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FilterSourcesDataSource.swift; path = DataSources/FilterSourcesDataSource.swift; sourceTree = "<group>"; };
 		676E1C1D1EECA68400EC71A5 /* GET-popular.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "GET-popular.json"; sourceTree = "<group>"; };
 		676E1C1F1EECA7EB00EC71A5 /* GET-recent.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "GET-recent.json"; sourceTree = "<group>"; };
 		677392C21F6B42CE0076E8BB /* DynamicHeightCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicHeightCollectionView.swift; sourceTree = "<group>"; };
@@ -278,11 +295,15 @@
 		6798B6851EBAC6260079B8E1 /* fabric.apikey */ = {isa = PBXFileReference; lastKnownFileType = text; path = fabric.apikey; sourceTree = SOURCE_ROOT; };
 		6798B6861EBAC6260079B8E1 /* fabric.buildsecret */ = {isa = PBXFileReference; lastKnownFileType = text; path = fabric.buildsecret; sourceTree = SOURCE_ROOT; };
 		6798E8CE1D88F3390032D350 /* KeywordCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeywordCollectionViewCell.swift; sourceTree = "<group>"; };
+		679A72C02018CE3F005CCCB5 /* Notifications.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Notifications.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		679A72C22018CE3F005CCCB5 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		679A72C42018CE3F005CCCB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		67BA65C21FCB65B400411A06 /* Canillitapp Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Canillitapp Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67BA65C31FCB65B400411A06 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		67BA65C61FCB65B400411A06 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		67BA65C91FCB65B400411A06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		67BA65CB1FCB65B400411A06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		67C083CA204AF0F3006BA519 /* FilterCategoriesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FilterCategoriesDataSource.swift; path = DataSources/FilterCategoriesDataSource.swift; sourceTree = "<group>"; };
 		67C3CD3C1D6D1876003CC04E /* TrendingInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingInterfaceController.swift; sourceTree = "<group>"; };
 		67C3CD3E1D6D1A68003CC04E /* TrendingRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingRowController.swift; sourceTree = "<group>"; };
 		67C9CF9C1EEA0E95007216FE /* GET-trending.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "GET-trending.json"; sourceTree = "<group>"; };
@@ -350,6 +371,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		675A81FA1D6BF6E8000DC680 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		679A72BD2018CE3F005CCCB5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -461,6 +489,7 @@
 			isa = PBXGroup;
 			children = (
 				6734EA601E99A97600493C86 /* ReactionsService.swift */,
+				6757E983201ACCF2002AC331 /* UsersService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -477,6 +506,8 @@
 			isa = PBXGroup;
 			children = (
 				6757C3061F4BD8FF0007C17F /* NewsTableViewControllerDataSource.swift */,
+				67C083CA204AF0F3006BA519 /* FilterCategoriesDataSource.swift */,
+				6767C59C204A4F6F00D909E1 /* FilterSourcesDataSource.swift */,
 				6757C3091F4BDA620007C17F /* RecentNewsDataSource.swift */,
 				670B793D1F4CE7F000C485A9 /* PopularNewsDataSource.swift */,
 			);
@@ -495,6 +526,7 @@
 				6719DA6F1D6D143E00D1E214 /* Watch Extension */,
 				671DC3741EE35FB3000CBAF0 /* SnapshotUITests */,
 				67BA65C51FCB65B400411A06 /* Canillitapp Widget */,
+				679A72C12018CE3F005CCCB5 /* Notifications */,
 				675A81DD1D6BF6E8000DC680 /* Products */,
 				C9B35ED6280F70EB874A775A /* Pods */,
 				7F5377F9DE7CA1E0A38F9F13 /* Frameworks */,
@@ -512,6 +544,7 @@
 				671DC3731EE35FB3000CBAF0 /* SnapshotUITests.xctest */,
 				6712660E1F4D08600005CF4B /* HeadlinesMockedUITests.xctest */,
 				67BA65C21FCB65B400411A06 /* Canillitapp Widget.appex */,
+				679A72C02018CE3F005CCCB5 /* Notifications.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -632,6 +665,15 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		679A72C12018CE3F005CCCB5 /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				679A72C22018CE3F005CCCB5 /* NotificationService.swift */,
+				679A72C42018CE3F005CCCB5 /* Info.plist */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
 		67BA65C51FCB65B400411A06 /* Canillitapp Widget */ = {
 			isa = PBXGroup;
 			children = (
@@ -672,6 +714,7 @@
 			isa = PBXGroup;
 			children = (
 				67E10ACF1F6385FE009F017C /* FilterViewController.swift */,
+				6757E981201AC9FE002AC331 /* SettingsViewController.swift */,
 				671266081F4CEF980005CF4B /* InitialTabBarController.swift */,
 				67505DDB1FB1360B0095EFE0 /* LoadingViewController.swift */,
 				67D434F01EB0000C001A79D8 /* MyReactionsViewController.swift */,
@@ -812,6 +855,7 @@
 			dependencies = (
 				6719DA781D6D143E00D1E214 /* PBXTargetDependency */,
 				67BA65CD1FCB65B400411A06 /* PBXTargetDependency */,
+				679A72C62018CE3F005CCCB5 /* PBXTargetDependency */,
 			);
 			name = Canillitapp;
 			productName = Headlines;
@@ -857,6 +901,23 @@
 			productReference = 675A81FD1D6BF6E8000DC680 /* HeadlinesUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		679A72BF2018CE3F005CCCB5 /* Notifications */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 679A72CA2018CE3F005CCCB5 /* Build configuration list for PBXNativeTarget "Notifications" */;
+			buildPhases = (
+				679A72BC2018CE3F005CCCB5 /* Sources */,
+				679A72BD2018CE3F005CCCB5 /* Frameworks */,
+				679A72BE2018CE3F005CCCB5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Notifications;
+			productName = Notifications;
+			productReference = 679A72C02018CE3F005CCCB5 /* Notifications.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		67BA65C11FCB65B400411A06 /* Canillitapp Widget */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 67BA65D11FCB65B400411A06 /* Build configuration list for PBXNativeTarget "Canillitapp Widget" */;
@@ -882,7 +943,7 @@
 		675A81D41D6BF6E8000DC680 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0910;
+				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Ezequiel Becerra";
 				TargetAttributes = {
@@ -937,6 +998,11 @@
 						ProvisioningStyle = Automatic;
 						TestTargetID = 675A81DB1D6BF6E8000DC680;
 					};
+					679A72BF2018CE3F005CCCB5 = {
+						CreatedOnToolsVersion = 9.2;
+						DevelopmentTeam = 2334RGUT2P;
+						ProvisioningStyle = Automatic;
+					};
 					67BA65C11FCB65B400411A06 = {
 						CreatedOnToolsVersion = 9.1;
 						DevelopmentTeam = 2334RGUT2P;
@@ -965,6 +1031,7 @@
 				671DC3721EE35FB3000CBAF0 /* SnapshotUITests */,
 				6712660D1F4D08600005CF4B /* HeadlinesMockedUITests */,
 				67BA65C11FCB65B400411A06 /* Canillitapp Widget */,
+				679A72BF2018CE3F005CCCB5 /* Notifications */,
 			);
 		};
 /* End PBXProject section */
@@ -1038,6 +1105,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		675A81FB1D6BF6E8000DC680 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		679A72BE2018CE3F005CCCB5 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1322,6 +1396,7 @@
 				6798E8CF1D88F3390032D350 /* KeywordCollectionViewCell.swift in Sources */,
 				67FD84DE1D6BF85D00BACAFC /* TrendingCardsViewController.swift in Sources */,
 				670D2C7C1DDC09D000237C39 /* NewsTableViewCell.swift in Sources */,
+				67C083CB204AF0F3006BA519 /* FilterCategoriesDataSource.swift in Sources */,
 				6757C3071F4BD8FF0007C17F /* NewsTableViewControllerDataSource.swift in Sources */,
 				6797F8B61EE4B38E00B8EAA5 /* NewsService.swift in Sources */,
 				6797F8B21EE4B38E00B8EAA5 /* Topic.swift in Sources */,
@@ -1343,6 +1418,8 @@
 				43CC643D1EBBE7E90066D49E /* OrientationAwareControllers.swift in Sources */,
 				670D6D0D1FB3F2DD003B5B33 /* UIViewController+Switcher.swift in Sources */,
 				670D6D081FB3E098003B5B33 /* ScreenSwitcherViewController.swift in Sources */,
+				6767C59D204A4F6F00D909E1 /* FilterSourcesDataSource.swift in Sources */,
+				6757E984201ACCF2002AC331 /* UsersService.swift in Sources */,
 				67E10AD01F6385FE009F017C /* FilterViewController.swift in Sources */,
 				677392C31F6B42CE0076E8BB /* DynamicHeightCollectionView.swift in Sources */,
 				67CE08B51E904F2000D5911E /* ReactionCollectionViewCell.swift in Sources */,
@@ -1353,6 +1430,7 @@
 				67617F801F6CB2C200674320 /* DimPresentAnimationController.swift in Sources */,
 				67E10AD21F6389C3009F017C /* FilterCollectionViewCell.swift in Sources */,
 				67CE08B31E903B2D00D5911E /* ReactionPickerViewController.swift in Sources */,
+				6757E982201AC9FE002AC331 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1373,6 +1451,14 @@
 			files = (
 				43CC643F1EBBE7E90066D49E /* OrientationAwareControllers.swift in Sources */,
 				675A82021D6BF6E8000DC680 /* HeadlinesUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		679A72BC2018CE3F005CCCB5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				679A72C32018CE3F005CCCB5 /* NotificationService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1424,6 +1510,11 @@
 			isa = PBXTargetDependency;
 			target = 675A81DB1D6BF6E8000DC680 /* Canillitapp */;
 			targetProxy = 675A81FE1D6BF6E8000DC680 /* PBXContainerItemProxy */;
+		};
+		679A72C62018CE3F005CCCB5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 679A72BF2018CE3F005CCCB5 /* Notifications */;
+			targetProxy = 679A72C52018CE3F005CCCB5 /* PBXContainerItemProxy */;
 		};
 		67BA65CD1FCB65B400411A06 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1552,7 +1643,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 365;
+				CURRENT_PROJECT_VERSION = 371;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				IBSC_MODULE = Watch_Extension;
 				INFOPLIST_FILE = Watch/Info.plist;
@@ -1573,7 +1664,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 365;
+				CURRENT_PROJECT_VERSION = 371;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				IBSC_MODULE = Watch_Extension;
 				INFOPLIST_FILE = Watch/Info.plist;
@@ -1595,7 +1686,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 365;
+				CURRENT_PROJECT_VERSION = 371;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1617,7 +1708,7 @@
 			baseConfigurationReference = 5EA3242399336F7A8DE27E42 /* Pods-Watch Extension.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 365;
+				CURRENT_PROJECT_VERSION = 371;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1759,11 +1850,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BF6FCFB06FB814847D111266 /* Pods-Canillitapp.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Headlines/Headlines.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 365;
+				CURRENT_PROJECT_VERSION = 371;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = Headlines/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -1782,11 +1874,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D92054C908EB67709F7A5EC5 /* Pods-Canillitapp.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Headlines/Headlines.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 365;
+				CURRENT_PROJECT_VERSION = 371;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = Headlines/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -1860,6 +1953,65 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = Canillitapp;
+			};
+			name = Release;
+		};
+		679A72C82018CE3F005CCCB5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2334RGUT2P;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Notifications/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.headlines.Notifications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		679A72C92018CE3F005CCCB5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2334RGUT2P;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Notifications/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.headlines.Notifications;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -1995,6 +2147,15 @@
 			buildConfigurations = (
 				675A820D1D6BF6E8000DC680 /* Debug */,
 				675A820E1D6BF6E8000DC680 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		679A72CA2018CE3F005CCCB5 /* Build configuration list for PBXNativeTarget "Notifications" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				679A72C82018CE3F005CCCB5 /* Debug */,
+				679A72C92018CE3F005CCCB5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

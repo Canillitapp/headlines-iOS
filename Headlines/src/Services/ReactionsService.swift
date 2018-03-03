@@ -13,13 +13,9 @@ import SwiftyJSON
 class ReactionsService: HTTPService {
 
     func postReaction(_ reaction: String,
-                      atNews news: News,
+                      atPost postId: String,
                       success: ((_ response: URLResponse?, News?) -> Void)?,
                       fail: ((_ error: Error) -> Void)?) {
-        
-        guard let newsId = news.identifier else {
-            return
-        }
         
         let container = CKContainer.default()
         container.fetchUserRecordID { (recordId, error) in
@@ -64,7 +60,7 @@ class ReactionsService: HTTPService {
             ]
             
             _ = self.request(method: .POST,
-                             path: "reactions/\(newsId)",
+                             path: "reactions/\(postId)",
                              params: params,
                              success: successBlock,
                              fail: failBlock)

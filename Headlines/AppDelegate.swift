@@ -9,16 +9,50 @@
 import UIKit
 import Fabric
 import Crashlytics
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDelegate {
+class AppDelegate: UIResponder,
+                    UIApplicationDelegate,
+                    UISplitViewControllerDelegate,
+                    UNUserNotificationCenterDelegate {
+    
     var window: UIWindow?
     
-    var newsService = NewsService()
+    let reactionsService = ReactionsService()
+    let usersService = UsersService()
+    let newsService = NewsService()
     var newsDataTask: URLSessionDataTask?
     var newsFetched: [Topic]?
-    var userSettingsManager = UserSettingsManager()
-
+    let userSettingsManager = UserSettingsManager()
+    
+    func registerNotificationActions() {
+        let viewAction = UNNotificationAction(identifier: "view", title: "Ver", options: [.foreground])
+        let likeAction = UNNotificationAction(identifier: "like", title: "👍", options: [])
+        let dislikeAction = UNNotificationAction(identifier: "dislike", title: "👎", options: [])
+        
+        let newsAPNCategory = UNNotificationCategory(
+            identifier: "news_apn",
+            actions: [viewAction, likeAction, dislikeAction],
+            intentIdentifiers: [],
+            options: []
+        )
+        UNUserNotificationCenter.current().setNotificationCategories([newsAPNCategory])
+        UNUserNotificationCenter.current().delegate = self
+    }
+    
+    func setupNotifications() {
+        registerNotificationActions()
+        
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            if settings.authorizationStatus == .authorized {
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
+            }
+        }
+    }
+    
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -57,8 +91,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
             success: success,
             fail: nil
         )
-
+        
+        setupNotifications()
+        
         return true
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        usersService.postDeviceToken(token, success: nil, fail: nil)
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("#ERROR: \(error.localizedDescription)")
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -75,4 +120,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UISplitViewControllerDele
 
     func applicationWillTerminate(_ application: UIApplication) {
     }
+    
+// MARK: - UNUserNotificationCenterDelegate
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        guard let postId = response.notification.request.content.userInfo["post-id"] as? Int else {
+            completionHandler()
+            return
+        }
+        
+        switch response.actionIdentifier {
+        case "view":
+        // TO-DO: open a Safari ViewController as modal and open the URL
+            break
+        case "like":
+            reactionsService.postReaction(
+                "👍",
+                atPost: "\(postId)",
+                success: nil,
+                fail: nil
+            )
+        case "dislike":
+            reactionsService.postReaction(
+                "👎",
+                atPost: "\(postId)",
+                success: nil,
+                fail: nil
+            )
+        default:
+            break
+        }
+        
+        completionHandler()
+    }
+    
 }

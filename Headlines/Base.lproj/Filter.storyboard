@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Qnm-lg-3Fw">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Qnm-lg-3Fw">
     <device id="ipad12_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,10 +22,70 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="14" translatesAutoresizingMaskIntoConstraints="NO" id="rqv-up-kMp">
-                                <rect key="frame" x="312" y="1138" width="400" height="214"/>
+                                <rect key="frame" x="312" y="974" width="400" height="378"/>
                                 <subviews>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6YR-Ih-GRv" customClass="DynamicHeightCollectionView" customModule="Canillitapp" customModuleProvider="target">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ayY-kK-DLL" customClass="DynamicHeightCollectionView" customModule="Canillitapp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="400" height="150"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="150" placeholder="YES" id="Y9x-jo-XlA"/>
+                                        </constraints>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wJH-hh-4V5">
+                                            <size key="itemSize" width="100" height="40"/>
+                                            <size key="headerReferenceSize" width="100" height="50"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="10"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="PVu-FZ-ihz" customClass="FilterCollectionViewCell" customModule="Canillitapp" customModuleProvider="target">
+                                                <rect key="frame" x="10" y="50" width="100" height="40"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                                    <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="La Nación" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uss-vr-y70">
+                                                            <rect key="frame" x="10" y="10" width="80" height="20"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </view>
+                                                <color key="backgroundColor" red="0.84705882349999995" green="0.84705882349999995" blue="0.84705882349999995" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="uss-vr-y70" secondAttribute="bottom" constant="10" id="5Fc-A1-JqF"/>
+                                                    <constraint firstItem="uss-vr-y70" firstAttribute="leading" secondItem="PVu-FZ-ihz" secondAttribute="leading" constant="10" id="DGG-wh-Jch"/>
+                                                    <constraint firstAttribute="trailing" secondItem="uss-vr-y70" secondAttribute="trailing" constant="10" id="a2N-Os-e1v"/>
+                                                    <constraint firstItem="uss-vr-y70" firstAttribute="top" secondItem="PVu-FZ-ihz" secondAttribute="top" constant="10" id="tuB-qN-Vxt"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="titleLabel" destination="uss-vr-y70" id="goq-EI-S93"/>
+                                                </connections>
+                                            </collectionViewCell>
+                                        </cells>
+                                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="header" id="Hg5-3C-eIq">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selecciona la categoría que te interesa" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FGd-M4-jWL">
+                                                    <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
+                                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" red="0.52549019610000003" green="0.52549019610000003" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="FGd-M4-jWL" secondAttribute="bottom" id="2ci-bb-uHg"/>
+                                                <constraint firstAttribute="trailing" secondItem="FGd-M4-jWL" secondAttribute="trailing" id="JUd-Wo-AWa"/>
+                                                <constraint firstItem="FGd-M4-jWL" firstAttribute="top" secondItem="Hg5-3C-eIq" secondAttribute="top" id="Ooj-Sp-m5u"/>
+                                                <constraint firstItem="FGd-M4-jWL" firstAttribute="leading" secondItem="Hg5-3C-eIq" secondAttribute="leading" id="yuq-Cr-ka9"/>
+                                            </constraints>
+                                        </collectionReusableView>
+                                    </collectionView>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6YR-Ih-GRv" customClass="DynamicHeightCollectionView" customModule="Canillitapp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="164" width="400" height="150"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="150" placeholder="YES" id="Km9-Hz-jZ0"/>
@@ -68,7 +128,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deselecciona los medios que no te interesan" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MpN-wb-bkE">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="O deselecciona los medios que no te interesan" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MpN-wb-bkE">
                                                     <rect key="frame" x="0.0" y="0.0" width="400" height="50"/>
                                                     <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -85,7 +145,7 @@
                                         </collectionReusableView>
                                     </collectionView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="67k-pp-cmn">
-                                        <rect key="frame" x="0.0" y="164" width="400" height="50"/>
+                                        <rect key="frame" x="0.0" y="328" width="400" height="50"/>
                                         <color key="backgroundColor" red="0.96470588239999999" green="0.13725490200000001" blue="0.3294117647" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="JhH-c9-q9z"/>
@@ -96,7 +156,7 @@
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="xZZ-hH-pLb" kind="unwind" identifier="" unwindAction="unwindFromFilterWithSegue:" id="LGv-fr-0sd"/>
+                                            <segue destination="xZZ-hH-pLb" kind="unwind" identifier="sourcesApply" unwindAction="unwindFromFilterWithSegue:" id="LGv-fr-0sd"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -145,9 +205,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="collectionView" destination="6YR-Ih-GRv" id="GIy-Rh-w4i"/>
+                        <outlet property="categoriesCollectionView" destination="ayY-kK-DLL" id="4DU-o4-RU9"/>
                         <outlet property="containerStackView" destination="rqv-up-kMp" id="Ua2-cD-29b"/>
                         <outlet property="filterButton" destination="67k-pp-cmn" id="EPp-lS-pCC"/>
+                        <outlet property="sourcesCollectionView" destination="6YR-Ih-GRv" id="GIy-Rh-w4i"/>
+                        <segue destination="xZZ-hH-pLb" kind="unwind" identifier="categorySelected" unwindAction="unwindFromFilterWithSegue:" id="x3z-zA-Cs6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ff-jj-c7G" userLabel="First Responder" sceneMemberID="firstResponder"/>
