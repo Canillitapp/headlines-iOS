@@ -108,16 +108,10 @@ class NewsTableViewController: UITableViewController,
             guard let vc = segue.destination as? FilterViewController else {
                 return
             }
-            
-            // Get sources from news array and remove duplicates
-            var sources: [String] = news.filter({$0.source != nil}).map({$0.source!})
-            sources = Array(Set(sources))
-            vc.sources = sources.sorted(by: { $0.lowercased() < $1.lowercased() })
-            
-            // Get preSelectedSources from the view models array and remove duplicates
-            var selectedSources = filteredNewsViewModels.map({$0.source}) as! [String]
-            selectedSources = Array(Set(selectedSources))
-            vc.preSelectedSources = selectedSources
+
+            let sources = FilterSourcesDataSource.sources(fromNews: news)
+            let selectedSources = FilterSourcesDataSource.preSelectedSources(fromNewsViewModels: filteredNewsViewModels)
+            vc.filterSourcesDataSource = FilterSourcesDataSource(sources: sources, preSelectedSources: selectedSources)
             
             vc.transitioningDelegate = self
             vc.modalPresentationStyle = .overFullScreen
@@ -315,9 +309,13 @@ class NewsTableViewController: UITableViewController,
             return
         }
         
-        userSettingsManager.whitelistedSources = vc.selectedSources
+        guard let dataSource = vc.filterSourcesDataSource else {
+            return
+        }
         
-        filteredNewsViewModels = newsViewModels.filter { vc.selectedSources.contains($0.source!) }
+        userSettingsManager.whitelistedSources = dataSource.selectedSources
+        
+        filteredNewsViewModels = newsViewModels.filter { dataSource.selectedSources.contains($0.source!) }
         UIView.transition(
             with: tableView,
             duration: 0.30,
