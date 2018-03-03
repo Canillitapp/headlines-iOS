@@ -14,7 +14,8 @@ import ViewAnimator
 class NewsTableViewController: UITableViewController,
                                 NewsCellViewModelDelegate,
                                 UIViewControllerTransitioningDelegate,
-                                SFSafariViewControllerDelegate {
+                                SFSafariViewControllerDelegate,
+                                UIViewControllerPreviewingDelegate {
     
     var news: [News] = [] {
         didSet {
@@ -264,9 +265,13 @@ class NewsTableViewController: UITableViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress))
-        longPressRecognizer.delaysTouchesBegan = true
-        tableView.addGestureRecognizer(longPressRecognizer)
+        if traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: tableView)
+        } else {
+            let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress))
+            longPressRecognizer.delaysTouchesBegan = true
+            tableView.addGestureRecognizer(longPressRecognizer)
+        }
         
         guard let ds = self.newsDataSource else {
             return
@@ -519,5 +524,33 @@ class NewsTableViewController: UITableViewController,
         
         let activity = ShareCanillitapActivity(withNews: n)
         return [activity]
+    }
+    
+    // MARK: UIViewControllerPreviewingDelegate
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing,
+                           viewControllerForLocation location: CGPoint) -> UIViewController? {
+        
+        guard let indexPath = tableView.indexPathForRow(at: tableView.convert(location, from: view)) else {
+            return nil
+        }
+        
+        let news = filteredNewsViewModels[indexPath.row].news
+        
+        let storyboard = UIStoryboard(name: "NewsPreview", bundle: nil)
+        let vc: NewsPreviewViewController? = storyboard.instantiateInitialViewController() as? NewsPreviewViewController
+        vc?.news = news
+        vc?.preferredContentSize = CGSize(width: 300, height: 300)
+        selectedNews = news
+        return vc
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        guard let url = selectedNews?.url else {
+            return
+        }
+        
+        let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
+        vc.delegate = self
+        present(vc, animated: true, completion: nil)
     }
 }
