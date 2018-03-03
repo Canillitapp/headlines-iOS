@@ -18,15 +18,17 @@ class ShareCanillitapActivity: UIActivity {
     
     var news: News
     
-    // MARK: Initializer
+    class func canillitappURL(fromNews news: News) -> String {
+        return "https://www.canillitapp.com/article/\(news.identifier!)?source=iOS"
+    }
     
+    // MARK: Initializer
     init(withNews news: News) {
         self.news = news
         super.init()
     }
     
     // MARK: Overrides
-    
     override func canPerform(withActivityItems activityItems: [Any]) -> Bool {
         return true
     }
@@ -36,8 +38,7 @@ class ShareCanillitapActivity: UIActivity {
     }
     
     override func perform() {
-        let urlToShare = "https://www.canillitapp.com/article/\(self.news.identifier!)?source=iOS"
-        UIPasteboard.general.string = urlToShare
+        UIPasteboard.general.string = ShareCanillitapActivity.canillitappURL(fromNews: self.news)
         activityDidFinish(true)
     }
 }

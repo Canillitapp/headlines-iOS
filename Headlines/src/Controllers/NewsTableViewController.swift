@@ -148,8 +148,26 @@ class NewsTableViewController: UITableViewController,
         }
         
         let viewModel = filteredNewsViewModels[indexPath.row]
-        let activity = ShareCanillitapActivity(withNews: viewModel.news)
-        let vc = UIActivityViewController(activityItems: [], applicationActivities: [activity])
+        
+        let vc = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let shareAction = UIAlertAction(title: "Compartir Noticia", style: .default) { (_) in
+            UIPasteboard.general.string = ShareCanillitapActivity.canillitappURL(fromNews: viewModel.news)
+            vc.dismiss(animated: true, completion: nil)
+        }
+        vc.addAction(shareAction)
+        
+        let reactAction = UIAlertAction(title: "Agregar Reacción", style: .default) { [weak self] (_) in
+            vc.dismiss(animated: false, completion: nil)
+            self?.performSegue(withIdentifier: "reaction", sender: viewModel)
+        }
+        vc.addAction(reactAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel) { (_) in
+            vc.dismiss(animated: true, completion: nil)
+        }
+        vc.addAction(cancelAction)
+        
         present(vc, animated: true, completion: nil)
     }
     
