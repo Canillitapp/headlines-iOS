@@ -12,28 +12,50 @@ class FilterViewController: UIViewController,
                             UIGestureRecognizerDelegate {
     
     var filterSourcesDataSource: FilterSourcesDataSource?
+    var filterCategoriesDataSource: FilterCategoriesDataSource?
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var sourcesCollectionView: DynamicHeightCollectionView!
+    @IBOutlet weak var categoriesCollectionView: DynamicHeightCollectionView!
+    
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var containerStackView: UIStackView!
+    
+    func setupSourcesCollectionView() {
+        sourcesCollectionView.layer.cornerRadius = 10
+        sourcesCollectionView.allowsMultipleSelection = true
+        
+        filterSourcesDataSource?.collectionView = sourcesCollectionView
+        sourcesCollectionView.dataSource = self.filterSourcesDataSource
+        sourcesCollectionView.delegate = self.filterSourcesDataSource
+        
+        guard let flowLayout = sourcesCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return
+        }
+        
+        flowLayout.estimatedItemSize = CGSize(width: 100, height: 100)
+    }
+    
+    func setupCategoriesCollectionView() {
+        categoriesCollectionView.layer.cornerRadius = 10
+        
+        filterCategoriesDataSource?.collectionView = categoriesCollectionView
+        categoriesCollectionView.dataSource = self.filterCategoriesDataSource
+        categoriesCollectionView.delegate = self.filterCategoriesDataSource
+        
+        guard let flowLayout = categoriesCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return
+        }
+        
+        flowLayout.estimatedItemSize = CGSize(width: 100, height: 100)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         filterButton.layer.cornerRadius = 10
         
-        collectionView.layer.cornerRadius = 10
-        collectionView.allowsMultipleSelection = true
-        
-        filterSourcesDataSource?.collectionView = collectionView
-        collectionView.dataSource = self.filterSourcesDataSource
-        collectionView.delegate = self.filterSourcesDataSource
-        
-        guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
-            return
-        }
-        
-        flowLayout.estimatedItemSize = CGSize(width: 100, height: 100)
+        setupSourcesCollectionView()
+        setupCategoriesCollectionView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
