@@ -19,20 +19,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WkU-8b-Xxh">
-                                <rect key="frame" x="0.0" y="20" width="375" height="200"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="220"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="bEP-n0-3dI"/>
+                                    <constraint firstAttribute="height" constant="220" id="bEP-n0-3dI"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Netflix: las películas que podemos ver en Marzo 2018" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ps2-Ai-JdE">
-                                <rect key="frame" x="10" y="228" width="355" height="21"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Netflix: las películas que podemos ver en Marzo 2018" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ps2-Ai-JdE">
+                                <rect key="frame" x="10" y="248" width="355" height="36"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                 <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIc-Or-9Vj">
-                                <rect key="frame" x="10" y="253" width="355" height="18"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <rect key="frame" x="10" y="292" width="355" height="16"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" red="0.29803922770000002" green="0.29803922770000002" blue="0.29803922770000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -42,7 +42,7 @@
                             <constraint firstItem="WkU-8b-Xxh" firstAttribute="top" secondItem="cMt-XE-eeT" secondAttribute="top" id="5jL-wb-0YF"/>
                             <constraint firstItem="cMt-XE-eeT" firstAttribute="trailing" secondItem="WkU-8b-Xxh" secondAttribute="trailing" id="LFz-B7-Fgt"/>
                             <constraint firstItem="ps2-Ai-JdE" firstAttribute="leading" secondItem="cMt-XE-eeT" secondAttribute="leading" constant="10" id="UA4-0J-5Gu"/>
-                            <constraint firstItem="bIc-Or-9Vj" firstAttribute="top" secondItem="ps2-Ai-JdE" secondAttribute="bottom" constant="4" id="ZhS-OT-NK3"/>
+                            <constraint firstItem="bIc-Or-9Vj" firstAttribute="top" secondItem="ps2-Ai-JdE" secondAttribute="bottom" constant="8" id="ZhS-OT-NK3"/>
                             <constraint firstItem="bIc-Or-9Vj" firstAttribute="leading" secondItem="ps2-Ai-JdE" secondAttribute="leading" id="ddI-0a-W4D"/>
                             <constraint firstItem="WkU-8b-Xxh" firstAttribute="leading" secondItem="cMt-XE-eeT" secondAttribute="leading" id="ffw-Uq-hzd"/>
                             <constraint firstItem="cMt-XE-eeT" firstAttribute="trailing" secondItem="ps2-Ai-JdE" secondAttribute="trailing" constant="10" id="i6P-al-gVI"/>
