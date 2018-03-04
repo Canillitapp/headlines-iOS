@@ -151,6 +151,7 @@ class NewsTableViewController: UITableViewController,
         let viewModel = filteredNewsViewModels[indexPath.row]
         
         let vc = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        vc.popoverPresentationController?.sourceView = tableView.cellForRow(at: indexPath)
         
         let shareAction = UIAlertAction(title: "Compartir Noticia", style: .default) { (_) in
             UIPasteboard.general.string = ShareCanillitapActivity.canillitappURL(fromNews: viewModel.news)
