@@ -99,6 +99,8 @@
 		67BA65C71FCB65B400411A06 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BA65C61FCB65B400411A06 /* TodayViewController.swift */; };
 		67BA65CA1FCB65B400411A06 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67BA65C81FCB65B400411A06 /* MainInterface.storyboard */; };
 		67BA65CE1FCB65B400411A06 /* Canillitapp Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 67BA65C21FCB65B400411A06 /* Canillitapp Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		67BC0911204B33F200796B8B /* NewsPreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67BC090F204B33F200796B8B /* NewsPreview.storyboard */; };
+		67BC0913204B35D400796B8B /* NewsPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BC0912204B35D400796B8B /* NewsPreviewViewController.swift */; };
 		67C083CB204AF0F3006BA519 /* FilterCategoriesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C083CA204AF0F3006BA519 /* FilterCategoriesDataSource.swift */; };
 		67C3CD3D1D6D1876003CC04E /* TrendingInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C3CD3C1D6D1876003CC04E /* TrendingInterfaceController.swift */; };
 		67C3CD3F1D6D1A68003CC04E /* TrendingRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C3CD3E1D6D1A68003CC04E /* TrendingRowController.swift */; };
@@ -303,6 +305,8 @@
 		67BA65C61FCB65B400411A06 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		67BA65C91FCB65B400411A06 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		67BA65CB1FCB65B400411A06 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		67BC0910204B33F200796B8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/NewsPreview.storyboard; sourceTree = "<group>"; };
+		67BC0912204B35D400796B8B /* NewsPreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsPreviewViewController.swift; sourceTree = "<group>"; };
 		67C083CA204AF0F3006BA519 /* FilterCategoriesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FilterCategoriesDataSource.swift; path = DataSources/FilterCategoriesDataSource.swift; sourceTree = "<group>"; };
 		67C3CD3C1D6D1876003CC04E /* TrendingInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingInterfaceController.swift; sourceTree = "<group>"; };
 		67C3CD3E1D6D1A68003CC04E /* TrendingRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingRowController.swift; sourceTree = "<group>"; };
@@ -563,6 +567,7 @@
 				671266021F4CEEBE0005CF4B /* MyReactions.storyboard */,
 				678A17421F4A1D9F00D84793 /* Reactions.storyboard */,
 				671265FF1F4CEDB60005CF4B /* News.storyboard */,
+				67BC090F204B33F200796B8B /* NewsPreview.storyboard */,
 				67E10ACC1F637FAA009F017C /* Filter.storyboard */,
 				671266051F4CEF0C0005CF4B /* Trending.storyboard */,
 				675A81E81D6BF6E8000DC680 /* Assets.xcassets */,
@@ -714,14 +719,15 @@
 			isa = PBXGroup;
 			children = (
 				67E10ACF1F6385FE009F017C /* FilterViewController.swift */,
-				6757E981201AC9FE002AC331 /* SettingsViewController.swift */,
 				671266081F4CEF980005CF4B /* InitialTabBarController.swift */,
 				67505DDB1FB1360B0095EFE0 /* LoadingViewController.swift */,
 				67D434F01EB0000C001A79D8 /* MyReactionsViewController.swift */,
+				67BC0912204B35D400796B8B /* NewsPreviewViewController.swift */,
 				674770241E99D28E003D5AF1 /* NewsTableViewController.swift */,
 				43CC643C1EBBE7E90066D49E /* OrientationAwareControllers.swift */,
 				67CE08B21E903B2D00D5911E /* ReactionPickerViewController.swift */,
 				67F39C191EB2DEE600CF99F2 /* SearchViewController.swift */,
+				6757E981201AC9FE002AC331 /* SettingsViewController.swift */,
 				67FD84DA1D6BF85D00BACAFC /* TrendingCardsViewController.swift */,
 			);
 			path = Controllers;
@@ -1076,6 +1082,7 @@
 			files = (
 				6798B67C1EBAA7270079B8E1 /* config.plist in Resources */,
 				678A17441F4A1D9F00D84793 /* Reactions.storyboard in Resources */,
+				67BC0911204B33F200796B8B /* NewsPreview.storyboard in Resources */,
 				676E1C201EECA7EB00EC71A5 /* GET-recent.json in Resources */,
 				67E10ACE1F637FAA009F017C /* Filter.storyboard in Resources */,
 				6775419C1EF234A30034FABD /* Settings.bundle in Resources */,
@@ -1418,6 +1425,7 @@
 				43CC643D1EBBE7E90066D49E /* OrientationAwareControllers.swift in Sources */,
 				670D6D0D1FB3F2DD003B5B33 /* UIViewController+Switcher.swift in Sources */,
 				670D6D081FB3E098003B5B33 /* ScreenSwitcherViewController.swift in Sources */,
+				67BC0913204B35D400796B8B /* NewsPreviewViewController.swift in Sources */,
 				6767C59D204A4F6F00D909E1 /* FilterSourcesDataSource.swift in Sources */,
 				6757E984201ACCF2002AC331 /* UsersService.swift in Sources */,
 				67E10AD01F6385FE009F017C /* FilterViewController.swift in Sources */,
@@ -1588,6 +1596,14 @@
 			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
+		67BC090F204B33F200796B8B /* NewsPreview.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				67BC0910204B33F200796B8B /* Base */,
+			);
+			name = NewsPreview.storyboard;
+			sourceTree = "<group>";
+		};
 		67E10ACC1F637FAA009F017C /* Filter.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -1643,7 +1659,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 386;
+				CURRENT_PROJECT_VERSION = 400;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				IBSC_MODULE = Watch_Extension;
 				INFOPLIST_FILE = Watch/Info.plist;
@@ -1664,7 +1680,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 386;
+				CURRENT_PROJECT_VERSION = 400;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				IBSC_MODULE = Watch_Extension;
 				INFOPLIST_FILE = Watch/Info.plist;
@@ -1686,7 +1702,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 386;
+				CURRENT_PROJECT_VERSION = 400;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1708,7 +1724,7 @@
 			baseConfigurationReference = 5EA3242399336F7A8DE27E42 /* Pods-Watch Extension.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 386;
+				CURRENT_PROJECT_VERSION = 400;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1855,7 +1871,7 @@
 				CODE_SIGN_ENTITLEMENTS = Headlines/Headlines.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 386;
+				CURRENT_PROJECT_VERSION = 400;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = Headlines/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -1879,7 +1895,7 @@
 				CODE_SIGN_ENTITLEMENTS = Headlines/Headlines.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 386;
+				CURRENT_PROJECT_VERSION = 400;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = Headlines/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
