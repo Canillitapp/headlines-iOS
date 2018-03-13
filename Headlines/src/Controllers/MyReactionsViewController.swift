@@ -13,7 +13,7 @@ import SafariServices
 import Crashlytics
 import ViewAnimator
 
-class MyReactionsViewController: UITableViewController {
+class MyReactionsViewController: UITableViewController, TabbedViewController {
     let reactionsService = ReactionsService()
     var reactions = [Reaction]()
     
@@ -147,5 +147,10 @@ class MyReactionsViewController: UITableViewController {
         if let url = n.url {
             openURL(url)
         }
+    }
+    
+    // MARK: - TabbedViewController
+    func tabbedViewControllerWasDoubleTapped() {
+        tableView.setContentOffset(CGPoint.zero, animated: true)
     }
 }
