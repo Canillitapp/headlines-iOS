@@ -81,12 +81,12 @@ class HeadlinesMockedUITests: XCTestCase {
         //  Go to Reciente tab
         app.tabBars.buttons["Reciente"].tap()
         
-        let cell = app.tables.cells.element(boundBy: 0)
+        let cell = app.tables.cells.element(boundBy: 1)
         let exists = NSPredicate(format: "exists == 1")
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
         wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
         
-        //  Go to reacciones by tapping the "reaction cell"
+        //  Go to reacciones by tapping the "reaction button"
         cell.buttons["add reaction icon"].tap()
         
         let reaccionesStaticText = app.navigationBars["Reacciones"].otherElements["Reacciones"]
