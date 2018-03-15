@@ -15,7 +15,8 @@ class NewsTableViewController: UITableViewController,
                                 NewsCellViewModelDelegate,
                                 UIViewControllerTransitioningDelegate,
                                 SFSafariViewControllerDelegate,
-                                UIViewControllerPreviewingDelegate {
+                                UIViewControllerPreviewingDelegate,
+                                TabbedViewController {
     
     var news: [News] = [] {
         didSet {
@@ -554,5 +555,10 @@ class NewsTableViewController: UITableViewController,
         let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
         vc.delegate = self
         present(vc, animated: true, completion: nil)
+    }
+    
+    // MARK: - TabbedViewController
+    func tabbedViewControllerWasDoubleTapped() {
+        tableView.setContentOffset(CGPoint.zero, animated: true)
     }
 }

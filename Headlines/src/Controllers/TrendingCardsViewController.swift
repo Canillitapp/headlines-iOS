@@ -11,7 +11,10 @@ import SDWebImage
 import Crashlytics
 import StoreKit
 
-class TrendingCardsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+class TrendingCardsViewController: UIViewController,
+                                    UICollectionViewDelegate,
+                                    UICollectionViewDataSource,
+                                    TabbedViewController {
 
     var topics = [Topic]()
     var footerView: UICollectionReusableView?
@@ -422,5 +425,10 @@ class TrendingCardsViewController: UIViewController, UICollectionViewDelegate, U
             
             requestTrendingTopicsWithDate(newDate!)
         }
+    }
+    
+    // MARK: - TabbedViewController
+    func tabbedViewControllerWasDoubleTapped() {
+        collectionView.setContentOffset(CGPoint.zero, animated: true)
     }
 }

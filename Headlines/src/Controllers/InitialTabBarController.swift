@@ -8,9 +8,11 @@
 
 import UIKit
 
-class InitialTabBarController: UITabBarController {
+class InitialTabBarController: UITabBarController, UITabBarControllerDelegate {
     
     var trendingTopics: [Topic]?
+    var lastSelectedTabBarItem: String?
+    var tabs = [String: UIViewController]()
     
     func navigationControllerFrom(_ controller: UIViewController) -> UINavigationController {
         let navController = UINavigationController(rootViewController: controller)
@@ -117,6 +119,29 @@ class InitialTabBarController: UITabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setViewControllers(initialControllers(), animated: true)
+        let controllers = initialControllers()
+        setViewControllers(controllers, animated: true)
+        delegate = self
+        
+        /*  generate a map [String: UIViewController], so it will be easy
+         *  to recognize which viewcontroller has been double tapped
+         */
+        controllers.forEach { tabs[$0.tabBarItem.title!] = $0 }
+        lastSelectedTabBarItem = "Destacados"
+    }
+    
+    // MARK: UITabBarControllerDelegate
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        guard let title = item.title else {
+            return
+        }
+        
+        if lastSelectedTabBarItem == title {
+            if let nav = tabs[title] as? UINavigationController,
+                let vc = nav.topViewController as? TabbedViewController {
+                vc.tabbedViewControllerWasDoubleTapped()
+            }
+        }
+        lastSelectedTabBarItem = title
     }
 }
