@@ -30,11 +30,11 @@ class HeadlinesMockedUITests: XCTestCase {
         super.tearDown()
     }
 
-    func testMockedReactions() {
+    func testMockedProfile() {
         let app = XCUIApplication()
         
-        //  Go to Reacciones tab
-        app.tabBars.buttons["Reacciones"].tap()
+        //  Go to Perfil tab
+        app.tabBars.buttons["Perfil"].tap()
         
         let cell = app.tables.cells.element(boundBy: 0)
         let exists = NSPredicate(format: "exists == 1")
