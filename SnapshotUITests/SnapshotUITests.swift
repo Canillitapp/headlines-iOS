@@ -97,11 +97,11 @@ class SnapshotUITests: XCTestCase {
         snapshot("03-recent-news-filter")
     }
     
-    func testReactions() {
+    func testProfile() {
         let app = XCUIApplication()
         
         //  Go to Reacciones tab
-        app.tabBars.buttons["Reacciones"].tap()
+        app.tabBars.buttons["Perfil"].tap()
         
         //  There should be at least 1 cell rendered
         let cell = app.tables.cells.element(boundBy: 0)
@@ -110,7 +110,7 @@ class SnapshotUITests: XCTestCase {
         
         wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
         sleep(5)
-        snapshot("04-reactions")
+        snapshot("04-profile")
     }
     
     func testReactionScreenFromMockedSearch() {

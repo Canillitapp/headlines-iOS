@@ -10,11 +10,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Reacciones-->
+        <!--Perfil-->
         <scene sceneID="5CY-2P-ZP9">
             <objects>
                 <navigationController id="A1F-p7-8G2" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Reacciones" image="reactions_icon" selectedImage="reactions_icon_selected" id="mKH-NW-428"/>
+                    <tabBarItem key="tabBarItem" title="Perfil" image="profile_icon" selectedImage="profile_icon_selected" id="mKH-NW-428"/>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" barStyle="black" translucent="NO" id="Kbg-YG-sjR">
@@ -34,10 +34,10 @@
             </objects>
             <point key="canvasLocation" x="-55" y="1341"/>
         </scene>
-        <!--Reacciones-->
+        <!--Perfil-->
         <scene sceneID="Jq0-gB-z2K">
             <objects>
-                <tableViewController id="smA-1P-cAx" customClass="MyReactionsViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="smA-1P-cAx" customClass="ProfileViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="28" sectionFooterHeight="28" id="LML-tk-e9O">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -102,7 +102,7 @@
                             <outlet property="delegate" destination="smA-1P-cAx" id="45L-tn-IV1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Reacciones" id="tBf-3c-wSb">
+                    <navigationItem key="navigationItem" title="Perfil" id="tBf-3c-wSb">
                         <barButtonItem key="rightBarButtonItem" title="Configuración" image="gear_icon" id="LLw-vY-Auk">
                             <connections>
                                 <segue destination="1j1-mS-nHd" kind="show" id="tkj-hy-WUY"/>
@@ -165,7 +165,7 @@
     </scenes>
     <resources>
         <image name="gear_icon" width="25" height="25"/>
-        <image name="reactions_icon" width="23" height="20"/>
-        <image name="reactions_icon_selected" width="24" height="20"/>
+        <image name="profile_icon" width="26" height="24"/>
+        <image name="profile_icon_selected" width="26" height="24"/>
     </resources>
 </document>

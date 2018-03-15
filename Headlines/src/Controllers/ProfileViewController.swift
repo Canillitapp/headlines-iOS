@@ -1,5 +1,5 @@
 //
-//  MyReactionsViewController.swift
+//  ProfileViewController.swift
 //  Headlines
 //
 //  Created by Ezequiel Becerra on 4/25/17.
@@ -13,7 +13,7 @@ import SafariServices
 import Crashlytics
 import ViewAnimator
 
-class MyReactionsViewController: UITableViewController, TabbedViewController {
+class ProfileViewController: UITableViewController, TabbedViewController {
     let reactionsService = ReactionsService()
     var reactions = [Reaction]()
     
@@ -110,7 +110,7 @@ class MyReactionsViewController: UITableViewController, TabbedViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        Answers.logCustomEvent(withName: "my_reactions_appear", customAttributes: nil)
+        Answers.logCustomEvent(withName: "profile_appear", customAttributes: nil)
     }
     
     // MARK: UITableViewDataSource

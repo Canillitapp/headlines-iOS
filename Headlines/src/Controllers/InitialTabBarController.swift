@@ -85,10 +85,9 @@ class InitialTabBarController: UITabBarController, UITabBarControllerDelegate {
         return navigationControllerFrom(recentsViewController)
     }
     
-    func myReactionsTabViewController() -> UIViewController? {
-        let myReactionsStoryboard = UIStoryboard(name: "MyReactions",
-                                                 bundle: Bundle.main)
-        return myReactionsStoryboard.instantiateInitialViewController()
+    func profileTabViewController() -> UIViewController? {
+        let profileStoryboard = UIStoryboard(name: "Profile", bundle: Bundle.main)
+        return profileStoryboard.instantiateInitialViewController()
     }
     
     func initialControllers() -> [UIViewController] {
@@ -109,9 +108,9 @@ class InitialTabBarController: UITabBarController, UITabBarControllerDelegate {
             controllers.append(recentsViewController)
         }
         
-        //  "Reacciones" tab
-        if let myReactionsViewController = myReactionsTabViewController() {
-            controllers.append(myReactionsViewController)
+        //  "Perfil" tab
+        if let profileViewController = profileTabViewController() {
+            controllers.append(profileViewController)
         }
         
         return controllers
