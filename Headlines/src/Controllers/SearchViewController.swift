@@ -76,5 +76,7 @@ class SearchViewController: NewsTableViewController, UISearchBarDelegate {
         self.preferredDateStyle = .short
         
         Answers.logCustomEvent(withName: "search_appear", customAttributes: nil)
+        
+        searchBar.becomeFirstResponder()
     }
 }
