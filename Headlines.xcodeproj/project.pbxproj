@@ -1878,7 +1878,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BF6FCFB06FB814847D111266 /* Pods-Canillitapp.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Headlines/Headlines.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1902,7 +1901,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D92054C908EB67709F7A5EC5 /* Pods-Canillitapp.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Headlines/Headlines.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
