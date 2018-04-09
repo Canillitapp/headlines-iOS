@@ -183,6 +183,8 @@ extension InitialTabBarController: SFSafariViewControllerDelegate {
             return
         }
         
+        newsToOpen = n
+        
         presentNews(n)
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
