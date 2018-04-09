@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import SafariServices
 
-class InitialTabBarController: UITabBarController, UITabBarControllerDelegate {
+class InitialTabBarController: UITabBarController, UITabBarControllerDelegate, SFSafariViewControllerDelegate {
     
     var trendingTopics: [Topic]?
     var lastSelectedTabBarItem: String?
     var tabs = [String: UIViewController]()
+    var newsToOpen: News?
     
     func navigationControllerFrom(_ controller: UIViewController) -> UINavigationController {
         let navController = UINavigationController(rootViewController: controller)
@@ -116,6 +118,25 @@ class InitialTabBarController: UITabBarController, UITabBarControllerDelegate {
         return controllers
     }
     
+    private func presentNews(_ news: News) {
+        let vc = SFSafariViewController(url: news.url!, entersReaderIfAvailable: true)
+        vc.delegate = self
+        present(vc, animated: true, completion: nil)
+    }
+    
+    @objc private func openNews(notification: Notification) {
+        guard let n = notification.object as? News else {
+            return
+        }
+        
+        presentNews(n)
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        appDelegate.newsToOpen = nil
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         let controllers = initialControllers()
@@ -127,6 +148,30 @@ class InitialTabBarController: UITabBarController, UITabBarControllerDelegate {
          */
         controllers.forEach { tabs[$0.tabBarItem.title!] = $0 }
         lastSelectedTabBarItem = "Destacados"
+        
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(openNews(notification:)),
+                                               name: .notificationNewsTapped,
+                                               object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        /*  did the user tap a push notification with a postId?
+         *  open it on a modal.
+         */
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        
+        newsToOpen = appDelegate.newsToOpen
+        
+        if let n = newsToOpen {
+            presentNews(n)
+        }
+        
+        appDelegate.newsToOpen = nil
     }
     
     // MARK: UITabBarControllerDelegate
@@ -142,5 +187,18 @@ class InitialTabBarController: UITabBarController, UITabBarControllerDelegate {
             }
         }
         lastSelectedTabBarItem = title
+    }
+    
+    // MARK: SFSafariViewControllerDelegate
+    func safariViewController(_ controller: SFSafariViewController,
+                              activityItemsFor URL: URL,
+                              title: String?) -> [UIActivity] {
+        
+        guard let n = newsToOpen  else {
+            return []
+        }
+        
+        let activity = ShareCanillitapActivity(withNews: n)
+        return [activity]
     }
 }
