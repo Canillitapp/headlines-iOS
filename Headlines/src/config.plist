@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>base_url</key>
-	<string>http://api.canillitapp.com</string>
+	<string>https://api.canillitapp.com</string>
 </dict>
 </plist>
