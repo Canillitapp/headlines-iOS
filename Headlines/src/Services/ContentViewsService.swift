@@ -56,7 +56,7 @@ class ContentViewsService: HTTPService {
                 ]
             
             _ = self.request(method: .POST,
-                             path: "content-views",
+                             path: "content-views/",
                              params: params,
                              success: successBlock,
                              fail: failBlock)
