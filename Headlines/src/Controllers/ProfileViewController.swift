@@ -15,9 +15,18 @@ import ViewAnimator
 
 class ProfileViewController: UITableViewController, TabbedViewController {
     let reactionsService = ReactionsService()
+    let contentViewsService = ContentViewsService()
     var reactions = [Reaction]()
     
     // MARK: Private
+    private func trackOpenNews(_ news: News) {
+        guard let identifier = news.identifier else {
+            return
+        }
+        
+        contentViewsService.postContentView(identifier, context: .reactions, success: nil, fail: nil)
+    }
+    
     func openURL(_ url: URL) {
         guard let shouldOpenNewsInsideApp = UserDefaults.standard.object(forKey: "open_news_inside_app") as? Bool else {
             //  By default, open the news using Safari outside the app
@@ -143,6 +152,8 @@ class ProfileViewController: UITableViewController, TabbedViewController {
         guard let n = r.news else {
             return
         }
+        
+        trackOpenNews(n)
         
         if let url = n.url {
             openURL(url)

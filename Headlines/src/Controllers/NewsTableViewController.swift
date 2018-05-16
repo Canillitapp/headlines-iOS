@@ -35,7 +35,11 @@ class NewsTableViewController: UITableViewController,
     var selectedNews: News?
     
     var preferredDateStyle: DateFormatter.Style = .none
+    var trackContextFrom: ContentViewContextFrom?
+    
     let reactionsService = ReactionsService()
+    let contentViewsService = ContentViewsService()
+    
     var newsViewModels: [NewsCellViewModel] = []
     var filteredNewsViewModels: [NewsCellViewModel] = []
     var newsDataSource: NewsTableViewControllerDataSource?
@@ -43,7 +47,19 @@ class NewsTableViewController: UITableViewController,
     let userSettingsManager = UserSettingsManager()
     
     // MARK: Private
+    private func trackOpenNews(_ news: News) {
+        guard let identifier = news.identifier,
+                let contextFrom = trackContextFrom else {
+            return
+        }
+        
+        contentViewsService.postContentView(identifier, context: contextFrom, success: nil, fail: nil)
+    }
+    
     func openNews(_ news: News) {
+        
+        trackOpenNews(news)
+        
         guard let url = news.url else {
             return
         }
