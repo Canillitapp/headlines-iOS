@@ -268,6 +268,7 @@ class TrendingCardsViewController: UIViewController,
                 
                 vc.title = topicName
                 vc.news = topicNews
+                vc.trackContextFrom = .trending
             }
         }
     }

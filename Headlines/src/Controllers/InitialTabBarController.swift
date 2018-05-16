@@ -65,6 +65,7 @@ class InitialTabBarController: UITabBarController, UITabBarControllerDelegate {
         popularViewController.title = "Popular"
         popularViewController.analyticsIdentifier = "popular"
         popularViewController.preferredDateStyle = .short
+        popularViewController.trackContextFrom = .popular
             
         return navigationControllerFrom(popularViewController)
     }
@@ -85,6 +86,7 @@ class InitialTabBarController: UITabBarController, UITabBarControllerDelegate {
         recentsViewController.tabBarItem = recentsTabBarItem
         recentsViewController.title = "Reciente"
         recentsViewController.analyticsIdentifier = "recent"
+        recentsViewController.trackContextFrom = .recent
         
         return navigationControllerFrom(recentsViewController)
     }

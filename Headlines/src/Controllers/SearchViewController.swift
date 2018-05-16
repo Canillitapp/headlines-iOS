@@ -74,6 +74,7 @@ class SearchViewController: NewsTableViewController, UISearchBarDelegate {
         super.viewDidAppear(animated)
         
         self.preferredDateStyle = .short
+        trackContextFrom = .search
         
         Answers.logCustomEvent(withName: "search_appear", customAttributes: nil)
         
