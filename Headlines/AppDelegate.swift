@@ -11,6 +11,10 @@ import Fabric
 import Crashlytics
 import UserNotifications
 
+extension Notification.Name {
+    static let notificationNewsTapped = Notification.Name("notification_news_tapped")
+}
+
 @UIApplicationMain
 class AppDelegate: UIResponder,
                     UIApplicationDelegate,
@@ -25,6 +29,7 @@ class AppDelegate: UIResponder,
     var newsDataTask: URLSessionDataTask?
     var newsFetched: [Topic]?
     let userSettingsManager = UserSettingsManager()
+    var newsToOpen: News?
     
     func registerNotificationActions() {
         let viewAction = UNNotificationAction(identifier: "view", title: "Ver", options: [.foreground])
@@ -133,9 +138,6 @@ class AppDelegate: UIResponder,
         }
         
         switch response.actionIdentifier {
-        case "view":
-        // TO-DO: open a Safari ViewController as modal and open the URL
-            break
         case "like":
             reactionsService.postReaction(
                 "👍",
@@ -150,8 +152,15 @@ class AppDelegate: UIResponder,
                 success: nil,
                 fail: nil
             )
+        //  Responds "view" action and default one
         default:
-            break
+            if let postURL = response.notification.request.content.userInfo["post-url"] as? String {
+                newsToOpen = News()
+                newsToOpen?.url = URL(string: postURL)
+                newsToOpen?.identifier = "\(postId)"
+                
+                NotificationCenter.default.post(name: .notificationNewsTapped, object: newsToOpen)
+            }
         }
         
         completionHandler()

@@ -9,6 +9,7 @@
 import UIKit
 
 class OrientationAwareViewController: UIViewController {
+    
     override open var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
         return .portrait
     }
@@ -22,6 +23,7 @@ class OrientationAwareViewController: UIViewController {
     }
     
     override var shouldAutorotate: Bool {
-        return UIDevice.current.userInterfaceIdiom == .pad
+        return UIDevice.current.userInterfaceIdiom == .pad ||
+            (UIDevice.current.userInterfaceIdiom == .phone && UIDevice.current.orientation != .portrait)
     }
 }

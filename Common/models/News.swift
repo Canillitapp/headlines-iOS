@@ -29,10 +29,14 @@ class News: NSObject {
         return r.first
     }
     
+    override init() {
+        super.init()
+    }
+    
     init(json: JSON) {
         
-        if let news_id = json["news_id"].int {
-            identifier = "\(news_id)"
+        if let newsId = json["news_id"].int {
+            identifier = "\(newsId)"
         }
         
         title = json["title"].string
