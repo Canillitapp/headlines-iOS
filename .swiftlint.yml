@@ -1,6 +1,7 @@
 excluded:
   - Pods
   - fastlane
+  - vendor
 
 disabled_rules:
   - force_cast
