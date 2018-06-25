@@ -126,13 +126,13 @@
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DAo-by-mKB">
                                             <size key="itemSize" width="50" height="50"/>
-                                            <size key="headerReferenceSize" width="50" height="50"/>
-                                            <size key="footerReferenceSize" width="50" height="50"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="5" maxX="0.0" maxY="5"/>
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="cell" id="v0Y-rH-pBd" customClass="KeywordCollectionViewCell" customModule="Canillitapp" customModuleProvider="target">
-                                                <rect key="frame" x="37.5" y="55" width="300" height="260"/>
+                                                <rect key="frame" x="37.5" y="5" width="300" height="260"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="300" height="260"/>
@@ -281,48 +281,6 @@
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
-                                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="header" id="dkB-oR-05D">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TEST" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="79P-Wf-EKm">
-                                                    <rect key="frame" x="8" y="8" width="359" height="50"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="50" id="wPg-zM-yL3"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                    <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <color key="backgroundColor" red="0.73551432289999996" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <constraints>
-                                                <constraint firstItem="79P-Wf-EKm" firstAttribute="top" secondItem="dkB-oR-05D" secondAttribute="topMargin" id="Arb-8k-O3s"/>
-                                                <constraint firstItem="79P-Wf-EKm" firstAttribute="leading" secondItem="dkB-oR-05D" secondAttribute="leadingMargin" id="Ius-Qa-hQJ"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="79P-Wf-EKm" secondAttribute="trailing" id="fyZ-Rr-r9K"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="79P-Wf-EKm" secondAttribute="bottom" id="jxp-if-z9f"/>
-                                            </constraints>
-                                        </collectionReusableView>
-                                        <collectionReusableView key="sectionFooterView" hidden="YES" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="footer" id="pNQ-iS-XH1">
-                                            <rect key="frame" x="0.0" y="320" width="375" height="50"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="016-Jz-62W">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
-                                                </view>
-                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="QaN-nD-Nxo">
-                                                    <rect key="frame" x="177" y="15" width="20" height="20"/>
-                                                </activityIndicatorView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="QaN-nD-Nxo" firstAttribute="centerX" secondItem="pNQ-iS-XH1" secondAttribute="centerX" id="3y2-Q4-EM6"/>
-                                                <constraint firstItem="QaN-nD-Nxo" firstAttribute="centerY" secondItem="pNQ-iS-XH1" secondAttribute="centerY" id="LmG-8t-66t"/>
-                                                <constraint firstItem="016-Jz-62W" firstAttribute="leading" secondItem="pNQ-iS-XH1" secondAttribute="leading" id="RNm-hU-UaJ"/>
-                                                <constraint firstAttribute="trailing" secondItem="016-Jz-62W" secondAttribute="trailing" id="Vpb-bk-vwK"/>
-                                                <constraint firstItem="016-Jz-62W" firstAttribute="top" secondItem="pNQ-iS-XH1" secondAttribute="top" id="qJm-jZ-8VV"/>
-                                                <constraint firstAttribute="bottom" secondItem="016-Jz-62W" secondAttribute="bottom" id="s4H-Iq-Wee"/>
-                                            </constraints>
-                                        </collectionReusableView>
                                         <connections>
                                             <outlet property="dataSource" destination="cy7-rz-90p" id="24X-wf-Kyz"/>
                                             <outlet property="delegate" destination="cy7-rz-90p" id="AvC-qP-TRB"/>

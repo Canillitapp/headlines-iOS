@@ -20,6 +20,8 @@ class TrendingCardsViewController: UIViewController {
     var userSettingsManager = UserSettingsManager()
     @IBOutlet weak var collectionView: UICollectionView!
     
+    let categoriesContainerViewModel = CategoriesContainerViewModel()
+    
     var reviewViewModel = ReviewBannerViewModel()
     @IBOutlet weak var reviewButton: UIButton!
     @IBOutlet weak var reviewCancelButton: UIButton!
@@ -151,6 +153,14 @@ class TrendingCardsViewController: UIViewController {
         reviewView.isHidden = !self.reviewViewModel.shouldShowBanner()
         
         setupCollectionView()
+        
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            self.newsDataTask = appDelegate.newsDataTask
+            
+            if let n = appDelegate.newsFetched {
+                self.topics.append(contentsOf: n)
+            }
+        }
         
         if topics.count == 0 {
             startRefreshing()

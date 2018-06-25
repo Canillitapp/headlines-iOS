@@ -13,11 +13,37 @@ import Crashlytics
 
 // MARK: - UICollectionView misc
 extension TrendingCardsViewController {
+    
     func updateFooterView() {
         if let view = footerView {
             let shouldShowFooter = topics.count > 0 && newsDataTask?.state == .running
             view.isHidden = !shouldShowFooter
         }
+    }
+    
+    private func setupFooter() {
+        guard let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return
+        }
+        
+        let footerNib = UINib(nibName: "NewsFooterView", bundle: nil)
+        collectionView.register(footerNib,
+                                forSupplementaryViewOfKind: "UICollectionElementKindSectionFooter",
+                                withReuseIdentifier: "footer")
+        flowLayout.footerReferenceSize = CGSize(width: collectionView.bounds.size.width, height: 50)
+
+    }
+    
+    private func setupHeader() {
+        guard let flowLayout = collectionView?.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return
+        }
+        
+        let headerNib = UINib(nibName: "CategoriesHeaderView", bundle: nil)
+        collectionView.register(headerNib,
+                                forSupplementaryViewOfKind: "UICollectionElementKindSectionHeader",
+                                withReuseIdentifier: "categories")
+        flowLayout.headerReferenceSize = CGSize(width: collectionView.bounds.size.width, height: 50)
     }
     
     func updateCollectionViewCellSize() {
@@ -57,13 +83,8 @@ extension TrendingCardsViewController {
         //  http://stackoverflow.com/a/31224299/994129
         collectionView?.contentOffset = CGPoint(x: 0, y: -refreshCtrl.frame.size.height)
         
-        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-            self.newsDataTask = appDelegate.newsDataTask
-            
-            if let n = appDelegate.newsFetched {
-                self.topics.append(contentsOf: n)
-            }
-        }
+        setupHeader()
+        setupFooter()
     }
 }
 
@@ -154,7 +175,7 @@ extension TrendingCardsViewController: UICollectionViewDataSource {
     private func header(from collectionView: UICollectionView,
                         at indexPath: IndexPath) -> UICollectionReusableView {
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: "UICollectionElementKindSectionHeader",
-                                                                         withReuseIdentifier: "header",
+                                                                         withReuseIdentifier: "categories",
                                                                          for: indexPath)
         return headerView
     }
