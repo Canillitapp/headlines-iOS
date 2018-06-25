@@ -43,7 +43,7 @@ extension TrendingCardsViewController {
         collectionView.register(headerNib,
                                 forSupplementaryViewOfKind: "UICollectionElementKindSectionHeader",
                                 withReuseIdentifier: "categories")
-        flowLayout.headerReferenceSize = CGSize(width: collectionView.bounds.size.width, height: 50)
+        flowLayout.headerReferenceSize = CGSize(width: collectionView.bounds.size.width, height: 90)
     }
     
     func updateCollectionViewCellSize() {
@@ -160,8 +160,8 @@ extension TrendingCardsViewController: UICollectionViewDataSource {
         return cell
     }
     
-    private func cachedFooter(from collectionView: UICollectionView,
-                              at indexPath: IndexPath) -> UICollectionReusableView {
+    private func footer(from collectionView: UICollectionView,
+                        at indexPath: IndexPath) -> UICollectionReusableView {
         guard let view = footerView else {
             footerView = collectionView.dequeueReusableSupplementaryView(ofKind: "UICollectionElementKindSectionFooter",
                                                                          withReuseIdentifier: "footer",
@@ -174,17 +174,24 @@ extension TrendingCardsViewController: UICollectionViewDataSource {
     
     private func header(from collectionView: UICollectionView,
                         at indexPath: IndexPath) -> UICollectionReusableView {
+        
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: "UICollectionElementKindSectionHeader",
                                                                          withReuseIdentifier: "categories",
                                                                          for: indexPath)
-        return headerView
+        
+        guard let view = headerView as? CategoriesHeaderView else {
+            return headerView
+        }
+        
+        view.viewModel = categoriesContainerViewModel
+        return view
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         viewForSupplementaryElementOfKind kind: String,
                         at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == "UICollectionElementKindSectionFooter" {
-            return cachedFooter(from: collectionView, at: indexPath)
+            return footer(from: collectionView, at: indexPath)
         } else {
             return header(from: collectionView, at: indexPath)
         }
