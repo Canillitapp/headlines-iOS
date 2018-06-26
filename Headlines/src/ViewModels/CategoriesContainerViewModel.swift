@@ -11,8 +11,12 @@ import UIKit
 
 import SDWebImage
 
+protocol CategoriesContainerViewModelDelegate: class {
+    func didSelectCategory(_ category: Category)
+}
+
 class CategoriesContainerViewModel: NSObject {
-    
+    weak var delegate: CategoriesContainerViewModelDelegate?
     var categories: [Category]?
     
     private func mockedCategories() -> [Category] {
@@ -24,8 +28,9 @@ class CategoriesContainerViewModel: NSObject {
         return retVal
     }
     
-    override init() {
+    required init(delegate: CategoriesContainerViewModelDelegate?) {
         super.init()
+        self.delegate = delegate
         categories = mockedCategories()
     }
 }
@@ -68,4 +73,13 @@ extension CategoriesContainerViewModel: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 extension CategoriesContainerViewModel: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard let d = delegate,
+            let category = categories?[indexPath.row] else {
+            return
+        }
+        
+        d.didSelectCategory(category)
+    }
 }

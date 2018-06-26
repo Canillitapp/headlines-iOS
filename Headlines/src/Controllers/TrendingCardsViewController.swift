@@ -20,7 +20,7 @@ class TrendingCardsViewController: UIViewController {
     var userSettingsManager = UserSettingsManager()
     @IBOutlet weak var collectionView: UICollectionView!
     
-    let categoriesContainerViewModel = CategoriesContainerViewModel()
+    var categoriesContainerViewModel: CategoriesContainerViewModel?
     
     var reviewViewModel = ReviewBannerViewModel()
     @IBOutlet weak var reviewButton: UIButton!
@@ -149,6 +149,8 @@ class TrendingCardsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        categoriesContainerViewModel = CategoriesContainerViewModel(delegate: self)
+        
         setupReviewButtons()
         reviewView.isHidden = !self.reviewViewModel.shouldShowBanner()
         
@@ -217,6 +219,16 @@ class TrendingCardsViewController: UIViewController {
                 vc.news = topicNews
                 vc.trackContextFrom = .trending
             }
+        } else if identifier == "category" {
+            if let vc = segue.destination as? NewsTableViewController,
+                let category = sender as? Category {
+                
+                vc.title = category.name
+                vc.analyticsIdentifier = "category"
+                vc.trackContextFrom = .category
+                vc.preferredDateStyle = .short
+                vc.newsDataSource = CategoryNewsDataSource(category: category)
+            }
         }
     }
     
@@ -230,5 +242,13 @@ extension TrendingCardsViewController: TabbedViewController {
     
     func tabbedViewControllerWasDoubleTapped() {
         collectionView.setContentOffset(CGPoint.zero, animated: true)
+    }
+}
+
+// MARK: - CategoriesContainerViewModelDelegate
+extension TrendingCardsViewController: CategoriesContainerViewModelDelegate {
+    
+    func didSelectCategory(_ category: Category) {
+        performSegue(withIdentifier: "category", sender: category)
     }
 }

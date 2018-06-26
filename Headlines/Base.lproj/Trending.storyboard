@@ -46,6 +46,14 @@
             </objects>
             <point key="canvasLocation" x="1344" y="-309"/>
         </scene>
+        <!--news-->
+        <scene sceneID="XT2-JA-ghn">
+            <objects>
+                <viewControllerPlaceholder storyboardName="News" referencedIdentifier="news" id="qiB-lu-p14" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DJD-nh-ffq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1344" y="-240"/>
+        </scene>
         <!--Destacados-->
         <scene sceneID="ByY-dx-J6w">
             <objects>
@@ -311,6 +319,7 @@
                         <outlet property="reviewHeight" destination="4s4-62-XCM" id="NBV-Pw-H93"/>
                         <outlet property="reviewView" destination="ZFh-mp-o6l" id="8yM-Xb-r4U"/>
                         <segue destination="JJx-lL-xJt" kind="show" identifier="news" id="Bt9-kJ-1Ah"/>
+                        <segue destination="qiB-lu-p14" kind="show" identifier="category" id="fIa-Bg-ZRk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ja-bE-qcG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -325,7 +334,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" barStyle="black" searchBarStyle="prominent" placeholder="Buscar" showsCancelButton="YES" id="bOW-yt-F6l">
+                        <searchBar key="tableHeaderView" contentMode="redraw" misplaced="YES" barStyle="black" searchBarStyle="prominent" placeholder="Buscar" showsCancelButton="YES" id="bOW-yt-F6l">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <color key="tintColor" red="0.99607843139999996" green="0.15686274510000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>

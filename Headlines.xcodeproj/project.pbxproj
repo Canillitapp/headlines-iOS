@@ -63,6 +63,7 @@
 		674E7CF320E0909F007A8337 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E7CF220E0909F007A8337 /* CategoryCollectionViewCell.swift */; };
 		674E7CFF20E1BABC007A8337 /* UIImageEffects.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E7CFE20E1BABC007A8337 /* UIImageEffects.swift */; };
 		674E7D0120E1BB05007A8337 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E7D0020E1BB05007A8337 /* Category.swift */; };
+		674E7D0320E1CF9C007A8337 /* CategoryNewsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 674E7D0220E1CF9C007A8337 /* CategoryNewsDataSource.swift */; };
 		67505DDC1FB1360B0095EFE0 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67505DDB1FB1360B0095EFE0 /* LoadingViewController.swift */; };
 		6757C3071F4BD8FF0007C17F /* NewsTableViewControllerDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6757C3061F4BD8FF0007C17F /* NewsTableViewControllerDataSource.swift */; };
 		6757C30A1F4BDA620007C17F /* RecentNewsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6757C3091F4BDA620007C17F /* RecentNewsDataSource.swift */; };
@@ -281,6 +282,7 @@
 		674E7CF220E0909F007A8337 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		674E7CFE20E1BABC007A8337 /* UIImageEffects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIImageEffects.swift; sourceTree = "<group>"; };
 		674E7D0020E1BB05007A8337 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Category.swift; path = Headlines/src/Models/Category.swift; sourceTree = SOURCE_ROOT; };
+		674E7D0220E1CF9C007A8337 /* CategoryNewsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CategoryNewsDataSource.swift; path = DataSources/CategoryNewsDataSource.swift; sourceTree = "<group>"; };
 		67505DDB1FB1360B0095EFE0 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		6757C3061F4BD8FF0007C17F /* NewsTableViewControllerDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewsTableViewControllerDataSource.swift; path = DataSources/NewsTableViewControllerDataSource.swift; sourceTree = "<group>"; };
 		6757C3091F4BDA620007C17F /* RecentNewsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecentNewsDataSource.swift; path = DataSources/RecentNewsDataSource.swift; sourceTree = "<group>"; };
@@ -561,11 +563,12 @@
 		6757C3081F4BD9030007C17F /* DataSources */ = {
 			isa = PBXGroup;
 			children = (
-				6757C3061F4BD8FF0007C17F /* NewsTableViewControllerDataSource.swift */,
+				674E7D0220E1CF9C007A8337 /* CategoryNewsDataSource.swift */,
 				67C083CA204AF0F3006BA519 /* FilterCategoriesDataSource.swift */,
 				6767C59C204A4F6F00D909E1 /* FilterSourcesDataSource.swift */,
-				6757C3091F4BDA620007C17F /* RecentNewsDataSource.swift */,
+				6757C3061F4BD8FF0007C17F /* NewsTableViewControllerDataSource.swift */,
 				670B793D1F4CE7F000C485A9 /* PopularNewsDataSource.swift */,
+				6757C3091F4BDA620007C17F /* RecentNewsDataSource.swift */,
 			);
 			name = DataSources;
 			sourceTree = "<group>";
@@ -1496,6 +1499,7 @@
 				43CC643D1EBBE7E90066D49E /* OrientationAwareControllers.swift in Sources */,
 				670D6D0D1FB3F2DD003B5B33 /* UIViewController+Switcher.swift in Sources */,
 				670D6D081FB3E098003B5B33 /* ScreenSwitcherViewController.swift in Sources */,
+				674E7D0320E1CF9C007A8337 /* CategoryNewsDataSource.swift in Sources */,
 				67BC0913204B35D400796B8B /* NewsPreviewViewController.swift in Sources */,
 				6767C59D204A4F6F00D909E1 /* FilterSourcesDataSource.swift in Sources */,
 				6757E984201ACCF2002AC331 /* UsersService.swift in Sources */,

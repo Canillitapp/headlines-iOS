@@ -10,7 +10,7 @@ import UIKit
 import CloudKit
 
 enum ContentViewContextFrom: String {
-    case search, trending, popular, recent, reactions
+    case search, trending, popular, recent, reactions, category
 }
 
 class ContentViewsService: HTTPService {
