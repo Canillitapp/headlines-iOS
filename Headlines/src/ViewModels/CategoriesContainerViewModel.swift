@@ -28,6 +28,33 @@ class CategoriesContainerViewModel: NSObject {
         return retVal
     }
     
+    func loadImage(with imageURL: URL, at cell: CategoryCollectionViewCell) {
+        
+        if SDWebImageManager.shared().diskImageExists(for: imageURL) {
+            let cachedImage = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: imageURL.absoluteString)
+            cell.backgroundImageView.image = cachedImage
+        } else {
+            cell.backgroundImageView.sd_setImage(with: imageURL) {(image, _, _, imageURL) in
+                guard let img = image else {
+                    return
+                }
+                
+                DispatchQueue.global().async {
+                    let tintColor = UIColor(white: 0, alpha: 0.35)
+                    let blurredImage = img.applyBlurWithRadius(3, tintColor: tintColor, saturationDeltaFactor: 1)
+                    
+                    DispatchQueue.main.async {
+                        cell.backgroundImageView.image = blurredImage
+                        
+                        if let key = imageURL?.absoluteString {
+                            SDImageCache.shared().store(blurredImage, forKey: key, toDisk: true)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     required init(delegate: CategoriesContainerViewModelDelegate?) {
         super.init()
         self.delegate = delegate
@@ -57,16 +84,11 @@ extension CategoriesContainerViewModel: UICollectionViewDataSource {
         }
         
         cell.titleLabel.text = c.name
-        cell.backgroundImageView.sd_setImage(with: c.imageURL) {(image, _, _, _) in
-            guard let img = image else {
-                return
-            }
-            
-            cell.backgroundImageView.image = img.applyBlurWithRadius(3,
-                                                                     tintColor: UIColor(white: 0, alpha: 0.35),
-                                                                     saturationDeltaFactor: 1)
+        
+        if let url = c.imageURL {
+            loadImage(with: url, at: cell)
         }
-
+        
         return cell
     }
 }
