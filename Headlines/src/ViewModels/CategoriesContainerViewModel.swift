@@ -28,12 +28,18 @@ class CategoriesContainerViewModel: NSObject {
         return retVal
     }
     
+    func blurredImageKey(from url: URL) -> String {
+        return "\(url.absoluteString)_blur"
+    }
+    
     func loadImage(with imageURL: URL, at cell: CategoryCollectionViewCell) {
+        let key = blurredImageKey(from: imageURL)
         
-        if SDWebImageManager.shared().diskImageExists(for: imageURL) {
-            let cachedImage = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: imageURL.absoluteString)
+        if SDWebImageManager.shared().imageCache.diskImageExists(withKey: key) {
+            let cachedImage = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: key)
             cell.backgroundImageView.image = cachedImage
         } else {
+            cell.backgroundImageView.alpha = 0
             cell.backgroundImageView.sd_setImage(with: imageURL) {(image, _, _, imageURL) in
                 guard let img = image else {
                     return
@@ -45,10 +51,11 @@ class CategoriesContainerViewModel: NSObject {
                     
                     DispatchQueue.main.async {
                         cell.backgroundImageView.image = blurredImage
+                        SDImageCache.shared().store(blurredImage, forKey: key, toDisk: true)
                         
-                        if let key = imageURL?.absoluteString {
-                            SDImageCache.shared().store(blurredImage, forKey: key, toDisk: true)
-                        }
+                        UIView.animate(withDuration: 0.3, animations: {
+                            cell.backgroundImageView.alpha = 1.0
+                        })
                     }
                 }
             }
