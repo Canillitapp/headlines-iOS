@@ -40,7 +40,7 @@ class CategoriesContainerViewModel: NSObject {
             cell.backgroundImageView.image = cachedImage
         } else {
             cell.backgroundImageView.alpha = 0
-            cell.backgroundImageView.sd_setImage(with: imageURL) {(image, _, _, imageURL) in
+            cell.backgroundImageView.sd_setImage(with: imageURL) {(image, _, _, _) in
                 guard let img = image else {
                     return
                 }
