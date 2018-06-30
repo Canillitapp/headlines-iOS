@@ -17,28 +17,47 @@ protocol CategoriesContainerViewModelDelegate: class {
 
 class CategoriesContainerViewModel: NSObject {
     weak var delegate: CategoriesContainerViewModelDelegate?
-    var categories: [Category]?
+    weak var collectionView: UICollectionView?
     
-    private func mockedCategories() -> [Category] {
-        var retVal: [Category] = [Category]()
-        retVal.append(Category(identifier: "1", name: "Política", imageURL: URL(string: "https://images.clarin.com/2016/12/14/SygIZseNx_600x338.jpg")))
-        retVal.append(Category(identifier: "2", name: "Internacionales", imageURL: URL(string: "https://images.clarin.com/2018/06/25/r1QBLykM7_600x338__1.jpg")))
-        retVal.append(Category(identifier: "3", name: "Tecnología", imageURL: URL(string: "https://images.clarin.com/2018/06/25/rk-DTkkzX_600x338__1.jpg")))
-        retVal.append(Category(identifier: "4", name: "Espectáculos", imageURL: URL(string: "https://bucket3.glanacion.com/anexos/fotos/39/2714339.jpg")))
-        return retVal
+    var categories: [Category]?
+    let categoriesService = CategoriesService()
+    
+    private func updateCategoryList() {
+        let success: ([Category]?) -> Void = { [unowned self] categories in
+            self.categories = categories
+            self.collectionView?.reloadData()
+        }
+        
+        let fail: (NSError) -> Void = { (error) in
+            
+        }
+        
+        categoriesService.categoriesList(success: success, fail: fail)
+    }
+    
+    private func imageKeyFromCategory(_ category: Category) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "ddMMYYYY"
+        let dateString = formatter.string(from: Date())
+        let key = "\(category.identifier)_\(dateString)"
+        return key
     }
     
     func blurredImageKey(from url: URL) -> String {
         return "\(url.absoluteString)_blur"
     }
     
-    func loadImage(with imageURL: URL, at cell: CategoryCollectionViewCell) {
-        let key = blurredImageKey(from: imageURL)
+    func loadImage(with category: Category, at cell: CategoryCollectionViewCell) {
+        let key = imageKeyFromCategory(category)
         
         if SDWebImageManager.shared().imageCache.diskImageExists(withKey: key) {
             let cachedImage = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: key)
             cell.backgroundImageView.image = cachedImage
         } else {
+            guard let imageURL = category.imageURL else {
+                return
+            }
+            
             cell.backgroundImageView.alpha = 0
             cell.backgroundImageView.sd_setImage(with: imageURL) {(image, _, _, _) in
                 guard let img = image else {
@@ -62,10 +81,11 @@ class CategoriesContainerViewModel: NSObject {
         }
     }
     
-    required init(delegate: CategoriesContainerViewModelDelegate?) {
+    required init(delegate: CategoriesContainerViewModelDelegate?, collectionView: UICollectionView?) {
         super.init()
         self.delegate = delegate
-        categories = mockedCategories()
+        self.collectionView = collectionView
+        updateCategoryList()
     }
 }
 
@@ -91,10 +111,7 @@ extension CategoriesContainerViewModel: UICollectionViewDataSource {
         }
         
         cell.titleLabel.text = c.name
-        
-        if let url = c.imageURL {
-            loadImage(with: url, at: cell)
-        }
+        loadImage(with: c, at: cell)
         
         return cell
     }

@@ -149,7 +149,7 @@ class TrendingCardsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        categoriesContainerViewModel = CategoriesContainerViewModel(delegate: self)
+        categoriesContainerViewModel = CategoriesContainerViewModel(delegate: self, collectionView: collectionView)
         
         setupReviewButtons()
         reviewView.isHidden = !self.reviewViewModel.shouldShowBanner()

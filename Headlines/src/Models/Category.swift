@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class Category {
     let identifier: String
@@ -17,5 +18,22 @@ class Category {
         self.identifier = identifier
         self.name = name
         self.imageURL = imageURL
+    }
+    
+    init(json: JSON) {
+        
+        if let categoryId = json["id"].int {
+            identifier = "\(categoryId)"
+        } else {
+            identifier = ""
+        }
+        
+        if let categoryName = json["name"].string {
+            name = categoryName
+        } else {
+            name = ""
+        }
+        
+        imageURL = json["img_url"].URL
     }
 }
