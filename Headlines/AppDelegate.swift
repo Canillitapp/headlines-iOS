@@ -31,6 +31,8 @@ class AppDelegate: UIResponder,
     let userSettingsManager = UserSettingsManager()
     var newsToOpen: News?
     
+    var loadingTask: LoadingTask?
+    
     func registerNotificationActions() {
         let viewAction = UNNotificationAction(identifier: "view", title: "Ver", options: [.foreground])
         let likeAction = UNNotificationAction(identifier: "like", title: "👍", options: [])
@@ -77,6 +79,16 @@ class AppDelegate: UIResponder,
         if userSettingsManager.firstOpenDate == nil {
             userSettingsManager.firstOpenDate = Date()
         }
+        
+        loadingTask = LoadingTask(with: {
+            print("FINISHED!")
+            
+            let notification = Notification.Name(rawValue: "loadingTaskFinished")
+            let nc = NotificationCenter.default
+            nc.post(name: notification, object: nil, userInfo: nil)
+        })
+        
+        loadingTask?.start()
         
         let success: ([Topic]?) -> Void = { (topics) in
             self.newsFetched = topics
