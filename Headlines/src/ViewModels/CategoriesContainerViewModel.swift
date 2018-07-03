@@ -43,10 +43,6 @@ class CategoriesContainerViewModel: NSObject {
         return key
     }
     
-    func blurredImageKey(from url: URL) -> String {
-        return "\(url.absoluteString)_blur"
-    }
-    
     func loadImage(with category: Category, at cell: CategoryCollectionViewCell) {
         let key = imageKeyFromCategory(category)
         
