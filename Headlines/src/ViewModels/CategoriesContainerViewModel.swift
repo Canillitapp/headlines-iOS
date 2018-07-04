@@ -19,21 +19,7 @@ class CategoriesContainerViewModel: NSObject {
     weak var delegate: CategoriesContainerViewModelDelegate?
     weak var collectionView: UICollectionView?
     
-    var categories: [Category]?
-    let categoriesService = CategoriesService()
-    
-    private func updateCategoryList() {
-        let success: ([Category]?) -> Void = { [unowned self] categories in
-            self.categories = categories
-            self.collectionView?.reloadData()
-        }
-        
-        let fail: (NSError) -> Void = { (error) in
-            
-        }
-        
-        categoriesService.categoriesList(success: success, fail: fail)
-    }
+    var categories: [Category]? = NewsManager.sharedInstance.categories
     
     private func imageKeyFromCategory(_ category: Category) -> String {
         let formatter = DateFormatter()
@@ -81,7 +67,6 @@ class CategoriesContainerViewModel: NSObject {
         super.init()
         self.delegate = delegate
         self.collectionView = collectionView
-        updateCategoryList()
     }
 }
 

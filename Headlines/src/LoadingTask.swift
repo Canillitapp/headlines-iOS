@@ -10,70 +10,81 @@ import Foundation
 
 class LoadingTask {
     
-    let queue = OperationQueue()
+    /**
+     *  First approach was doing an OperationQueue with OperationBlocks
+     *  but since I'm not going to handle their cancel / fail state I thought
+     *  this was more clear.
+     *
+     *  I could also make FetchCategoriesOperation and FetchTrendingNewsOperation
+     *  as Operation subclasses but it seemed too much work for something that it's
+     *  not going to have reuse on other part of the app's lifecycle.
+     *
+     *  However, there's a something to have in mind: both operations are going to
+     *  run no matter what. If some of the two fails and later user retries, both
+     *  API calls are going to run.
+     *
+     *  Also, if both services fail, I'm gonna get just one error (the last one).
+     *
+     *  There's some room to improvement here :-)
+     */
     
-    var newsFetched: [Topic]?
-    let newsService = NewsService()
+    let group = DispatchGroup()
+    var error: NSError?
     
-    var categoriesFetched: [Category]?
-    let categoriesService = CategoriesService()
+    var topics: [Topic]?
+    var categories: [Category]?
     
-    var completion: () -> Void
+    var completion: ([Topic]?, [Category]?, NSError?) -> Void
     
-    func fetchNewsOperation() -> BlockOperation {
-        return BlockOperation { [unowned self] in
-            let group = DispatchGroup()
-            group.enter()
-            
-            let success: ([Topic]?) -> Void = { [unowned self] (topics) in
-                self.newsFetched = topics
-                print("Hello world 1")
-                group.leave()
-            }
-            
-            _ = self.newsService.requestTrendingTopicsWithDate(
-                Date(),
-                count: 6,
-                success: success,
-                fail: nil
-            )
-            group.wait()
+    private func fetchTrendingNews() {
+        let newsService = NewsService()
+        
+        let success: ([Topic]?) -> Void = { [unowned self] (topics) in
+            self.topics = topics
+            self.group.leave()
         }
+        
+        let fail: ((NSError) -> Void) = { [unowned self] (error) in
+            self.error = error
+            self.group.leave()
+        }
+        
+        _ = newsService.requestTrendingTopicsWithDate(
+            Date(),
+            count: 6,
+            success: success,
+            fail: fail
+        )
+        group.enter()
     }
     
-    func fetchCategoriesOperation() -> BlockOperation {
-        return BlockOperation { [unowned self] in
-            let group = DispatchGroup()
-            group.enter()
-            
-            let success: ([Category]?) -> Void = { [unowned self] (categories) in
-                self.categoriesFetched = categories
-                print("Hello world 2")
-                group.leave()
-            }
-            
-            self.categoriesService.categoriesList(success: success, fail: nil)
-            group.wait()
+    private func fetchCategories() {
+        let categoriesService = CategoriesService()
+        
+        let success: ([Category]?) -> Void = { [unowned self] (categories) in
+            self.categories = categories
+            self.group.leave()
         }
+        
+        let fail: ((NSError) -> Void) = { [unowned self] (error) in
+            self.error = error
+            self.group.leave()
+        }
+        
+        categoriesService.categoriesList(success: success, fail: fail)
+        group.enter()
     }
     
-    init(with completion: @escaping () -> Void) {
-        queue.name = "Loading Queue"
-        queue.maxConcurrentOperationCount = 2
+    init(with completion:@escaping ([Topic]?, [Category]?, NSError?) -> Void) {
         self.completion = completion
     }
     
     func start() {
-        let newsOperation = fetchNewsOperation()
-        let categoriesOperation = fetchCategoriesOperation()
+        fetchTrendingNews()
+        fetchCategories()
         
-        let mergeOperation = BlockOperation { [unowned self] in
-            self.completion()
+        group.notify(queue: DispatchQueue.main) { [unowned self] in
+            self.completion(self.topics, self.categories, self.error)
         }
-        mergeOperation.addDependency(newsOperation)
-        mergeOperation.addDependency(categoriesOperation)
-        
-        let operations = [newsOperation, categoriesOperation, mergeOperation]
-        queue.addOperations(operations, waitUntilFinished: false)
     }
 }

@@ -60,6 +60,10 @@ class AppDelegate: UIResponder,
         }
     }
     
+    func initialNewsFetch() {
+        
+    }
+    
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -80,34 +84,36 @@ class AppDelegate: UIResponder,
             userSettingsManager.firstOpenDate = Date()
         }
         
-        loadingTask = LoadingTask(with: {
-            print("FINISHED!")
+        let completion: ([Topic]?, [Category]?, NSError?) -> Void = { [unowned self] (topics, categories, error) in
+            if let e = error {
+                // Replace this with an alert error in the future and a "Try again" button
+                print("#ERROR: \(e.localizedDescription)")
+                self.loadingTask?.start()
+                return
+            }
+            
+            guard let t = topics, let c = categories else {
+                // Replace this with an alert error in the future and a "Try again" button
+                let e = NSError(
+                    domain: "Startup",
+                    code: 1,
+                    userInfo: [NSLocalizedDescriptionKey: "Something went wrong"]
+                )
+                print("#ERROR: \(e.localizedDescription)")
+                self.loadingTask?.start()
+                return
+            }
+            
+            NewsManager.sharedInstance.categories = c
+            NewsManager.sharedInstance.topics = t
             
             let notification = Notification.Name(rawValue: "loadingTaskFinished")
             let nc = NotificationCenter.default
             nc.post(name: notification, object: nil, userInfo: nil)
-        })
-        
-        loadingTask?.start()
-        
-        let success: ([Topic]?) -> Void = { (topics) in
-            self.newsFetched = topics
-            
-            let notification = Notification.Name(rawValue: "trendingTopicFinished")
-            let nc = NotificationCenter.default
-            nc.post(
-                name: notification,
-                object: nil,
-                userInfo: ["topics": topics!]
-            )
         }
         
-        newsDataTask = newsService.requestTrendingTopicsWithDate(
-            Date(),
-            count: 6,
-            success: success,
-            fail: nil
-        )
+        loadingTask = LoadingTask(with: completion)
+        loadingTask?.start()
         
         setupNotifications()
         

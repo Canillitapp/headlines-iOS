@@ -16,7 +16,6 @@ class TrendingCardsViewController: UIViewController {
     var footerView: UICollectionReusableView?
     let newsService = NewsService()
     var newsDataTask: URLSessionDataTask?
-    var apiCallCompletionObserver: NSObjectProtocol?
     var userSettingsManager = UserSettingsManager()
     @IBOutlet weak var collectionView: UICollectionView!
     
@@ -171,37 +170,12 @@ class TrendingCardsViewController: UIViewController {
                 fetchTrendingTopics()
             }
         }
-        
-        apiCallCompletionObserver = NotificationCenter.default.addObserver(
-            forName: Notification.Name(rawValue: "trendingTopicFinished"),
-            object: nil,
-            queue: nil,
-            using: catchNotification
-        )
-    }
-    
-    func catchNotification(notification: Notification) {
-        DispatchQueue.main.async {
-            self.endRefreshing()
-            
-            guard let t = notification.userInfo?["topics"] as? [Topic] else {
-                return
-            }
-            
-            self.appendTopics(t)
-        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         Answers.logCustomEvent(withName: "trending_appear", customAttributes: nil)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
-        NotificationCenter.default.removeObserver(apiCallCompletionObserver)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

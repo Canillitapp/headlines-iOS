@@ -76,6 +76,7 @@
 		675A81EC1D6BF6E8000DC680 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 675A81EA1D6BF6E8000DC680 /* LaunchScreen.storyboard */; };
 		675A82021D6BF6E8000DC680 /* HeadlinesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A82011D6BF6E8000DC680 /* HeadlinesUITests.swift */; };
 		67617F801F6CB2C200674320 /* DimPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67617F7F1F6CB2C200674320 /* DimPresentAnimationController.swift */; };
+		6764207920EC61F0000E2D18 /* NewsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6764207820EC61F0000E2D18 /* NewsManager.swift */; };
 		6767C59D204A4F6F00D909E1 /* FilterSourcesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6767C59C204A4F6F00D909E1 /* FilterSourcesDataSource.swift */; };
 		676E1C1E1EECA68400EC71A5 /* GET-popular.json in Resources */ = {isa = PBXBuildFile; fileRef = 676E1C1D1EECA68400EC71A5 /* GET-popular.json */; };
 		676E1C201EECA7EB00EC71A5 /* GET-recent.json in Resources */ = {isa = PBXBuildFile; fileRef = 676E1C1F1EECA7EB00EC71A5 /* GET-recent.json */; };
@@ -303,6 +304,7 @@
 		675A82011D6BF6E8000DC680 /* HeadlinesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlinesUITests.swift; sourceTree = "<group>"; };
 		675A82031D6BF6E8000DC680 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		67617F7F1F6CB2C200674320 /* DimPresentAnimationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DimPresentAnimationController.swift; path = Animators/DimPresentAnimationController.swift; sourceTree = "<group>"; };
+		6764207820EC61F0000E2D18 /* NewsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NewsManager.swift; path = src/Managers/NewsManager.swift; sourceTree = "<group>"; };
 		6767C59C204A4F6F00D909E1 /* FilterSourcesDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FilterSourcesDataSource.swift; path = DataSources/FilterSourcesDataSource.swift; sourceTree = "<group>"; };
 		676E1C1D1EECA68400EC71A5 /* GET-popular.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "GET-popular.json"; sourceTree = "<group>"; };
 		676E1C1F1EECA7EB00EC71A5 /* GET-recent.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "GET-recent.json"; sourceTree = "<group>"; };
@@ -524,6 +526,7 @@
 			isa = PBXGroup;
 			children = (
 				67302DD11F6DA7E500C0A01E /* UserSettingsManager.swift */,
+				6764207820EC61F0000E2D18 /* NewsManager.swift */,
 			);
 			name = Managers;
 			path = ..;
@@ -1477,6 +1480,7 @@
 			files = (
 				6798E8CF1D88F3390032D350 /* KeywordCollectionViewCell.swift in Sources */,
 				6723B67720EB145D00DEF366 /* LoadingTask.swift in Sources */,
+				6764207920EC61F0000E2D18 /* NewsManager.swift in Sources */,
 				67FD84DE1D6BF85D00BACAFC /* TrendingCardsViewController.swift in Sources */,
 				674E7CE320E07C31007A8337 /* TrendingCardsViewController+CollectionView.swift in Sources */,
 				670D2C7C1DDC09D000237C39 /* NewsTableViewCell.swift in Sources */,
