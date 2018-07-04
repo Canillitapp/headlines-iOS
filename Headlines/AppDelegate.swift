@@ -60,6 +60,61 @@ class AppDelegate: UIResponder,
         }
     }
     
+    func retryFetchCategoriesAndNewsAlert(with error: NSError) {
+        var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = UIViewController()
+        window?.windowLevel = UIWindowLevelAlert + 1
+        
+        let alert = UIAlertController(
+            title: "Whoops",
+            message: error.localizedDescription,
+            preferredStyle: .alert
+        )
+        
+        let retry = UIAlertAction(
+            title: "Volver a intentar",
+            style: .default) { [unowned self] (action) in
+                self.fetchCategoriesAndNews()
+                window?.isHidden = true
+                window = nil
+        }
+        alert.addAction(retry)
+        
+        window?.makeKeyAndVisible()
+        window?.rootViewController?.present(alert, animated: true, completion: nil)
+    }
+    
+    func fetchCategoriesAndNews() {
+        let completion: ([Topic]?, [Category]?, NSError?) -> Void = { [unowned self] (topics, categories, error) in
+            if let e = error {
+                print("#ERROR: \(e.localizedDescription)")
+                self.retryFetchCategoriesAndNewsAlert(with: e)
+                return
+            }
+            
+            guard let t = topics, let c = categories else {
+                let e = NSError(
+                    domain: "Startup",
+                    code: 1,
+                    userInfo: [NSLocalizedDescriptionKey: "Something went wrong"]
+                )
+                print("#ERROR: \(e.localizedDescription)")
+                self.retryFetchCategoriesAndNewsAlert(with: e)
+                return
+            }
+            
+            NewsManager.sharedInstance.categories = c
+            NewsManager.sharedInstance.topics = t
+            
+            let notification = Notification.Name(rawValue: "loadingTaskFinished")
+            let nc = NotificationCenter.default
+            nc.post(name: notification, object: nil, userInfo: nil)
+        }
+        
+        loadingTask = LoadingTask(with: completion)
+        loadingTask?.start()
+    }
+    
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -80,36 +135,7 @@ class AppDelegate: UIResponder,
             userSettingsManager.firstOpenDate = Date()
         }
         
-        let completion: ([Topic]?, [Category]?, NSError?) -> Void = { [unowned self] (topics, categories, error) in
-            if let e = error {
-                // #TODO: Replace this with an alert error in the future and a "Try again" button
-                print("#ERROR: \(e.localizedDescription)")
-                self.loadingTask?.start()
-                return
-            }
-            
-            guard let t = topics, let c = categories else {
-                // #TODO: Replace this with an alert error in the future and a "Try again" button
-                let e = NSError(
-                    domain: "Startup",
-                    code: 1,
-                    userInfo: [NSLocalizedDescriptionKey: "Something went wrong"]
-                )
-                print("#ERROR: \(e.localizedDescription)")
-                self.loadingTask?.start()
-                return
-            }
-            
-            NewsManager.sharedInstance.categories = c
-            NewsManager.sharedInstance.topics = t
-            
-            let notification = Notification.Name(rawValue: "loadingTaskFinished")
-            let nc = NotificationCenter.default
-            nc.post(name: notification, object: nil, userInfo: nil)
-        }
-        
-        loadingTask = LoadingTask(with: completion)
-        loadingTask?.start()
+        fetchCategoriesAndNews()
         
         setupNotifications()
         
