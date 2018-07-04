@@ -86,14 +86,14 @@ class AppDelegate: UIResponder,
         
         let completion: ([Topic]?, [Category]?, NSError?) -> Void = { [unowned self] (topics, categories, error) in
             if let e = error {
-                // Replace this with an alert error in the future and a "Try again" button
+                // #TODO: Replace this with an alert error in the future and a "Try again" button
                 print("#ERROR: \(e.localizedDescription)")
                 self.loadingTask?.start()
                 return
             }
             
             guard let t = topics, let c = categories else {
-                // Replace this with an alert error in the future and a "Try again" button
+                // #TODO: Replace this with an alert error in the future and a "Try again" button
                 let e = NSError(
                     domain: "Startup",
                     code: 1,
