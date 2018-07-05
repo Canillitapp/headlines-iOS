@@ -21,6 +21,9 @@ class SettingsViewController: UIViewController {
     // MARK: - Init & Deinit
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        // We add an observer for .UIApplicationWillEnterForeground as the
+        // UI needs updating if the user modifies the notification permissons
+        // from the app page on iOS Settings while this ViewController exists.
         registerApplicationWillEnterForeground()
     }
 
@@ -61,7 +64,7 @@ class SettingsViewController: UIViewController {
             self.subscribeButton.setTitle("✅",
                                           for: .normal)
             self.subscribeLabel.text =
-            "Ya estas suscripto! Estarás recibiendo una notificación sobre una noticia importa una vez al dia."
+            "Ya estas suscripto! Estarás recibiendo una notificación sobre una noticia importante una vez al dia."
         }
     }
     
@@ -73,7 +76,7 @@ class SettingsViewController: UIViewController {
                 self.registerForRemoteNotifications()
             case .denied:
                 // Push notifications where denied so we open the app page
-                // on Settings.
+                // on iOS Settings.
                 DispatchQueue.main.async {
                     let url = URL(string: UIApplicationOpenSettingsURLString)!
                     UIApplication.shared.open(url)
