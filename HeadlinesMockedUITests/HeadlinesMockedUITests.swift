@@ -100,16 +100,16 @@ class HeadlinesMockedUITests: XCTestCase {
         let app = XCUIApplication()
         
         //  Go to search
-        app.navigationBars["Destacados"].children(matching: .button).element.tap()
+        app.tabBars.buttons["Buscar"].tap()
         
         //  Tap search text input
-        let buscarSearchField = app.tables["Empty list"].searchFields["Buscar"]
+        let buscarSearchField = app.searchFields["Buscar"]
         buscarSearchField.tap()
         
         //  Type "Calu rivero" and ENTER
         buscarSearchField.typeText("Calu rivero\r")
         
-        let cell = app.tables.cells.element(boundBy: 0)
+        let cell = app.tables["search table"].cells.element(boundBy: 0)
         let exists = NSPredicate(format: "exists == 1")
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
         wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)

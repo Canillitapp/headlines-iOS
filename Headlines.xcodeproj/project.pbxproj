@@ -133,6 +133,11 @@
 		67E10AD21F6389C3009F017C /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E10AD11F6389C3009F017C /* FilterCollectionViewCell.swift */; };
 		67F39C1A1EB2DEE600CF99F2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F39C191EB2DEE600CF99F2 /* SearchViewController.swift */; };
 		67FD84DE1D6BF85D00BACAFC /* TrendingCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD84DA1D6BF85D00BACAFC /* TrendingCardsViewController.swift */; };
+		FB803A9A20EFAC8F00C841DD /* TrendingSearchTermTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB803A9920EFAC8F00C841DD /* TrendingSearchTermTableViewCell.swift */; };
+		FB803A9C20EFB0CB00C841DD /* TrendingSearchTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB803A9B20EFB0CB00C841DD /* TrendingSearchTableHeaderView.swift */; };
+		FB803A9F20EFB5C200C841DD /* NewsSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB803A9E20EFB5C200C841DD /* NewsSearchViewController.swift */; };
+		FB803AA120EFB5D500C841DD /* Searchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB803AA020EFB5D500C841DD /* Searchable.swift */; };
+		FB803AA320EFB71800C841DD /* TrendingSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB803AA220EFB71800C841DD /* TrendingSearchViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -367,6 +372,11 @@
 		E3844BADA0445D4FFEA53F73 /* Pods_Canillitapp_Widget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canillitapp_Widget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7CA813EE9F2943ACC02746E /* Pods_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBA7D61C153D8B95DB9A361C /* Pods_HeadlinesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeadlinesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB803A9920EFAC8F00C841DD /* TrendingSearchTermTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingSearchTermTableViewCell.swift; sourceTree = "<group>"; };
+		FB803A9B20EFB0CB00C841DD /* TrendingSearchTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingSearchTableHeaderView.swift; sourceTree = "<group>"; };
+		FB803A9E20EFB5C200C841DD /* NewsSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsSearchViewController.swift; sourceTree = "<group>"; };
+		FB803AA020EFB5D500C841DD /* Searchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Searchable.swift; sourceTree = "<group>"; };
+		FB803AA220EFB71800C841DD /* TrendingSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingSearchViewController.swift; sourceTree = "<group>"; };
 		FD39590F765C68237C475997 /* Pods-HeadlinesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeadlinesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HeadlinesTests/Pods-HeadlinesTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -737,6 +747,8 @@
 				670D2C7B1DDC09D000237C39 /* NewsTableViewCell.swift */,
 				67CE08B41E904F2000D5911E /* ReactionCollectionViewCell.swift */,
 				67D434F21EB01827001A79D8 /* ReactionTableViewCell.swift */,
+				FB803A9920EFAC8F00C841DD /* TrendingSearchTermTableViewCell.swift */,
+				FB803A9B20EFB0CB00C841DD /* TrendingSearchTableHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -802,7 +814,7 @@
 				674770241E99D28E003D5AF1 /* NewsTableViewController.swift */,
 				43CC643C1EBBE7E90066D49E /* OrientationAwareControllers.swift */,
 				67CE08B21E903B2D00D5911E /* ReactionPickerViewController.swift */,
-				67F39C191EB2DEE600CF99F2 /* SearchViewController.swift */,
+				FB803A9D20EFB5A800C841DD /* Search */,
 				6757E981201AC9FE002AC331 /* SettingsViewController.swift */,
 				67FD84DA1D6BF85D00BACAFC /* TrendingCardsViewController.swift */,
 				674E7CE220E07C31007A8337 /* TrendingCardsViewController+CollectionView.swift */,
@@ -840,6 +852,17 @@
 				FD39590F765C68237C475997 /* Pods-HeadlinesTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		FB803A9D20EFB5A800C841DD /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				67F39C191EB2DEE600CF99F2 /* SearchViewController.swift */,
+				FB803A9E20EFB5C200C841DD /* NewsSearchViewController.swift */,
+				FB803AA020EFB5D500C841DD /* Searchable.swift */,
+				FB803AA220EFB71800C841DD /* TrendingSearchViewController.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1487,6 +1510,7 @@
 				6764207920EC61F0000E2D18 /* NewsManager.swift in Sources */,
 				67FD84DE1D6BF85D00BACAFC /* TrendingCardsViewController.swift in Sources */,
 				674E7CE320E07C31007A8337 /* TrendingCardsViewController+CollectionView.swift in Sources */,
+				FB803A9F20EFB5C200C841DD /* NewsSearchViewController.swift in Sources */,
 				670D2C7C1DDC09D000237C39 /* NewsTableViewCell.swift in Sources */,
 				674E7CF320E0909F007A8337 /* CategoryCollectionViewCell.swift in Sources */,
 				67C083CB204AF0F3006BA519 /* FilterCategoriesDataSource.swift in Sources */,
@@ -1499,8 +1523,11 @@
 				674E7CEB20E083EC007A8337 /* CategoriesHeaderView.swift in Sources */,
 				6797F8AC1EE4B38E00B8EAA5 /* ConfigHelper.swift in Sources */,
 				67F39C1A1EB2DEE600CF99F2 /* SearchViewController.swift in Sources */,
+				FB803A9C20EFB0CB00C841DD /* TrendingSearchTableHeaderView.swift in Sources */,
+				FB803A9A20EFAC8F00C841DD /* TrendingSearchTermTableViewCell.swift in Sources */,
 				67CE08B11E9012F700D5911E /* NewsCellViewModel.swift in Sources */,
 				675A81E01D6BF6E8000DC680 /* AppDelegate.swift in Sources */,
+				FB803AA120EFB5D500C841DD /* Searchable.swift in Sources */,
 				6797F8B41EE4B38E00B8EAA5 /* HTTPService.swift in Sources */,
 				670B793E1F4CE7F000C485A9 /* PopularNewsDataSource.swift in Sources */,
 				67D434F31EB01827001A79D8 /* ReactionTableViewCell.swift in Sources */,
@@ -1522,6 +1549,7 @@
 				674E7CFF20E1BABC007A8337 /* UIImageEffects.swift in Sources */,
 				677392C31F6B42CE0076E8BB /* DynamicHeightCollectionView.swift in Sources */,
 				670BA52120573DEF00A225C7 /* TabbedViewController.swift in Sources */,
+				FB803AA320EFB71800C841DD /* TrendingSearchViewController.swift in Sources */,
 				67CE08B51E904F2000D5911E /* ReactionCollectionViewCell.swift in Sources */,
 				671266091F4CEF980005CF4B /* InitialTabBarController.swift in Sources */,
 				67D434F11EB0000C001A79D8 /* ProfileViewController.swift in Sources */,

@@ -96,6 +96,19 @@ class InitialTabBarController: UITabBarController, UITabBarControllerDelegate {
         return profileStoryboard.instantiateInitialViewController()
     }
     
+    func searchTabViewController() -> UIViewController? {
+        let searchViewController = TrendingSearchViewController()
+        let navigationController = UINavigationController(
+            rootViewController: searchViewController
+        )
+        navigationController.navigationBar.barStyle = .black
+        navigationController.navigationBar.isTranslucent = false
+        navigationController.navigationBar.tintColor = UIColor.white
+        navigationController.tabBarItem = UITabBarItem(
+            title: "Buscar", image: UIImage(named: "search_icon"), selectedImage: nil)
+        return navigationController
+    }
+    
     func initialControllers() -> [UIViewController] {
         var controllers: [UIViewController] = []
         
@@ -112,6 +125,11 @@ class InitialTabBarController: UITabBarController, UITabBarControllerDelegate {
         // "Reciente" tab
         if let recentsViewController = recentsTabViewController() {
             controllers.append(recentsViewController)
+        }
+        
+        // "Buscar" tab
+        if let searchViewController = searchTabViewController() {
+            controllers.append(searchViewController)
         }
         
         //  "Perfil" tab
