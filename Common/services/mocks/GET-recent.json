@@ -17,6 +17,7 @@
     "source_id": 2,
     "img_url": "https://www.dropbox.com/s/74qoe5e381i2rht/calu-rivero-1.jpg?dl=1",
     "source_name": "Clarin",
+    "category": "Espectáculos",
     "reactions": []
   },
   {
@@ -27,6 +28,7 @@
     "source_id": 9,
     "img_url": "https://www.dropbox.com/s/5xd0kb86djhca95/nintchdbpict000330249146.jpg?dl=1",
     "source_name": "Infobae",
+    "category": "Internacionales",
     "reactions": [
       {"reaction":"😦","amount":10,"date":1497148818},
       {"reaction":"😢","amount":23,"date":1497148818},
@@ -61,6 +63,7 @@
     "source_id": 1,
     "img_url": "https://www.dropbox.com/s/1iw3obrw9xp32bu/donald-trump-grow-up.jpg?dl=1",
     "source_name": "TN",
+    "category": "Internacionales",
     "reactions": [
       {"reaction":"😱","amount":90,"date":1497148818},
       {"reaction":"💩","amount":15,"date":1497148818},
@@ -75,6 +78,7 @@
     "source_id": 14,
     "img_url": "https://images.pagina12.com.ar/styles/focal_16_9_960x540/public/2017-06/desca.jpg?itok=MZnwXBY3",
     "source_name": "Pagina 12",
+    "category": "Política",
     "reactions": []
   },
   {
@@ -85,6 +89,7 @@
     "source_id": 1,
     "img_url": "http://cdn.tn.com.ar/sites/default/files/styles/470x269/public/2017/06/10/marcos-pena.jpg",
     "source_name": "TN",
+    "category": "Política",
     "reactions": []
   },
   {
@@ -95,6 +100,7 @@
     "source_id": 9,
     "img_url": "http://www.infobae.com/new-resizer/txtbDFaqNK_5t1mezPTOvLEw1ls=/1200x0/s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2017/06/09175229/moschino-resort-2018.jpg?token=bar",
     "source_name": "Infobae",
+    "category": "Espectáculos",
     "reactions": []
   },
   {
@@ -105,6 +111,7 @@
     "source_id": 2,
     "img_url": "https://images.clarin.com/2016/09/05/S1qn_nKNx_600x338.jpg",
     "source_name": "Clarin",
+    "category": "Internacionales",
     "reactions": []
   },
   {
@@ -135,6 +142,7 @@
     "source_id": 8,
     "img_url": "https://i1.wp.com/exitoina.perfil.com/wp-content/uploads/2017/06/marcelo-tinelli.jpg?fit=990,680",
     "source_name": "Perfil",
+    "category": "Espectáculos",
     "reactions": []
   },
   {
@@ -165,6 +173,7 @@
     "source_id": 10,
     "img_url": "http://www.telam.com.ar/advf/imagenes/2016/10/580926e4733b9_400x225.jpg",
     "source_name": "Telam",
+    "category": "Espectáculos",
     "reactions": []
   },
   {
@@ -295,6 +304,7 @@
     "source_id": 9,
     "img_url": "http://www.infobae.com/new-resizer/fmKhfIzIBXh0SjR_HstkvTV7pbg=/1200x0//pb/resources/assets/img/fallback-promo-image.png?token=bar",
     "source_name": "Infobae",
+    "category": "Política",
     "reactions": []
   },
   {
@@ -305,6 +315,7 @@
     "source_id": 9,
     "img_url": "http://www.infobae.com/new-resizer/TLTXH-nRkj0MFtztzpwPkEGtI98=/1200x0/s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2017/06/04193428/iStock-612646040.jpg?token=bar",
     "source_name": "Infobae",
+    "category": "Espectáculos",
     "reactions": []
   },
   {
@@ -335,6 +346,7 @@
     "source_id": 10,
     "img_url": "http://www.telam.com.ar/advf/imagenes/2017/05/590d22f8e7c17_400x225.jpg",
     "source_name": "Telam",
+    "category": "Tecnología",
     "reactions": []
   }
 ]

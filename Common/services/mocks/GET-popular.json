@@ -8,6 +8,7 @@
     "img_url": "https://images.pagina12.com.ar/styles/focal_16_9_960x540/public/2017-06/west.JPG?itok=xNwkZXSq",
     "total_reactions": 1,
     "source_name": "Pagina 12",
+    "category": "Espectáculos",
     "reactions": [
       {
         "reaction": "😐",
@@ -25,6 +26,7 @@
     "img_url": "http://www.infobae.com/new-resizer/DfRiztRJKOrRgog7lNdfWfH8QE0=/1200x0/s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2016/10/09043042/German-Garavano-1920.jpg?token=bar",
     "total_reactions": 1,
     "source_name": "Infobae",
+    "category": "Internacionales",
     "reactions": [
       {
         "reaction": "🙄",
@@ -42,6 +44,7 @@
     "img_url": "https://images.clarin.com/2017/06/10/S1kzoqYzW_600x338.jpg",
     "total_reactions": 1,
     "source_name": "Clarin",
+    "category": "Espectáculos",
     "reactions": [
       {
         "reaction": "😢",
@@ -76,6 +79,7 @@
     "img_url": "http://cdn.tn.com.ar/sites/default/files/styles/470x269/public/2017/06/09/katy_perry.jpg",
     "total_reactions": 1,
     "source_name": "TN",
+    "category": "Espectáculos",
     "reactions": [
       {
         "reaction": "💪",
@@ -93,6 +97,7 @@
     "img_url": "http://www.telam.com.ar/advf/imagenes/2017/06/593a85b53a494_400x225.jpg",
     "total_reactions": 1,
     "source_name": "Telam",
+    "category": "Internacionales",
     "reactions": [
       {
         "reaction": "👍",
@@ -110,6 +115,7 @@
     "img_url": "http://servicios.lanacion.com.ar/_ui/desktop/imgs/logos/defaultFB.png",
     "total_reactions": 5,
     "source_name": "La Nacion",
+    "category": "Internacionales",
     "reactions": [
       {
         "reaction": "😷",
@@ -147,6 +153,7 @@
     "img_url": "http://noticias.perfil.com/wp-content/uploads/2017/06/Merkel2.jpg",
     "total_reactions": 1,
     "source_name": "Perfil",
+    "category": "Internacionales",
     "reactions": [
       {
         "reaction": "👍",
@@ -181,6 +188,7 @@
     "img_url": "https://images.pagina12.com.ar/styles/focal_16_9_960x540/public/2017-06/na09fo01_6.jpg?itok=4-QFeaGb",
     "total_reactions": 1,
     "source_name": "Pagina 12",
+    "category": "Política",
     "reactions": [
       {
         "reaction": "😱",
@@ -198,6 +206,7 @@
     "img_url": "https://images.clarin.com/2016/12/29/SJjYTqSfb_600x338.jpg",
     "total_reactions": 2,
     "source_name": "Clarin",
+    "category": "Política",
     "reactions": [
       {
         "reaction": "🙄",
@@ -215,6 +224,7 @@
     "img_url": "http://bucket.glanacion.com/anexos/fotos/06/2468106.jpg",
     "total_reactions": 3,
     "source_name": "La Nacion",
+    "category": "Tecnología",
     "reactions": [
       {
         "reaction": "🚌",
@@ -232,6 +242,7 @@
     "img_url": "https://images.pagina12.com.ar/styles/focal_16_9_960x540/public/2017-06/na05fo02_3.jpg?itok=isU7D5Tl",
     "total_reactions": 2,
     "source_name": "Pagina 12",
+    "category": "Política",
     "reactions": [
       {
         "reaction": "😂",
@@ -254,6 +265,7 @@
     "img_url": "https://i0.wp.com/exitoina.perfil.com/wp-content/uploads/2015/01/amal_alamuddin_george_clooney.jpg?fit=990,680",
     "total_reactions": 2,
     "source_name": "Perfil",
+    "category": "Espectáculos",
     "reactions": [
       {
         "reaction": "☕️",
@@ -276,6 +288,7 @@
     "img_url": "https://images.clarin.com/2017/06/06/SJhvdIEzW_600x338.jpg",
     "total_reactions": 2,
     "source_name": "Clarin",
+    "category": "Política",
     "reactions": [
       {
         "reaction": "😱",
@@ -298,6 +311,7 @@
     "img_url": "http://www.perfil.com/orinoco-files/media/images/raw/2017/06/06/0606notredameg-03.jpg",
     "total_reactions": 1,
     "source_name": "Perfil",
+    "category": "Internacionales",
     "reactions": [
       {
         "reaction": "😨",
@@ -332,6 +346,7 @@
     "img_url": "http://www.telam.com.ar/advf/imagenes/2017/03/58c921fdcd3b9_400x225.jpg",
     "total_reactions": 1,
     "source_name": "Telam",
+    "category": "Política",
     "reactions": [
       {
         "reaction": "👍",
@@ -376,6 +391,7 @@
     "img_url": "https://images.clarin.com/2017/06/05/rk3yjB7zW_600x338.jpg",
     "total_reactions": 1,
     "source_name": "Clarin",
+    "category": "Espectáculos",
     "reactions": [
       {
         "reaction": "👎",
@@ -393,6 +409,7 @@
     "img_url": "http://bucket.glanacion.com/anexos/fotos/08/2467508.jpg",
     "total_reactions": 1,
     "source_name": "La Nacion",
+    "category": "Espectáculos",
     "reactions": [
       {
         "reaction": "👍",
@@ -481,6 +498,7 @@
     "img_url": "http://www.telam.com.ar/advf/imagenes/2017/05/592c090bb121a_400x225.jpg",
     "total_reactions": 3,
     "source_name": "Telam",
+    "category": "Política",
     "reactions": [
       {
         "reaction": "👻",
