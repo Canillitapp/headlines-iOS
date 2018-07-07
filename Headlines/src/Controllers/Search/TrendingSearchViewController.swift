@@ -10,7 +10,7 @@ import UIKit
 
 class TrendingSearchViewController: SearchViewController<TrendingSearchTermTableViewCell, NewsSearchViewController> {
     
-    private let elements = ["macri", "messi", "mundial", "cristina", "mbappé", "fmi"]
+    private let elements = ["Macri", "Messi", "Mundial", "Cristina", "Mbappé", "FMI"]
     
     init() {
         let storboard = UIStoryboard(name: "Trending", bundle: Bundle.main)

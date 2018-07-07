@@ -48,22 +48,6 @@ UISearchBarDelegate, UISearchControllerDelegate {
         setupTableView()
     }
 
-    // Workaround for displaying the search bar directly
-    // https://stackoverflow.com/a/46352230/2892512
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if #available(iOS 11.0, *) {
-            navigationItem.hidesSearchBarWhenScrolling = false
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if #available(iOS 11.0, *) {
-            navigationItem.hidesSearchBarWhenScrolling = true
-        }
-    }
-    
     private func setupTableView() {
         let nibName = String(describing: Cell.self).components(separatedBy: ".").last!
         if Bundle.main.path(forResource: nibName, ofType: "nib") != nil {
@@ -90,6 +74,8 @@ UISearchBarDelegate, UISearchControllerDelegate {
     private func configureUISearchController() {
         searchController.searchBar.placeholder = "Buscar"
         searchController.obscuresBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.searchBar.barStyle = .blackOpaque
         definesPresentationContext = true
         switch mode {
         case .automatic:
@@ -100,12 +86,7 @@ UISearchBarDelegate, UISearchControllerDelegate {
             searchController.searchBar.delegate = self
         }
         searchController.searchBar.sizeToFit()
-        
-        if #available(iOS 11.0, *) {
-            navigationItem.searchController = searchController
-        } else {
-            tableView.tableHeaderView = searchController.searchBar
-        }
+        navigationItem.titleView = searchController.searchBar
     }
     
     // MARK: - UISearchBarDelegate
