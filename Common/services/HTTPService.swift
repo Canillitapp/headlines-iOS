@@ -25,6 +25,7 @@ class HTTPService {
     func request(method: Method,
                  path: String,
                  params: [String: String]?,
+                 headers: [String: String]? = nil,
                  success: ((_ result: Data?, _ response: URLResponse?) -> Void)?,
                  fail: ((_ error: NSError) -> Void)?) -> URLSessionDataTask? {
         
@@ -36,6 +37,12 @@ class HTTPService {
             request.httpMethod = "POST"
         default:
             break
+        }
+        
+        if let headers = headers {
+            headers.forEach { (k, v) in
+                request.addValue(v, forHTTPHeaderField: k)
+            }
         }
         
         let config = URLSessionConfiguration.default

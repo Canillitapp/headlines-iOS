@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CloudKit
 import SwiftyJSON
 
 class NewsService: HTTPService {
@@ -234,6 +235,23 @@ class NewsService: HTTPService {
             return
         }
         
-        _ = request(method: .GET, path: "search/\(encodedText)", params: nil, success: successBlock, fail: failBlock)
+        let container = CKContainer.default()
+        container.fetchUserRecordID { [unowned self] (recordId, _) in
+            var headers: [String: String] = [:]
+            
+            if let identifier = recordId?.recordName {
+                headers["user_id"] = identifier
+                headers["user_source"] = "iOS"
+            }
+            
+            _ = self.request(
+                        method: .GET,
+                        path: "search/\(encodedText)",
+                        params: nil,
+                        headers: headers,
+                        success: successBlock,
+                        fail: failBlock
+            )
+        }
     }
 }
