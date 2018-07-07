@@ -39,6 +39,14 @@ class CategoriesService: HTTPService {
             })
         }
         
+        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            let mockService = MockService()
+            _ = mockService.request(file: "GET-categories",
+                                    success: successBlock,
+                                    fail: failBlock)
+            return
+        }
+        
         _ = request(method: .GET, path: "categories/", params: nil, success: successBlock, fail: failBlock)
     }
 }
