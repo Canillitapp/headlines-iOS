@@ -1,6 +1,7 @@
 /*
  File: UIImage+ImageEffects.m
- Abstract: This is a category of UIImage that adds methods to apply blur and tint effects to an image. This is the code you’ll want to look out to find out how to use vImage to efficiently calculate a blur.
+ Abstract: This is a category of UIImage that adds methods to apply blur and tint effects to an image.
+ This is the code you’ll want to look out to find out how to use vImage to efficiently calculate a blur.
  Version: 1.0
  Disclaimer: IMPORTANT:  This Apple software is supplied to you by Apple
  Inc. ("Apple") in consideration of your agreement to the following
@@ -127,9 +128,12 @@ public extension UIImage {
         return applyBlurWithRadius(10, tintColor: effectColor, saturationDeltaFactor: -1.0, maskImage: nil)
     }
     
-    public func applyBlurWithRadius(_ blurRadius: CGFloat, tintColor: UIColor?, saturationDeltaFactor: CGFloat, maskImage: UIImage? = nil) -> UIImage? {
+    public func applyBlurWithRadius(_ blurRadius: CGFloat,
+                                    tintColor: UIColor?,
+                                    saturationDeltaFactor: CGFloat,
+                                    maskImage: UIImage? = nil) -> UIImage? {
         // Check pre-conditions.
-        if (size.width < 1 || size.height < 1) {
+        if size.width < 1 || size.height < 1 {
             print("*** error: invalid size: \(size.width) x \(size.height). Both dimensions must be >= 1: \(self)")
             return nil
         }
@@ -169,12 +173,10 @@ public extension UIImage {
             
             var effectInBuffer = createEffectBuffer(effectInContext)
             
-            
             UIGraphicsBeginImageContextWithOptions(size, false, screenScale)
             
             guard let effectOutContext = UIGraphicsGetCurrentContext() else { return  nil }
             var effectOutBuffer = createEffectBuffer(effectOutContext)
-            
             
             if hasBlur {
                 // A description of how to compute the box kernel width from the Gaussian
@@ -198,9 +200,41 @@ public extension UIImage {
                 
                 let imageEdgeExtendFlags = vImage_Flags(kvImageEdgeExtend)
                 
-                vImageBoxConvolve_ARGB8888(&effectInBuffer, &effectOutBuffer, nil, 0, 0, radius, radius, nil, imageEdgeExtendFlags)
-                vImageBoxConvolve_ARGB8888(&effectOutBuffer, &effectInBuffer, nil, 0, 0, radius, radius, nil, imageEdgeExtendFlags)
-                vImageBoxConvolve_ARGB8888(&effectInBuffer, &effectOutBuffer, nil, 0, 0, radius, radius, nil, imageEdgeExtendFlags)
+                vImageBoxConvolve_ARGB8888(
+                    &effectInBuffer,
+                    &effectOutBuffer,
+                    nil,
+                    0,
+                    0,
+                    radius,
+                    radius,
+                    nil,
+                    imageEdgeExtendFlags
+                )
+                
+                vImageBoxConvolve_ARGB8888(
+                    &effectOutBuffer,
+                    &effectInBuffer,
+                    nil,
+                    0,
+                    0,
+                    radius,
+                    radius,
+                    nil,
+                    imageEdgeExtendFlags
+                )
+                
+                vImageBoxConvolve_ARGB8888(
+                    &effectInBuffer,
+                    &effectOutBuffer,
+                    nil,
+                    0,
+                    0,
+                    radius,
+                    radius,
+                    nil,
+                    imageEdgeExtendFlags
+                )
             }
             
             var effectImageBuffersAreSwapped = false
@@ -208,10 +242,10 @@ public extension UIImage {
             if hasSaturationChange {
                 let s: CGFloat = saturationDeltaFactor
                 let floatingPointSaturationMatrix: [CGFloat] = [
-                    0.0722 + 0.9278 * s,  0.0722 - 0.0722 * s,  0.0722 - 0.0722 * s,  0,
-                    0.7152 - 0.7152 * s,  0.7152 + 0.2848 * s,  0.7152 - 0.7152 * s,  0,
-                    0.2126 - 0.2126 * s,  0.2126 - 0.2126 * s,  0.2126 + 0.7873 * s,  0,
-                    0,                    0,                    0,  1
+                    0.0722 + 0.9278 * s, 0.0722 - 0.0722 * s, 0.0722 - 0.0722 * s, 0,
+                    0.7152 - 0.7152 * s, 0.7152 + 0.2848 * s, 0.7152 - 0.7152 * s, 0,
+                    0.2126 - 0.2126 * s, 0.2126 - 0.2126 * s, 0.2126 + 0.7873 * s, 0,
+                    0, 0, 0, 1
                 ]
                 
                 let divisor: CGFloat = 256
@@ -223,10 +257,26 @@ public extension UIImage {
                 }
                 
                 if hasBlur {
-                    vImageMatrixMultiply_ARGB8888(&effectOutBuffer, &effectInBuffer, saturationMatrix, Int32(divisor), nil, nil, vImage_Flags(kvImageNoFlags))
+                    vImageMatrixMultiply_ARGB8888(
+                        &effectOutBuffer,
+                        &effectInBuffer,
+                        saturationMatrix,
+                        Int32(divisor),
+                        nil,
+                        nil,
+                        vImage_Flags(kvImageNoFlags)
+                    )
                     effectImageBuffersAreSwapped = true
                 } else {
-                    vImageMatrixMultiply_ARGB8888(&effectInBuffer, &effectOutBuffer, saturationMatrix, Int32(divisor), nil, nil, vImage_Flags(kvImageNoFlags))
+                    vImageMatrixMultiply_ARGB8888(
+                        &effectInBuffer,
+                        &effectOutBuffer,
+                        saturationMatrix,
+                        Int32(divisor),
+                        nil,
+                        nil,
+                        vImage_Flags(kvImageNoFlags)
+                    )
                 }
             }
             
@@ -258,7 +308,7 @@ public extension UIImage {
         if hasBlur {
             outputContext.saveGState()
             if let maskCGImage = maskImage?.cgImage {
-                outputContext.clip(to: imageRect, mask: maskCGImage);
+                outputContext.clip(to: imageRect, mask: maskCGImage)
             }
             outputContext.draw(effectImage.cgImage!, in: imageRect)
             outputContext.restoreGState()

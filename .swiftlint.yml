@@ -11,3 +11,5 @@ line_length: 120
 identifier_name:
   min_length: 1
   max_length: 50
+function_body_length:
+  error: 200

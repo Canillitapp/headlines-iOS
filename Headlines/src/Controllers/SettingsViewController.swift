@@ -13,7 +13,7 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var subscribeButton: UIButton!
 
     private func registerForRemoteNotifications() {
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (granted, error) in
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { (granted, _) in
             DispatchQueue.main.async {
                 if granted {
                     UIApplication.shared.registerForRemoteNotifications()
