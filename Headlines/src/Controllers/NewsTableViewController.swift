@@ -331,11 +331,13 @@ class NewsTableViewController: UITableViewController,
             self.addReaction(selectedReaction, toNews: n)
         }
         
-        let fail: (Error) -> Void = { [unowned self] err in
+        let fail: (Error) -> Void = { [weak self] err in
             
             let error = err as NSError
             
-            self.showControllerWithError(error)
+            if let s = self {
+                s.showControllerWithError(error)
+            }
             
             Answers.logCustomEvent(
                 withName: "request_failed",
