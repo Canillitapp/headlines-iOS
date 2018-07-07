@@ -73,7 +73,7 @@ class AppDelegate: UIResponder,
         
         let retry = UIAlertAction(
             title: "Volver a intentar",
-            style: .default) { [unowned self] (action) in
+            style: .default) { [unowned self] (_) in
                 self.fetchCategoriesAndNews()
                 window?.isHidden = true
                 window = nil
