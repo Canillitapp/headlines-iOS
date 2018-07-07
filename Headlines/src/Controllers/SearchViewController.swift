@@ -70,6 +70,12 @@ class SearchViewController: NewsTableViewController, UISearchBarDelegate {
         Answers.logSearch(withQuery: text, customAttributes: nil)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        searchBar.becomeFirstResponder()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -77,7 +83,5 @@ class SearchViewController: NewsTableViewController, UISearchBarDelegate {
         trackContextFrom = .search
         
         Answers.logCustomEvent(withName: "search_appear", customAttributes: nil)
-        
-        searchBar.becomeFirstResponder()
     }
 }
