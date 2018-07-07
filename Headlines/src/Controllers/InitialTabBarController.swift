@@ -10,8 +10,6 @@ import UIKit
 import SafariServices
 
 class InitialTabBarController: UITabBarController, UITabBarControllerDelegate {
-    
-    var trendingTopics: [Topic]?
     var lastSelectedTabBarItem: String?
     var tabs = [String: UIViewController]()
     
@@ -38,13 +36,15 @@ class InitialTabBarController: UITabBarController, UITabBarControllerDelegate {
         let trendingStoryboard = UIStoryboard(name: "Trending", bundle: Bundle.main)
         guard
             let nav = trendingStoryboard.instantiateInitialViewController() as? UINavigationController,
-            let vc = nav.topViewController as? TrendingCardsViewController,
-            let topics = trendingTopics else {
+            let vc = nav.topViewController as? TrendingCardsViewController else {
                 
                 return trendingStoryboard.instantiateInitialViewController()
         }
         
-        vc.topics = topics
+        if let t = NewsManager.sharedInstance.topics {
+            vc.topics.append(contentsOf: t)
+        }
+
         return nav
     }
     

@@ -8,10 +8,12 @@
 
 import UIKit
 
-class LoadingViewController: UIViewController, CAAnimationDelegate {
+class LoadingViewController: UIViewController {
 
     @IBOutlet weak var logoImageView: UIImageView!
     @IBOutlet weak var backgroundImageView: UIImageView!
+    
+    var apiCallCompletionObserver: NSObjectProtocol?
     
     private func transitionToNews() {
         DispatchQueue.main.async {
@@ -39,7 +41,6 @@ class LoadingViewController: UIViewController, CAAnimationDelegate {
         groupAnimation.fillMode = kCAFillModeForwards
         groupAnimation.isRemovedOnCompletion = false
         groupAnimation.duration = 1.8
-        groupAnimation.delegate = self
         logoImageView.layer.add(groupAnimation, forKey: "group")
     }
     
@@ -57,16 +58,27 @@ class LoadingViewController: UIViewController, CAAnimationDelegate {
         backgroundImageView.layer.add(alphaAnimation, forKey: "opacity")
     }
     
+    private func catchNotification(notification: Notification) {
+        DispatchQueue.main.async { [unowned self] in
+            self.transitionToNews()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        apiCallCompletionObserver = NotificationCenter.default.addObserver(
+                forName: Notification.Name(rawValue: "loadingTaskFinished"),
+                object: nil,
+                queue: nil,
+                using: catchNotification
+        )
         
         animateBackgroundImageView()
         animateLogo()
     }
     
-    // MARK: CAAnimationDelegate
-    
-    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        transitionToNews()
+    deinit {
+        NotificationCenter.default.removeObserver(apiCallCompletionObserver)
     }
 }

@@ -123,4 +123,23 @@ class HeadlinesMockedUITests: XCTestCase {
                                                           handler: nil)
         wait(for: [reaccionesTitleLabelExpectation], timeout: defaultWaitThreshold)
     }
+    
+    func testCategoriesController() {
+        let app = XCUIApplication()
+        
+        // Is a category cell?
+        let categoryCell = app.collectionViews.collectionViews.cells.containing(.staticText, identifier: "Política").children(matching: .other).element
+        let categoryCellExists = NSPredicate(format: "exists == 1")
+        let categoryCellExistsExpectation = expectation(for: categoryCellExists, evaluatedWith: categoryCell, handler: nil)
+        wait(for: [categoryCellExistsExpectation], timeout: defaultWaitThreshold)
+        
+        // Tap the category cell
+        categoryCell.tap()
+        
+        // Does the category cell redirect into a category screen?
+        let cell = app.tables.cells.element(boundBy: 1)
+        let exists = NSPredicate(format: "exists == 1")
+        let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
+        wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
+    }
 }

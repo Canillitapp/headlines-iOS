@@ -1,0 +1,22 @@
+[
+ {
+    "id":1,
+    "name":"Política",
+    "img_url":"https://cdn.tn.com.ar/sites/default/files/styles/470x269/public/2018/07/05/macri-portada-la.jpg"
+ },
+ {
+    "id":2,
+    "name":"Internacionales",
+    "img_url":"https://cdn.tn.com.ar/sites/default/files/styles/470x269/public/2018/07/06/gun3.jpg"
+ },
+ {
+    "id":3,
+    "name":"Tecnología",
+    "img_url":"https://bucket1.glanacion.com/anexos/fotos/71/2721871.jpg"
+ },
+ {
+    "id":4,
+    "name":"Espectáculos",
+    "img_url":"https://bucket3.glanacion.com/anexos/fotos/37/2708637.jpg"
+ }
+]
