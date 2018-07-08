@@ -97,16 +97,8 @@ class InitialTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     func searchTabViewController() -> UIViewController? {
-        let searchViewController = TrendingSearchViewController()
-        let navigationController = UINavigationController(
-            rootViewController: searchViewController
-        )
-        navigationController.navigationBar.barStyle = .black
-        navigationController.navigationBar.isTranslucent = false
-        navigationController.navigationBar.tintColor = UIColor.white
-        navigationController.tabBarItem = UITabBarItem(
-            title: "Buscar", image: UIImage(named: "search_icon"), selectedImage: nil)
-        return navigationController
+        let searchStoryboard = UIStoryboard(name: "Search", bundle: Bundle.main)
+        return searchStoryboard.instantiateInitialViewController()
     }
     
     func initialControllers() -> [UIViewController] {

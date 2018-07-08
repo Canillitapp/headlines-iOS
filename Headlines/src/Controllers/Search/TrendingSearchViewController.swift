@@ -8,45 +8,31 @@
 
 import UIKit
 
-class TrendingSearchViewController: SearchViewController<TrendingSearchTermTableViewCell, NewsSearchViewController> {
+class TrendingSearchViewController: UITableViewController {
     
-    private let elements = ["Macri", "Messi", "Mundial", "Cristina", "Mbappé", "FMI"]
-    
-    init() {
-        let storboard = UIStoryboard(name: "Trending", bundle: Bundle.main)
-        let resultController = storboard.instantiateViewController(
-            withIdentifier: "NewsSearchViewController"
-            ) as! NewsSearchViewController
-        super.init(resultController: resultController)
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        title = "Buscar"
-        let headerView = TrendingSearchTableHeaderView(
-            frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 50)
-        )
-        headerView.set(title: "Trending")
-        tableView.tableHeaderView = headerView
-    }
+    private let terms = ["Macri", "Messi", "Mundial", "Cristina", "Mbappé", "FMI"]
+    var didSelect: (String) -> Void = { _ in }
     
     // MARK: - UITableViewDataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return elements.count
+        return terms.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier)!
-        cell.textLabel?.text = elements[indexPath.row]
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: "trending_term_cell"
+            ) as! TrendingSearchTermTableViewCell
+        cell.label.text = terms[indexPath.row]
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        super.tableView(tableView, didSelectRowAt: indexPath)
-        beginSearch(text: elements[indexPath.row])
+        didSelect(terms[indexPath.row])
+    }
+    
+    @IBAction func reload(_ sender: UIRefreshControl) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            sender.endRefreshing()
+        }
     }
 }
