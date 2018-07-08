@@ -1,5 +1,5 @@
 //
-//  Searchable.swift
+//  NewsSearchStateController.swift
 //  Canillitapp
 //
 //  Created by Marcos Griselli on 06/07/2018.

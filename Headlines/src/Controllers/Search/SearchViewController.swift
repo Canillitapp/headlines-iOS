@@ -13,11 +13,6 @@ class SearchViewController: UIViewController {
     // MARK: - Properties
     private var searchController: UISearchController!
     private var trendingSearchController: TrendingSearchViewController!
-
-    // MARK: - Init & Deinit
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
