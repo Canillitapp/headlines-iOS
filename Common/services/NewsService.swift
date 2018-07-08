@@ -264,4 +264,31 @@ class NewsService: HTTPService {
                         fail: failBlock
                 )
     }
+    
+    func fetchTrendingTerms(success: ((_ result: [TrendingTerm]) -> Void)?,
+                            fail: ((_ error: NSError) -> Void)?) {
+        
+        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {( data, response) in
+            guard let data = data else { return }
+            let json = JSON(data: data)
+            let terms = json.arrayValue.compactMap(TrendingTerm.init)
+            DispatchQueue.main.async(execute: {
+                success?(terms)
+            })
+        }
+        
+        let failBlock: (_ error: NSError) -> Void = { (e) in
+            DispatchQueue.main.async(execute: {
+                fail?(e as NSError)
+            })
+        }
+        
+        _ = request(
+            method: .GET,
+            path: "search/trending/",
+            params: nil,
+            success: successBlock,
+            fail: failBlock
+        )
+    }
 }

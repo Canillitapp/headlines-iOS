@@ -10,8 +10,32 @@ import UIKit
 
 class TrendingSearchViewController: UITableViewController {
     
-    private let terms = ["Macri", "Messi", "Mundial", "Cristina", "Mbappé", "FMI"]
+    private var terms = [TrendingTerm]() {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    let service = NewsService()
     var didSelect: (String) -> Void = { _ in }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.contentOffset = CGPoint(
+            x:0,
+            y: -refreshControl!.frame.size.height
+        )
+        refreshControl?.beginRefreshing()
+        fetchTrending()
+    }
+    
+    private func fetchTrending() {
+        service.fetchTrendingTerms(success: { [unowned self] in
+            self.terms = $0
+            self.refreshControl?.endRefreshing()
+            }, fail: { _ in
+                self.refreshControl?.endRefreshing()
+        })
+    }
     
     // MARK: - UITableViewDataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -22,17 +46,15 @@ class TrendingSearchViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: "trending_term_cell"
             ) as! TrendingSearchTermTableViewCell
-        cell.label.text = terms[indexPath.row]
+        cell.label.text = terms[indexPath.row].criteria
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        didSelect(terms[indexPath.row])
+        didSelect(terms[indexPath.row].criteria)
     }
     
     @IBAction func reload(_ sender: UIRefreshControl) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            sender.endRefreshing()
-        }
+        fetchTrending()
     }
 }
