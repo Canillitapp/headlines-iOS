@@ -128,9 +128,16 @@ class HeadlinesMockedUITests: XCTestCase {
         let app = XCUIApplication()
         
         // Is a category cell?
-        let categoryCell = app.collectionViews.collectionViews.cells.containing(.staticText, identifier: "Política").children(matching: .other).element
+        let categoryCell =
+            app.collectionViews.collectionViews.cells
+                .containing(.staticText, identifier: "Política")
+                .children(matching: .other).element
         let categoryCellExists = NSPredicate(format: "exists == 1")
-        let categoryCellExistsExpectation = expectation(for: categoryCellExists, evaluatedWith: categoryCell, handler: nil)
+        let categoryCellExistsExpectation = expectation(
+            for: categoryCellExists,
+            evaluatedWith: categoryCell,
+            handler: nil
+        )
         wait(for: [categoryCellExistsExpectation], timeout: defaultWaitThreshold)
         
         // Tap the category cell

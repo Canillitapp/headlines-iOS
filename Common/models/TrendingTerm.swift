@@ -22,4 +22,3 @@ struct TrendingTerm {
         self.quantity = quantity
     }
 }
-
