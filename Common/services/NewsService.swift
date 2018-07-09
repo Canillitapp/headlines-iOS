@@ -271,7 +271,7 @@ class NewsService: HTTPService {
         let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {( data, response) in
             guard let data = data else { return }
             let json = JSON(data: data)
-            let terms = json.arrayValue.compactMap(TrendingTerm.init)
+            let terms = json.arrayValue.flatMap(TrendingTerm.init)
             DispatchQueue.main.async(execute: {
                 success?(terms)
             })
