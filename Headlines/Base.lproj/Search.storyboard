@@ -330,11 +330,22 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="j9q-VI-FDW" kind="presentation" identifier="reaction" id="JJr-GT-OG4"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="m1a-Md-pyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="9p5-HN-wUB" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1708" y="148"/>
+        </scene>
+        <!--Reactions-->
+        <scene sceneID="5RU-UY-yAu">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Reactions" id="j9q-VI-FDW" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="IxY-Bd-iXB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2304" y="162"/>
         </scene>
     </scenes>
     <resources>
