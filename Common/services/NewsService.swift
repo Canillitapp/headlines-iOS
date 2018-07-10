@@ -196,10 +196,14 @@ class NewsService: HTTPService {
                        fail: failBlock)!
     }
     
-    func searchNews(_ text: String, success: ((_ result: [News]?) -> Void)?, fail: ((_ error: NSError) -> Void)?) {
+    func searchNews(_ text: String,
+                    success: ((_ result: [News]?) -> Void)?,
+                    fail: ((_ error: NSError) -> Void)?) -> URLSessionDataTask? {
+        
+        let group = DispatchGroup()
         
         guard let encodedText = text.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {
-            return
+            return nil
         }
         
         let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
@@ -232,26 +236,59 @@ class NewsService: HTTPService {
             _ = mockService.request(file: "GET-search",
                                     success: successBlock,
                                     fail: failBlock)
-            return
+            return nil
         }
         
+        var headers: [String: String] = [:]
+        
         let container = CKContainer.default()
-        container.fetchUserRecordID { [unowned self] (recordId, _) in
-            var headers: [String: String] = [:]
+        group.enter()
+        
+        container.fetchUserRecordID { (recordId, _) in
             
             if let identifier = recordId?.recordName {
                 headers["user_id"] = identifier
                 headers["user_source"] = "iOS"
             }
             
-            _ = self.request(
+            group.leave()
+        }
+
+        group.wait()
+        return self.request(
                         method: .GET,
                         path: "search/\(encodedText)",
                         params: nil,
                         headers: headers,
                         success: successBlock,
                         fail: failBlock
-            )
+                )
+    }
+    
+    func fetchTrendingTerms(success: ((_ result: [TrendingTerm]) -> Void)?,
+                            fail: ((_ error: NSError) -> Void)?) {
+        
+        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {( data, response) in
+            guard let data = data else { return }
+            let json = JSON(data: data)
+            let terms = json.arrayValue.flatMap(TrendingTerm.init)
+            DispatchQueue.main.async(execute: {
+                success?(terms)
+            })
         }
+        
+        let failBlock: (_ error: NSError) -> Void = { (e) in
+            DispatchQueue.main.async(execute: {
+                fail?(e as NSError)
+            })
+        }
+        
+        _ = request(
+            method: .GET,
+            path: "search/trending/",
+            params: nil,
+            success: successBlock,
+            fail: failBlock
+        )
     }
 }

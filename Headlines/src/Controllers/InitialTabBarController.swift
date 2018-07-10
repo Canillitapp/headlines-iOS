@@ -96,6 +96,11 @@ class InitialTabBarController: UITabBarController, UITabBarControllerDelegate {
         return profileStoryboard.instantiateInitialViewController()
     }
     
+    func searchTabViewController() -> UIViewController? {
+        let searchStoryboard = UIStoryboard(name: "Search", bundle: Bundle.main)
+        return searchStoryboard.instantiateInitialViewController()
+    }
+    
     func initialControllers() -> [UIViewController] {
         var controllers: [UIViewController] = []
         
@@ -112,6 +117,11 @@ class InitialTabBarController: UITabBarController, UITabBarControllerDelegate {
         // "Reciente" tab
         if let recentsViewController = recentsTabViewController() {
             controllers.append(recentsViewController)
+        }
+        
+        // "Buscar" tab
+        if let searchViewController = searchTabViewController() {
+            controllers.append(searchViewController)
         }
         
         //  "Perfil" tab
