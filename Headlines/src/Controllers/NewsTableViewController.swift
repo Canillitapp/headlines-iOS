@@ -15,7 +15,6 @@ class NewsTableViewController: UITableViewController,
                                 NewsCellViewModelDelegate,
                                 UIViewControllerTransitioningDelegate,
                                 SFSafariViewControllerDelegate,
-                                UIViewControllerPreviewingDelegate,
                                 TabbedViewController {
     
     var news: [News] = [] {
@@ -275,14 +274,6 @@ class NewsTableViewController: UITableViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if traitCollection.forceTouchCapability == .available {
-            registerForPreviewing(with: self, sourceView: tableView)
-        } else {
-            let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(self.handleLongPress))
-            longPressRecognizer.delaysTouchesBegan = true
-            tableView.addGestureRecognizer(longPressRecognizer)
-        }
-        
         guard let ds = self.newsDataSource else {
             return
         }
@@ -538,7 +529,34 @@ class NewsTableViewController: UITableViewController,
         return [activity]
     }
     
-    // MARK: UIViewControllerPreviewingDelegate
+    // MARK: - TabbedViewController
+    func tabbedViewControllerWasDoubleTapped() {
+        tableView.setContentOffset(CGPoint.zero, animated: true)
+    }
+}
+
+// MARK: UIViewControllerPreviewingDelegate
+extension NewsTableViewController: UIViewControllerPreviewingDelegate {
+    
+    private func setupPreview() {
+        if traitCollection.forceTouchCapability == .available {
+            registerForPreviewing(with: self, sourceView: tableView)
+        } else {
+            let longPressRecognizer = UILongPressGestureRecognizer(
+                target: self,
+                action: #selector(self.handleLongPress)
+            )
+            
+            longPressRecognizer.delaysTouchesBegan = true
+            tableView.addGestureRecognizer(longPressRecognizer)
+        }
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        setupPreview()
+    }
+    
     func previewingContext(_ previewingContext: UIViewControllerPreviewing,
                            viewControllerForLocation location: CGPoint) -> UIViewController? {
         
@@ -557,7 +575,9 @@ class NewsTableViewController: UITableViewController,
         return vc
     }
     
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing,
+                           commit viewControllerToCommit: UIViewController) {
+        
         guard let url = selectedNews?.url else {
             return
         }
@@ -565,10 +585,5 @@ class NewsTableViewController: UITableViewController,
         let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
         vc.delegate = self
         present(vc, animated: true, completion: nil)
-    }
-    
-    // MARK: - TabbedViewController
-    func tabbedViewControllerWasDoubleTapped() {
-        tableView.setContentOffset(CGPoint.zero, animated: true)
     }
 }
