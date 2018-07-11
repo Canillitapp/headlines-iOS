@@ -17,11 +17,9 @@ class NewsService: HTTPService {
                               fail: ((_ error: NSError) -> Void)?) {
         
         let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data else {
+            guard let d = data, let json = try? JSON(data: d) else {
                 return
             }
-            
-            let json = JSON(data: d)
             
             var res = [News]()
             
@@ -49,11 +47,9 @@ class NewsService: HTTPService {
                              fail: ((_ error: NSError) -> Void)?) {
 
         let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data else {
+            guard let d = data, let json = try? JSON(data: d) else {
                 return
             }
-            
-            let json = JSON(data: d)
             
             var res = [News]()
             
@@ -94,11 +90,9 @@ class NewsService: HTTPService {
         let datePath = String(format: "%d-%02d-%02d", components.year!, components.month!, components.day!)
 
         let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data else {
+            guard let d = data, let json = try? JSON(data: d) else {
                 return
             }
-            
-            let json = JSON(data: d)
             
             var res = [News]()
             
@@ -140,11 +134,9 @@ class NewsService: HTTPService {
         let datePath = String(format: "%d-%02d-%02d", components.year!, components.month!, components.day!)
         
         let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data else {
+            guard let d = data, let json = try? JSON(data: d)  else {
                 return
             }
-            
-            let json = JSON(data: d)
             
             var res = [Topic]()
             
@@ -207,11 +199,9 @@ class NewsService: HTTPService {
         }
         
         let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data else {
+            guard let d = data, let json = try? JSON(data: d)  else {
                 return
             }
-            
-            let json = JSON(data: d)
             
             var res = [News]()
             
@@ -269,9 +259,8 @@ class NewsService: HTTPService {
                             fail: ((_ error: NSError) -> Void)?) {
         
         let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {( data, response) in
-            guard let data = data else { return }
-            let json = JSON(data: data)
-            let terms = json.arrayValue.flatMap(TrendingTerm.init)
+            guard let data = data, let json = try? JSON(data: data) else { return }
+            let terms = json.arrayValue.compactMap(TrendingTerm.init)
             DispatchQueue.main.async(execute: {
                 success?(terms)
             })

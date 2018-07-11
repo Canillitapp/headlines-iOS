@@ -40,7 +40,7 @@ class News: NSObject {
         }
         
         title = json["title"].string
-        url = json["url"].URL
+        url = json["url"].url
         
         let timestamp = json["date"].doubleValue
         date = Date(timeIntervalSince1970: timestamp)
@@ -49,7 +49,7 @@ class News: NSObject {
         
         category = json["category"].string
         
-        imageUrl = json["img_url"].URL
+        imageUrl = json["img_url"].url
         
         var tmp: [Reaction] = []
         

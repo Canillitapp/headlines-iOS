@@ -24,7 +24,7 @@ class TodayViewModel: NSObject {
 
             let attributedSpace = NSAttributedString(
                 string: " ",
-                attributes: [NSFontAttributeName: regularTitleFont]
+                attributes: [NSAttributedStringKey.font: regularTitleFont]
             )
             
             let retVal = NSMutableAttributedString(attributedString: topicTitle)
@@ -45,7 +45,7 @@ class TodayViewModel: NSObject {
     var attributedTitlesString: NSAttributedString? {
         let attributedNewLine = NSAttributedString(
             string: "\n",
-            attributes: [NSFontAttributeName: regularTitleFont]
+            attributes: [NSAttributedStringKey.font: regularTitleFont]
         )
         
         guard let titles = attributedTitles else {
@@ -68,8 +68,8 @@ class TodayViewModel: NSObject {
         return NSAttributedString(
             string: topic.name?.capitalized ?? "nil_topic",
             attributes: [
-                NSFontAttributeName: boldTitleFont,
-                NSParagraphStyleAttributeName: paragraphStyle
+                NSAttributedStringKey.font: boldTitleFont,
+                NSAttributedStringKey.paragraphStyle: paragraphStyle
             ]
         )
     }
@@ -83,8 +83,8 @@ class TodayViewModel: NSObject {
         return NSAttributedString(
             string: reaction,
             attributes: [
-                NSFontAttributeName: regularTitleFont,
-                NSParagraphStyleAttributeName: paragraphStyle
+                NSAttributedStringKey.font: regularTitleFont,
+                NSAttributedStringKey.paragraphStyle: paragraphStyle
             ]
         )
     }
@@ -93,8 +93,8 @@ class TodayViewModel: NSObject {
         return NSAttributedString(
             string: "(\(topic.news?.count ?? 0))",
             attributes: [
-                NSFontAttributeName: regularTitleFont,
-                NSParagraphStyleAttributeName: paragraphStyle
+                NSAttributedStringKey.font: regularTitleFont,
+                NSAttributedStringKey.paragraphStyle: paragraphStyle
             ]
         )
     }
