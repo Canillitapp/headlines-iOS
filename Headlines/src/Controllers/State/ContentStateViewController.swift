@@ -10,7 +10,7 @@ import UIKit
 
 class ContentStateViewController: UIViewController {
     private var state: State?
-    private var shownViewController: UIViewController?
+    var shownViewController: UIViewController?
     
     func transition(to newState: State) {
         shownViewController?.remove()
