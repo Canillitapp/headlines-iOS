@@ -17,7 +17,7 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
     private var dispatchWorkItem: DispatchWorkItem?
     private var previousTerm: String?
     
-    private lazy var stateViewController = ContentStateViewController()
+    lazy var stateViewController = ContentStateViewController()
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -11,7 +11,7 @@ import UIKit
 class SearchViewController: UIViewController {
 
     // MARK: - Properties
-    private var searchController: UISearchController!
+    fileprivate var searchController: UISearchController!
     private var trendingSearchController: TrendingSearchViewController!
     
     override func viewDidLoad() {
@@ -46,5 +46,17 @@ class SearchViewController: UIViewController {
     func search(term: String?) {
         searchController.isActive = true
         searchController.searchBar.text = term
+    }
+}
+
+extension SearchViewController: TabbedViewController {
+    
+    func tabbedViewControllerWasDoubleTapped() {
+        guard
+            let searchStateController = searchController.searchResultsController as? NewsSearchStateController,
+            let vc = searchStateController.stateViewController.shownViewController as? NewsSearchViewController else {
+                return
+        }
+        vc.tabbedViewControllerWasDoubleTapped()
     }
 }
