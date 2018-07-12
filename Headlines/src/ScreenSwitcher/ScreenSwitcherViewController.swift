@@ -10,6 +10,9 @@ import UIKit
 
 class ScreenSwitcherViewController: OrientationAwareViewController {
 
+    // Property not being loaded from Storyboard.
+    // Perhaps we can use a type-safe approach to manage
+    // Storyboards and ViewControllers.
     public var initialViewController: String?
     
     public var currentViewController: UIViewController?
@@ -38,14 +41,9 @@ class ScreenSwitcherViewController: OrientationAwareViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        guard
-            let identifier = initialViewController,
-            let vc = storyboard?.instantiateViewController(withIdentifier: identifier) else {
-                
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "loading") else {
                 return
         }
-        
         setViewController(vc, animated: false)
     }
     

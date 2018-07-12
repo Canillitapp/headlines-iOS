@@ -189,7 +189,7 @@ class NewsTableViewController: UITableViewController,
         present(vc, animated: true, completion: nil)
     }
     
-    func fetchNews() {
+    @objc func fetchNews() {
         guard let ds = self.newsDataSource else {
             return
         }
@@ -209,20 +209,12 @@ class NewsTableViewController: UITableViewController,
                     }
                 }
             }
-            
-            self.tableView?.prepareViews()
-            
+
             self.tableView.reloadData()
-            
-            let animation = AnimationType.from(direction: .right, offset: 10.0)
-            self.tableView?.animateViews(
-                animations: [animation],
-                initialAlpha: 0.0,
-                finalAlpha: 1.0,
-                delay: 0.0,
-                duration: 0.3,
-                animationInterval: 0.1,
-                completion: nil
+            UIView.animate(
+                views: self.tableView.visibleCells,
+                animations: [AnimationType.from(direction: .right, offset: 10.0)],
+                animationInterval: 0.1
             )
         }
         
@@ -261,7 +253,7 @@ class NewsTableViewController: UITableViewController,
         tableView.contentOffset = CGPoint(x: 0, y: -refreshCtrl.frame.size.height)
     }
     
-    func filterButtonTapped() {
+    @objc func filterButtonTapped() {
         performSegue(withIdentifier: "filter", sender: self)
     }
     

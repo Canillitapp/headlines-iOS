@@ -34,6 +34,6 @@ class Category {
             name = ""
         }
         
-        imageURL = json["img_url"].URL
+        imageURL = json["img_url"].url
     }
 }

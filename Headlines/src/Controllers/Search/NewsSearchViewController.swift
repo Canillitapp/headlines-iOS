@@ -26,7 +26,8 @@ class NewsSearchViewController: NewsTableViewController {
         }
         self.news = news
         self.tableView.reloadData()
-        self.tableView?.animateViews(
+        UIView.animate(
+            views: tableView.visibleCells,
             animations: [AnimationType.from(direction: .right, offset: 10.0)],
             animationInterval: 0.1
         )

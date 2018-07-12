@@ -39,7 +39,7 @@ class TrendingCardsViewController: UIViewController {
         }
     }
     
-    func fetchTrendingTopics() {
+    @objc func fetchTrendingTopics() {
         self.startRefreshing()
         
         topics.removeAll()

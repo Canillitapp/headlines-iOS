@@ -34,11 +34,9 @@ class ReactionsService: HTTPService {
             }
             
             let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-                guard let d = data else {
+                guard let d = data, let json = try? JSON(data: d)  else {
                     return
                 }
-                
-                let json = JSON(data: d)
                 
                 let n = News(json: json)
                 
@@ -71,12 +69,10 @@ class ReactionsService: HTTPService {
                       fail: ((_ error: Error) -> Void)?) {
         
         let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data else {
+            guard let d = data, let json = try? JSON(data: d) else {
                 return
             }
-            
-            let json = JSON(data: d)
-            
+                        
             var reactions = [Reaction]()
             json.forEach ({ (_, j) in
                 let r = Reaction(json: j)

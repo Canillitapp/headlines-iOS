@@ -31,9 +31,9 @@ class CategoriesContainerViewModel: NSObject {
     
     func loadImage(with category: Category, at cell: CategoryCollectionViewCell) {
         let key = imageKeyFromCategory(category)
-        
-        if SDWebImageManager.shared().imageCache.diskImageExists(withKey: key) {
-            let cachedImage = SDWebImageManager.shared().imageCache.imageFromDiskCache(forKey: key)
+
+        if let cachedImage =
+            SDWebImageManager.shared().imageCache?.imageFromDiskCache(forKey: key) {
             cell.backgroundImageView.image = cachedImage
         } else {
             guard let imageURL = category.imageURL else {

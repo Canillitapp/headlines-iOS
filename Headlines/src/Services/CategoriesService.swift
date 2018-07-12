@@ -15,12 +15,10 @@ class CategoriesService: HTTPService {
                          fail: ((_ error: NSError) -> Void)?) {
         
         let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data else {
+            guard let d = data, let json = try? JSON(data: d) else {
                 return
             }
-            
-            let json = JSON(data: d)
-            
+                    
             var res = [Category]()
             
             for (_, v) in json {

@@ -51,7 +51,6 @@ class ProfileViewController: UITableViewController, TabbedViewController {
     func startRefreshing() {
         if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
             refreshControl?.beginRefreshing()
-            self.tableView?.prepareViews()
         }
     }
     
@@ -64,7 +63,7 @@ class ProfileViewController: UITableViewController, TabbedViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    func fetchMyReactions() {
+    @objc func fetchMyReactions() {
         self.startRefreshing()
         
         let success: (URLResponse?, [Reaction]) -> Void = { [unowned self] response, reactions in
@@ -75,15 +74,10 @@ class ProfileViewController: UITableViewController, TabbedViewController {
             self.tableView.reloadData()
             
             if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
-                let animation = AnimationType.from(direction: .right, offset: 10.0)
-                self.tableView?.animateViews(
-                    animations: [animation],
-                    initialAlpha: 0.0,
-                    finalAlpha: 1.0,
-                    delay: 0.0,
-                    duration: 0.3,
-                    animationInterval: 0.1,
-                    completion: nil
+                UIView.animate(
+                    views: self.tableView.visibleCells,
+                    animations: [AnimationType.from(direction: .right, offset: 10.0)],
+                    animationInterval: 0.1
                 )
             }
         }

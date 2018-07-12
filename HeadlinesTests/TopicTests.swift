@@ -21,7 +21,7 @@ class TopicTests: XCTestCase {
         let url = URL(fileURLWithPath: path!)
         do {
             let data = try Data(contentsOf: url)
-            let json = JSON(data: data)
+            let json = try JSON(data: data)
             topics = [Topic]()
             
             for (k, t) in json["news"] {
