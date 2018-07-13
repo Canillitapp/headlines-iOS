@@ -133,6 +133,7 @@
 		67E10AD21F6389C3009F017C /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E10AD11F6389C3009F017C /* FilterCollectionViewCell.swift */; };
 		67F39C1A1EB2DEE600CF99F2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F39C191EB2DEE600CF99F2 /* SearchViewController.swift */; };
 		67FD84DE1D6BF85D00BACAFC /* TrendingCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD84DA1D6BF85D00BACAFC /* TrendingCardsViewController.swift */; };
+		FB0F97F320F84F5E00555A7A /* FilterSourcesDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0F97F220F84F5E00555A7A /* FilterSourcesDataSourceTests.swift */; };
 		FB450E0F20F2813B00084445 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB450E0D20F2813B00084445 /* Search.storyboard */; };
 		FB450E1320F2AF2500084445 /* UIViewController+Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB450E1220F2AF2500084445 /* UIViewController+Child.swift */; };
 		FB450E1620F2AF9A00084445 /* ContentStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB450E1520F2AF9A00084445 /* ContentStateViewController.swift */; };
@@ -378,6 +379,7 @@
 		E3844BADA0445D4FFEA53F73 /* Pods_Canillitapp_Widget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canillitapp_Widget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E7CA813EE9F2943ACC02746E /* Pods_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBA7D61C153D8B95DB9A361C /* Pods_HeadlinesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeadlinesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FB0F97F220F84F5E00555A7A /* FilterSourcesDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSourcesDataSourceTests.swift; sourceTree = "<group>"; };
 		FB450E0E20F2813B00084445 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Search.storyboard; sourceTree = "<group>"; };
 		FB450E1220F2AF2500084445 /* UIViewController+Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Child.swift"; sourceTree = "<group>"; };
 		FB450E1520F2AF9A00084445 /* ContentStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStateViewController.swift; sourceTree = "<group>"; };
@@ -666,6 +668,7 @@
 				670B793F1F4CE8A100C485A9 /* PopularNewsDataSourceTests.swift */,
 				6757C30B1F4BE0810007C17F /* RecentNewsDataSourceTests.swift */,
 				673880B31FD25E87001005FF /* TopicTests.swift */,
+				FB0F97F220F84F5E00555A7A /* FilterSourcesDataSourceTests.swift */,
 			);
 			path = HeadlinesTests;
 			sourceTree = "<group>";
@@ -1615,6 +1618,7 @@
 				43CC643E1EBBE7E90066D49E /* OrientationAwareControllers.swift in Sources */,
 				673880B41FD25E87001005FF /* TopicTests.swift in Sources */,
 				670B79401F4CE8A100C485A9 /* PopularNewsDataSourceTests.swift in Sources */,
+				FB0F97F320F84F5E00555A7A /* FilterSourcesDataSourceTests.swift in Sources */,
 				6757C30C1F4BE0810007C17F /* RecentNewsDataSourceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
