@@ -19,7 +19,7 @@ class FilterSourcesDataSourceTests: XCTestCase {
     
     func testPreSelectedSources() {
         let viewModels = ["Clarín", "La Nación", "Infobae"]
-            .map(newsCellViewModelWith) // Fails if we introduce a nil object.
+            .map(newsCellViewModelWith)
         let sources = FilterSourcesDataSource.preSelectedSources(
             fromNewsViewModels: viewModels
         )
