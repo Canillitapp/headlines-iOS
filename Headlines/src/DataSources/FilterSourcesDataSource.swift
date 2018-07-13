@@ -23,29 +23,29 @@ class FilterSourcesDataSource: NSObject, UICollectionViewDelegate, UICollectionV
     }
     
     class func sources(fromNews news: [News]) -> [String] {
-        var list = news.filter({$0.source != nil}).map({$0.source!})
-        list = Array(Set(list))
-        return list.sorted(by: { $0.lowercased() < $1.lowercased() })
+        return news
+            .compactMap { $0.source }
+            .uniqued()
+            .sorted()
     }
     
     class func preSelectedSources(fromNewsViewModels viewModels: [NewsCellViewModel]) -> [String] {
-        var list = viewModels.map({$0.source}) as! [String]
-        list = Array(Set(list))
-        return list
+        return viewModels
+            .compactMap { $0.source }
+            .uniqued()
     }
     
     func markSelectedCellsFromSources(_ arrayOfSources: [String]?) {
         guard let s = arrayOfSources else {
-                return
+            return
         }
-        
-        for aSource in s {
-            guard let index = sources.index(of: aSource) else {
-                continue
-            }
-            
-            let indexPath = IndexPath(item: index, section: 0)
-            collectionView?.selectItem(at: indexPath, animated: false, scrollPosition: .centeredVertically)
+        let indexes = s.compactMap { sources.index(of: $0) }
+        indexes.forEach {
+            collectionView?.selectItem(
+                at: IndexPath(item: $0, section: 0),
+                animated: false,
+                scrollPosition: .centeredVertically
+            )
         }
     }
     
