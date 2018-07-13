@@ -134,7 +134,7 @@
 		67F39C1A1EB2DEE600CF99F2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F39C191EB2DEE600CF99F2 /* SearchViewController.swift */; };
 		67FD84DE1D6BF85D00BACAFC /* TrendingCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD84DA1D6BF85D00BACAFC /* TrendingCardsViewController.swift */; };
 		FB0F97F320F84F5E00555A7A /* FilterSourcesDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0F97F220F84F5E00555A7A /* FilterSourcesDataSourceTests.swift */; };
-		FB0F97F720F8D51A00555A7A /* Array + Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0F97F520F8D40C00555A7A /* Array + Util.swift */; };
+		FB0F97F720F8D51A00555A7A /* Array+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0F97F520F8D40C00555A7A /* Array+Util.swift */; };
 		FB450E0F20F2813B00084445 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB450E0D20F2813B00084445 /* Search.storyboard */; };
 		FB450E1320F2AF2500084445 /* UIViewController+Child.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB450E1220F2AF2500084445 /* UIViewController+Child.swift */; };
 		FB450E1620F2AF9A00084445 /* ContentStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB450E1520F2AF9A00084445 /* ContentStateViewController.swift */; };
@@ -381,7 +381,7 @@
 		E7CA813EE9F2943ACC02746E /* Pods_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBA7D61C153D8B95DB9A361C /* Pods_HeadlinesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeadlinesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB0F97F220F84F5E00555A7A /* FilterSourcesDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSourcesDataSourceTests.swift; sourceTree = "<group>"; };
-		FB0F97F520F8D40C00555A7A /* Array + Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array + Util.swift"; sourceTree = "<group>"; };
+		FB0F97F520F8D40C00555A7A /* Array+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Util.swift"; sourceTree = "<group>"; };
 		FB450E0E20F2813B00084445 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Search.storyboard; sourceTree = "<group>"; };
 		FB450E1220F2AF2500084445 /* UIViewController+Child.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Child.swift"; sourceTree = "<group>"; };
 		FB450E1520F2AF9A00084445 /* ContentStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentStateViewController.swift; sourceTree = "<group>"; };
@@ -875,7 +875,7 @@
 		FB0F97F420F8D3FD00555A7A /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				FB0F97F520F8D40C00555A7A /* Array + Util.swift */,
+				FB0F97F520F8D40C00555A7A /* Array+Util.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -1579,7 +1579,7 @@
 				67F39C1A1EB2DEE600CF99F2 /* SearchViewController.swift in Sources */,
 				FB803A9A20EFAC8F00C841DD /* TrendingSearchTermTableViewCell.swift in Sources */,
 				67CE08B11E9012F700D5911E /* NewsCellViewModel.swift in Sources */,
-				FB0F97F720F8D51A00555A7A /* Array + Util.swift in Sources */,
+				FB0F97F720F8D51A00555A7A /* Array+Util.swift in Sources */,
 				675A81E01D6BF6E8000DC680 /* AppDelegate.swift in Sources */,
 				FB450E1620F2AF9A00084445 /* ContentStateViewController.swift in Sources */,
 				FB450E1320F2AF2500084445 /* UIViewController+Child.swift in Sources */,
