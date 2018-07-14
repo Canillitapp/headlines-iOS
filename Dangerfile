@@ -8,7 +8,7 @@ warn("Big PR") if git.lines_of_code > 500
 swiftlint.lint_files inline_mode: true
 
 # Thanks other people!
-message(":tada:") if github.pr_author != "betzerra"
+message("Thanks @#{github.pr_author}! :tada:") if github.pr_author != "betzerra"
 
 # Mainly to encourage writing up some reasoning about the PR, rather than
 # just leaving a title
