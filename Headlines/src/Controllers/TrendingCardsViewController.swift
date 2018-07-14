@@ -22,10 +22,9 @@ class TrendingCardsViewController: UIViewController {
     var categoriesContainerViewModel: CategoriesContainerViewModel?
     
     var reviewViewModel = ReviewBannerViewModel()
-    @IBOutlet weak var reviewButton: UIButton!
-    @IBOutlet weak var reviewCancelButton: UIButton!
-    @IBOutlet weak var reviewView: UIView!
-    @IBOutlet weak var reviewHeight: NSLayoutConstraint!
+    var reviewView: ReviewView?
+    
+    @IBOutlet weak var mainStackView: UIStackView!
     
     func endRefreshing() {
         if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
@@ -148,10 +147,9 @@ class TrendingCardsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        categoriesContainerViewModel = CategoriesContainerViewModel(delegate: self, collectionView: collectionView)
+        setupReviewView()
         
-        setupReviewButtons()
-        reviewView.isHidden = !self.reviewViewModel.shouldShowBanner()
+        categoriesContainerViewModel = CategoriesContainerViewModel(delegate: self, collectionView: collectionView)
         
         setupCollectionView()
         

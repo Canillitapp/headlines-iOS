@@ -67,68 +67,8 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Ezr-Yc-mgT">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZFh-mp-o6l">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="130"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="l3F-LY-TAy">
-                                                <rect key="frame" x="8" y="8" width="359" height="67"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="¿Te gusta Canillitapp?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="of8-7H-F7d">
-                                                        <rect key="frame" x="0.0" y="0.0" width="359" height="27"/>
-                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Por cada buena calificación, donamos un plato de comida caliente a nuestro developer." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6F-ap-chI">
-                                                        <rect key="frame" x="0.0" y="31" width="359" height="36"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                        <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dyr-ig-W5z">
-                                                <rect key="frame" x="8" y="85" width="80" height="35"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="35" id="i9D-rv-Sjj"/>
-                                                    <constraint firstAttribute="width" constant="80" id="owl-Ot-Zd0"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="Calificar"/>
-                                                <connections>
-                                                    <action selector="reviewButtonPressed:" destination="cy7-rz-90p" eventType="touchUpInside" id="Nya-zg-gO9"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NKY-vm-IBL">
-                                                <rect key="frame" x="108" y="85" width="130" height="35"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="130" id="xDP-zg-eeF"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                                                <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <state key="normal" title="No mostrar más"/>
-                                                <connections>
-                                                    <action selector="reviewCancelButtonPressed:" destination="cy7-rz-90p" eventType="touchUpInside" id="oWM-cg-C7X"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                        <color key="backgroundColor" red="0.99607843139999996" green="0.15686274510000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstItem="dyr-ig-W5z" firstAttribute="top" secondItem="l3F-LY-TAy" secondAttribute="bottom" constant="10" id="3cT-YC-aln"/>
-                                            <constraint firstAttribute="height" relation="lessThanOrEqual" constant="150" id="4s4-62-XCM"/>
-                                            <constraint firstItem="NKY-vm-IBL" firstAttribute="bottom" secondItem="dyr-ig-W5z" secondAttribute="bottom" id="5qa-0j-dJD"/>
-                                            <constraint firstAttribute="trailing" secondItem="l3F-LY-TAy" secondAttribute="trailing" constant="8" id="JfX-ad-gkD"/>
-                                            <constraint firstItem="l3F-LY-TAy" firstAttribute="top" secondItem="ZFh-mp-o6l" secondAttribute="top" constant="8" id="ZGd-8D-lZJ"/>
-                                            <constraint firstItem="dyr-ig-W5z" firstAttribute="leading" secondItem="ZFh-mp-o6l" secondAttribute="leading" constant="8" id="fDn-cM-x9n"/>
-                                            <constraint firstItem="l3F-LY-TAy" firstAttribute="leading" secondItem="ZFh-mp-o6l" secondAttribute="leading" constant="8" id="mfT-hZ-DUO"/>
-                                            <constraint firstItem="NKY-vm-IBL" firstAttribute="leading" secondItem="dyr-ig-W5z" secondAttribute="trailing" constant="20" id="o3Y-Vg-j5X"/>
-                                            <constraint firstItem="NKY-vm-IBL" firstAttribute="height" secondItem="dyr-ig-W5z" secondAttribute="height" id="pxP-Em-gDJ"/>
-                                            <constraint firstAttribute="bottom" secondItem="dyr-ig-W5z" secondAttribute="bottom" constant="10" id="vZn-Q4-k3o"/>
-                                        </constraints>
-                                    </view>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="E2r-jk-Zb0">
-                                        <rect key="frame" x="0.0" y="130" width="375" height="473"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="DAo-by-mKB">
                                             <size key="itemSize" width="50" height="50"/>
@@ -137,7 +77,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="5" maxX="0.0" maxY="5"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="cell" id="v0Y-rH-pBd" customClass="KeywordCollectionViewCell" customModule="Canillitapp" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="v0Y-rH-pBd" customClass="KeywordCollectionViewCell" customModule="Canillitapp" customModuleProvider="target">
                                                 <rect key="frame" x="37.5" y="5" width="300" height="260"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -318,10 +258,7 @@
                     <navigationItem key="navigationItem" title="Destacados" id="jiV-yc-JXX"/>
                     <connections>
                         <outlet property="collectionView" destination="E2r-jk-Zb0" id="lSm-gI-21w"/>
-                        <outlet property="reviewButton" destination="dyr-ig-W5z" id="V6s-aH-6tL"/>
-                        <outlet property="reviewCancelButton" destination="NKY-vm-IBL" id="GGC-dm-W6L"/>
-                        <outlet property="reviewHeight" destination="4s4-62-XCM" id="NBV-Pw-H93"/>
-                        <outlet property="reviewView" destination="ZFh-mp-o6l" id="8yM-Xb-r4U"/>
+                        <outlet property="mainStackView" destination="Ezr-Yc-mgT" id="9xi-se-tdK"/>
                         <segue destination="JJx-lL-xJt" kind="show" identifier="news" id="Bt9-kJ-1Ah"/>
                         <segue destination="qiB-lu-p14" kind="show" identifier="category" id="fIa-Bg-ZRk"/>
                     </connections>

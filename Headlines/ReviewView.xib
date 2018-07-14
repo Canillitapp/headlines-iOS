@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aeK-NJ-akw" customClass="ReviewView" customModule="Canillitapp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="7dZ-ug-2k5">
+                    <rect key="frame" x="8" y="8" width="359" height="87"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="¿Te gusta Canillitapp?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEF-cM-Tjy">
+                            <rect key="frame" x="0.0" y="0.0" width="359" height="47"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Por cada buena calificación, donamos un plato de comida caliente a nuestro developer." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kcd-KG-8Br">
+                            <rect key="frame" x="0.0" y="51" width="359" height="36"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gG1-Ad-Aru">
+                    <rect key="frame" x="8" y="105" width="80" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="Dr3-CR-NV2"/>
+                        <constraint firstAttribute="width" constant="80" id="yVN-xd-7cj"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                    <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="Calificar"/>
+                    <connections>
+                        <action selector="reviewButtonPressed:" destination="aeK-NJ-akw" eventType="touchUpInside" id="tbk-wI-khM"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SU5-9A-TdP">
+                    <rect key="frame" x="108" y="105" width="130" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="130" id="0Vv-oc-6fi"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                    <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <state key="normal" title="No mostrar más"/>
+                    <connections>
+                        <action selector="reviewCancelButtonPressed:" destination="aeK-NJ-akw" eventType="touchUpInside" id="AkD-Zl-E7H"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.99607843139999996" green="0.15686274510000001" blue="0.31764705879999999" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="SU5-9A-TdP" firstAttribute="bottom" secondItem="gG1-Ad-Aru" secondAttribute="bottom" id="6lH-1W-TFD"/>
+                <constraint firstItem="SU5-9A-TdP" firstAttribute="leading" secondItem="gG1-Ad-Aru" secondAttribute="trailing" constant="20" id="GqI-LS-8nz"/>
+                <constraint firstItem="7dZ-ug-2k5" firstAttribute="top" secondItem="aeK-NJ-akw" secondAttribute="top" constant="8" id="MOs-2S-igE"/>
+                <constraint firstAttribute="trailing" secondItem="7dZ-ug-2k5" secondAttribute="trailing" constant="8" id="TkG-yO-WSB"/>
+                <constraint firstItem="vt7-Rn-tOO" firstAttribute="bottom" secondItem="SU5-9A-TdP" secondAttribute="bottom" constant="10" id="VZ3-ik-Tuu"/>
+                <constraint firstItem="gG1-Ad-Aru" firstAttribute="leading" secondItem="aeK-NJ-akw" secondAttribute="leading" constant="8" id="WjS-zp-UHq"/>
+                <constraint firstItem="gG1-Ad-Aru" firstAttribute="top" secondItem="7dZ-ug-2k5" secondAttribute="bottom" constant="10" id="YSE-PK-oga"/>
+                <constraint firstAttribute="bottom" secondItem="gG1-Ad-Aru" secondAttribute="bottom" constant="10" id="fh2-b7-Hc7"/>
+                <constraint firstItem="7dZ-ug-2k5" firstAttribute="leading" secondItem="aeK-NJ-akw" secondAttribute="leading" constant="8" id="jih-x0-nyK"/>
+                <constraint firstItem="SU5-9A-TdP" firstAttribute="height" secondItem="gG1-Ad-Aru" secondAttribute="height" id="qn8-xr-JX8"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vt7-Rn-tOO"/>
+            <connections>
+                <outlet property="cancelButton" destination="SU5-9A-TdP" id="ZGf-81-Lph"/>
+                <outlet property="messageLabel" destination="kcd-KG-8Br" id="i74-4z-UUS"/>
+                <outlet property="reviewButton" destination="gG1-Ad-Aru" id="jSO-cH-zoe"/>
+                <outlet property="titleLabel" destination="bEF-cM-Tjy" id="Ks0-Ai-epO"/>
+            </connections>
+            <point key="canvasLocation" x="-14" y="1"/>
+        </view>
+    </objects>
+</document>
