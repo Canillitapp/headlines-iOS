@@ -34,27 +34,20 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
         if text == previousTerm { return }
         previousTerm = text
         cancel()
-        stateViewController.transition(to: .loading)
-        dispatchWorkItem = DispatchWorkItem { [unowned self] in
-            Answers.logSearch(withQuery: text, customAttributes: nil)
-            self.dataTask = self.service.searchNews(
-                text,
-                success: self.render,
-                fail: self.error
-            )
-        }
-        
-        if let dispatchWorkItem = dispatchWorkItem {
-            dispatchQueue.asyncAfter(
-                deadline: .now() + .milliseconds(500),
-                execute: dispatchWorkItem
-            )
-        }
+        let terms = [
+            "Macri",
+            "Cristina",
+            "Messi",
+            "Mundial",
+            "Cafe",
+            "Lab",
+            "Canillita"
+        ]
+        render(terms: terms.filter { $0.hasPrefix(text) })
     }
     
     private func cancel() {
         dataTask?.cancel()
-        dispatchWorkItem?.cancel()
     }
     
     private func render(news: [News]?) {
@@ -64,6 +57,24 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
             ) as! NewsSearchViewController
         newsController.show(news: news)
         stateViewController.transition(to: .render(newsController))
+    }
+    
+    private func render(terms: [String]) {
+        let tableController = TableViewController()
+        tableController.terms = terms
+        tableController.didSelect = fetch
+        stateViewController.transition(to: .render(tableController))
+    }
+    
+    func fetch(term: String) {
+        cancel()
+        stateViewController.transition(to: .loading)
+        Answers.logSearch(withQuery: term, customAttributes: nil)
+        self.dataTask = self.service.searchNews(
+            term,
+            success: self.render,
+            fail: self.error
+        )
     }
     
     private func error(_ error: NSError) {
@@ -77,7 +88,27 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
             present(alert, animated: true, completion: nil)
             return
         }
-        
-        // transition to error state.
+    }
+}
+
+class TableViewController: UITableViewController {
+    var terms = [String]()
+    var didSelect: (String) -> Void = { _ in }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return terms.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
+        if cell == nil {
+            cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+        }
+        cell?.textLabel?.text = terms[indexPath.row]
+        return cell!
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        didSelect(terms[indexPath.row])
     }
 }
