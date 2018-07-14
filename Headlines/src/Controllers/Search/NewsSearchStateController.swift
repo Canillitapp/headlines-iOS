@@ -17,6 +17,7 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
     private var dispatchWorkItem: DispatchWorkItem?
     private var previousTerm: String?
     
+    var didSelectSuggestion: (String) -> Void = { _ in }
     lazy var stateViewController = ContentStateViewController()
     
     override func viewDidLoad() {
@@ -27,34 +28,19 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text, !text.isEmpty else {
-            cancel()
+            dataTask?.cancel()
             return
         }
         
         if text == previousTerm { return }
         previousTerm = text
-        cancel()
-        stateViewController.transition(to: .loading)
-        dispatchWorkItem = DispatchWorkItem { [unowned self] in
-            Answers.logSearch(withQuery: text, customAttributes: nil)
-            self.dataTask = self.service.searchNews(
-                text,
-                success: self.render,
-                fail: self.error
-            )
-        }
-        
-        if let dispatchWorkItem = dispatchWorkItem {
-            dispatchQueue.asyncAfter(
-                deadline: .now() + .milliseconds(500),
-                execute: dispatchWorkItem
-            )
-        }
-    }
-    
-    private func cancel() {
         dataTask?.cancel()
-        dispatchWorkItem?.cancel()
+        if stateViewController.shownViewController is NewsSearchViewController {
+            stateViewController.transition(to: .loading)
+        }
+        dataTask = service.fetchTags(tag: text, success: { [unowned self] tags in
+            self.render(tags: tags, searchedTerm: text)
+            }, fail: nil)
     }
     
     private func render(news: [News]?) {
@@ -64,6 +50,28 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
             ) as! NewsSearchViewController
         newsController.show(news: news)
         stateViewController.transition(to: .render(newsController))
+    }
+    
+    private func render(tags: [Tag], searchedTerm: String) {
+        let storyboard = UIStoryboard(name: "Search", bundle: Bundle.main)
+        let termsTableController = storyboard.instantiateViewController(
+            withIdentifier: "SuggestedTermsTableViewController"
+            ) as! SuggestedTermsTableViewController
+        termsTableController.tags = tags
+        termsTableController.searchedTerm = searchedTerm
+        termsTableController.didSelect = didSelectSuggestion
+        stateViewController.transition(to: .render(termsTableController))
+    }
+    
+    func fetch(term: String) {
+        dataTask?.cancel()
+        stateViewController.transition(to: .loading)
+        Answers.logSearch(withQuery: term, customAttributes: nil)
+        self.dataTask = self.service.searchNews(
+            term,
+            success: self.render,
+            fail: self.error
+        )
     }
     
     private func error(_ error: NSError) {
@@ -77,7 +85,5 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
             present(alert, animated: true, completion: nil)
             return
         }
-        
-        // transition to error state.
     }
 }
