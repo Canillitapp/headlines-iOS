@@ -57,4 +57,14 @@ class TrendingSearchViewController: UITableViewController {
     @IBAction func reload(_ sender: UIRefreshControl) {
         fetchTrending()
     }
+    
+    func set(enabled: Bool) {
+        let textColor = enabled ?
+        UIColor(red: 246/255, green: 35/255, blue: 84/255, alpha: 1.0) :
+        UIColor.darkGray
+        guard let cells = tableView.visibleCells as? [TrendingSearchTermTableViewCell] else {
+            return
+        }
+        cells.forEach { $0.label.textColor = textColor }
+    }
 }

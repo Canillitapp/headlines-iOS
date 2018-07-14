@@ -26,10 +26,11 @@ class NewsSearchViewController: NewsTableViewController {
         }
         self.news = news
         self.tableView.reloadData()
+        let move = AnimationType.from(direction: .bottom, offset: 5)
+        let scale = AnimationType.zoom(scale: 0.98)
         UIView.animate(
             views: tableView.visibleCells,
-            animations: [AnimationType.from(direction: .right, offset: 10.0)],
-            animationInterval: 0.1
+            animations: [move, scale]
         )
     }
         

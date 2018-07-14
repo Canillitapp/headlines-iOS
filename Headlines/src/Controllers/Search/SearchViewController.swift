@@ -19,6 +19,7 @@ class SearchViewController: UIViewController {
         super.viewDidLoad()
         configureUISearchController()
         navigationController?.navigationBarShadow(hidden: true)
+        resultController.didSelectSuggestion = search
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -34,6 +35,7 @@ class SearchViewController: UIViewController {
         searchController = UISearchController(
             searchResultsController: resultController
         )
+        searchController.delegate = self
         searchController.searchBar.delegate = self
         searchController.searchBar.placeholder = "Buscar"
         searchController.searchBar.searchBarStyle = .minimal
@@ -49,10 +51,21 @@ class SearchViewController: UIViewController {
     func search(term: String?) {
         searchController.isActive = true
         searchController.searchBar.text = term
+        searchController.searchBar.resignFirstResponder()
         navigationController?.navigationBarShadow(hidden: false)
         if let term = term {
             resultController.fetch(term: term)
         }
+    }
+}
+
+extension SearchViewController: UISearchControllerDelegate {
+    func willPresentSearchController(_ searchController: UISearchController) {
+        trendingSearchController.set(enabled: false)
+    }
+    
+    func willDismissSearchController(_ searchController: UISearchController) {
+        trendingSearchController.set(enabled: true)
     }
 }
 

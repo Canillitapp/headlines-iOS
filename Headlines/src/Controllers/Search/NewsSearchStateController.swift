@@ -17,6 +17,7 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
     private var dispatchWorkItem: DispatchWorkItem?
     private var previousTerm: String?
     
+    var didSelectSuggestion: (String) -> Void = { _ in }
     lazy var stateViewController = ContentStateViewController()
     
     override func viewDidLoad() {
@@ -34,16 +35,9 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
         if text == previousTerm { return }
         previousTerm = text
         cancel()
-        let terms = [
-            "Macri",
-            "Cristina",
-            "Messi",
-            "Mundial",
-            "Cafe",
-            "Lab",
-            "Canillita"
-        ]
-        render(terms: terms.filter { $0.hasPrefix(text) })
+        dataTask = service.fetchTags(tag: text, success: { [unowned self] tags in
+            self.render(tags: tags, searchedTerm: text)
+            }, fail: nil)
     }
     
     private func cancel() {
@@ -59,11 +53,15 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
         stateViewController.transition(to: .render(newsController))
     }
     
-    private func render(terms: [String]) {
-        let tableController = TableViewController()
-        tableController.terms = terms
-        tableController.didSelect = fetch
-        stateViewController.transition(to: .render(tableController))
+    private func render(tags: [Tag], searchedTerm: String) {
+        let storyboard = UIStoryboard(name: "Search", bundle: Bundle.main)
+        let termsTableController = storyboard.instantiateViewController(
+            withIdentifier: "SuggestedTermsTableViewController"
+            ) as! SuggestedTermsTableViewController
+        termsTableController.tags = tags
+        termsTableController.searchedTerm = searchedTerm
+        termsTableController.didSelect = didSelectSuggestion
+        stateViewController.transition(to: .render(termsTableController))
     }
     
     func fetch(term: String) {
@@ -88,27 +86,5 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
             present(alert, animated: true, completion: nil)
             return
         }
-    }
-}
-
-class TableViewController: UITableViewController {
-    var terms = [String]()
-    var didSelect: (String) -> Void = { _ in }
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return terms.count
-    }
-    
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-        if cell == nil {
-            cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
-        }
-        cell?.textLabel?.text = terms[indexPath.row]
-        return cell!
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        didSelect(terms[indexPath.row])
     }
 }

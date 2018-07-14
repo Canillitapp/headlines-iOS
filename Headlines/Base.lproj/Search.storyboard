@@ -119,6 +119,61 @@
             </objects>
             <point key="canvasLocation" x="1708" y="-562.66866566716647"/>
         </scene>
+        <!--Suggested Terms Table View Controller-->
+        <scene sceneID="RPA-HJ-tmq">
+            <objects>
+                <tableViewController storyboardIdentifier="SuggestedTermsTableViewController" id="ITo-eQ-wtt" customClass="SuggestedTermsTableViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="48" sectionHeaderHeight="28" sectionFooterHeight="28" id="w1c-qX-Ls5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="uNy-uo-dr8">
+                            <rect key="frame" x="0.0" y="76" width="375" height="0.0"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" id="Fgq-LD-9OX" customClass="SuggestedTermTableViewCell" customModule="Canillitapp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="48"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Fgq-LD-9OX" id="xKq-Zq-uac">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="47.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search_term_icon" translatesAutoresizingMaskIntoConstraints="NO" id="77s-1X-PNl">
+                                            <rect key="frame" x="20" y="17" width="14" height="14"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nsM-Q6-ovg">
+                                            <rect key="frame" x="42" y="12" width="48" height="24"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <color key="textColor" red="0.56470588235294117" green="0.56470588235294117" blue="0.58431372549019611" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="77s-1X-PNl" firstAttribute="leading" secondItem="xKq-Zq-uac" secondAttribute="leading" constant="20" id="NWD-Yh-G8H"/>
+                                        <constraint firstItem="nsM-Q6-ovg" firstAttribute="leading" secondItem="77s-1X-PNl" secondAttribute="trailing" constant="8" id="Psj-ah-gIu"/>
+                                        <constraint firstItem="77s-1X-PNl" firstAttribute="centerY" secondItem="xKq-Zq-uac" secondAttribute="centerY" id="Ufm-l3-1Ml"/>
+                                        <constraint firstItem="nsM-Q6-ovg" firstAttribute="centerY" secondItem="xKq-Zq-uac" secondAttribute="centerY" id="tZW-Qb-Gmc"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="nsM-Q6-ovg" secondAttribute="trailing" constant="20" symbolic="YES" id="xV7-Zs-0bm"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <inset key="separatorInset" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <connections>
+                                    <outlet property="label" destination="nsM-Q6-ovg" id="22Q-dY-YB9"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="ITo-eQ-wtt" id="XoF-gj-Zfi"/>
+                            <outlet property="delegate" destination="ITo-eQ-wtt" id="lFb-43-V5V"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="X4V-nU-CHa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2586" y="-534"/>
+        </scene>
         <!--Buscar-->
         <scene sceneID="AgP-2j-d8D">
             <objects>
@@ -351,5 +406,6 @@
     <resources>
         <image name="add_reaction_icon" width="21" height="20"/>
         <image name="search_icon" width="21" height="20"/>
+        <image name="search_term_icon" width="14" height="14"/>
     </resources>
 </document>

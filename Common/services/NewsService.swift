@@ -280,4 +280,32 @@ class NewsService: HTTPService {
             fail: failBlock
         )
     }
+    
+    @discardableResult
+    func fetchTags(tag: String, success: ((_ result: [Tag]) -> Void)?,
+                   fail: ((_ error: NSError) -> Void)?) -> URLSessionDataTask? {
+        
+        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {( data, response) in
+            guard let data = data else { return }
+            let decoder = JSONDecoder()
+            let tags = try? decoder.decode([Tag].self, from: data)
+            DispatchQueue.main.async(execute: {
+                success?(tags ?? [Tag]())
+            })
+        }
+        
+        let failBlock: (_ error: NSError) -> Void = { (e) in
+            DispatchQueue.main.async(execute: {
+                fail?(e as NSError)
+            })
+        }
+        
+        return request(
+            method: .GET,
+            path: "tags/\(tag)",
+            params: nil,
+            success: successBlock,
+            fail: failBlock
+        )
+    }
 }
