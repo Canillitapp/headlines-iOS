@@ -300,9 +300,10 @@ class NewsService: HTTPService {
             })
         }
         
+        let encodedTag = tag.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? String()
         return request(
             method: .GET,
-            path: "tags/\(tag)",
+            path: "tags/\(encodedTag)",
             params: nil,
             success: successBlock,
             fail: failBlock

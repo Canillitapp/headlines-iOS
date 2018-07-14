@@ -13,11 +13,7 @@ class SuggestedTermsTableViewController: UITableViewController {
     var searchedTerm = String()
     var tags = [Tag]()
     var didSelect: (String) -> Void = { _ in }
-        
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

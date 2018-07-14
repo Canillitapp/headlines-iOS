@@ -28,20 +28,19 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text, !text.isEmpty else {
-            cancel()
+            dataTask?.cancel()
             return
         }
         
         if text == previousTerm { return }
         previousTerm = text
-        cancel()
+        dataTask?.cancel()
+        if stateViewController.shownViewController is NewsSearchViewController {
+            stateViewController.transition(to: .loading)
+        }
         dataTask = service.fetchTags(tag: text, success: { [unowned self] tags in
             self.render(tags: tags, searchedTerm: text)
             }, fail: nil)
-    }
-    
-    private func cancel() {
-        dataTask?.cancel()
     }
     
     private func render(news: [News]?) {
@@ -65,7 +64,7 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
     }
     
     func fetch(term: String) {
-        cancel()
+        dataTask?.cancel()
         stateViewController.transition(to: .loading)
         Answers.logSearch(withQuery: term, customAttributes: nil)
         self.dataTask = self.service.searchNews(

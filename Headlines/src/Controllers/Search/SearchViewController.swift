@@ -73,6 +73,10 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         navigationController?.navigationBarShadow(hidden: true)
     }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        search(term: searchBar.text)
+    }
 }
 
 extension SearchViewController: TabbedViewController {
