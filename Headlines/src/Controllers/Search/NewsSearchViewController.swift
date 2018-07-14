@@ -12,10 +12,14 @@ import ViewAnimator
 
 class NewsSearchViewController: NewsTableViewController {
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
         preferredDateStyle = .short
         trackContextFrom = .search
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         tableView.accessibilityIdentifier = "search table"
         Answers.logCustomEvent(withName: "search_appear", customAttributes: nil)
     }
