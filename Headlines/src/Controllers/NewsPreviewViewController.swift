@@ -24,7 +24,7 @@ class NewsPreviewViewController: UIViewController {
         subtitleLabel.text = news?.source
     }
     
-    var previewActions: [UIPreviewActionItem] {
+    override var previewActionItems: [UIPreviewActionItem] {
         
         let shareAction = UIPreviewAction(title: "Compartir Noticia", style: .default, handler: { (_, _) -> Void in
             guard let n = self.news else {
