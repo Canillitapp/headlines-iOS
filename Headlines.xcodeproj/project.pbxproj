@@ -14,6 +14,7 @@
 		43CC643E1EBBE7E90066D49E /* OrientationAwareControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CC643C1EBBE7E90066D49E /* OrientationAwareControllers.swift */; };
 		43CC643F1EBBE7E90066D49E /* OrientationAwareControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CC643C1EBBE7E90066D49E /* OrientationAwareControllers.swift */; };
 		597E81BAC05CC01C523956BE /* Pods_Watch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7CA813EE9F2943ACC02746E /* Pods_Watch_Extension.framework */; };
+		67026FFE20FEE55300F67B90 /* GET-search-trending.json in Resources */ = {isa = PBXBuildFile; fileRef = 67026FFD20FEE55300F67B90 /* GET-search-trending.json */; };
 		6704850620F952E300360701 /* ReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6704850520F952E300360701 /* ReviewView.xib */; };
 		6704850820F9537B00360701 /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6704850720F9537B00360701 /* ReviewView.swift */; };
 		670B793E1F4CE7F000C485A9 /* PopularNewsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 670B793D1F4CE7F000C485A9 /* PopularNewsDataSource.swift */; };
@@ -257,6 +258,7 @@
 		1E364D941A8F5CACBFF8FD34 /* Pods_Canillitapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canillitapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CC643C1EBBE7E90066D49E /* OrientationAwareControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrientationAwareControllers.swift; sourceTree = "<group>"; };
 		5EA3242399336F7A8DE27E42 /* Pods-Watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Watch Extension/Pods-Watch Extension.release.xcconfig"; sourceTree = "<group>"; };
+		67026FFD20FEE55300F67B90 /* GET-search-trending.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-search-trending.json"; sourceTree = "<group>"; };
 		6704850520F952E300360701 /* ReviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewView.xib; sourceTree = "<group>"; };
 		6704850720F9537B00360701 /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		670B793D1F4CE7F000C485A9 /* PopularNewsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PopularNewsDataSource.swift; path = DataSources/PopularNewsDataSource.swift; sourceTree = "<group>"; };
@@ -492,6 +494,7 @@
 			children = (
 				673880B81FD26C26001005FF /* topic_mock.json */,
 				674E6D1C20F050C9000D0841 /* GET-categories.json */,
+				67026FFD20FEE55300F67B90 /* GET-search-trending.json */,
 				670C0A611EE7BE8300C40338 /* fonts */,
 			);
 			path = resources;
@@ -1266,6 +1269,7 @@
 				676E1C1E1EECA68400EC71A5 /* GET-popular.json in Resources */,
 				675A81E91D6BF6E8000DC680 /* Assets.xcassets in Resources */,
 				670C0A671EE7BE8300C40338 /* Rubik-Regular.ttf in Resources */,
+				67026FFE20FEE55300F67B90 /* GET-search-trending.json in Resources */,
 				671266041F4CEEBE0005CF4B /* Profile.storyboard in Resources */,
 				675A81E71D6BF6E8000DC680 /* Main.storyboard in Resources */,
 				670C0A651EE7BE8300C40338 /* Rubik-Light.ttf in Resources */,
