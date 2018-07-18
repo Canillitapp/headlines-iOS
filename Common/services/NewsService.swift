@@ -272,6 +272,14 @@ class NewsService: HTTPService {
             })
         }
         
+        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            let mockService = MockService()
+            _ = mockService.request(file: "GET-search-trending",
+                                    success: successBlock,
+                                    fail: failBlock)
+            return
+        }
+        
         _ = request(
             method: .GET,
             path: "search/trending/",
@@ -298,6 +306,14 @@ class NewsService: HTTPService {
             DispatchQueue.main.async(execute: {
                 fail?(e as NSError)
             })
+        }
+        
+        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            let mockService = MockService()
+            _ = mockService.request(file: "GET-search-term",
+                                    success: successBlock,
+                                    fail: failBlock)
+            return nil
         }
         
         let encodedTag = tag.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? String()
