@@ -308,6 +308,14 @@ class NewsService: HTTPService {
             })
         }
         
+        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            let mockService = MockService()
+            _ = mockService.request(file: "GET-search-term",
+                                    success: successBlock,
+                                    fail: failBlock)
+            return nil
+        }
+        
         let encodedTag = tag.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? String()
         return request(
             method: .GET,

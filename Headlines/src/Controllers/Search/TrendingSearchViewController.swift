@@ -20,20 +20,28 @@ class TrendingSearchViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.contentOffset = CGPoint(
-            x:0,
-            y: -refreshControl!.frame.size.height
-        )
-        refreshControl?.beginRefreshing()
+        
+        if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            tableView.contentOffset = CGPoint(
+                x: 0,
+                y: -refreshControl!.frame.size.height
+            )
+            refreshControl?.beginRefreshing()
+        }
+        
         fetchTrending()
     }
     
     private func fetchTrending() {
         service.fetchTrendingTerms(success: { [unowned self] in
             self.terms = $0
-            self.refreshControl?.endRefreshing()
-            }, fail: { _ in
+            if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
                 self.refreshControl?.endRefreshing()
+            }
+            }, fail: { [unowned self] _ in
+                if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
+                    self.refreshControl?.endRefreshing()
+                }
         })
     }
     
