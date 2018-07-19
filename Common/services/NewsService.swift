@@ -69,15 +69,14 @@ class NewsService: HTTPService {
             })
         }
         
-        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-            let mockService = MockService()
-            _ = mockService.request(file: "GET-popular",
-                                    success: successBlock,
-                                    fail: failBlock)
-            return
-        }
-        
-        _ = request(method: .GET, path: "popular", params: nil, success: successBlock, fail: failBlock)
+        _ = request(
+                method: .GET,
+                path: "popular",
+                params: nil,
+                mockFile: "GET-popular",
+                success: successBlock,
+                fail: failBlock
+        )
     }
     
     func requestRecentNewsWithDate (_ date: Date,
@@ -112,15 +111,14 @@ class NewsService: HTTPService {
             })
         }
         
-        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-            let mockService = MockService()
-            _ = mockService.request(file: "GET-recent",
-                                    success: successBlock,
-                                    fail: failBlock)
-            return
-        }
-        
-        _ = request(method: .GET, path: "latest/\(datePath)", params: nil, success: successBlock, fail: failBlock)
+        _ = request(
+                method: .GET,
+                path: "latest/\(datePath)",
+                params: nil,
+                mockFile: "GET-recent",
+                success: successBlock,
+                fail: failBlock
+        )
     }
     
     func requestTrendingTopicsWithDate (_ date: Date,
@@ -173,19 +171,14 @@ class NewsService: HTTPService {
             })
         }
         
-        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-            let mockService = MockService()
-            _ = mockService.request(file: "GET-trending",
-                                    success: successBlock,
-                                    fail: failBlock)
-            return nil
-        }
-        
-        return request(method: .GET,
-                       path: "trending/\(datePath)/\(count)",
-                       params: nil,
-                       success: successBlock,
-                       fail: failBlock)!
+        return request(
+                    method: .GET,
+                    path: "trending/\(datePath)/\(count)",
+                    params: nil,
+                    mockFile: "GET-trending",
+                    success: successBlock,
+                    fail: failBlock
+        )
     }
     
     func searchNews(_ text: String,
@@ -272,20 +265,13 @@ class NewsService: HTTPService {
             })
         }
         
-        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-            let mockService = MockService()
-            _ = mockService.request(file: "GET-search-trending",
-                                    success: successBlock,
-                                    fail: failBlock)
-            return
-        }
-        
         _ = request(
-            method: .GET,
-            path: "search/trending/",
-            params: nil,
-            success: successBlock,
-            fail: failBlock
+                method: .GET,
+                path: "search/trending/",
+                params: nil,
+                mockFile: "GET-search-trending",
+                success: successBlock,
+                fail: failBlock
         )
     }
     
@@ -308,21 +294,14 @@ class NewsService: HTTPService {
             })
         }
         
-        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-            let mockService = MockService()
-            _ = mockService.request(file: "GET-search-term",
-                                    success: successBlock,
-                                    fail: failBlock)
-            return nil
-        }
-        
         let encodedTag = tag.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? String()
         return request(
-            method: .GET,
-            path: "tags/\(encodedTag)",
-            params: nil,
-            success: successBlock,
-            fail: failBlock
+                    method: .GET,
+                    path: "tags/\(encodedTag)",
+                    params: nil,
+                    mockFile: "GET-search-term",
+                    success: successBlock,
+                    fail: failBlock
         )
     }
 }

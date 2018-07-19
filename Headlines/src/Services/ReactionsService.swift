@@ -57,11 +57,13 @@ class ReactionsService: HTTPService {
                 "user_id": userId.recordName
             ]
             
-            _ = self.request(method: .POST,
-                             path: "reactions/\(postId)",
-                             params: params,
-                             success: successBlock,
-                             fail: failBlock)
+            _ = self.request(
+                        method: .POST,
+                        path: "reactions/\(postId)",
+                        params: params,
+                        success: successBlock,
+                        fail: failBlock
+            )
         }
     }
     
@@ -90,14 +92,6 @@ class ReactionsService: HTTPService {
             })
         }
         
-        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-            let mockService = MockService()
-            _ = mockService.request(file: "GET-reactions",
-                                    success: successBlock,
-                                    fail: failBlock)
-            return
-        }
-        
         let container = CKContainer.default()
         container.fetchUserRecordID { (recordId, error) in
             if let err = error {
@@ -119,11 +113,14 @@ class ReactionsService: HTTPService {
                 return
             }
             
-            _ = self.request(method: .GET,
-                             path: "reactions/\(userId.recordName)/iOS",
-                             params: nil,
-                             success: successBlock,
-                             fail: failBlock)
+            _ = self.request(
+                        method: .GET,
+                        path: "reactions/\(userId.recordName)/iOS",
+                        params: nil,
+                        mockFile: "GET-reactions",
+                        success: successBlock,
+                        fail: failBlock
+            )
         }
     }
 }
