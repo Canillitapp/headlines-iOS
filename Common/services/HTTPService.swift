@@ -26,10 +26,18 @@ class HTTPService {
                  path: String,
                  params: [String: String]?,
                  headers: [String: String]? = nil,
+                 mockFile: String? = nil,
                  success: ((_ result: Data?, _ response: URLResponse?) -> Void)?,
                  fail: ((_ error: NSError) -> Void)?) -> URLSessionDataTask? {
         
         let url = URL(string: "\(baseURL())/\(path)")
+        
+        if let mock = mockFile, ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            let mockService = MockService()
+            _ = mockService.request(file: mock, success: success, fail: fail)
+            return nil
+        }
+        
         var request = URLRequest(url: url!)
         
         switch method {
