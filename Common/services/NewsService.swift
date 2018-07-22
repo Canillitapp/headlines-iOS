@@ -8,28 +8,21 @@
 
 import Foundation
 import CloudKit
-import SwiftyJSON
 
 class NewsService: HTTPService {
     
-    func requestFromCategory (_ categoryId: String,
+    func requestFromCategory (_ categoryId: Int,
                               success: ((_ result: [News]?) -> Void)?,
                               fail: ((_ error: NSError) -> Void)?) {
         
-        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data, let json = try? JSON(data: d) else {
+        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = { (data, response) in
+            guard let data = data else {
                 return
             }
-            
-            var res = [News]()
-            
-            for (_, v) in json {
-                let n = News(json: v)
-                res.append(n)
-            }
-            
+            let safeNews = try? JSONDecoder().decode([Safe<News>].self, from: data)
+            let news = safeNews?.compactMap { $0.value }
             DispatchQueue.main.async(execute: {
-                success?(res)
+                success?(news)
             })
         }
         
@@ -46,20 +39,15 @@ class NewsService: HTTPService {
     func requestPopularNews (success: ((_ result: [News]?) -> Void)?,
                              fail: ((_ error: NSError) -> Void)?) {
 
-        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data, let json = try? JSON(data: d) else {
+        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = { (data, response) in
+            guard let data = data else {
                 return
             }
             
-            var res = [News]()
-            
-            for (_, v) in json {
-                let n = News(json: v)
-                res.append(n)
-            }
-            
+            let safeNews = try? JSONDecoder().decode([Safe<News>].self, from: data)
+            let news = safeNews?.compactMap { $0.value }
             DispatchQueue.main.async(execute: {
-                success?(res)
+                success?(news)
             })
         }
         
@@ -89,20 +77,14 @@ class NewsService: HTTPService {
         
         let datePath = String(format: "%d-%02d-%02d", components.year!, components.month!, components.day!)
 
-        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data, let json = try? JSON(data: d) else {
+        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = { (data, response) in
+            guard let data = data else {
                 return
             }
-            
-            var res = [News]()
-            
-            for (_, v) in json {
-                let n = News(json: v)
-                res.append(n)
-            }
-            
+            let safeNews = try? JSONDecoder().decode([Safe<News>].self, from: data)
+            let news = safeNews?.compactMap { $0.value }
             DispatchQueue.main.async(execute: {
-                success?(res)
+                success?(news)
             })
         }
         
@@ -133,37 +115,21 @@ class NewsService: HTTPService {
         
         let datePath = String(format: "%d-%02d-%02d", components.year!, components.month!, components.day!)
         
-        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data, let json = try? JSON(data: d)  else {
+        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = { (data, response) in
+            guard let data = data  else {
                 return
             }
-            
-            var res = [Topic]()
-            
-            for (k, t) in json["news"] {
-                let a = Topic()
-                a.name = k
-                a.date = date
-                a.news = [News]()
-                
-                for (_, n) in t {
-                    let news = News(json: n)
-                    a.news!.append(news)
-                }
-                
-                res.append(a)
-            }
-            
-            res.sort(by: { (a, b) -> Bool in
-                guard let dateA = a.news?.first?.date, let dateB = b.news?.first?.date else {
+            let topicsResponse = try? JSONDecoder().decode(TopicResponse.self, from: data)
+            let topics = topicsResponse?.topics(date: date)
+            let orderedTopics = topics?.sorted {
+                guard let lhsDate = $0.news?.first?.date,
+                    let rhsDate = $1.news?.first?.date else {
                     return false
                 }
-                
-                return dateA.compare(dateB) == .orderedDescending
-            })
-            
+                return lhsDate < rhsDate
+            }
             DispatchQueue.main.async(execute: {
-                success?(res)
+                success?(orderedTopics)
             })
         }
         
@@ -198,20 +164,14 @@ class NewsService: HTTPService {
             return nil
         }
         
-        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data, let json = try? JSON(data: d)  else {
+        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = { (data, response) in
+            guard let data = data else {
                 return
             }
-            
-            var res = [News]()
-            
-            for (_, v) in json {
-                let n = News(json: v)
-                res.append(n)
-            }
-            
+            let safeNews = try? JSONDecoder().decode([Safe<News>].self, from: data)
+            let news = safeNews?.compactMap { $0.value }
             DispatchQueue.main.async(execute: {
-                success?(res)
+                success?(news)
             })
         }
         
@@ -255,12 +215,13 @@ class NewsService: HTTPService {
                 )
     }
     
-    func fetchTrendingTerms(success: ((_ result: [TrendingTerm]) -> Void)?,
+    func fetchTrendingTerms(success: ((_ result: [TrendingTerm]?) -> Void)?,
                             fail: ((_ error: NSError) -> Void)?) {
         
-        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {( data, response) in
-            guard let data = data, let json = try? JSON(data: data) else { return }
-            let terms = json.arrayValue.compactMap(TrendingTerm.init)
+        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = { (data, response) in
+            guard let data = data else { return }
+            let terms = try? JSONDecoder().decode([TrendingTerm].self,
+                                                  from: data)
             DispatchQueue.main.async(execute: {
                 success?(terms)
             })
@@ -290,15 +251,14 @@ class NewsService: HTTPService {
     }
     
     @discardableResult
-    func fetchTags(tag: String, success: ((_ result: [Tag]) -> Void)?,
+    func fetchTags(tag: String, success: ((_ result: [Tag]?) -> Void)?,
                    fail: ((_ error: NSError) -> Void)?) -> URLSessionDataTask? {
         
-        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {( data, response) in
+        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = { ( data, response) in
             guard let data = data else { return }
-            let decoder = JSONDecoder()
-            let tags = try? decoder.decode([Tag].self, from: data)
+            let tags = try? JSONDecoder().decode([Tag].self, from: data)
             DispatchQueue.main.async(execute: {
-                success?(tags ?? [Tag]())
+                success?(tags)
             })
         }
         

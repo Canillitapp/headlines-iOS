@@ -8,7 +8,6 @@
 
 import UIKit
 import CloudKit
-import SwiftyJSON
 
 class ReactionsService: HTTPService {
 
@@ -34,14 +33,12 @@ class ReactionsService: HTTPService {
             }
             
             let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-                guard let d = data, let json = try? JSON(data: d)  else {
+                guard let data = data else {
                     return
                 }
-                
-                let n = News(json: json)
-                
+                let news = try? JSONDecoder().decode(News.self, from: data)
                 DispatchQueue.main.async(execute: {
-                    success?(response, n)
+                    success?(response, news)
                 })
             }
             
@@ -65,20 +62,14 @@ class ReactionsService: HTTPService {
         }
     }
     
-    func getReactions(success: ((_ response: URLResponse?, [Reaction]) -> Void)?,
+    func getReactions(success: ((_ response: URLResponse?, [Reaction]?) -> Void)?,
                       fail: ((_ error: Error) -> Void)?) {
         
         let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data, let json = try? JSON(data: d) else {
+            guard let data = data else {
                 return
             }
-                        
-            var reactions = [Reaction]()
-            json.forEach ({ (_, j) in
-                let r = Reaction(json: j)
-                reactions.append(r)
-            })
-            
+            let reactions = try? JSONDecoder().decode([Reaction].self, from: data)
             DispatchQueue.main.async(execute: {
                 success?(response, reactions)
             })

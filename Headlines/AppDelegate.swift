@@ -197,7 +197,7 @@ class AppDelegate: UIResponder,
             if let postURL = response.notification.request.content.userInfo["post-url"] as? String {
                 newsToOpen = News()
                 newsToOpen?.url = URL(string: postURL)
-                newsToOpen?.identifier = "\(postId)"
+                newsToOpen?.newsId = postId
                 
                 NotificationCenter.default.post(name: .notificationNewsTapped, object: newsToOpen)
             }
