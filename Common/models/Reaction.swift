@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import SwiftyJSON
 
-class Reaction: NSObject {
+class Reaction: NSObject, Decodable {
     var reaction: String
     var amount: Int
     var news: News?
@@ -19,28 +18,21 @@ class Reaction: NSObject {
         return "\(self.reaction) \(self.amount)"
     }
     
-    init(json: JSON) {
-        
-        if let r = json["reaction"].string {
-            reaction = r
-        } else {
-            reaction = "🤦🏿‍♂️"
-        }
-        
-        if let i = json["amount"].int {
-            amount = i
-        } else {
-            amount = 0
-        }
-        
-        let timestamp = json["date"].doubleValue
-        date = Date(timeIntervalSince1970: timestamp)
-        
-        if json["news"].exists() {
-            news = News(json: json["news"])
-        }
-
-        super.init()
+    // MARK: - Decodable
+    enum CodingKeys: String, CodingKey {
+        case reaction
+        case amount
+        case news
+        case date
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        reaction = try container.decode(String.self, forKey: .reaction)
+        amount = (try? container.decode(Int.self, forKey: .amount)) ?? 0
+        news = try container.decodeIfPresent(News.self, forKey: .news)
+        let decodedDate = try container.decode(Int.self, forKey: .date)
+        date = Date(timeIntervalSince1970: TimeInterval(decodedDate))
     }
     
     init(reaction: String, amount: Int) {

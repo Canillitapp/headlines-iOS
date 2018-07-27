@@ -66,11 +66,9 @@ class ProfileViewController: UITableViewController, TabbedViewController {
     @objc func fetchMyReactions() {
         self.startRefreshing()
         
-        let success: (URLResponse?, [Reaction]) -> Void = { [unowned self] response, reactions in
+        let success: (URLResponse?, [Reaction]?) -> Void = { [unowned self] response, reactions in
             self.endRefreshing()
-            
-            self.reactions.removeAll()
-            self.reactions.append(contentsOf: reactions)
+            self.reactions = reactions ?? [Reaction]()
             self.tableView.reloadData()
             
             if !ProcessInfo.processInfo.arguments.contains("mockRequests") {

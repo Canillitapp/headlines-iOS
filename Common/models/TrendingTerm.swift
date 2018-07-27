@@ -7,18 +7,8 @@
 //
 
 import Foundation
-import SwiftyJSON
 
-struct TrendingTerm {
+struct TrendingTerm: Decodable {
     let criteria: String
     let quantity: Int
-    
-    init?(json: JSON) {
-        guard let criteria = json["criteria"].string,
-            let quantity = json["quantity"].int else {
-                return nil
-        }
-        self.criteria = criteria
-        self.quantity = quantity
-    }
 }

@@ -7,27 +7,21 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 class CategoriesService: HTTPService {
+    
+    private let decoder = JSONDecoder()
     
     func categoriesList (success: ((_ result: [Category]?) -> Void)?,
                          fail: ((_ error: NSError) -> Void)?) {
         
         let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data, let json = try? JSON(data: d) else {
+            guard let data = data else {
                 return
             }
-                    
-            var res = [Category]()
-            
-            for (_, v) in json {
-                let c = Category(json: v)
-                res.append(c)
-            }
-            
+            let categories = try? self.self.decoder.decode([Category].self, from: data)
             DispatchQueue.main.async(execute: {
-                success?(res)
+                success?(categories)
             })
         }
         

@@ -52,12 +52,14 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
         stateViewController.transition(to: .render(newsController))
     }
     
-    private func render(tags: [Tag], searchedTerm: String) {
+    private func render(tags: [Tag]?, searchedTerm: String) {
         let storyboard = UIStoryboard(name: "Search", bundle: Bundle.main)
         let termsTableController = storyboard.instantiateViewController(
             withIdentifier: "SuggestedTermsTableViewController"
             ) as! SuggestedTermsTableViewController
-        termsTableController.tags = tags
+        if let tags = tags {
+            termsTableController.tags = tags
+        }
         termsTableController.searchedTerm = searchedTerm
         termsTableController.didSelect = didSelectSuggestion
         stateViewController.transition(to: .render(termsTableController))
