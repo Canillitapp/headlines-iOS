@@ -1,0 +1,51 @@
+[
+{
+    "news_id": 527386,
+    "url": "http://www.lanacion.com.ar/2158062-el-turf-vuelve-a-manifestarse-contra-la-derogacion-de-la-ley-bonaerense-con-el-apoyo-de-juan-carr",
+    "title": "El turf vuelve a manifestarse contra la derogación de la ley bonaerense, con el apoyo de Juan Carr",
+    "date": 1533083699,
+    "source_id": 3,
+    "img_url": "https://bucket2.glanacion.com/anexos/fotos/93/2738693.jpg",
+    "reactions_count": null,
+    "content_views_count": null,
+    "source_name": "La Nacion",
+    "category": "Actualidad",
+    "reactions": []
+}, {
+    "news_id": 527385,
+    "url": "https://tn.com.ar/salud/lo-ultimo/diez-minutos-de-interaccion-social-al-dia-pueden-mejorar-el-bienestar-en-personas-con-demencia_886651",
+    "title": "Diez minutos de interacción social al día pueden mejorar el bienestar en personas con demencia",
+    "date": 1533083698,
+    "source_id": 1,
+    "img_url": "https://cdn.tn.com.ar/sites/default/files/styles/470x269/public/2018/07/31/demencia_dialogo_.jpg",
+    "reactions_count": null,
+    "content_views_count": null,
+    "source_name": "TN",
+    "category": null,
+    "reactions": []
+}, {
+    "news_id": 527384,
+    "url": "http://www.lanacion.com.ar/2158075-una-persona-feliz-tiene-un-corazon-mas-sano",
+    "title": "¿Una persona feliz tiene un corazón más sano?",
+    "date": 1533083698,
+    "source_id": 3,
+    "img_url": "https://bucket2.glanacion.com/anexos/fotos/63/2738663.jpg",
+    "reactions_count": null,
+    "content_views_count": null,
+    "source_name": "La Nacion",
+    "category": null,
+    "reactions": []
+}, {
+    "news_id": 527383,
+    "url": "https://tn.com.ar/deportes/esencial/defensa-y-justicia-perdio-con-el-nacional-pero-paso-octavos-de-final-de-la-copa-sudamericana_886653",
+    "title": "Defensa y Justicia perdió con El Nacional pero pasó a octavos de final de la Copa Sudamericana",
+    "date": 1533083697,
+    "source_id": 1,
+    "img_url": "https://cdn.tn.com.ar/sites/default/files/styles/470x269/public/2018/07/31/defensa19.jpg",
+    "reactions_count": null,
+    "content_views_count": null,
+    "source_name": "TN",
+    "category": null,
+    "reactions": []
+}
+]
