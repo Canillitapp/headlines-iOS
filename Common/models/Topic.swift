@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Topic: NSObject {
+class Topic: NSObject, Decodable {
     var name: String?
     var date: Date?
     var news: [News]?

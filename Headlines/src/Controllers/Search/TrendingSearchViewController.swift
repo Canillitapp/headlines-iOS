@@ -33,8 +33,8 @@ class TrendingSearchViewController: UITableViewController {
     }
     
     private func fetchTrending() {
-        service.fetchTrendingTerms(success: { [unowned self] in
-            self.terms = $0
+        service.fetchTrendingTerms(success: { [unowned self] terms in
+            self.terms = terms ?? [TrendingTerm]()
             if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
                 self.refreshControl?.endRefreshing()
             }
