@@ -128,7 +128,7 @@ class NewsTests: XCTestCase {
             XCTAssertNotNil(n.reactions)
         }
         
-        XCTAssert(news.first!.identifier! == "527386")
+        XCTAssert(news.first!.identifier == "527386")
         XCTAssert(news.first!.url == URL(string: "http://www.lanacion.com.ar/2158062-el-turf-vuelve-a-manifestarse-contra-la-derogacion-de-la-ley-bonaerense-con-el-apoyo-de-juan-carr")!)
         XCTAssert(news.first!.title == "El turf vuelve a manifestarse contra la derogación de la ley bonaerense, con el apoyo de Juan Carr")
         XCTAssert(news.first!.date == Date(timeIntervalSince1970: 1533083699))
