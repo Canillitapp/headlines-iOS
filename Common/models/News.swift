@@ -83,9 +83,7 @@ class News: NSObject {
         category = json["category"].string
         
         // imageURL
-        if let imgURLString = json["img_url"].string {
-            imageUrl = Parser.url(from: imgURLString)
-        }
+        imageUrl = json["img_url"].url
         
         // reactions
         var tmp: [Reaction] = []

@@ -50,9 +50,6 @@
 		671DC37E1EE35FC3000CBAF0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671DC37D1EE35FC3000CBAF0 /* SnapshotHelper.swift */; };
 		6723B67720EB145D00DEF366 /* LoadingTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6723B67620EB145D00DEF366 /* LoadingTask.swift */; };
 		67302DD21F6DA7E500C0A01E /* UserSettingsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67302DD11F6DA7E500C0A01E /* UserSettingsManager.swift */; };
-		673186B0213CB88D0080ECF7 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673186AF213CB88D0080ECF7 /* Parser.swift */; };
-		673186B1213CB89A0080ECF7 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673186AF213CB88D0080ECF7 /* Parser.swift */; };
-		673186B2213CB89B0080ECF7 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673186AF213CB88D0080ECF7 /* Parser.swift */; };
 		6734EA611E99A97600493C86 /* ReactionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6734EA601E99A97600493C86 /* ReactionsService.swift */; };
 		673880B21FD21896001005FF /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673880B11FD21896001005FF /* TodayViewModel.swift */; };
 		673880B41FD25E87001005FF /* TopicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 673880B31FD25E87001005FF /* TopicTests.swift */; };
@@ -306,7 +303,6 @@
 		671DC37D1EE35FC3000CBAF0 /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 		6723B67620EB145D00DEF366 /* LoadingTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingTask.swift; sourceTree = "<group>"; };
 		67302DD11F6DA7E500C0A01E /* UserSettingsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserSettingsManager.swift; path = src/Managers/UserSettingsManager.swift; sourceTree = "<group>"; };
-		673186AF213CB88D0080ECF7 /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		6734EA601E99A97600493C86 /* ReactionsService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ReactionsService.swift; path = Services/ReactionsService.swift; sourceTree = "<group>"; };
 		673880B11FD21896001005FF /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
 		673880B31FD25E87001005FF /* TopicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicTests.swift; sourceTree = "<group>"; };
@@ -769,7 +765,6 @@
 			isa = PBXGroup;
 			children = (
 				6797F8A61EE4B38E00B8EAA5 /* News.swift */,
-				673186AF213CB88D0080ECF7 /* Parser.swift */,
 				6797F8A71EE4B38E00B8EAA5 /* Reaction.swift */,
 				6797F8A81EE4B38E00B8EAA5 /* Topic.swift */,
 				FBBDCC6D20F2C3B200757861 /* TrendingTerm.swift */,
@@ -1529,7 +1524,6 @@
 			files = (
 				677AE3461D6E7D0E00CD710D /* NewsInterfaceController.swift in Sources */,
 				6797F8B31EE4B38E00B8EAA5 /* Topic.swift in Sources */,
-				673186B1213CB89A0080ECF7 /* Parser.swift in Sources */,
 				FBBDCC6F20F2C59E00757861 /* TrendingTerm.swift in Sources */,
 				67C3CD3D1D6D1876003CC04E /* TrendingInterfaceController.swift in Sources */,
 				6719DA731D6D143E00D1E214 /* ExtensionDelegate.swift in Sources */,
@@ -1559,7 +1553,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				673186B0213CB88D0080ECF7 /* Parser.swift in Sources */,
 				6798E8CF1D88F3390032D350 /* KeywordCollectionViewCell.swift in Sources */,
 				6723B67720EB145D00DEF366 /* LoadingTask.swift in Sources */,
 				6764207920EC61F0000E2D18 /* NewsManager.swift in Sources */,
@@ -1671,7 +1664,6 @@
 				671513171FCB6C1800D4638F /* News.swift in Sources */,
 				FB9F586D20FA34970028C1DF /* Tag.swift in Sources */,
 				671513191FCB6C2800D4638F /* HTTPService.swift in Sources */,
-				673186B2213CB89B0080ECF7 /* Parser.swift in Sources */,
 				671513181FCB6C1C00D4638F /* ConfigHelper.swift in Sources */,
 				671513151FCB6C1200D4638F /* Topic.swift in Sources */,
 				673880B21FD21896001005FF /* TodayViewModel.swift in Sources */,
