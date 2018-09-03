@@ -29,6 +29,21 @@ class News: NSObject {
         return r.first
     }
     
+    class func decodeArrayOfNews(from data: Data) -> [News] {
+        // Decoding Data into News
+        // (replace this with Decodable snippet in the future)
+        let json = try? JSON(data: data)
+        
+        var news = [News]()
+        for (_, v) in json! {
+            if let n = News(json: v) {
+                news.append(n)
+            }
+        }
+        return news
+    }
+
+    
     init(identifier: String, url: URL) {
         self.identifier = identifier
         self.url = url

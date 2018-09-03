@@ -12,20 +12,6 @@ import SwiftyJSON
 
 class NewsTests: XCTestCase {
     
-    func decodeNews(from data: Data) -> [News] {
-        // Decoding Data into News
-        // (replace this with Decodable snippet in the future)
-        let json = try? JSON(data: data)
-        
-        var news = [News]()
-        for (_, v) in json! {
-            if let n = News(json: v) {
-                news.append(n)
-            }
-        }
-        return news
-    }
-    
     func testNewsParsingWithWrongURL() {
         let path = Bundle
                     .init(for: NewsTests.self)
@@ -34,7 +20,7 @@ class NewsTests: XCTestCase {
         let url = URL(fileURLWithPath: path!)
         let data = try? Data(contentsOf: url)
         
-        let news = decodeNews(from: data!)
+        let news = News.decodeArrayOfNews(from: data!)
         
         // Array should not be null
         XCTAssertNotNil(news)
@@ -51,7 +37,7 @@ class NewsTests: XCTestCase {
         let url = URL(fileURLWithPath: path!)
         let data = try? Data(contentsOf: url)
         
-        let news = decodeNews(from: data!)
+        let news = News.decodeArrayOfNews(from: data!)
         
         // Array should not be null
         XCTAssertNotNil(news)
@@ -68,7 +54,7 @@ class NewsTests: XCTestCase {
         let url = URL(fileURLWithPath: path!)
         let data = try? Data(contentsOf: url)
         
-        let news = decodeNews(from: data!)
+        let news = News.decodeArrayOfNews(from: data!)
         
         // Array should not be null
         XCTAssertNotNil(news)
@@ -86,7 +72,7 @@ class NewsTests: XCTestCase {
         let url = URL(fileURLWithPath: path!)
         let data = try? Data(contentsOf: url)
         
-        let news = decodeNews(from: data!)
+        let news = News.decodeArrayOfNews(from: data!)
         
         // Array should not be null
         XCTAssertNotNil(news)
@@ -104,7 +90,7 @@ class NewsTests: XCTestCase {
         let url = URL(fileURLWithPath: path!)
         let data = try? Data(contentsOf: url)
         
-        let news = decodeNews(from: data!)
+        let news = News.decodeArrayOfNews(from: data!)
         
         // Array should not be null
         XCTAssertNotNil(news)
@@ -122,7 +108,7 @@ class NewsTests: XCTestCase {
         let url = URL(fileURLWithPath: path!)
         let data = try? Data(contentsOf: url)
         
-        let news = decodeNews(from: data!)
+        let news = News.decodeArrayOfNews(from: data!)
         
         // Array should not be null
         XCTAssertNotNil(news)
@@ -160,7 +146,7 @@ class NewsTests: XCTestCase {
         let url = URL(fileURLWithPath: path!)
         let data = try? Data(contentsOf: url)
         
-        let news = decodeNews(from: data!)
+        let news = News.decodeArrayOfNews(from: data!)
         XCTAssert(news.count == 988)
     }
 }
