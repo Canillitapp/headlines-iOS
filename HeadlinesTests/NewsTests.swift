@@ -39,13 +39,8 @@ class NewsTests: XCTestCase {
         // Array should not be null
         XCTAssertNotNil(news)
         
-        // News should be parsed anyways
-        XCTAssert(news.count == 3)
-        
-        news.forEach { (n) in
-            // News should have url == nil
-            XCTAssertNil(n.url)
-        }
+        // News should not be parsed
+        XCTAssert(news.count == 0)
     }
     
     func testNewsParsingWithNullOrWrongIdentifier() {
