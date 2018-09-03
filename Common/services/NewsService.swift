@@ -24,8 +24,9 @@ class NewsService: HTTPService {
             var res = [News]()
             
             for (_, v) in json {
-                let n = News(json: v)
-                res.append(n)
+                if let n = News(json: v) {
+                    res.append(n)
+                }
             }
             
             DispatchQueue.main.async(execute: {
@@ -54,8 +55,9 @@ class NewsService: HTTPService {
             var res = [News]()
             
             for (_, v) in json {
-                let n = News(json: v)
-                res.append(n)
+                if let n = News(json: v) {
+                    res.append(n)
+                }
             }
             
             DispatchQueue.main.async(execute: {
@@ -97,8 +99,9 @@ class NewsService: HTTPService {
             var res = [News]()
             
             for (_, v) in json {
-                let n = News(json: v)
-                res.append(n)
+                if let n = News(json: v) {
+                    res.append(n)
+                }
             }
             
             DispatchQueue.main.async(execute: {
@@ -147,8 +150,9 @@ class NewsService: HTTPService {
                 a.news = [News]()
                 
                 for (_, n) in t {
-                    let news = News(json: n)
-                    a.news!.append(news)
+                    if let news = News(json: n) {
+                        a.news!.append(news)
+                    }
                 }
                 
                 res.append(a)
@@ -206,8 +210,9 @@ class NewsService: HTTPService {
             var res = [News]()
             
             for (_, v) in json {
-                let n = News(json: v)
-                res.append(n)
+                if let n = News(json: v) {
+                    res.append(n)
+                }
             }
             
             DispatchQueue.main.async(execute: {

@@ -19,14 +19,18 @@ class NewsTests: XCTestCase {
         
         var news = [News]()
         for (_, v) in json! {
-            let n = News(json: v)
-            news.append(n)
+            if let n = News(json: v) {
+                news.append(n)
+            }
         }
         return news
     }
     
     func testNewsParsingWithNullOrWrongURL() {
-        let path = Bundle.init(for: NewsTests.self).path(forResource: "news_null_or_wrong_url_mock", ofType: "json")
+        let path = Bundle
+                    .init(for: NewsTests.self)
+                    .path(forResource: "news_null_or_wrong_url_mock", ofType: "json")
+        
         let url = URL(fileURLWithPath: path!)
         let data = try? Data(contentsOf: url)
         

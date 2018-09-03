@@ -33,23 +33,34 @@ class News: NSObject {
         super.init()
     }
     
-    init(json: JSON) {
+    init?(json: JSON) {
         
-        if let newsId = json["news_id"].int {
-            identifier = "\(newsId)"
+        guard let newsId = json["news_id"].int else {
+            return nil
+        }
+        identifier = "\(newsId)"
+        
+        guard let newsTitle = json["title"].string else {
+            return nil
+        }
+        title = newsTitle
+        
+        if let urlString = json["url"].string {
+            url = Parser.url(from: urlString)
         }
         
-        title = json["title"].string
-        url = json["url"].url
-        
-        let timestamp = json["date"].doubleValue
+        guard let timestamp = json["date"].double else {
+            return nil
+        }
         date = Date(timeIntervalSince1970: timestamp)
         
         source = json["source_name"].string
         
         category = json["category"].string
         
-        imageUrl = json["img_url"].url
+        if let imgURLString = json["img_url"].string {
+            imageUrl = Parser.url(from: imgURLString)
+        }
         
         var tmp: [Reaction] = []
         
