@@ -10,9 +10,9 @@ import Foundation
 import SwiftyJSON
 
 class News: NSObject {
-    var identifier: String?
+    var identifier: String
     var title: String?
-    var url: URL?
+    var url: URL
     var date: Date?
     var source: String?
     var category: String?
@@ -29,39 +29,50 @@ class News: NSObject {
         return r.first
     }
     
-    override init() {
+    init(identifier: String, url: URL) {
+        self.identifier = identifier
+        self.url = url
         super.init()
     }
     
     init?(json: JSON) {
         
+        // identifier is mandatory
         guard let newsId = json["news_id"].int else {
             return nil
         }
         identifier = "\(newsId)"
         
+        // title is mandatory
         guard let newsTitle = json["title"].string else {
             return nil
         }
         title = newsTitle
         
-        if let urlString = json["url"].string {
-            url = Parser.url(from: urlString)
+        // url is mandatory
+        guard let urlString = json["url"].string, let url = Parser.url(from: urlString) else {
+            return nil
         }
+        self.url = url
         
+        // date is mandatory
         guard let timestamp = json["date"].double else {
             return nil
         }
         date = Date(timeIntervalSince1970: timestamp)
         
+        // source
         source = json["source_name"].string
         
+        // category
         category = json["category"].string
         
+        // imageURL
         if let imgURLString = json["img_url"].string {
             imageUrl = Parser.url(from: imgURLString)
         }
         
+        // reactions
         var tmp: [Reaction] = []
         
         json["reactions"].forEach ({ (_, j) in

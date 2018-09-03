@@ -20,11 +20,7 @@ class ProfileViewController: UITableViewController, TabbedViewController {
     
     // MARK: Private
     private func trackOpenNews(_ news: News) {
-        guard let identifier = news.identifier else {
-            return
-        }
-        
-        contentViewsService.postContentView(identifier, context: .reactions, success: nil, fail: nil)
+        contentViewsService.postContentView(news.identifier, context: .reactions, success: nil, fail: nil)
     }
     
     func openURL(_ url: URL) {
@@ -149,9 +145,7 @@ class ProfileViewController: UITableViewController, TabbedViewController {
         
         trackOpenNews(n)
         
-        if let url = n.url {
-            openURL(url)
-        }
+        openURL(n.url)
     }
     
     // MARK: - TabbedViewController

@@ -19,7 +19,7 @@ class ShareCanillitapActivity: UIActivity {
     var news: News
     
     class func canillitappURL(fromNews news: News) -> String {
-        return "https://www.canillitapp.com/article/\(news.identifier!)?source=iOS"
+        return "https://www.canillitapp.com/article/\(news.identifier)?source=iOS"
     }
     
     // MARK: Initializer

@@ -47,29 +47,24 @@ class NewsTableViewController: UITableViewController,
     
     // MARK: Private
     private func trackOpenNews(_ news: News) {
-        guard let identifier = news.identifier,
-                let contextFrom = trackContextFrom else {
+        guard let contextFrom = trackContextFrom else {
             return
         }
         
-        contentViewsService.postContentView(identifier, context: contextFrom, success: nil, fail: nil)
+        contentViewsService.postContentView(news.identifier, context: contextFrom, success: nil, fail: nil)
     }
     
     func openNews(_ news: News) {
         
         trackOpenNews(news)
         
-        guard let url = news.url else {
-            return
-        }
-        
         if userSettingsManager.shouldOpenNewsInsideApp {
-            let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
+            let vc = SFSafariViewController(url: news.url, entersReaderIfAvailable: true)
             vc.delegate = self
             self.selectedNews = news
             present(vc, animated: true, completion: nil)
         } else {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            UIApplication.shared.open(news.url, options: [:], completionHandler: nil)
         }
     }
     
@@ -334,7 +329,7 @@ class NewsTableViewController: UITableViewController,
         
         reactionsService.postReaction(
             selectedReaction,
-            atPost: currentNews.identifier!,
+            atPost: currentNews.identifier,
             success: success,
             fail: fail
         )
@@ -469,7 +464,7 @@ class NewsTableViewController: UITableViewController,
         Answers.logContentView(
             withName: n.title ?? "no_title",
             contentType: "news",
-            contentId: n.url?.absoluteString ?? "no_url",
+            contentId: n.url.absoluteString,
             customAttributes: [
                 "source": n.source ?? "no_source"
             ]
@@ -493,7 +488,7 @@ class NewsTableViewController: UITableViewController,
         
         reactionsService.postReaction(
             reaction.reaction,
-            atPost: viewModel.news.identifier!,
+            atPost: viewModel.news.identifier,
             success: success,
             fail: fail
         )
