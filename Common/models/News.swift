@@ -50,7 +50,7 @@ class News: NSObject {
         title = newsTitle
         
         // url is mandatory
-        guard let urlString = json["url"].string, let url = Parser.url(from: urlString) else {
+        guard let url = json["url"].url else {
             return nil
         }
         self.url = url

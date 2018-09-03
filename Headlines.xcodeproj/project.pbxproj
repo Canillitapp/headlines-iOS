@@ -143,8 +143,10 @@
 		67E10AD01F6385FE009F017C /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E10ACF1F6385FE009F017C /* FilterViewController.swift */; };
 		67E10AD21F6389C3009F017C /* FilterCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E10AD11F6389C3009F017C /* FilterCollectionViewCell.swift */; };
 		67F32F9C21116AA500509F09 /* NewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F32F9B21116AA400509F09 /* NewsTests.swift */; };
-		67F32F9E21116B1200509F09 /* news_null_or_wrong_url_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67F32F9D21116B1200509F09 /* news_null_or_wrong_url_mock.json */; };
 		67F39C1A1EB2DEE600CF99F2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F39C191EB2DEE600CF99F2 /* SearchViewController.swift */; };
+		67F7DA58213CE4B2001F983D /* news_mock_full_2018-08-31.json in Resources */ = {isa = PBXBuildFile; fileRef = 67F7DA57213CE4B2001F983D /* news_mock_full_2018-08-31.json */; };
+		67F7DA5B213CE894001F983D /* news_wrong_url_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67F7DA59213CE894001F983D /* news_wrong_url_mock.json */; };
+		67F7DA5C213CE894001F983D /* news_null_url_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 67F7DA5A213CE894001F983D /* news_null_url_mock.json */; };
 		67FD84DE1D6BF85D00BACAFC /* TrendingCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD84DA1D6BF85D00BACAFC /* TrendingCardsViewController.swift */; };
 		FB0F97F320F84F5E00555A7A /* FilterSourcesDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0F97F220F84F5E00555A7A /* FilterSourcesDataSourceTests.swift */; };
 		FB0F97F720F8D51A00555A7A /* Array+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0F97F520F8D40C00555A7A /* Array+Util.swift */; };
@@ -396,8 +398,10 @@
 		67E10ACF1F6385FE009F017C /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		67E10AD11F6389C3009F017C /* FilterCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCollectionViewCell.swift; sourceTree = "<group>"; };
 		67F32F9B21116AA400509F09 /* NewsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTests.swift; sourceTree = "<group>"; };
-		67F32F9D21116B1200509F09 /* news_null_or_wrong_url_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = news_null_or_wrong_url_mock.json; sourceTree = "<group>"; };
 		67F39C191EB2DEE600CF99F2 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		67F7DA57213CE4B2001F983D /* news_mock_full_2018-08-31.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "news_mock_full_2018-08-31.json"; sourceTree = "<group>"; };
+		67F7DA59213CE894001F983D /* news_wrong_url_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = news_wrong_url_mock.json; sourceTree = "<group>"; };
+		67F7DA5A213CE894001F983D /* news_null_url_mock.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = news_null_url_mock.json; sourceTree = "<group>"; };
 		67FD84DA1D6BF85D00BACAFC /* TrendingCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingCardsViewController.swift; sourceTree = "<group>"; };
 		76124FBA967C0DCF6FC87B1F /* Pods-Headlines.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Headlines.release.xcconfig"; path = "Pods/Target Support Files/Pods-Headlines/Pods-Headlines.release.xcconfig"; sourceTree = "<group>"; };
 		7FF29453467C8A7C0AD8C91C /* Pods-Canillitapp Widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canillitapp Widget.release.xcconfig"; path = "Pods/Target Support Files/Pods-Canillitapp Widget/Pods-Canillitapp Widget.release.xcconfig"; sourceTree = "<group>"; };
@@ -702,11 +706,13 @@
 			isa = PBXGroup;
 			children = (
 				675A81F81D6BF6E8000DC680 /* Info.plist */,
-				67F32F9D21116B1200509F09 /* news_null_or_wrong_url_mock.json */,
+				67F7DA5A213CE894001F983D /* news_null_url_mock.json */,
+				67F7DA59213CE894001F983D /* news_wrong_url_mock.json */,
 				6790F1222113F76F00BD5D9D /* news_null_or_wrong_identifier_mock.json */,
 				6790F1242113F78D00BD5D9D /* news_null_title_mock.json */,
 				6790F1262113F79C00BD5D9D /* news_null_or_wrong_date_mock.json */,
 				6790F128211401E500BD5D9D /* news_mock.json */,
+				67F7DA57213CE4B2001F983D /* news_mock_full_2018-08-31.json */,
 				670B793F1F4CE8A100C485A9 /* PopularNewsDataSourceTests.swift */,
 				6757C30B1F4BE0810007C17F /* RecentNewsDataSourceTests.swift */,
 				67F32F9B21116AA400509F09 /* NewsTests.swift */,
@@ -1313,11 +1319,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67F7DA5B213CE894001F983D /* news_wrong_url_mock.json in Resources */,
 				6790F1272113F79C00BD5D9D /* news_null_or_wrong_date_mock.json in Resources */,
 				6790F1232113F76F00BD5D9D /* news_null_or_wrong_identifier_mock.json in Resources */,
+				67F7DA5C213CE894001F983D /* news_null_url_mock.json in Resources */,
 				6790F129211401E500BD5D9D /* news_mock.json in Resources */,
 				6790F1252113F78D00BD5D9D /* news_null_title_mock.json in Resources */,
-				67F32F9E21116B1200509F09 /* news_null_or_wrong_url_mock.json in Resources */,
+				67F7DA58213CE4B2001F983D /* news_mock_full_2018-08-31.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -26,10 +26,10 @@ class NewsTests: XCTestCase {
         return news
     }
     
-    func testNewsParsingWithNullOrWrongURL() {
+    func testNewsParsingWithWrongURL() {
         let path = Bundle
                     .init(for: NewsTests.self)
-                    .path(forResource: "news_null_or_wrong_url_mock", ofType: "json")
+                    .path(forResource: "news_wrong_url_mock", ofType: "json")
         
         let url = URL(fileURLWithPath: path!)
         let data = try? Data(contentsOf: url)
@@ -40,6 +40,23 @@ class NewsTests: XCTestCase {
         XCTAssertNotNil(news)
         
         // News should not be parsed
+        XCTAssert(news.count == 2)
+    }
+    
+    func testNewsParsingWithNullURL() {
+        let path = Bundle
+            .init(for: NewsTests.self)
+            .path(forResource: "news_null_url_mock", ofType: "json")
+        
+        let url = URL(fileURLWithPath: path!)
+        let data = try? Data(contentsOf: url)
+        
+        let news = decodeNews(from: data!)
+        
+        // Array should not be null
+        XCTAssertNotNil(news)
+        
+        // News should be parsed with escaped URLs
         XCTAssert(news.count == 0)
     }
     
@@ -132,5 +149,18 @@ class NewsTests: XCTestCase {
         XCTAssert(news.first!.imageUrl == URL(string: "https://bucket2.glanacion.com/anexos/fotos/93/2738693.jpg")!)
         
         // TODO: add reactions and category to the mock
+    }
+    
+    func testNewsFullParsing() {
+        // curl https://api.canillitapp.com/latest/2018-08-31 > news_full_2018-08-31.json
+        let path = Bundle
+            .init(for: NewsTests.self)
+            .path(forResource: "news_mock_full_2018-08-31", ofType: "json")
+        
+        let url = URL(fileURLWithPath: path!)
+        let data = try? Data(contentsOf: url)
+        
+        let news = decodeNews(from: data!)
+        XCTAssert(news.count == 988)
     }
 }
