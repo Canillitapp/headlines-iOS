@@ -42,7 +42,6 @@ class News: NSObject {
         }
         return news
     }
-
     
     init(identifier: String, url: URL) {
         self.identifier = identifier
