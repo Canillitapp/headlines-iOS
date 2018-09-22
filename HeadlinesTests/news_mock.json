@@ -10,7 +10,21 @@
     "content_views_count": null,
     "source_name": "La Nacion",
     "category": "Actualidad",
-    "reactions": []
+    "reactions": [
+        {
+            "reaction": "👍",
+            "amount": 1,
+            "date": 1537453332
+        }, {
+            "reaction": "😂",
+            "amount": 1,
+            "date": 1537453342
+        }, {
+            "reaction": "💩",
+            "amount": 1,
+            "date": 1537603952
+        }
+    ]
 }, {
     "news_id": 527385,
     "url": "https://tn.com.ar/salud/lo-ultimo/diez-minutos-de-interaccion-social-al-dia-pueden-mejorar-el-bienestar-en-personas-con-demencia_886651",

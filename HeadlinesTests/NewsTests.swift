@@ -134,7 +134,10 @@ class NewsTests: XCTestCase {
         XCTAssert(news.first!.source == "La Nacion")
         XCTAssert(news.first!.imageUrl == URL(string: "https://bucket2.glanacion.com/anexos/fotos/93/2738693.jpg")!)
         
-        // TODO: add reactions and category to the mock
+        XCTAssert(news.first!.reactions!.count == 3)
+        XCTAssert(news.first!.reactions!.first!.amount == 1)
+        XCTAssert(news.first!.reactions!.first!.reaction == "👍")
+        XCTAssert(news.first!.reactions!.first!.date == Date(timeIntervalSince1970: 1537453332))
     }
     
     func testNewsFullParsing() {
