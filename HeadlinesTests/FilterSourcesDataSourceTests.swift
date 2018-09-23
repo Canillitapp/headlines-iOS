@@ -28,7 +28,8 @@ class FilterSourcesDataSourceTests: XCTestCase {
     }
     
     private func newsWith(source: String?) -> News {
-        let news = News()
+        let url = URL(string: "http://www.betzerra.github.io")
+        let news = News(identifier: "1", url: url!)
         news.source = source
         return news
     }

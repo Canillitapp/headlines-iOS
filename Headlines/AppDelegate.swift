@@ -194,13 +194,15 @@ class AppDelegate: UIResponder,
             )
         //  Responds "view" action and default one
         default:
-            if let postURL = response.notification.request.content.userInfo["post-url"] as? String {
-                newsToOpen = News()
-                newsToOpen?.url = URL(string: postURL)
-                newsToOpen?.identifier = "\(postId)"
-                
-                NotificationCenter.default.post(name: .notificationNewsTapped, object: newsToOpen)
+            
+            guard
+                let postURLString = response.notification.request.content.userInfo["post-url"] as? String,
+                let postURL = URL(string: postURLString) else {
+                    return
             }
+            
+            newsToOpen = News.init(identifier: "\(postId)", url: postURL)
+            NotificationCenter.default.post(name: .notificationNewsTapped, object: newsToOpen)
         }
         
         completionHandler()

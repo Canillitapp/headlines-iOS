@@ -31,8 +31,9 @@ class TopicTests: XCTestCase {
                 a.news = [News]()
                 
                 for (_, n) in t {
-                    let news = News(json: n)
-                    a.news!.append(news)
+                    if let news = News(json: n) {
+                        a.news!.append(news)
+                    }
                 }
                 
                 topics?.append(a)

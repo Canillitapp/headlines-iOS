@@ -1,0 +1,27 @@
+[
+    {
+        "news_id": 527421,
+        "url": null,
+        "title": "El Merval se recuperó en julio y cerró con un alza acumulada de 12,7%",
+        "date": 1533087299,
+        "source_id": 1,
+        "img_url": "https://cdn.tn.com.ar/sites/default/files/styles/470x269/public/2018/07/31/merval_11.jpg",
+        "reactions_count": null,
+        "content_views_count": null,
+        "source_name": "TN",
+        "category": null,
+        "reactions": []
+    },
+    {
+         "news_id": 527396,
+         "title": "Los aportantes que se llevaron contratos millonarios",
+         "date": 1533084960,
+         "source_id": 8,
+         "img_url": "http://fotos.perfil.com/2018/07/31/macri-dinero-campanas-37072018-356240.jpg",
+         "reactions_count": null,
+         "content_views_count": null,
+         "source_name": "Perfil",
+         "category": null,
+         "reactions": []
+    }
+]

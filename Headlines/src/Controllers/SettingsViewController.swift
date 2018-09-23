@@ -42,7 +42,7 @@ class SettingsViewController: UIViewController {
             switch settings.authorizationStatus {
             case .notDetermined, .denied:
                 self.layoutAskForNotifications()
-            case .authorized:
+            case .authorized, .provisional:
                 self.layoutNotificationsAuthorized()
             }
         }
@@ -81,7 +81,7 @@ class SettingsViewController: UIViewController {
                     let url = URL(string: UIApplicationOpenSettingsURLString)!
                     UIApplication.shared.open(url)
                 }
-            case .authorized:
+            case .authorized, .provisional:
                 assertionFailure("Suscribe button was enabled while the notifications where already authorized.")
                 self.layoutNotificationsAuthorized()
             }

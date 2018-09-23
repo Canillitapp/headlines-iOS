@@ -1,0 +1,27 @@
+[
+ {
+    "news_id": 527449,
+    "url": "http://www.perfil.com/noticias/actualidad/carrefour-tuvo-que-retirar-publicidad-sexista-tras-una-lluvia-de-criticas.phtml",
+    "title": null,
+    "date": 1533086958,
+    "source_id": 8,
+    "img_url": "http://fotos.perfil.com/2018/07/31/carrefour-publicidad-20180731-356339.jpg",
+    "reactions_count": null,
+    "content_views_count": null,
+    "source_name": "Perfil",
+    "category": null,
+    "reactions": []
+ },
+ {
+    "news_id": 527438,
+    "url": "https://www.infobae.com/noticias/2018/07/31/con-la-reinsercion-de-tinelli-en-el-futbol-san-lorenzo-avanza-en-la-contratacion-de-un-delantero/",
+    "date": 1533086650,
+    "source_id": 9,
+    "img_url": "https://www.infobae.com/new-resizer/yZV4T2ct31f8pTDrsDLVjDlrRgE=/1200x0/filters:quality(100)/s3.amazonaws.com/arc-wordpress-client-uploads/infobae-wp/wp-content/uploads/2017/04/17205450/Tinelli-y-Lammens-San-Lorenzo-1920-1.jpg",
+    "reactions_count": null,
+    "content_views_count": null,
+    "source_name": "Infobae",
+    "category": null,
+    "reactions": []
+ }
+]
