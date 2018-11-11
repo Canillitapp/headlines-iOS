@@ -64,6 +64,14 @@ class FilterViewController: UIViewController,
         filterSourcesDataSource?.setupSelectedCells()
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        // https://stackoverflow.com/a/52148520/994129
+        sourcesCollectionView.collectionViewLayout.invalidateLayout()
+        categoriesCollectionView.collectionViewLayout.invalidateLayout()
+    }
+    
     // MARK: UIGestureRecognizerDelegate
     public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         if containerStackView.frame.contains(touch.location(in: self.view)) {
