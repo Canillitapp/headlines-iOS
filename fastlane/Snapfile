@@ -14,7 +14,7 @@ languages([
 # The name of the scheme which contains the UI Tests
 scheme "SnapshotUITests"
 
-ios_version '11.1'
+ios_version '12.0'
 
 # Where should the resulting screenshots be stored?
 # output_directory "./screenshots"

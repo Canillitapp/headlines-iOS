@@ -9,6 +9,11 @@
 			<key>orderHint</key>
 			<integer>13</integer>
 		</dict>
+		<key>Canillitapp Widget.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
 		<key>Headlines.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -30,6 +35,11 @@
 			<integer>2</integer>
 		</dict>
 		<key>Notifications.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>14</integer>
+		</dict>
+		<key>Notifications.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>14</integer>
