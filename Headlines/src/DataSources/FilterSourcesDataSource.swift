@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FilterSourcesDataSource: NSObject, UICollectionViewDelegate, UICollectionViewDataSource {
+class FilterSourcesDataSource: NSObject, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     weak var collectionView: UICollectionView?
     
@@ -97,5 +97,20 @@ class FilterSourcesDataSource: NSObject, UICollectionViewDelegate, UICollectionV
         }
         
         selectedSources.remove(at: deselectedIndex)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        guard let cell = self.collectionView(collectionView, cellForItemAt: indexPath) as? FilterCollectionViewCell else {
+            return CGSize(width: 60, height: 60)
+        }
+
+        cell.setNeedsLayout()
+        cell.layoutIfNeeded()
+        let size = cell.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+        
+        return size
     }
 }

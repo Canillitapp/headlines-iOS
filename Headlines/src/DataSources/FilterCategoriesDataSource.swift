@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FilterCategoriesDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegate {
+class FilterCategoriesDataSource: NSObject, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     var selectedCategory: String?
     var categories: [String]
@@ -58,5 +58,20 @@ class FilterCategoriesDataSource: NSObject, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectedCategory = categories[indexPath.row] == "Todos" ? nil : categories[indexPath.row]
         viewController?.performSegue(withIdentifier: "categorySelected", sender: nil)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        guard let cell = self.collectionView(collectionView, cellForItemAt: indexPath) as? FilterCollectionViewCell else {
+            return CGSize(width: 60, height: 60)
+        }
+        
+        cell.setNeedsLayout()
+        cell.layoutIfNeeded()
+        let size = cell.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+        
+        return size
     }
 }

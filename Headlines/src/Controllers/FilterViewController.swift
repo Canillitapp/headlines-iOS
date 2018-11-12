@@ -27,12 +27,6 @@ class FilterViewController: UIViewController,
         filterSourcesDataSource?.collectionView = sourcesCollectionView
         sourcesCollectionView.dataSource = self.filterSourcesDataSource
         sourcesCollectionView.delegate = self.filterSourcesDataSource
-        
-        guard let flowLayout = sourcesCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
-            return
-        }
-        
-        flowLayout.estimatedItemSize = CGSize(width: 100, height: 100)
     }
     
     func setupCategoriesCollectionView() {
@@ -41,12 +35,6 @@ class FilterViewController: UIViewController,
         filterCategoriesDataSource?.collectionView = categoriesCollectionView
         categoriesCollectionView.dataSource = self.filterCategoriesDataSource
         categoriesCollectionView.delegate = self.filterCategoriesDataSource
-        
-        guard let flowLayout = categoriesCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
-            return
-        }
-        
-        flowLayout.estimatedItemSize = CGSize(width: 100, height: 100)
     }
     
     override func viewDidLoad() {
