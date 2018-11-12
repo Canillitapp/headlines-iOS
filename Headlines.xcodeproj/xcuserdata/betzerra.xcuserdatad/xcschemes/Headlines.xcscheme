@@ -104,7 +104,7 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "mockRequests"
-            isEnabled = "NO">
+            isEnabled = "YES">
          </CommandLineArgument>
       </CommandLineArguments>
       <AdditionalOptions>

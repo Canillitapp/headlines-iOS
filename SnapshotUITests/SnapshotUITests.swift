@@ -104,7 +104,7 @@ class SnapshotUITests: XCTestCase {
         app.tabBars.buttons["Perfil"].tap()
         
         //  There should be at least 1 cell rendered
-        let cell = app.tables.cells.element(boundBy: 0)
+        let cell = app.collectionViews.cells.element(boundBy: 0)
         let exists = NSPredicate(format: "exists == 1")
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
         
