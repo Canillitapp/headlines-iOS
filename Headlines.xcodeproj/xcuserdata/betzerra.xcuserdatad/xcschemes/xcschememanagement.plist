@@ -12,7 +12,7 @@
 		<key>Canillitapp Widget.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>13</integer>
+			<integer>15</integer>
 		</dict>
 		<key>Headlines.xcscheme</key>
 		<dict>
@@ -42,7 +42,7 @@
 		<key>Notifications.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>14</integer>
+			<integer>16</integer>
 		</dict>
 		<key>SnapshotUITests.xcscheme_^#shared#^_</key>
 		<dict>

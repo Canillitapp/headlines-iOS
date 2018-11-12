@@ -2,6 +2,7 @@ PODS:
   - Crashlytics (3.10.4):
     - Fabric (~> 1.7.9)
   - Fabric (1.7.9)
+  - JGProgressHUD (2.0.3)
   - SDWebImage (4.4.1):
     - SDWebImage/Core (= 4.4.1)
   - SDWebImage/Core (4.4.1)
@@ -11,6 +12,7 @@ PODS:
 DEPENDENCIES:
   - Crashlytics
   - Fabric
+  - JGProgressHUD
   - SDWebImage
   - SwiftyJSON
   - ViewAnimator
@@ -19,6 +21,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Crashlytics
     - Fabric
+    - JGProgressHUD
     - SDWebImage
     - SwiftyJSON
     - ViewAnimator
@@ -26,10 +29,11 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Crashlytics: 915a7787b84f635fb2a81f92a90e265c2c413f76
   Fabric: a2917d3895e4c1569b9c3170de7320ea1b1e6661
+  JGProgressHUD: 12b20a8f4ffe05258f8635c1ab92816e451f904d
   SDWebImage: 47e9b5b925cbce75946c23f0c42dd19464189af4
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   ViewAnimator: 43c31539508d995ea2c5e98338211f7c009b358f
 
-PODFILE CHECKSUM: ada79140deca34665860ff950b1cd49b53254135
+PODFILE CHECKSUM: 0b3fd33458c93cb51dbb5170c2a22888006fd5dd
 
 COCOAPODS: 1.5.3

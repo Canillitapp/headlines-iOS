@@ -8,15 +8,21 @@
 
 import Foundation
 import UIKit
-import SDWebImage
 import SafariServices
+
 import Crashlytics
+import JGProgressHUD
+import SDWebImage
 import ViewAnimator
 
-class ProfileViewController: UITableViewController, TabbedViewController {
-    let reactionsService = ReactionsService()
+class ProfileViewController: UIViewController, TabbedViewController, UICollectionViewDelegateFlowLayout {
+    @IBOutlet weak var collectionView: UICollectionView!
+    
     let contentViewsService = ContentViewsService()
-    var reactions = [Reaction]()
+    let profileDataSource = ProfileDataSource()
+    let newsService = NewsService()
+    
+    typealias InterestNews = (interest: String, news: [News])
     
     // MARK: Private
     private func trackOpenNews(_ news: News) {
@@ -40,13 +46,13 @@ class ProfileViewController: UITableViewController, TabbedViewController {
     
     func endRefreshing() {
         if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
-            self.refreshControl?.endRefreshing()
+            collectionView.refreshControl?.endRefreshing()
         }
     }
     
     func startRefreshing() {
         if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
-            refreshControl?.beginRefreshing()
+            collectionView.refreshControl?.beginRefreshing()
         }
     }
     
@@ -59,51 +65,99 @@ class ProfileViewController: UITableViewController, TabbedViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    @objc func fetchMyReactions() {
-        self.startRefreshing()
+    @objc func fetchProfileData() {
+        startRefreshing()
         
-        let success: (URLResponse?, [Reaction]) -> Void = { [unowned self] response, reactions in
+        let success: (([Interest], [Reaction]) -> Void) = { [unowned self] (interests, reactions) in
             self.endRefreshing()
-            
-            self.reactions.removeAll()
-            self.reactions.append(contentsOf: reactions)
-            self.tableView.reloadData()
-            
-            if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
-                UIView.animate(
-                    views: self.tableView.visibleCells,
-                    animations: [AnimationType.from(direction: .right, offset: 10.0)],
-                    animationInterval: 0.1
-                )
-            }
+            self.collectionView.reloadData()
         }
         
-        let fail: (Error) -> Void = { [unowned self] error in
+        let fail: ((Error) -> Void) = { [unowned self] (error) in
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
                 self.endRefreshing()
             }
             self.showControllerWithError(error as NSError)
         }
         
-        reactionsService.getReactions(success: success, fail: fail)
+        profileDataSource.fetchProfileData(success: success, fail: fail)
+    }
+    
+    func setupCollectionView() {
+        //  Setup refresh control
+        let refreshCtrl = UIRefreshControl()
+        collectionView.refreshControl = refreshCtrl
+        
+        refreshCtrl.tintColor = UIColor(red: 0.99, green: 0.29, blue: 0.39, alpha: 1.00)
+        refreshCtrl.addTarget(self, action: #selector(fetchProfileData), for: .valueChanged)
+        
+        //  Had to set content offset because of UIRefreshControl bug
+        //  http://stackoverflow.com/a/31224299/994129
+        collectionView.contentOffset = CGPoint(x: 0, y: -refreshCtrl.frame.size.height)
+        
+        collectionView.delegate = self
+        collectionView.dataSource = profileDataSource
+    }
+    
+    func handleReactionSelection(_ reaction: Reaction) {
+        guard let n = reaction.news else {
+            return
+        }
+        trackOpenNews(n)
+        openURL(n.url)
+    }
+    
+    func handleInterestSelection(_ interest: Interest) {
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Loading"
+        hud.show(in: self.view)
+        
+        let success: (([News]?) -> Void) = { [unowned self] (news) in
+            hud.dismiss()
+            
+            guard let news = news else {
+                return
+            }
+            
+            let interestNews = InterestNews(interest: interest.name, news: news)
+            self.performSegue(withIdentifier: "interest_did_select", sender: interestNews)
+        }
+        
+        let fail: ((NSError) -> Void) = { [unowned self] (error) in
+            hud.dismiss()
+            
+            self.showControllerWithError(error as NSError)
+        }
+        
+        _ = newsService.searchNews(interest.name, success: success, fail: fail)
     }
     
     // MARK: Public
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCollectionView()
+        fetchProfileData()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        //  Setup refresh control
-        let refreshCtrl = UIRefreshControl()
-        tableView.refreshControl = refreshCtrl
+        guard let identifier = segue.identifier else {
+            return
+        }
         
-        refreshCtrl.tintColor = UIColor(red: 0.99, green: 0.29, blue: 0.39, alpha: 1.00)
-        refreshCtrl.addTarget(self, action: #selector(fetchMyReactions), for: .valueChanged)
-        
-        //  Had to set content offset because of UIRefreshControl bug
-        //  http://stackoverflow.com/a/31224299/994129
-        tableView.contentOffset = CGPoint(x: 0, y: -refreshCtrl.frame.size.height)
-        
-        fetchMyReactions()
+        switch identifier {
+        case "interest_did_select":
+            guard
+                let vc = segue.destination as? NewsTableViewController,
+                let interestNews = sender as? InterestNews else {
+                return
+            }
+            vc.title = interestNews.interest
+            vc.news = interestNews.news
+            
+        default:
+            break
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -112,44 +166,59 @@ class ProfileViewController: UITableViewController, TabbedViewController {
         Answers.logCustomEvent(withName: "profile_appear", customAttributes: nil)
     }
     
-    // MARK: UITableViewDataSource
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return reactions.count
+    // MARK: UICollectionViewDelegate
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch indexPath.section {
+        
+        case 0:
+            let interest = profileDataSource.interests[indexPath.row]
+            handleInterestSelection(interest)
+        
+        case 1:
+            let reaction = profileDataSource.reactions[indexPath.row]
+            handleReactionSelection(reaction)
+            
+        default:
+            break
+        }
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-            as? ReactionTableViewCell else {
-                return UITableViewCell()
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        switch indexPath.section {
+        case 1:
+            let xInset = collectionView.layoutMargins.left
+            let yInset = collectionView.layoutMargins.top
+            let cellWidth = collectionView.bounds.insetBy(dx: xInset, dy: yInset).width
+            return CGSize(width: cellWidth, height: 60)
+
+        default:
+            guard let cell = profileDataSource.collectionView(collectionView, cellForItemAt: indexPath) as? LabelCollectionViewCell else {
+                return CGSize(width: 60, height: 60)
+            }
+            cell.setNeedsLayout()
+            cell.layoutIfNeeded()
+            let size = cell.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
+
+            return size
         }
-        
-        let r = reactions[indexPath.row]
-        guard let n = r.news else {
-            return cell
-        }
-        
-        cell.emojiLabel.text = r.reaction
-        cell.reactionLabel.text = n.title
-        cell.reactionImageView.sd_setImage(with: n.imageUrl)
-        
-        return cell
     }
     
-    // MARK: UITableViewDelegate
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let r = reactions[indexPath.row]
-        
-        guard let n = r.news else {
-            return
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        switch section {
+        case 1:
+            return 0
+        default:
+            return 10
         }
-        
-        trackOpenNews(n)
-        
-        openURL(n.url)
     }
     
     // MARK: - TabbedViewController
     func tabbedViewControllerWasDoubleTapped() {
-        tableView.setContentOffset(CGPoint.zero, animated: true)
+        collectionView.setContentOffset(CGPoint.zero, animated: true)
     }
 }

@@ -36,7 +36,7 @@ class HeadlinesMockedUITests: XCTestCase {
         //  Go to Perfil tab
         app.tabBars.buttons["Perfil"].tap()
         
-        let cell = app.tables.cells.element(boundBy: 0)
+        let cell = app.collectionViews.cells.element(boundBy: 0)
         let exists = NSPredicate(format: "exists == 1")
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
         wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
