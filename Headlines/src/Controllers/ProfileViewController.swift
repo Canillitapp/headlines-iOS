@@ -153,6 +153,7 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
                 return
             }
             vc.title = interestNews.interest
+            vc.preferredDateStyle = .short
             vc.news = interestNews.news
             
         default:
