@@ -151,13 +151,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Presentación dinámica del Lamborghini Aventador S = Video y fotos. 3h" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="egX-dc-vpv">
-                                                    <rect key="frame" x="60" y="10" width="118" height="30"/>
+                                                    <rect key="frame" x="50" y="10" width="128" height="30"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S2S-gs-9lX">
-                                                    <rect key="frame" x="10" y="5" width="40" height="40"/>
+                                                    <rect key="frame" x="0.0" y="5" width="40" height="40"/>
                                                     <color key="backgroundColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="S2S-gs-9lX" secondAttribute="height" multiplier="1:1" id="n79-o7-aXq"/>
@@ -170,7 +170,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🙂" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="doT-s9-3LG">
-                                                    <rect key="frame" x="10" y="5" width="40" height="40"/>
+                                                    <rect key="frame" x="0.0" y="5" width="40" height="40"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -193,7 +193,7 @@
                                             <constraint firstAttribute="trailing" secondItem="egX-dc-vpv" secondAttribute="trailing" constant="10" id="N2Y-qU-qOQ"/>
                                             <constraint firstItem="egX-dc-vpv" firstAttribute="top" secondItem="CDa-4e-j6b" secondAttribute="top" constant="10" id="Rbc-qr-k8H"/>
                                             <constraint firstItem="doT-s9-3LG" firstAttribute="leading" secondItem="S2S-gs-9lX" secondAttribute="leading" id="UL7-MP-X5Q"/>
-                                            <constraint firstItem="S2S-gs-9lX" firstAttribute="leading" secondItem="CDa-4e-j6b" secondAttribute="leading" constant="10" id="WJN-le-rgF"/>
+                                            <constraint firstItem="S2S-gs-9lX" firstAttribute="leading" secondItem="CDa-4e-j6b" secondAttribute="leading" id="WJN-le-rgF"/>
                                             <constraint firstAttribute="trailing" secondItem="zPX-iP-B03" secondAttribute="trailing" id="ZnL-O6-X18"/>
                                             <constraint firstItem="zPX-iP-B03" firstAttribute="leading" secondItem="CDa-4e-j6b" secondAttribute="leading" id="dRy-MQ-nsE"/>
                                             <constraint firstAttribute="bottom" secondItem="egX-dc-vpv" secondAttribute="bottom" constant="10" id="hi9-Yg-fEm"/>
