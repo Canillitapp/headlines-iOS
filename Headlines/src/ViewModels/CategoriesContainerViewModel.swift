@@ -32,8 +32,7 @@ class CategoriesContainerViewModel: NSObject {
     func loadImage(with category: Category, at cell: CategoryCollectionViewCell) {
         let key = imageKeyFromCategory(category)
 
-        if let cachedImage =
-            SDWebImageManager.shared().imageCache?.imageFromDiskCache(forKey: key) {
+        if let cachedImage = ImageCacheManager.shared.image(forKey: key) {
             cell.backgroundImageView.image = cachedImage
         } else {
             guard let imageURL = category.imageURL else {
@@ -52,7 +51,9 @@ class CategoriesContainerViewModel: NSObject {
                     
                     DispatchQueue.main.async {
                         cell.backgroundImageView.image = blurredImage
-                        SDImageCache.shared().store(blurredImage, forKey: key, toDisk: true)
+                        if let blurredImage = blurredImage {
+                            ImageCacheManager.shared.setImage(blurredImage, forKey: key)
+                        }
                         
                         UIView.animate(withDuration: 0.3, animations: {
                             cell.backgroundImageView.alpha = 1.0
