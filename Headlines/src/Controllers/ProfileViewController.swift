@@ -17,6 +17,7 @@ import ViewAnimator
 
 class ProfileViewController: UIViewController, TabbedViewController, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var centerActivityIndicator: UIActivityIndicatorView!
     
     let contentViewsService = ContentViewsService()
     let profileDataSource = ProfileDataSource()
@@ -71,6 +72,19 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
         let success: (([Interest], [Reaction]) -> Void) = { [unowned self] (interests, reactions) in
             self.endRefreshing()
             self.collectionView.reloadData()
+            
+            self.centerActivityIndicator.isHidden = true
+            
+            // animate collection view now that we have content to display
+            let animation: () -> Void = { [unowned self] in
+                self.collectionView.alpha = 1.0
+            }
+            
+            UIView.animate(withDuration: 0.3,
+                           delay: 0.0,
+                           options: [.curveEaseInOut],
+                           animations: animation,
+                           completion: nil)
         }
         
         let fail: ((Error) -> Void) = { [unowned self] (error) in
@@ -97,6 +111,9 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
         
         collectionView.delegate = self
         collectionView.dataSource = profileDataSource
+        
+        //  Hide collectionView until we got info fetched for the first time
+        collectionView.alpha = 0
     }
     
     func handleReactionSelection(_ reaction: Reaction) {

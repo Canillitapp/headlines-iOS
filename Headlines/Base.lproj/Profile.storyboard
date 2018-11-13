@@ -232,10 +232,16 @@
                                     </connections>
                                 </collectionReusableView>
                             </collectionView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="KSQ-7w-0Ug">
+                                <rect key="frame" x="169" y="283" width="37" height="37"/>
+                                <color key="color" red="0.99607843139999996" green="0.15686274510000001" blue="0.31764705879999999" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="KSQ-7w-0Ug" firstAttribute="centerX" secondItem="eWP-mD-15b" secondAttribute="centerX" id="9KF-Nc-hOk"/>
                             <constraint firstItem="0MG-Ss-YTB" firstAttribute="top" secondItem="vtC-0h-7Nz" secondAttribute="bottom" id="ESz-Lt-PWR"/>
+                            <constraint firstItem="KSQ-7w-0Ug" firstAttribute="centerY" secondItem="eWP-mD-15b" secondAttribute="centerY" id="Hdh-l4-Za3"/>
                             <constraint firstItem="0MG-Ss-YTB" firstAttribute="leading" secondItem="eWP-mD-15b" secondAttribute="leading" id="USh-e6-Uh6"/>
                             <constraint firstItem="UAn-NB-8CT" firstAttribute="top" secondItem="0MG-Ss-YTB" secondAttribute="bottom" id="iI2-op-8bB"/>
                             <constraint firstAttribute="trailing" secondItem="0MG-Ss-YTB" secondAttribute="trailing" id="xhL-qg-dZK"/>
@@ -249,6 +255,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="centerActivityIndicator" destination="KSQ-7w-0Ug" id="7hu-ma-M6S"/>
                         <outlet property="collectionView" destination="0MG-Ss-YTB" id="AHY-tl-8Ja"/>
                         <segue destination="lOs-cs-t9N" kind="show" identifier="interest_did_select" id="jwY-Ea-1NX"/>
                     </connections>
