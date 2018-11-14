@@ -88,6 +88,10 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
             }
             let interest = interests[indexPath.row]
             cell.label.text = interest.name
+            cell.normalTextColor = UIColor.black
+            cell.normalBackgroundColor = UIColor(white: 240/255.0, alpha: 1)
+            cell.selectedTextColor = cell.normalTextColor
+            cell.selectedBackgroundColor = cell.normalBackgroundColor
             return cell
             
         case 1:
