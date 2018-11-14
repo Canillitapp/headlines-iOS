@@ -37,9 +37,9 @@ class FilterCategoriesDataSource: NSObject, UICollectionViewDataSource, UICollec
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-            as! FilterCollectionViewCell
+            as! LabelCollectionViewCell
         
-        cell.titleLabel.text = categories[indexPath.row]
+        cell.label.text = categories[indexPath.row]
         cell.layer.cornerRadius = 8
         return cell
     }
@@ -63,15 +63,7 @@ class FilterCategoriesDataSource: NSObject, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        guard let cell = self.collectionView(collectionView, cellForItemAt: indexPath) as? FilterCollectionViewCell else {
-            return CGSize(width: 60, height: 60)
-        }
-        
-        cell.setNeedsLayout()
-        cell.layoutIfNeeded()
-        let size = cell.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
-        
-        return size
+                
+        return LabelCollectionViewCell.size(with: categories[indexPath.row])
     }
 }

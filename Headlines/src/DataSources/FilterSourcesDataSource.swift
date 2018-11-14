@@ -66,9 +66,9 @@ class FilterSourcesDataSource: NSObject, UICollectionViewDelegateFlowLayout, UIC
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-            as! FilterCollectionViewCell
+            as! LabelCollectionViewCell
         
-        cell.titleLabel.text = sources[indexPath.row]
+        cell.label.text = sources[indexPath.row]
         cell.layer.cornerRadius = 8
         return cell
     }
@@ -103,14 +103,6 @@ class FilterSourcesDataSource: NSObject, UICollectionViewDelegateFlowLayout, UIC
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        guard let cell = self.collectionView(collectionView, cellForItemAt: indexPath) as? FilterCollectionViewCell else {
-            return CGSize(width: 60, height: 60)
-        }
-
-        cell.setNeedsLayout()
-        cell.layoutIfNeeded()
-        let size = cell.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
-        
-        return size
+        return LabelCollectionViewCell.size(with: sources[indexPath.row])
     }
 }

@@ -112,39 +112,8 @@
                                     <inset key="sectionInset" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="interest_cell" id="168-ef-5mz" customClass="LabelCollectionViewCell" customModule="Canillitapp" customModuleProvider="target">
-                                        <rect key="frame" x="10" y="40" width="50" height="50"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8D5-Xd-Ali">
-                                                    <rect key="frame" x="10" y="10" width="30" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </view>
-                                        <color key="backgroundColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="8D5-Xd-Ali" secondAttribute="bottom" priority="999" constant="10" id="0sa-Lr-66K"/>
-                                            <constraint firstItem="8D5-Xd-Ali" firstAttribute="leading" secondItem="168-ef-5mz" secondAttribute="leading" constant="10" id="BJn-v7-CGw"/>
-                                            <constraint firstAttribute="trailing" secondItem="8D5-Xd-Ali" secondAttribute="trailing" priority="999" constant="10" id="QPD-Gl-Zy4"/>
-                                            <constraint firstItem="8D5-Xd-Ali" firstAttribute="top" secondItem="168-ef-5mz" secondAttribute="top" constant="10" id="eQB-WD-Ykz"/>
-                                        </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                <integer key="value" value="10"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outlet property="label" destination="8D5-Xd-Ali" id="C5r-li-VQt"/>
-                                        </connections>
-                                    </collectionViewCell>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="reaction_cell" id="CDa-4e-j6b" customClass="ProfileReactionCollectionViewCell" customModule="Canillitapp" customModuleProvider="target">
-                                        <rect key="frame" x="70" y="40" width="188" height="50"/>
+                                        <rect key="frame" x="93.5" y="40" width="188" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="188" height="50"/>
