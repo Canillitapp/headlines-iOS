@@ -88,6 +88,11 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
         }
         
         let fail: ((Error) -> Void) = { [unowned self] (error) in
+            
+            // Either if it fails, we should reset this state.
+            self.centerActivityIndicator.isHidden = true
+            self.collectionView.alpha = 1.0
+            
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
                 self.endRefreshing()
             }
