@@ -11,37 +11,10 @@ import UIKit
 class LabelCollectionViewCell: UICollectionViewCell {
     var label: UILabel!
     
-    var normalTextColor = UIColor.white {
-        didSet {
-            if !isSelected {
-                label.textColor = normalTextColor
-            }
-        }
-    }
-    
-    var normalBackgroundColor = UIColor.init(white: 216/255.0, alpha: 1) {
-        didSet {
-            if !isSelected {
-                backgroundColor = normalBackgroundColor
-            }
-        }
-    }
-    
-    var selectedTextColor = UIColor.white {
-        didSet {
-            if isSelected {
-                label.textColor = normalTextColor
-            }
-        }
-    }
-    
-    var selectedBackgroundColor = UIColor(red: 252/255.0, green: 75/255.0, blue: 99/255.0, alpha: 1) {
-        didSet {
-            if isSelected {
-                backgroundColor = normalTextColor
-            }
-        }
-    }
+    var normalTextColor = UIColor.white
+    var normalBackgroundColor = UIColor.init(white: 216/255.0, alpha: 1)
+    var selectedTextColor = UIColor.white
+    var selectedBackgroundColor = UIColor(red: 252/255.0, green: 75/255.0, blue: 99/255.0, alpha: 1)
     
     static let defaultInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
     static let defaultFont = UIFont.systemFont(ofSize: 15, weight: .medium)
