@@ -88,6 +88,11 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
         }
         
         let fail: ((Error) -> Void) = { [unowned self] (error) in
+            
+            // Either if it fails, we should reset this state.
+            self.centerActivityIndicator.isHidden = true
+            self.collectionView.alpha = 1.0
+            
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
                 self.endRefreshing()
             }
@@ -114,6 +119,8 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
         
         //  Hide collectionView until we got info fetched for the first time
         collectionView.alpha = 0
+        
+        collectionView.register(LabelCollectionViewCell.self, forCellWithReuseIdentifier: "interest_cell")
     }
     
     func handleReactionSelection(_ reaction: Reaction) {
@@ -218,14 +225,8 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
             return CGSize(width: cellWidth, height: 60)
 
         default:
-            guard let cell = profileDataSource.collectionView(collectionView, cellForItemAt: indexPath) as? LabelCollectionViewCell else {
-                return CGSize(width: 60, height: 60)
-            }
-            cell.setNeedsLayout()
-            cell.layoutIfNeeded()
-            let size = cell.systemLayoutSizeFitting(UILayoutFittingCompressedSize)
-
-            return size
+            let text = profileDataSource.interests[indexPath.row].name
+            return LabelCollectionViewCell.size(with: text)
         }
     }
     

@@ -27,6 +27,8 @@ class FilterViewController: UIViewController,
         filterSourcesDataSource?.collectionView = sourcesCollectionView
         sourcesCollectionView.dataSource = self.filterSourcesDataSource
         sourcesCollectionView.delegate = self.filterSourcesDataSource
+        
+        sourcesCollectionView.register(LabelCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
     }
     
     func setupCategoriesCollectionView() {
@@ -35,6 +37,8 @@ class FilterViewController: UIViewController,
         filterCategoriesDataSource?.collectionView = categoriesCollectionView
         categoriesCollectionView.dataSource = self.filterCategoriesDataSource
         categoriesCollectionView.delegate = self.filterCategoriesDataSource
+        
+        categoriesCollectionView.register(LabelCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
     }
     
     override func viewDidLoad() {
