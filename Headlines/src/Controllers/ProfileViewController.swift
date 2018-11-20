@@ -184,6 +184,11 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
         Answers.logCustomEvent(withName: "profile_appear", customAttributes: nil)
     }
     
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
     // MARK: UICollectionViewDelegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.section {
