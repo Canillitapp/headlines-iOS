@@ -128,6 +128,8 @@
 		679A72C32018CE3F005CCCB5 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679A72C22018CE3F005CCCB5 /* NotificationService.swift */; };
 		679A72C72018CE3F005CCCB5 /* Notifications.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 679A72C02018CE3F005CCCB5 /* Notifications.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		67B4CF3120ABBC5B00B8E391 /* ContentViewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B4CF3020ABBC5B00B8E391 /* ContentViewsService.swift */; };
+		67B6D0C721B0C5D700F5AE6E /* SuggestionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B6D0C621B0C5D700F5AE6E /* SuggestionsHelper.swift */; };
+		67B6D0C921B0D02300F5AE6E /* DismissableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B6D0C821B0D02300F5AE6E /* DismissableNavigationController.swift */; };
 		67BA65C41FCB65B400411A06 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BA65C31FCB65B400411A06 /* NotificationCenter.framework */; };
 		67BA65C71FCB65B400411A06 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BA65C61FCB65B400411A06 /* TodayViewController.swift */; };
 		67BA65CA1FCB65B400411A06 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67BA65C81FCB65B400411A06 /* MainInterface.storyboard */; };
@@ -387,6 +389,8 @@
 		679A72C22018CE3F005CCCB5 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		679A72C42018CE3F005CCCB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		67B4CF3020ABBC5B00B8E391 /* ContentViewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentViewsService.swift; path = Services/ContentViewsService.swift; sourceTree = "<group>"; };
+		67B6D0C621B0C5D700F5AE6E /* SuggestionsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsHelper.swift; sourceTree = "<group>"; };
+		67B6D0C821B0D02300F5AE6E /* DismissableNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissableNavigationController.swift; sourceTree = "<group>"; };
 		67BA65C21FCB65B400411A06 /* Canillitapp Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Canillitapp Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67BA65C31FCB65B400411A06 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		67BA65C61FCB65B400411A06 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -842,6 +846,14 @@
 			path = Notifications;
 			sourceTree = "<group>";
 		};
+		67B6D0C521B0C5A800F5AE6E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				67B6D0C621B0C5D700F5AE6E /* SuggestionsHelper.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		67BA65C51FCB65B400411A06 /* Canillitapp Widget */ = {
 			isa = PBXGroup;
 			children = (
@@ -867,6 +879,7 @@
 			isa = PBXGroup;
 			children = (
 				6723B67620EB145D00DEF366 /* LoadingTask.swift */,
+				67B6D0C521B0C5A800F5AE6E /* Helpers */,
 				6745645420486D59004A7F71 /* Activities */,
 				67617F811F6CB2C700674320 /* Animators */,
 				674E7CFD20E1BABC007A8337 /* Categories */,
@@ -888,6 +901,7 @@
 			isa = PBXGroup;
 			children = (
 				67E10ACF1F6385FE009F017C /* FilterViewController.swift */,
+				67B6D0C821B0D02300F5AE6E /* DismissableNavigationController.swift */,
 				671266081F4CEF980005CF4B /* InitialTabBarController.swift */,
 				67505DDB1FB1360B0095EFE0 /* LoadingViewController.swift */,
 				67BC0912204B35D400796B8B /* NewsPreviewViewController.swift */,
@@ -1580,6 +1594,7 @@
 				67FD84DE1D6BF85D00BACAFC /* TrendingCardsViewController.swift in Sources */,
 				674E7CE320E07C31007A8337 /* TrendingCardsViewController+CollectionView.swift in Sources */,
 				FB803A9F20EFB5C200C841DD /* NewsSearchViewController.swift in Sources */,
+				67B6D0C921B0D02300F5AE6E /* DismissableNavigationController.swift in Sources */,
 				FB9F586B20FA34730028C1DF /* Tag.swift in Sources */,
 				670D2C7C1DDC09D000237C39 /* NewsTableViewCell.swift in Sources */,
 				674E7CF320E0909F007A8337 /* CategoryCollectionViewCell.swift in Sources */,
@@ -1627,6 +1642,7 @@
 				67877EA121863E4000C172B1 /* Interest.swift in Sources */,
 				677392C31F6B42CE0076E8BB /* DynamicHeightCollectionView.swift in Sources */,
 				670BA52120573DEF00A225C7 /* TabbedViewController.swift in Sources */,
+				67B6D0C721B0C5D700F5AE6E /* SuggestionsHelper.swift in Sources */,
 				FB803AA320EFB71800C841DD /* TrendingSearchViewController.swift in Sources */,
 				6730A4242198B7A4003FB180 /* ProfileDataSource.swift in Sources */,
 				67CE08B51E904F2000D5911E /* ReactionCollectionViewCell.swift in Sources */,

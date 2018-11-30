@@ -10,6 +10,7 @@ import UIKit
 import Fabric
 import Crashlytics
 import UserNotifications
+import JGProgressHUD
 
 extension Notification.Name {
     static let notificationNewsTapped = Notification.Name("notification_news_tapped")
@@ -115,6 +116,47 @@ class AppDelegate: UIResponder,
         loadingTask?.start()
     }
     
+    func presentSearchController(topic: String) {
+        
+        guard let vc = UIApplication.shared.keyWindow?.rootViewController else {
+            return
+        }
+        
+        let hud = JGProgressHUD(style: .dark)
+        hud.textLabel.text = "Loading"
+        hud.show(in: vc.view)
+        
+        let success: (([News]?) -> Void) = { (news) in
+            hud.dismiss()
+            
+            guard let news = news else {
+                return
+            }
+            
+            let storyboard = UIStoryboard.init(name: "News", bundle: Bundle.main)
+            guard let newsViewController = storyboard.instantiateViewController(withIdentifier: "news")
+                as? NewsTableViewController else {
+                return
+            }
+            newsViewController.preferredDateStyle = .short
+            newsViewController.trackContextFrom = .search
+            newsViewController.news = news
+            newsViewController.title = topic
+            
+            let navController = DismissableNavigationController(rootViewController: newsViewController)
+            newsViewController.navigationItem.leftBarButtonItem = navController.dismissButtonItem
+            
+            vc.present(navController, animated: true, completion: nil)
+        }
+        
+        let fail: ((NSError) -> Void) = { (error) in
+            hud.dismiss()
+        }
+        
+        let newsService = NewsService()
+        _ = newsService.searchNews(topic, success: success, fail: fail)
+    }
+    
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -140,6 +182,23 @@ class AppDelegate: UIResponder,
         setupNotifications()
         
         return true
+    }
+    
+    func application(_ application: UIApplication,
+                     continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        
+        if userActivity.activityType == SuggestionsHelper.ActivityType.search.rawValue {
+            
+            guard let topic = userActivity.userInfo?["topic"] as? String else {
+                return false
+            }
+            
+            presentSearchController(topic: topic)
+            
+            return true
+        }
+        return false
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {

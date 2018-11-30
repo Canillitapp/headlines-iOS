@@ -190,6 +190,12 @@ class TrendingCardsViewController: UIViewController {
                 vc.title = topicName
                 vc.news = topicNews
                 vc.trackContextFrom = .trending
+                
+                // Save "Siri suggestion" to search news for <Topic>
+                if #available(iOS 12.0, *) {
+                    let activity = SuggestionsHelper.searchActivity(from: topicName)
+                    vc.userActivity = activity
+                }
             }
         } else if identifier == "category" {
             if let vc = segue.destination as? NewsTableViewController,

@@ -59,7 +59,14 @@ class TrendingSearchViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let term = terms[indexPath.row].criteria
         didSelect(terms[indexPath.row].criteria)
+        
+        // Save "Siri suggestion" to search news for <Topic>
+        if #available(iOS 12.0, *) {
+            let activity = SuggestionsHelper.searchActivity(from: term)
+            self.userActivity = activity
+        }
     }
     
     @IBAction func reload(_ sender: UIRefreshControl) {
