@@ -203,6 +203,12 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
         case 0:
             let interest = profileDataSource.interests[indexPath.row]
             handleInterestSelection(interest)
+            
+            // Save "Siri suggestion" to search news for <Interest>
+            if #available(iOS 12.0, *) {
+                let activity = SuggestionsHelper.searchActivity(from: interest.name)
+                self.userActivity = activity
+            }
         
         case 1:
             let reaction = profileDataSource.reactions[indexPath.row]

@@ -55,6 +55,12 @@ class SearchViewController: UIViewController {
         navigationController?.navigationBarShadow(hidden: false)
         if let term = term {
             resultController.fetch(term: term)
+            
+            // Save "Siri suggestion" to search news for <Topic>
+            if #available(iOS 12.0, *) {
+                let activity = SuggestionsHelper.searchActivity(from: term)
+                self.userActivity = activity
+            }
         }
     }
 }
