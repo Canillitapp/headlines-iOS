@@ -123,7 +123,6 @@
 		6797F8C11EE4D7F700B8EAA5 /* GET-reactions.json in Resources */ = {isa = PBXBuildFile; fileRef = 6797F8BF1EE4D7F700B8EAA5 /* GET-reactions.json */; };
 		6798B67C1EBAA7270079B8E1 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6798B67B1EBAA7270079B8E1 /* config.plist */; };
 		6798B67D1EBAA7270079B8E1 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6798B67B1EBAA7270079B8E1 /* config.plist */; };
-		6798B6871EBACDB70079B8E1 /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = 6798B6851EBAC6260079B8E1 /* fabric.apikey */; };
 		6798E8CF1D88F3390032D350 /* KeywordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798E8CE1D88F3390032D350 /* KeywordCollectionViewCell.swift */; };
 		679A72C32018CE3F005CCCB5 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679A72C22018CE3F005CCCB5 /* NotificationService.swift */; };
 		679A72C72018CE3F005CCCB5 /* Notifications.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 679A72C02018CE3F005CCCB5 /* Notifications.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -383,8 +382,6 @@
 		6797F8BB1EE4D17E00B8EAA5 /* MockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
 		6797F8BF1EE4D7F700B8EAA5 /* GET-reactions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "GET-reactions.json"; sourceTree = "<group>"; };
 		6798B67B1EBAA7270079B8E1 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = config.plist; path = src/config.plist; sourceTree = "<group>"; };
-		6798B6851EBAC6260079B8E1 /* fabric.apikey */ = {isa = PBXFileReference; lastKnownFileType = text; path = fabric.apikey; sourceTree = SOURCE_ROOT; };
-		6798B6861EBAC6260079B8E1 /* fabric.buildsecret */ = {isa = PBXFileReference; lastKnownFileType = text; path = fabric.buildsecret; sourceTree = SOURCE_ROOT; };
 		6798E8CE1D88F3390032D350 /* KeywordCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeywordCollectionViewCell.swift; sourceTree = "<group>"; };
 		679A72C02018CE3F005CCCB5 /* Notifications.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Notifications.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		679A72C22018CE3F005CCCB5 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -694,8 +691,6 @@
 			isa = PBXGroup;
 			children = (
 				67B7776C21B5CFDE00715C9E /* GoogleService-Info.plist */,
-				6798B6851EBAC6260079B8E1 /* fabric.apikey */,
-				6798B6861EBAC6260079B8E1 /* fabric.buildsecret */,
 				67897EB01EA70B280084F598 /* Headlines.entitlements */,
 				675A81DF1D6BF6E8000DC680 /* AppDelegate.swift */,
 				6775419B1EF234A30034FABD /* Settings.bundle */,
@@ -1324,7 +1319,6 @@
 				674E6D1D20F050C9000D0841 /* GET-categories.json in Resources */,
 				6775419C1EF234A30034FABD /* Settings.bundle in Resources */,
 				675A81EC1D6BF6E8000DC680 /* LaunchScreen.storyboard in Resources */,
-				6798B6871EBACDB70079B8E1 /* fabric.apikey in Resources */,
 				674E7CE920E08383007A8337 /* CategoriesHeaderView.xib in Resources */,
 				673880B91FD26C26001005FF /* topic_mock.json in Resources */,
 				67C9CF9D1EEA0E95007216FE /* GET-trending.json in Resources */,
