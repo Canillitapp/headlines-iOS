@@ -2,4 +2,4 @@
 
 [![Build Status](https://travis-ci.org/Canillitapp/headlines-iOS.svg?branch=master)](https://travis-ci.org/Canillitapp/headlines-iOS)
 
-it's spelled *can-e-she-tah*.
+it's pronounced *can-e-she-tah*.
