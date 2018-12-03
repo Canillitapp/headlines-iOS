@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Crashlytics
 import ViewAnimator
 
 class NewsSearchViewController: NewsTableViewController {
@@ -21,7 +20,6 @@ class NewsSearchViewController: NewsTableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         tableView.accessibilityIdentifier = "search table"
-        Answers.logCustomEvent(withName: "search_appear", customAttributes: nil)
     }
 
     func show(news: [News]?) {

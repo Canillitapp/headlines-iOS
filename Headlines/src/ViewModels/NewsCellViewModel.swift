@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Crashlytics
 
 protocol NewsCellViewModelDelegate: class {
     func newsViewModel(_ viewModel: NewsCellViewModel, didSelectReaction reaction: Reaction)
@@ -139,7 +138,6 @@ class NewsCellViewModel: NSObject,
                 d.newsViewModelDidSelectReactionPicker(self)
             }
             
-            Answers.logCustomEvent(withName: "add_reaction_collection_cell_pressed", customAttributes: nil)
             return
         }
         
@@ -149,7 +147,6 @@ class NewsCellViewModel: NSObject,
         
         if let d = delegate {
             d.newsViewModel(self, didSelectReaction: r)
-            Answers.logCustomEvent(withName: "emoji_reaction_pressed", customAttributes: nil)
         }
     }
 }

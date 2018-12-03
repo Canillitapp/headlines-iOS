@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-import Crashlytics
-
 // MARK: - UICollectionView misc
 extension TrendingCardsViewController {
     
@@ -222,12 +220,5 @@ extension TrendingCardsViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let topic = topics[indexPath.row]
         performSegue(withIdentifier: "news", sender: topic)
-        
-        Answers.logCustomEvent(
-            withName: "trending_item_tapped",
-            customAttributes: [
-                "topic": topic.name ?? "no_name"
-            ]
-        )
     }
 }

@@ -8,7 +8,6 @@
 
 import UIKit
 import SDWebImage
-import Crashlytics
 
 class TrendingCardsViewController: UIViewController {
 
@@ -122,15 +121,6 @@ class TrendingCardsViewController: UIViewController {
         }, fail: { (error) in
             print(error.localizedDescription)
             self.updateFooterView()
-            
-            Answers.logCustomEvent(
-                withName: "request_failed",
-                customAttributes: [
-                    "service": "GET-trending",
-                    "error-debug": error.debugDescription,
-                    "error-localized": error.localizedDescription
-                ]
-            )
         })
         
         updateFooterView()
@@ -173,12 +163,6 @@ class TrendingCardsViewController: UIViewController {
                 fetchTrendingTopics()
             }
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        Answers.logCustomEvent(withName: "trending_appear", customAttributes: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

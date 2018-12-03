@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import SafariServices
-
 import Crashlytics
 import JGProgressHUD
 import SDWebImage
@@ -183,12 +182,6 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
         default:
             break
         }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        Answers.logCustomEvent(withName: "profile_appear", customAttributes: nil)
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
