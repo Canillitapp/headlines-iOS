@@ -71,7 +71,10 @@ class CategoriesContainerViewModel: NSObject {
         }
     }
     
-    required init(delegate: CategoriesContainerViewModelDelegate?, collectionView: UICollectionView?, categories: [Category]) {
+    required init(delegate: CategoriesContainerViewModelDelegate?,
+                  collectionView: UICollectionView?,
+                  categories: [Category]) {
+        
         self.categories = categories
         self.delegate = delegate
         self.collectionView = collectionView
