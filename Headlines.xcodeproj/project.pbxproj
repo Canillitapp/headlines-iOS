@@ -1086,8 +1086,8 @@
 				931F64A98B2233C424A110A8 /* [CP] Embed Pods Frameworks */,
 				67FD84E11D6BF89D00BACAFC /* SwiftLint */,
 				6719DA811D6D143E00D1E214 /* Embed Watch Content */,
-				6798B6841EBABFB50079B8E1 /* Fabric / Crashlytics */,
 				67BA65D21FCB65B400411A06 /* Embed App Extensions */,
+				6798B6841EBABFB50079B8E1 /* Fabric / Crashlytics */,
 			);
 			buildRules = (
 			);
