@@ -19,9 +19,9 @@ class CategoriesContainerViewModel: NSObject {
     weak var delegate: CategoriesContainerViewModelDelegate?
     weak var collectionView: UICollectionView?
     
-    var categories: [Category]? = NewsManager.sharedInstance.categories
+    var categories: [Category]
     
-    private func imageKeyFromCategory(_ category: Category) -> String {
+    private class func imageKeyFromCategory(_ category: Category) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "ddMMYYYY"
         let dateString = formatter.string(from: Date())
@@ -29,8 +29,15 @@ class CategoriesContainerViewModel: NSObject {
         return key
     }
     
+    class func preloadCategoriesImages(from someCategories: [Category]) {
+        someCategories.forEach({ (aCategory) in
+            let key = imageKeyFromCategory(aCategory)
+            _ = ImageCacheManager.shared.image(forKey: key)
+        })
+    }
+    
     func loadImage(with category: Category, at cell: CategoryCollectionViewCell) {
-        let key = imageKeyFromCategory(category)
+        let key = CategoriesContainerViewModel.imageKeyFromCategory(category)
 
         if let cachedImage = ImageCacheManager.shared.image(forKey: key) {
             cell.backgroundImageView.image = cachedImage
@@ -64,20 +71,18 @@ class CategoriesContainerViewModel: NSObject {
         }
     }
     
-    required init(delegate: CategoriesContainerViewModelDelegate?, collectionView: UICollectionView?) {
-        super.init()
+    required init(delegate: CategoriesContainerViewModelDelegate?, collectionView: UICollectionView?, categories: [Category]) {
+        self.categories = categories
         self.delegate = delegate
         self.collectionView = collectionView
+        super.init()
     }
 }
 
 // MARK: - UICollectionViewDataSource
 extension CategoriesContainerViewModel: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let c = categories else {
-            return 0
-        }
-        return c.count
+        return categories.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -88,9 +93,7 @@ extension CategoriesContainerViewModel: UICollectionViewDataSource {
                 return collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         }
 
-        guard let c = categories?[indexPath.row] else {
-            return cell
-        }
+        let c = categories[indexPath.row]
         
         cell.titleLabel.text = c.name
         loadImage(with: c, at: cell)
@@ -103,11 +106,11 @@ extension CategoriesContainerViewModel: UICollectionViewDataSource {
 extension CategoriesContainerViewModel: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let d = delegate,
-            let category = categories?[indexPath.row] else {
+        guard let d = delegate else {
             return
         }
         
+        let category = categories[indexPath.row]
         d.didSelectCategory(category)
     }
 }

@@ -149,7 +149,12 @@ class TrendingCardsViewController: UIViewController {
         
         setupReviewView()
         
-        categoriesContainerViewModel = CategoriesContainerViewModel(delegate: self, collectionView: collectionView)
+        if let categories = NewsManager.sharedInstance.categories {
+            CategoriesContainerViewModel.preloadCategoriesImages(from: categories)
+            categoriesContainerViewModel = CategoriesContainerViewModel(delegate: self,
+                                                                        collectionView: collectionView,
+                                                                        categories: categories)
+        }
         
         setupCollectionView()
         
