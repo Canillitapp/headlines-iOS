@@ -2170,6 +2170,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 2334RGUT2P;
+				HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/Firebase/\"/**";
 				INFOPLIST_FILE = HeadlinesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.HeadlinesTests;
@@ -2186,6 +2187,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 2334RGUT2P;
+				HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/Firebase/\"/**";
 				INFOPLIST_FILE = HeadlinesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.HeadlinesTests;
