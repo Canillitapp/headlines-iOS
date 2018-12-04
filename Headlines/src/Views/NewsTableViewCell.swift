@@ -33,6 +33,16 @@ class NewsTableViewCell: UITableViewCell {
     
     weak var viewModel: NewsCellViewModel?
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        let reactionNib = UINib(nibName: "ReactionCollectionViewCell", bundle: nil)
+        reactionsCollectionView.register(reactionNib, forCellWithReuseIdentifier: "reactionCell")
+        
+        let addReactionNib = UINib(nibName: "AddReactionCollectionViewCell", bundle: nil)
+        reactionsCollectionView.register(addReactionNib, forCellWithReuseIdentifier: "addCell")
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
