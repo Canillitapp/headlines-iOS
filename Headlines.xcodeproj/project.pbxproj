@@ -123,13 +123,13 @@
 		6797F8C11EE4D7F700B8EAA5 /* GET-reactions.json in Resources */ = {isa = PBXBuildFile; fileRef = 6797F8BF1EE4D7F700B8EAA5 /* GET-reactions.json */; };
 		6798B67C1EBAA7270079B8E1 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6798B67B1EBAA7270079B8E1 /* config.plist */; };
 		6798B67D1EBAA7270079B8E1 /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6798B67B1EBAA7270079B8E1 /* config.plist */; };
-		6798B6871EBACDB70079B8E1 /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = 6798B6851EBAC6260079B8E1 /* fabric.apikey */; };
 		6798E8CF1D88F3390032D350 /* KeywordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798E8CE1D88F3390032D350 /* KeywordCollectionViewCell.swift */; };
 		679A72C32018CE3F005CCCB5 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679A72C22018CE3F005CCCB5 /* NotificationService.swift */; };
 		679A72C72018CE3F005CCCB5 /* Notifications.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 679A72C02018CE3F005CCCB5 /* Notifications.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		67B4CF3120ABBC5B00B8E391 /* ContentViewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B4CF3020ABBC5B00B8E391 /* ContentViewsService.swift */; };
 		67B6D0C721B0C5D700F5AE6E /* SuggestionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B6D0C621B0C5D700F5AE6E /* SuggestionsHelper.swift */; };
 		67B6D0C921B0D02300F5AE6E /* DismissableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B6D0C821B0D02300F5AE6E /* DismissableNavigationController.swift */; };
+		67B7776D21B5CFDE00715C9E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 67B7776C21B5CFDE00715C9E /* GoogleService-Info.plist */; };
 		67BA65C41FCB65B400411A06 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BA65C31FCB65B400411A06 /* NotificationCenter.framework */; };
 		67BA65C71FCB65B400411A06 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BA65C61FCB65B400411A06 /* TodayViewController.swift */; };
 		67BA65CA1FCB65B400411A06 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67BA65C81FCB65B400411A06 /* MainInterface.storyboard */; };
@@ -382,8 +382,6 @@
 		6797F8BB1EE4D17E00B8EAA5 /* MockService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockService.swift; sourceTree = "<group>"; };
 		6797F8BF1EE4D7F700B8EAA5 /* GET-reactions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "GET-reactions.json"; sourceTree = "<group>"; };
 		6798B67B1EBAA7270079B8E1 /* config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = config.plist; path = src/config.plist; sourceTree = "<group>"; };
-		6798B6851EBAC6260079B8E1 /* fabric.apikey */ = {isa = PBXFileReference; lastKnownFileType = text; path = fabric.apikey; sourceTree = SOURCE_ROOT; };
-		6798B6861EBAC6260079B8E1 /* fabric.buildsecret */ = {isa = PBXFileReference; lastKnownFileType = text; path = fabric.buildsecret; sourceTree = SOURCE_ROOT; };
 		6798E8CE1D88F3390032D350 /* KeywordCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeywordCollectionViewCell.swift; sourceTree = "<group>"; };
 		679A72C02018CE3F005CCCB5 /* Notifications.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Notifications.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		679A72C22018CE3F005CCCB5 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -391,6 +389,7 @@
 		67B4CF3020ABBC5B00B8E391 /* ContentViewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentViewsService.swift; path = Services/ContentViewsService.swift; sourceTree = "<group>"; };
 		67B6D0C621B0C5D700F5AE6E /* SuggestionsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsHelper.swift; sourceTree = "<group>"; };
 		67B6D0C821B0D02300F5AE6E /* DismissableNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissableNavigationController.swift; sourceTree = "<group>"; };
+		67B7776C21B5CFDE00715C9E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		67BA65C21FCB65B400411A06 /* Canillitapp Widget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Canillitapp Widget.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67BA65C31FCB65B400411A06 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		67BA65C61FCB65B400411A06 /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -691,8 +690,7 @@
 		675A81DE1D6BF6E8000DC680 /* Headlines */ = {
 			isa = PBXGroup;
 			children = (
-				6798B6851EBAC6260079B8E1 /* fabric.apikey */,
-				6798B6861EBAC6260079B8E1 /* fabric.buildsecret */,
+				67B7776C21B5CFDE00715C9E /* GoogleService-Info.plist */,
 				67897EB01EA70B280084F598 /* Headlines.entitlements */,
 				675A81DF1D6BF6E8000DC680 /* AppDelegate.swift */,
 				6775419B1EF234A30034FABD /* Settings.bundle */,
@@ -1083,8 +1081,8 @@
 				931F64A98B2233C424A110A8 /* [CP] Embed Pods Frameworks */,
 				67FD84E11D6BF89D00BACAFC /* SwiftLint */,
 				6719DA811D6D143E00D1E214 /* Embed Watch Content */,
-				6798B6841EBABFB50079B8E1 /* Crashlytics */,
 				67BA65D21FCB65B400411A06 /* Embed App Extensions */,
+				6798B6841EBABFB50079B8E1 /* Fabric / Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -1321,10 +1319,10 @@
 				674E6D1D20F050C9000D0841 /* GET-categories.json in Resources */,
 				6775419C1EF234A30034FABD /* Settings.bundle in Resources */,
 				675A81EC1D6BF6E8000DC680 /* LaunchScreen.storyboard in Resources */,
-				6798B6871EBACDB70079B8E1 /* fabric.apikey in Resources */,
 				674E7CE920E08383007A8337 /* CategoriesHeaderView.xib in Resources */,
 				673880B91FD26C26001005FF /* topic_mock.json in Resources */,
 				67C9CF9D1EEA0E95007216FE /* GET-trending.json in Resources */,
+				67B7776D21B5CFDE00715C9E /* GoogleService-Info.plist in Resources */,
 				674E7CF120E08CDB007A8337 /* CategoryCollectionViewCell.xib in Resources */,
 				671266011F4CEDB60005CF4B /* News.storyboard in Resources */,
 				676E1C1E1EECA68400EC71A5 /* GET-popular.json in Resources */,
@@ -1436,19 +1434,20 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Watch Extension/Pods-Watch Extension-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6798B6841EBABFB50079B8E1 /* Crashlytics */ = {
+		6798B6841EBABFB50079B8E1 /* Fabric / Crashlytics */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
 			);
-			name = Crashlytics;
+			name = "Fabric / Crashlytics";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# https://www.herzbube.ch/blog/2016/08/how-hide-fabric-api-key-and-build-secret-open-source-project\nFABRIC_APIKEY_FILE=\"${SRCROOT}/fabric.apikey\"\nFABRIC_BUILDSECRET_FILE=\"${SRCROOT}/fabric.buildsecret\"\n\nFABRIC_APIKEY=$(cat \"$FABRIC_APIKEY_FILE\")\nFABRIC_BUILDSECRET=$(cat \"$FABRIC_BUILDSECRET_FILE\")\n\nif test \"$FABRIC_APIKEY\" -a \"$FABRIC_BUILDSECRET\"; then\n    echo \"Crashlytics - $FABRIC_APIKEY $FABRIC_BUILDSECRET\"\n    \"${PODS_ROOT}/Fabric/run\" \"$FABRIC_APIKEY\" \"$FABRIC_BUILDSECRET\"\nfi";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
 		};
 		67FD84E11D6BF89D00BACAFC /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1462,7 +1461,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		931F64A98B2233C424A110A8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1471,17 +1470,21 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Canillitapp/Pods-Canillitapp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/JGProgressHUD/JGProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON-iOS/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/ViewAnimator/ViewAnimator.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JGProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ViewAnimator.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1896,7 +1899,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 565;
+				CURRENT_PROJECT_VERSION = 587;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				IBSC_MODULE = Watch_Extension;
 				INFOPLIST_FILE = Watch/Info.plist;
@@ -1922,7 +1925,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 565;
+				CURRENT_PROJECT_VERSION = 587;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				IBSC_MODULE = Watch_Extension;
 				INFOPLIST_FILE = Watch/Info.plist;
@@ -1947,7 +1950,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 565;
+				CURRENT_PROJECT_VERSION = 587;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -1970,7 +1973,7 @@
 			baseConfigurationReference = 5EA3242399336F7A8DE27E42 /* Pods-Watch Extension.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 565;
+				CURRENT_PROJECT_VERSION = 587;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -2120,7 +2123,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 565;
+				CURRENT_PROJECT_VERSION = 587;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = Headlines/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -2145,7 +2148,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 565;
+				CURRENT_PROJECT_VERSION = 587;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = Headlines/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -2167,6 +2170,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 2334RGUT2P;
+				HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/Firebase/\"/**";
 				INFOPLIST_FILE = HeadlinesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.HeadlinesTests;
@@ -2183,6 +2187,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 2334RGUT2P;
+				HEADER_SEARCH_PATHS = "\"${PODS_ROOT}/Firebase/\"/**";
 				INFOPLIST_FILE = HeadlinesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.HeadlinesTests;

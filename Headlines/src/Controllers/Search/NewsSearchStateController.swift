@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Crashlytics
 
 class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
 
@@ -66,7 +65,7 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
     func fetch(term: String) {
         dataTask?.cancel()
         stateViewController.transition(to: .loading)
-        Answers.logSearch(withQuery: term, customAttributes: nil)
+
         self.dataTask = self.service.searchNews(
             term,
             success: self.render,

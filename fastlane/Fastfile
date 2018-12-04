@@ -25,12 +25,6 @@ platform :ios do
     scan(scheme: "HeadlinesTests")
   end
 
-  lane :has_fabric_tokens do
-    api_key = sh "cat ../fabric.apikey"
-    build_secret = sh "cat ../fabric.buildsecret"
-    !api_key.to_s.empty? && !build_secret.to_s.empty?
-  end
-
   private_lane :get_build_number_from_plist do
     #This is required because default action "get_build_number" is bugged
     %x[/usr/libexec/PlistBuddy -c "Print CFBundleVersion" "../PatientApp/PatientAppEnterprise-Info.plist"].strip
@@ -59,10 +53,6 @@ platform :ios do
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do
-    unless has_fabric_tokens
-      UI.user_error!("ERROR: Your fabric tokens are empty. You won't track anything.")
-    end
-  
     version_bump
     commit_version_bump(
       force: true

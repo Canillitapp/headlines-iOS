@@ -7,10 +7,11 @@ target 'Canillitapp' do
   platform :ios, '10.0'
   pod 'SwiftyJSON'
   pod 'SDWebImage'
-  pod 'Fabric'
-  pod 'Crashlytics'
   pod 'ViewAnimator'
   pod 'JGProgressHUD'
+  pod 'Firebase/Core'
+  pod 'Fabric'
+  pod 'Crashlytics'
 end
 
 target 'Watch Extension' do

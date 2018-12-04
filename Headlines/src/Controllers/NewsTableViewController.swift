@@ -8,7 +8,6 @@
 
 import UIKit
 import SafariServices
-import Crashlytics
 import ViewAnimator
 
 class NewsTableViewController: UITableViewController,
@@ -100,13 +99,6 @@ class NewsTableViewController: UITableViewController,
             let indexPathToReload = IndexPath(row: i, section: 0)
             tableView.reloadRows(at: [indexPathToReload], with: .none)
         }
-        
-        Answers.logCustomEvent(
-            withName: "posted_reaction",
-            customAttributes: [
-                "reaction": currentReaction
-            ]
-        )
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -217,18 +209,7 @@ class NewsTableViewController: UITableViewController,
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
                 self.endRefreshing()
             }
-            
-            if let identifier = self.analyticsIdentifier {
-                Answers.logCustomEvent(
-                    withName: "request_failed",
-                    customAttributes: [
-                        "service": "\(identifier)_fetch",
-                        "error-debug": error.debugDescription,
-                        "error-localized": error.localizedDescription
-                    ]
-                )
-            }
-            
+                        
             self.showControllerWithError(error)
         }
         
@@ -284,14 +265,6 @@ class NewsTableViewController: UITableViewController,
         self.fetchNews()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if let identifier = analyticsIdentifier {
-            Answers.logCustomEvent(withName: "\(identifier)_appear", customAttributes: nil)
-        }
-    }
-    
     @IBAction func unwindToNews(segue: UIStoryboardSegue) {
         guard let vc = segue.source as? ReactionPickerViewController else {
             return
@@ -316,15 +289,6 @@ class NewsTableViewController: UITableViewController,
             if let s = self {
                 s.showControllerWithError(error)
             }
-            
-            Answers.logCustomEvent(
-                withName: "request_failed",
-                customAttributes: [
-                    "service": "POST-reactions",
-                    "error-debug": error.debugDescription,
-                    "error-localized": error.localizedDescription
-                ]
-            )
         }
         
         reactionsService.postReaction(
@@ -460,15 +424,6 @@ class NewsTableViewController: UITableViewController,
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let n = filteredNewsViewModels[indexPath.row].news
         openNews(n)
-        
-        Answers.logContentView(
-            withName: n.title ?? "no_title",
-            contentType: "news",
-            contentId: n.url.absoluteString,
-            customAttributes: [
-                "source": n.source ?? "no_source"
-            ]
-        )
     }
     
     // MARK: NewsCellViewModelDelegate

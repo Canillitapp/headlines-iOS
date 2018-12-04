@@ -7,19 +7,12 @@
 //
 
 import UIKit
-import Crashlytics
 
 class ReactionPickerViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
     @IBOutlet weak var collectionView: UICollectionView!
     var selectedReaction: String?
     var news: News?
     var availableReactions: [String] = Reaction.availableReactions()
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        Answers.logCustomEvent(withName: "reactions_picker_appear", customAttributes: nil)
-    }
 
     @IBAction func closeButtonPressed(_ sender: Any) {
         performSegue(withIdentifier: "unwindToNews", sender: self)

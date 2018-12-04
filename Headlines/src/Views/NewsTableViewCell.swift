@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Crashlytics
 
 class NewsTableViewCell: UITableViewCell {
 
@@ -45,6 +44,5 @@ class NewsTableViewCell: UITableViewCell {
         if let d = viewModel?.delegate {
             d.newsViewModelDidSelectReactionPicker(viewModel!)
         }
-        Answers.logCustomEvent(withName: "add_reaction_collection_cell_pressed", customAttributes: nil)
     }
 }

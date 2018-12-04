@@ -21,11 +21,6 @@ or alternatively using `brew cask install fastlane`
 fastlane ios test
 ```
 Runs all the tests
-### ios has_fabric_tokens
-```
-fastlane ios has_fabric_tokens
-```
-
 ### ios version_bump
 ```
 fastlane ios version_bump

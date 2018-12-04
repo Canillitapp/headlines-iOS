@@ -10,8 +10,6 @@ import Foundation
 import UIKit
 import StoreKit
 
-import Crashlytics
-
 // MARK: Review
 extension TrendingCardsViewController: ReviewViewDelegate {
     
@@ -28,13 +26,11 @@ extension TrendingCardsViewController: ReviewViewDelegate {
     
     func reviewViewDidAccept(_ view: ReviewView) {
         self.userSettingsManager.reviewDate = Date()
-        Answers.logCustomEvent(withName: "review_accept", customAttributes: nil)
         SKStoreReviewController.requestReview()
 
     }
     
     func reviewViewDidCancel(_ view: ReviewView) {
         self.userSettingsManager.canceledReviewDate = Date()
-        Answers.logCustomEvent(withName: "review_cancel", customAttributes: nil)
     }
 }
