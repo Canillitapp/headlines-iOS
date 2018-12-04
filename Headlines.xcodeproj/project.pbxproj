@@ -126,6 +126,10 @@
 		6798E8CF1D88F3390032D350 /* KeywordCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6798E8CE1D88F3390032D350 /* KeywordCollectionViewCell.swift */; };
 		679A72C32018CE3F005CCCB5 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 679A72C22018CE3F005CCCB5 /* NotificationService.swift */; };
 		679A72C72018CE3F005CCCB5 /* Notifications.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 679A72C02018CE3F005CCCB5 /* Notifications.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		67A364E221B727290030D651 /* NewsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67A364E121B727290030D651 /* NewsTableViewCell.xib */; };
+		67A364E421B72C3D0030D651 /* ReactionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67A364E321B72C3D0030D651 /* ReactionCollectionViewCell.xib */; };
+		67A364E621B72C920030D651 /* AddReactionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 67A364E521B72C920030D651 /* AddReactionCollectionViewCell.xib */; };
+		67A364E821B72CF50030D651 /* AddReactionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67A364E721B72CF50030D651 /* AddReactionCollectionViewCell.swift */; };
 		67B4CF3120ABBC5B00B8E391 /* ContentViewsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B4CF3020ABBC5B00B8E391 /* ContentViewsService.swift */; };
 		67B6D0C721B0C5D700F5AE6E /* SuggestionsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B6D0C621B0C5D700F5AE6E /* SuggestionsHelper.swift */; };
 		67B6D0C921B0D02300F5AE6E /* DismissableNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B6D0C821B0D02300F5AE6E /* DismissableNavigationController.swift */; };
@@ -386,6 +390,10 @@
 		679A72C02018CE3F005CCCB5 /* Notifications.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Notifications.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		679A72C22018CE3F005CCCB5 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		679A72C42018CE3F005CCCB5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		67A364E121B727290030D651 /* NewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
+		67A364E321B72C3D0030D651 /* ReactionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReactionCollectionViewCell.xib; sourceTree = "<group>"; };
+		67A364E521B72C920030D651 /* AddReactionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddReactionCollectionViewCell.xib; sourceTree = "<group>"; };
+		67A364E721B72CF50030D651 /* AddReactionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddReactionCollectionViewCell.swift; sourceTree = "<group>"; };
 		67B4CF3020ABBC5B00B8E391 /* ContentViewsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentViewsService.swift; path = Services/ContentViewsService.swift; sourceTree = "<group>"; };
 		67B6D0C621B0C5D700F5AE6E /* SuggestionsHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsHelper.swift; sourceTree = "<group>"; };
 		67B6D0C821B0D02300F5AE6E /* DismissableNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissableNavigationController.swift; sourceTree = "<group>"; };
@@ -697,7 +705,10 @@
 				6798B67B1EBAA7270079B8E1 /* config.plist */,
 				67FD84D71D6BF85D00BACAFC /* src */,
 				674E7CE820E08383007A8337 /* CategoriesHeaderView.xib */,
+				67A364E321B72C3D0030D651 /* ReactionCollectionViewCell.xib */,
+				67A364E521B72C920030D651 /* AddReactionCollectionViewCell.xib */,
 				674E7CF020E08CDB007A8337 /* CategoryCollectionViewCell.xib */,
+				67A364E121B727290030D651 /* NewsTableViewCell.xib */,
 				6704850520F952E300360701 /* ReviewView.xib */,
 				674E7CEC20E0856D007A8337 /* NewsFooterView.xib */,
 				675A81E51D6BF6E8000DC680 /* Main.storyboard */,
@@ -818,19 +829,20 @@
 		6798E8CD1D88F3390032D350 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6730A42B2198DF6E003FB180 /* ProfileReactionCollectionViewCell.swift */,
+				67A364E721B72CF50030D651 /* AddReactionCollectionViewCell.swift */,
 				674E7CEA20E083EC007A8337 /* CategoriesHeaderView.swift */,
 				674E7CF220E0909F007A8337 /* CategoryCollectionViewCell.swift */,
-				674E7CEE20E085A1007A8337 /* NewsFooterView.swift */,
 				677392C21F6B42CE0076E8BB /* DynamicHeightCollectionView.swift */,
-				6730A4292198DA26003FB180 /* LabelCollectionViewCell.swift */,
 				6798E8CE1D88F3390032D350 /* KeywordCollectionViewCell.swift */,
+				6730A4292198DA26003FB180 /* LabelCollectionViewCell.swift */,
+				674E7CEE20E085A1007A8337 /* NewsFooterView.swift */,
 				670D2C7B1DDC09D000237C39 /* NewsTableViewCell.swift */,
+				6730A42B2198DF6E003FB180 /* ProfileReactionCollectionViewCell.swift */,
 				67CE08B41E904F2000D5911E /* ReactionCollectionViewCell.swift */,
-				FB803A9920EFAC8F00C841DD /* TrendingSearchTermTableViewCell.swift */,
+				6704850720F9537B00360701 /* ReviewView.swift */,
 				6730A4252198CBC5003FB180 /* SectionLabelHeaderCollectionReusableView.swift */,
 				FB9F586820FA2BB30028C1DF /* SuggestedTermTableViewCell.swift */,
-				6704850720F9537B00360701 /* ReviewView.swift */,
+				FB803A9920EFAC8F00C841DD /* TrendingSearchTermTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1316,8 +1328,10 @@
 				67BC0911204B33F200796B8B /* NewsPreview.storyboard in Resources */,
 				676E1C201EECA7EB00EC71A5 /* GET-recent.json in Resources */,
 				67E10ACE1F637FAA009F017C /* Filter.storyboard in Resources */,
+				67A364E221B727290030D651 /* NewsTableViewCell.xib in Resources */,
 				674E6D1D20F050C9000D0841 /* GET-categories.json in Resources */,
 				6775419C1EF234A30034FABD /* Settings.bundle in Resources */,
+				67A364E421B72C3D0030D651 /* ReactionCollectionViewCell.xib in Resources */,
 				675A81EC1D6BF6E8000DC680 /* LaunchScreen.storyboard in Resources */,
 				674E7CE920E08383007A8337 /* CategoriesHeaderView.xib in Resources */,
 				673880B91FD26C26001005FF /* topic_mock.json in Resources */,
@@ -1338,6 +1352,7 @@
 				6797F8C01EE4D7F700B8EAA5 /* GET-reactions.json in Resources */,
 				670C0A661EE7BE8300C40338 /* Rubik-Medium.ttf in Resources */,
 				671266071F4CEF0C0005CF4B /* Trending.storyboard in Resources */,
+				67A364E621B72C920030D651 /* AddReactionCollectionViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1622,6 +1637,7 @@
 				FB450E1620F2AF9A00084445 /* ContentStateViewController.swift in Sources */,
 				FB9F586920FA2BB30028C1DF /* SuggestedTermTableViewCell.swift in Sources */,
 				FB450E1320F2AF2500084445 /* UIViewController+Child.swift in Sources */,
+				67A364E821B72CF50030D651 /* AddReactionCollectionViewCell.swift in Sources */,
 				FB803AA120EFB5D500C841DD /* NewsSearchStateController.swift in Sources */,
 				6797F8B41EE4B38E00B8EAA5 /* HTTPService.swift in Sources */,
 				670B793E1F4CE7F000C485A9 /* PopularNewsDataSource.swift in Sources */,

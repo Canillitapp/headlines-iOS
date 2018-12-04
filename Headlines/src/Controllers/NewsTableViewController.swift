@@ -250,6 +250,9 @@ class NewsTableViewController: UITableViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let nib = UINib(nibName: "NewsTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "cell")
+        
         guard let ds = self.newsDataSource else {
             return
         }
