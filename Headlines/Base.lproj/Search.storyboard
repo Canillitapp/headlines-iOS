@@ -196,49 +196,31 @@
             </objects>
             <point key="canvasLocation" x="-31.199999999999999" y="-125.4872563718141"/>
         </scene>
-        <!--Buscar-->
-        <scene sceneID="xiI-7U-EFa">
-            <objects>
-                <tableViewController storyboardIdentifier="NewsSearchViewController" id="AJp-NK-jfe" customClass="NewsSearchViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Kzd-0W-XaN">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableFooterView" contentMode="scaleToFill" id="bKT-hg-mdH">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="1"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </view>
-                        <connections>
-                            <outlet property="dataSource" destination="AJp-NK-jfe" id="R6v-63-51S"/>
-                            <outlet property="delegate" destination="AJp-NK-jfe" id="z2V-Z8-NXR"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Buscar" id="Wv4-c6-zwY">
-                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="3bl-8k-DPO">
-                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="closeButtonDidTap:" destination="AJp-NK-jfe" id="cnt-xW-Iun"/>
-                                <segue destination="9p5-HN-wUB" kind="unwind" unwindAction="unwindFromSearchWithSegue:" id="cBT-Vi-8fR"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <segue destination="j9q-VI-FDW" kind="presentation" identifier="reaction" id="JJr-GT-OG4"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="m1a-Md-pyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="9p5-HN-wUB" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="1708" y="148"/>
-        </scene>
         <!--Reactions-->
         <scene sceneID="5RU-UY-yAu">
             <objects>
                 <viewControllerPlaceholder storyboardName="Reactions" id="j9q-VI-FDW" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IxY-Bd-iXB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2304" y="162"/>
+            <point key="canvasLocation" x="2339" y="202"/>
+        </scene>
+        <!--News Search View Controller-->
+        <scene sceneID="Jg1-sG-j2x">
+            <objects>
+                <viewController storyboardIdentifier="NewsSearchViewController" id="2eG-ME-AFd" customClass="NewsSearchViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Xvr-b2-pkT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="9Nk-dE-UpY"/>
+                    </view>
+                    <connections>
+                        <segue destination="j9q-VI-FDW" kind="presentation" identifier="reaction" id="Wj5-j0-NOh"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Jw4-Dk-886" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1708" y="203"/>
         </scene>
     </scenes>
     <resources>

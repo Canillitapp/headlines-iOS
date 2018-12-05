@@ -10,7 +10,9 @@ import UIKit
 import SafariServices
 import ViewAnimator
 
-class NewsTableViewController: UITableViewController,
+class NewsTableViewController: UIViewController,
+                                UITableViewDelegate,
+                                UITableViewDataSource,
                                 NewsCellViewModelDelegate,
                                 UIViewControllerTransitioningDelegate,
                                 SFSafariViewControllerDelegate,
@@ -44,6 +46,8 @@ class NewsTableViewController: UITableViewController,
     var analyticsIdentifier: String?
     let userSettingsManager = UserSettingsManager()
     
+    var tableView: UITableView?
+    
     // MARK: Private
     private func trackOpenNews(_ news: News) {
         guard let contextFrom = trackContextFrom else {
@@ -69,13 +73,13 @@ class NewsTableViewController: UITableViewController,
     
     func endRefreshing() {
         if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
-            self.refreshControl?.endRefreshing()
+            tableView?.refreshControl?.endRefreshing()
         }
     }
     
     func startRefreshing() {
         if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
-            refreshControl?.beginRefreshing()
+            tableView?.refreshControl?.beginRefreshing()
         }
     }
     
@@ -96,6 +100,11 @@ class NewsTableViewController: UITableViewController,
         n.news.reactions = currentNews.reactions?.sorted(by: { $0.date < $1.date })
         
         if let i = filteredNewsViewModels.index(of: n) {
+            
+            guard let tableView = tableView else {
+                return
+            }
+            
             let indexPathToReload = IndexPath(row: i, section: 0)
             tableView.reloadRows(at: [indexPathToReload], with: .none)
         }
@@ -147,6 +156,10 @@ class NewsTableViewController: UITableViewController,
         
         let p = gesture.location(in: tableView)
         
+        guard let tableView = tableView else {
+            return
+        }
+        
         guard let indexPath = tableView.indexPathForRow(at: p) else {
             return
         }
@@ -197,9 +210,13 @@ class NewsTableViewController: UITableViewController,
                 }
             }
 
-            self.tableView.reloadData()
+            guard let tableView = self.tableView else {
+                return
+            }
+            
+            tableView.reloadData()
             UIView.animate(
-                views: self.tableView.visibleCells,
+                views: tableView.visibleCells,
                 animations: [AnimationType.from(direction: .right, offset: 10.0)],
                 animationInterval: 0.1
             )
@@ -218,6 +235,10 @@ class NewsTableViewController: UITableViewController,
 
     func setupPullToRefreshControl() {
         //  Setup refresh control
+        guard let tableView = tableView else {
+            return
+        }
+        
         let refreshCtrl = UIRefreshControl()
         tableView.refreshControl = refreshCtrl
         
@@ -245,13 +266,63 @@ class NewsTableViewController: UITableViewController,
         navigationItem.rightBarButtonItem = filterButtonItem
     }
     
+    private func setupTableView() {
+        tableView = UITableView(frame: .zero, style: .plain)
+        
+        guard let tableView = tableView else {
+            return
+        }
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tableView)
+        
+        let leftConstraint = NSLayoutConstraint(item: tableView,
+                                                attribute: .left,
+                                                relatedBy: .equal,
+                                                toItem: view,
+                                                attribute: .left,
+                                                multiplier: 1,
+                                                constant: 0)
+        
+        let topConstraint = NSLayoutConstraint(item: tableView,
+                                               attribute: .top,
+                                               relatedBy: .equal,
+                                               toItem: view,
+                                               attribute: .top,
+                                               multiplier: 1,
+                                               constant: 0)
+        
+        let rightConstraint = NSLayoutConstraint(item: tableView,
+                                                 attribute: .right,
+                                                 relatedBy: .equal,
+                                                 toItem: view,
+                                                 attribute: .right,
+                                                 multiplier: 1,
+                                                 constant: 0)
+        
+        let bottomConstraint = NSLayoutConstraint(item: tableView,
+                                                  attribute: .bottom,
+                                                  relatedBy: .equal,
+                                                  toItem: view,
+                                                  attribute: .bottom,
+                                                  multiplier: 1,
+                                                  constant: 0)
+        
+        view.addConstraints([leftConstraint, topConstraint, rightConstraint, bottomConstraint])
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        let nib = UINib(nibName: "NewsTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "cell")
+    }
+    
     // MARK: UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nib = UINib(nibName: "NewsTableViewCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "cell")
+        setupTableView()
         
         guard let ds = self.newsDataSource else {
             return
@@ -324,11 +395,16 @@ class NewsTableViewController: UITableViewController,
             userSettingsManager.whitelistedSources = dataSource.selectedSources
             
             filteredNewsViewModels = newsViewModels.filter { dataSource.selectedSources.contains($0.source!) }
+            
+            guard let tableView = tableView else {
+                return
+            }
+            
             UIView.transition(
                 with: tableView,
                 duration: 0.30,
                 options: .transitionCrossDissolve,
-                animations: {self.tableView.reloadData()},
+                animations: { tableView.reloadData() },
                 completion: nil
             )
             return
@@ -344,7 +420,11 @@ class NewsTableViewController: UITableViewController,
                 filteredNewsViewModels = newsViewModels.filter { $0.news.category == dataSource.selectedCategory }
             }
             
-            self.tableView.reloadData()
+            guard let tableView = tableView else {
+                return
+            }
+            
+            tableView.reloadData()
             tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
             
             UIView.transition(
@@ -363,15 +443,15 @@ class NewsTableViewController: UITableViewController,
     
     // MARK: UITableViewDataSource
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredNewsViewModels.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             as? NewsTableViewCell else {
                 return UITableViewCell()
@@ -414,17 +494,17 @@ class NewsTableViewController: UITableViewController,
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
     // MARK: UITableViewDelegate
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let n = filteredNewsViewModels[indexPath.row].news
         openNews(n)
     }
@@ -484,6 +564,10 @@ class NewsTableViewController: UITableViewController,
     
     // MARK: - TabbedViewController
     func tabbedViewControllerWasDoubleTapped() {
+        guard let tableView = tableView else {
+            return
+        }
+        
         tableView.setContentOffset(CGPoint.zero, animated: true)
     }
 }
@@ -492,6 +576,10 @@ class NewsTableViewController: UITableViewController,
 extension NewsTableViewController: UIViewControllerPreviewingDelegate {
     
     private func setupPreview() {
+        guard let tableView = tableView else {
+            return
+        }
+        
         if traitCollection.forceTouchCapability == .available {
             registerForPreviewing(with: self, sourceView: tableView)
         } else {
@@ -512,6 +600,10 @@ extension NewsTableViewController: UIViewControllerPreviewingDelegate {
     
     func previewingContext(_ previewingContext: UIViewControllerPreviewing,
                            viewControllerForLocation location: CGPoint) -> UIViewController? {
+        
+        guard let tableView = tableView else {
+            return nil
+        }
         
         guard let indexPath = tableView.indexPathForRow(at: tableView.convert(location, from: view)) else {
             return nil
