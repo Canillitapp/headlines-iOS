@@ -10,13 +10,7 @@ import UIKit
 import SafariServices
 import ViewAnimator
 
-class NewsTableViewController: UIViewController,
-                                UITableViewDelegate,
-                                UITableViewDataSource,
-                                NewsCellViewModelDelegate,
-                                UIViewControllerTransitioningDelegate,
-                                SFSafariViewControllerDelegate,
-                                TabbedViewController {
+class NewsTableViewController: UIViewController {
     
     var news: [News] = [] {
         didSet {
@@ -49,27 +43,6 @@ class NewsTableViewController: UIViewController,
     var tableView: UITableView?
     
     // MARK: Private
-    private func trackOpenNews(_ news: News) {
-        guard let contextFrom = trackContextFrom else {
-            return
-        }
-        
-        contentViewsService.postContentView(news.identifier, context: contextFrom, success: nil, fail: nil)
-    }
-    
-    func openNews(_ news: News) {
-        
-        trackOpenNews(news)
-        
-        if userSettingsManager.shouldOpenNewsInsideApp {
-            let vc = SFSafariViewController(url: news.url, entersReaderIfAvailable: true)
-            vc.delegate = self
-            self.selectedNews = news
-            present(vc, animated: true, completion: nil)
-        } else {
-            UIApplication.shared.open(news.url, options: [:], completionHandler: nil)
-        }
-    }
     
     func endRefreshing() {
         if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
@@ -276,6 +249,7 @@ class NewsTableViewController: UIViewController,
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
         
+        // Constraints
         let leftConstraint = NSLayoutConstraint(item: tableView,
                                                 attribute: .left,
                                                 relatedBy: .equal,
@@ -313,6 +287,7 @@ class NewsTableViewController: UIViewController,
         tableView.delegate = self
         tableView.dataSource = self
         
+        // Register custom cell
         let nib = UINib(nibName: "NewsTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "cell")
     }
@@ -441,7 +416,10 @@ class NewsTableViewController: UIViewController,
         }
     }
     
-    // MARK: UITableViewDataSource
+}
+
+// MARK: - UITableViewDataSource
+extension NewsTableViewController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -501,18 +479,44 @@ class NewsTableViewController: UIViewController,
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
+}
+
+// MARK: - UITableViewDelegate
+extension NewsTableViewController: UITableViewDelegate {
+
+    private func trackOpenNews(_ news: News) {
+        guard let contextFrom = trackContextFrom else {
+            return
+        }
+        
+        contentViewsService.postContentView(news.identifier, context: contextFrom, success: nil, fail: nil)
+    }
     
-    // MARK: UITableViewDelegate
+    func openNews(_ news: News) {
+        
+        trackOpenNews(news)
+        
+        if userSettingsManager.shouldOpenNewsInsideApp {
+            let vc = SFSafariViewController(url: news.url, entersReaderIfAvailable: true)
+            vc.delegate = self
+            self.selectedNews = news
+            present(vc, animated: true, completion: nil)
+        } else {
+            UIApplication.shared.open(news.url, options: [:], completionHandler: nil)
+        }
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let n = filteredNewsViewModels[indexPath.row].news
         openNews(n)
     }
-    
-    // MARK: NewsCellViewModelDelegate
+}
+
+// MARK: - NewsCellViewModelDelegate
+extension NewsTableViewController: NewsCellViewModelDelegate {
     
     func newsViewModel(_ viewModel: NewsCellViewModel, didSelectReaction reaction: Reaction) {
-
+        
         let success: (URLResponse?, News?) -> Void = { [unowned self] (response, updatedNews) in
             guard let n = updatedNews else {
                 return
@@ -535,8 +539,11 @@ class NewsTableViewController: UIViewController,
     func newsViewModelDidSelectReactionPicker(_ viewModel: NewsCellViewModel) {
         performSegue(withIdentifier: "reaction", sender: viewModel)
     }
-    
-    // MARK: UIViewControllerTransitioningDelegate
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+extension NewsTableViewController: UIViewControllerTransitioningDelegate {
+
     func animationController(forPresented presented: UIViewController,
                              presenting: UIViewController,
                              source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
@@ -548,8 +555,11 @@ class NewsTableViewController: UIViewController,
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return DimPresentAnimationController()
     }
+}
+
+// MARK: - SFSafariViewControllerDelegate
+extension NewsTableViewController: SFSafariViewControllerDelegate {
     
-    // MARK: SFSafariViewControllerDelegate
     func safariViewController(_ controller: SFSafariViewController,
                               activityItemsFor URL: URL,
                               title: String?) -> [UIActivity] {
@@ -561,8 +571,11 @@ class NewsTableViewController: UIViewController,
         let activity = ShareCanillitapActivity(withNews: n)
         return [activity]
     }
+}
+
+// MARK: - TabbedViewController
+extension NewsTableViewController: TabbedViewController {
     
-    // MARK: - TabbedViewController
     func tabbedViewControllerWasDoubleTapped() {
         guard let tableView = tableView else {
             return
@@ -572,7 +585,7 @@ class NewsTableViewController: UIViewController,
     }
 }
 
-// MARK: UIViewControllerPreviewingDelegate
+// MARK: - UIViewControllerPreviewingDelegate
 extension NewsTableViewController: UIViewControllerPreviewingDelegate {
     
     private func setupPreview() {

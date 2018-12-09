@@ -44,7 +44,7 @@
                 <viewControllerPlaceholder storyboardName="Reactions" id="7bD-G1-haO" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c6c-B9-1Ym" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1403" y="553"/>
+            <point key="canvasLocation" x="1403" y="576"/>
         </scene>
         <!--News Table View Controller-->
         <scene sceneID="vRJ-HF-Jp6">
@@ -69,8 +69,49 @@
             </objects>
             <point key="canvasLocation" x="782" y="554"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ZdQ-Ju-gzR">
+            <objects>
+                <navigationController id="qwh-jv-kmP" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="al9-gw-tiB">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="idb-Ex-maJ" kind="relationship" relationship="rootViewController" id="HfK-Q9-Agy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S8p-bc-ymU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-58" y="1331"/>
+        </scene>
+        <!--Trending News Table View Controller-->
+        <scene sceneID="GmZ-RC-FC2">
+            <objects>
+                <viewController storyboardIdentifier="trendingNews" id="idb-Ex-maJ" customClass="TrendingNewsTableViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JB8-sd-U1N"/>
+                        <viewControllerLayoutGuide type="bottom" id="llV-jz-Q1F"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8JY-qV-mdV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="c5B-2a-YFk"/>
+                    <connections>
+                        <segue destination="7bD-G1-haO" kind="presentation" identifier="reaction" id="fmT-wj-ut3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PN9-BS-QGw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="782" y="1331"/>
+        </scene>
     </scenes>
     <resources>
         <image name="recents_icon" width="21" height="20"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="fmT-wj-ut3"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -36,13 +36,13 @@
             </objects>
             <point key="canvasLocation" x="-58" y="-330"/>
         </scene>
-        <!--news-->
+        <!--trendingNews-->
         <scene sceneID="8XB-d1-S4Q">
             <objects>
-                <viewControllerPlaceholder storyboardName="News" referencedIdentifier="news" id="JJx-lL-xJt" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="News" referencedIdentifier="trendingNews" id="JJx-lL-xJt" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="trK-cL-AgT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1344" y="-309"/>
+            <point key="canvasLocation" x="1345" y="-331"/>
         </scene>
         <!--news-->
         <scene sceneID="XT2-JA-ghn">
@@ -50,7 +50,7 @@
                 <viewControllerPlaceholder storyboardName="News" referencedIdentifier="news" id="qiB-lu-p14" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DJD-nh-ffq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1344" y="-240"/>
+            <point key="canvasLocation" x="1302" y="-259"/>
         </scene>
         <!--Destacados-->
         <scene sceneID="ByY-dx-J6w">
