@@ -22,18 +22,15 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_placeholder_small" translatesAutoresizingMaskIntoConstraints="NO" id="yFD-V0-1ea">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                     <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Y88-Vq-Y2F">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="140" id="p73-ie-1th"/>
-                    </constraints>
                 </imageView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="HWp-NY-9Aq">
-                    <rect key="frame" x="0.0" y="69" width="132" height="71"/>
+                    <rect key="frame" x="0.0" y="79" width="132" height="71"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sd0-oC-r36">
                             <rect key="frame" x="0.0" y="0.0" width="39" height="21"/>
@@ -74,7 +71,7 @@
                     </subviews>
                 </stackView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ulu-l4-BpV">
-                    <rect key="frame" x="297" y="115" width="78" height="25"/>
+                    <rect key="frame" x="297" y="125" width="78" height="25"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7 noticias" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hk-Aw-N1Y">
                             <rect key="frame" x="8" y="4" width="62" height="17"/>
@@ -97,7 +94,7 @@
                 <constraint firstItem="ulu-l4-BpV" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="5lJ-gL-aoM"/>
                 <constraint firstItem="yFD-V0-1ea" firstAttribute="leading" secondItem="Y88-Vq-Y2F" secondAttribute="leading" id="HUC-rY-T8d"/>
                 <constraint firstItem="ulu-l4-BpV" firstAttribute="bottom" secondItem="Y88-Vq-Y2F" secondAttribute="bottom" id="JcO-XI-ZyT"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Y88-Vq-Y2F" secondAttribute="bottom" constant="10" id="Qxd-e9-Iu3"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Y88-Vq-Y2F" secondAttribute="bottom" id="Qxd-e9-Iu3"/>
                 <constraint firstItem="Y88-Vq-Y2F" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="arY-0G-gPc"/>
                 <constraint firstItem="yFD-V0-1ea" firstAttribute="bottom" secondItem="Y88-Vq-Y2F" secondAttribute="bottom" id="c2o-Wm-jVf"/>
                 <constraint firstItem="yFD-V0-1ea" firstAttribute="top" secondItem="Y88-Vq-Y2F" secondAttribute="top" id="cZU-rG-vBW"/>

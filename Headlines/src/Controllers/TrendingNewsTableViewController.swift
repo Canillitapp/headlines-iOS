@@ -11,19 +11,31 @@ import UIKit
 class TrendingNewsTableViewController: NewsTableViewController {
 
     var topic: Topic?
-    var topicHeaderViewModel: TopicHeaderViewModel?
+    var headerViewModel: TopicHeaderViewModel?
+    
+    let headerViewHeight: CGFloat = 180.0
+    var headerViewHeightConstraint: NSLayoutConstraint?
+    var headerViewTopConstraint: NSLayoutConstraint?
     
     private func setupTopicHeaderView() {
         
-        guard
-            let tableView = tableView,
-            let topic = topic else {
-                
-                return
+        guard let tableView = tableView else {
+            return
         }
         
-        topicHeaderViewModel = TopicHeaderViewModel(topic: topic)
-        guard let topicHeaderViewModel = topicHeaderViewModel else {
+        tableView.contentInset = UIEdgeInsets(top: headerViewHeight,
+                                              left: 0,
+                                              bottom: 0,
+                                              right: 0)
+        
+        tableView.contentOffset = CGPoint(x: 0, y: -headerViewHeight)
+        
+        guard let topic = topic else {
+            return
+        }
+        
+        headerViewModel = TopicHeaderViewModel(topic: topic)
+        guard let headerViewModel = headerViewModel else {
             return
         }
         
@@ -33,22 +45,79 @@ class TrendingNewsTableViewController: NewsTableViewController {
             return
         }
         
-        headerView.autoresizingMask = .flexibleWidth
-        headerView.dateLabel.text = topicHeaderViewModel.dateString
-        headerView.titleLabel.text = topicHeaderViewModel.title
-        headerView.quantityLabel.text = topicHeaderViewModel.quantity
+        // Set labels and image
+        headerView.dateLabel.text = headerViewModel.dateString
+        headerView.titleLabel.text = headerViewModel.title
+        headerView.quantityLabel.text = headerViewModel.quantity
         
         let newsWithImages = news.filter({$0.imageUrl != nil})
         guard let image = newsWithImages.first?.imageUrl else {
             return
         }
         headerView.backgroundImageView.sd_setImage(with: image, completed: nil)
+        headerView.backgroundColor = UIColor.red
         
-        tableView.tableHeaderView = headerView
+        // Constraints
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(headerView)
+        
+        let leftConstraint = NSLayoutConstraint(item: headerView,
+                                                attribute: .left,
+                                                relatedBy: .equal,
+                                                toItem: view,
+                                                attribute: .left,
+                                                multiplier: 1,
+                                                constant: 0)
+        
+        let topConstraint = NSLayoutConstraint(item: headerView,
+                                               attribute: .top,
+                                               relatedBy: .equal,
+                                               toItem: view,
+                                               attribute: .top,
+                                               multiplier: 1,
+                                               constant: 0)
+        headerViewTopConstraint = topConstraint
+        
+        let rightConstraint = NSLayoutConstraint(item: headerView,
+                                                 attribute: .right,
+                                                 relatedBy: .equal,
+                                                 toItem: view,
+                                                 attribute: .right,
+                                                 multiplier: 1,
+                                                 constant: 0)
+        
+        let heightConstraint = NSLayoutConstraint(item: headerView,
+                                                  attribute: .height,
+                                                  relatedBy: .equal,
+                                                  toItem: nil,
+                                                  attribute: .notAnAttribute,
+                                                  multiplier: 1,
+                                                  constant: headerViewHeight)
+        headerViewHeightConstraint = heightConstraint
+        
+        view.addConstraints([leftConstraint, topConstraint, rightConstraint, heightConstraint])
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTopicHeaderView()
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+
+        guard
+            let headerViewHeightConstraint = headerViewHeightConstraint,
+            let headerViewTopConstraint = headerViewTopConstraint else {
+            return
+        }
+        
+        if scrollView.contentOffset.y <= -headerViewHeight {
+            let newHeight = abs(scrollView.contentOffset.y + headerViewHeight) + headerViewHeight
+            headerViewHeightConstraint.constant = newHeight
+            headerViewTopConstraint.constant = 0
+            
+        } else {
+            headerViewTopConstraint.constant = -max(scrollView.contentOffset.y + headerViewHeight, 0)
+        }
     }
 }
