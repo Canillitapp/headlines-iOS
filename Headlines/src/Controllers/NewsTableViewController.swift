@@ -618,7 +618,7 @@ extension NewsTableViewController: UIViewControllerPreviewingDelegate {
             return nil
         }
         
-        guard let indexPath = tableView.indexPathForRow(at: tableView.convert(location, from: view)) else {
+        guard let indexPath = tableView.indexPathForRow(at: location) else {
             return nil
         }
         
