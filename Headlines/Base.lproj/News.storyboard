@@ -10,30 +10,6 @@
     </dependencies>
     <scenes>
         <!--Recientes-->
-        <scene sceneID="uTU-M2-SjJ">
-            <objects>
-                <tableViewController storyboardIdentifier="news" title="Recientes" id="VNY-a0-reA" customClass="NewsTableViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ryT-ug-UMM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <connections>
-                            <outlet property="dataSource" destination="VNY-a0-reA" id="XlX-wN-ls8"/>
-                            <outlet property="delegate" destination="VNY-a0-reA" id="CeH-87-5Xx"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="gvs-8x-g4x"/>
-                    <navigationItem key="navigationItem" title="Recientes" id="FQQ-Qj-qc1"/>
-                    <connections>
-                        <segue destination="7bD-G1-haO" kind="presentation" identifier="reaction" id="A09-LX-jIf"/>
-                        <segue destination="S6X-Y1-eBl" kind="presentation" identifier="filter" modalPresentationStyle="overFullScreen" id="ZV7-OQ-uVF"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XAv-qs-zlu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="757.60000000000002" y="553.67316341829087"/>
-        </scene>
-        <!--Recientes-->
         <scene sceneID="dwC-yv-UTd">
             <objects>
                 <navigationController title="Recientes" id="9YQ-kV-tvh" sceneMemberID="viewController">
@@ -47,7 +23,7 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="VNY-a0-reA" kind="relationship" relationship="rootViewController" id="jHn-il-Jh3"/>
+                        <segue destination="d2k-u6-5Mu" kind="relationship" relationship="rootViewController" id="QHU-gJ-PUY"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KP3-mJ-oKE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -60,7 +36,7 @@
                 <viewControllerPlaceholder storyboardName="Filter" id="S6X-Y1-eBl" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BuN-on-Q5j" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1422" y="510"/>
+            <point key="canvasLocation" x="1381" y="478"/>
         </scene>
         <!--Reactions-->
         <scene sceneID="Nnz-K1-J7t">
@@ -68,10 +44,74 @@
                 <viewControllerPlaceholder storyboardName="Reactions" id="7bD-G1-haO" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c6c-B9-1Ym" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1445" y="575"/>
+            <point key="canvasLocation" x="1403" y="576"/>
+        </scene>
+        <!--News Table View Controller-->
+        <scene sceneID="vRJ-HF-Jp6">
+            <objects>
+                <viewController storyboardIdentifier="news" id="d2k-u6-5Mu" customClass="NewsTableViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="63Y-nx-osq"/>
+                        <viewControllerLayoutGuide type="bottom" id="fSn-YD-PQT"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="xjm-S8-EnO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Amn-eO-Wvu"/>
+                    <connections>
+                        <segue destination="S6X-Y1-eBl" kind="presentation" identifier="filter" modalPresentationStyle="overFullScreen" id="JfM-NU-cBz"/>
+                        <segue destination="7bD-G1-haO" kind="presentation" identifier="reaction" id="eAn-RA-bxn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dCM-6X-U9b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="782" y="554"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ZdQ-Ju-gzR">
+            <objects>
+                <navigationController id="qwh-jv-kmP" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="al9-gw-tiB">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="idb-Ex-maJ" kind="relationship" relationship="rootViewController" id="HfK-Q9-Agy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S8p-bc-ymU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-58" y="1331"/>
+        </scene>
+        <!--Trending News Table View Controller-->
+        <scene sceneID="GmZ-RC-FC2">
+            <objects>
+                <viewController storyboardIdentifier="trendingNews" id="idb-Ex-maJ" customClass="TrendingNewsTableViewController" customModule="Canillitapp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JB8-sd-U1N"/>
+                        <viewControllerLayoutGuide type="bottom" id="llV-jz-Q1F"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8JY-qV-mdV">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="c5B-2a-YFk"/>
+                    <connections>
+                        <segue destination="7bD-G1-haO" kind="presentation" identifier="reaction" id="fmT-wj-ut3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PN9-BS-QGw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="782" y="1331"/>
         </scene>
     </scenes>
     <resources>
         <image name="recents_icon" width="21" height="20"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="fmT-wj-ut3"/>
+    </inferredMetricsTieBreakers>
 </document>

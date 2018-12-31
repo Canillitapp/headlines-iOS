@@ -10,11 +10,7 @@ import UIKit
 import SafariServices
 import ViewAnimator
 
-class NewsTableViewController: UITableViewController,
-                                NewsCellViewModelDelegate,
-                                UIViewControllerTransitioningDelegate,
-                                SFSafariViewControllerDelegate,
-                                TabbedViewController {
+class NewsTableViewController: UIViewController {
     
     var news: [News] = [] {
         didSet {
@@ -44,38 +40,19 @@ class NewsTableViewController: UITableViewController,
     var analyticsIdentifier: String?
     let userSettingsManager = UserSettingsManager()
     
-    // MARK: Private
-    private func trackOpenNews(_ news: News) {
-        guard let contextFrom = trackContextFrom else {
-            return
-        }
-        
-        contentViewsService.postContentView(news.identifier, context: contextFrom, success: nil, fail: nil)
-    }
+    var tableView: UITableView?
     
-    func openNews(_ news: News) {
-        
-        trackOpenNews(news)
-        
-        if userSettingsManager.shouldOpenNewsInsideApp {
-            let vc = SFSafariViewController(url: news.url, entersReaderIfAvailable: true)
-            vc.delegate = self
-            self.selectedNews = news
-            present(vc, animated: true, completion: nil)
-        } else {
-            UIApplication.shared.open(news.url, options: [:], completionHandler: nil)
-        }
-    }
+    // MARK: Private
     
     func endRefreshing() {
         if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
-            self.refreshControl?.endRefreshing()
+            tableView?.refreshControl?.endRefreshing()
         }
     }
     
     func startRefreshing() {
         if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
-            refreshControl?.beginRefreshing()
+            tableView?.refreshControl?.beginRefreshing()
         }
     }
     
@@ -96,6 +73,11 @@ class NewsTableViewController: UITableViewController,
         n.news.reactions = currentNews.reactions?.sorted(by: { $0.date < $1.date })
         
         if let i = filteredNewsViewModels.index(of: n) {
+            
+            guard let tableView = tableView else {
+                return
+            }
+            
             let indexPathToReload = IndexPath(row: i, section: 0)
             tableView.reloadRows(at: [indexPathToReload], with: .none)
         }
@@ -147,6 +129,10 @@ class NewsTableViewController: UITableViewController,
         
         let p = gesture.location(in: tableView)
         
+        guard let tableView = tableView else {
+            return
+        }
+        
         guard let indexPath = tableView.indexPathForRow(at: p) else {
             return
         }
@@ -197,9 +183,13 @@ class NewsTableViewController: UITableViewController,
                 }
             }
 
-            self.tableView.reloadData()
+            guard let tableView = self.tableView else {
+                return
+            }
+            
+            tableView.reloadData()
             UIView.animate(
-                views: self.tableView.visibleCells,
+                views: tableView.visibleCells,
                 animations: [AnimationType.from(direction: .right, offset: 10.0)],
                 animationInterval: 0.1
             )
@@ -218,6 +208,10 @@ class NewsTableViewController: UITableViewController,
 
     func setupPullToRefreshControl() {
         //  Setup refresh control
+        guard let tableView = tableView else {
+            return
+        }
+        
         let refreshCtrl = UIRefreshControl()
         tableView.refreshControl = refreshCtrl
         
@@ -245,13 +239,65 @@ class NewsTableViewController: UITableViewController,
         navigationItem.rightBarButtonItem = filterButtonItem
     }
     
+    private func setupTableView() {
+        tableView = UITableView(frame: .zero, style: .plain)
+        
+        guard let tableView = tableView else {
+            return
+        }
+        
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(tableView)
+        
+        // Constraints
+        let leftConstraint = NSLayoutConstraint(item: tableView,
+                                                attribute: .left,
+                                                relatedBy: .equal,
+                                                toItem: view,
+                                                attribute: .left,
+                                                multiplier: 1,
+                                                constant: 0)
+        
+        let topConstraint = NSLayoutConstraint(item: tableView,
+                                               attribute: .top,
+                                               relatedBy: .equal,
+                                               toItem: view,
+                                               attribute: .top,
+                                               multiplier: 1,
+                                               constant: 0)
+        
+        let rightConstraint = NSLayoutConstraint(item: tableView,
+                                                 attribute: .right,
+                                                 relatedBy: .equal,
+                                                 toItem: view,
+                                                 attribute: .right,
+                                                 multiplier: 1,
+                                                 constant: 0)
+        
+        let bottomConstraint = NSLayoutConstraint(item: tableView,
+                                                  attribute: .bottom,
+                                                  relatedBy: .equal,
+                                                  toItem: view,
+                                                  attribute: .bottom,
+                                                  multiplier: 1,
+                                                  constant: 0)
+        
+        view.addConstraints([leftConstraint, topConstraint, rightConstraint, bottomConstraint])
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        // Register custom cell
+        let nib = UINib(nibName: "NewsTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: "cell")
+    }
+    
     // MARK: UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nib = UINib(nibName: "NewsTableViewCell", bundle: nil)
-        tableView.register(nib, forCellReuseIdentifier: "cell")
+        setupTableView()
         
         guard let ds = self.newsDataSource else {
             return
@@ -324,11 +370,16 @@ class NewsTableViewController: UITableViewController,
             userSettingsManager.whitelistedSources = dataSource.selectedSources
             
             filteredNewsViewModels = newsViewModels.filter { dataSource.selectedSources.contains($0.source!) }
+            
+            guard let tableView = tableView else {
+                return
+            }
+            
             UIView.transition(
                 with: tableView,
                 duration: 0.30,
                 options: .transitionCrossDissolve,
-                animations: {self.tableView.reloadData()},
+                animations: { tableView.reloadData() },
                 completion: nil
             )
             return
@@ -344,7 +395,11 @@ class NewsTableViewController: UITableViewController,
                 filteredNewsViewModels = newsViewModels.filter { $0.news.category == dataSource.selectedCategory }
             }
             
-            self.tableView.reloadData()
+            guard let tableView = tableView else {
+                return
+            }
+            
+            tableView.reloadData()
             tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
             
             UIView.transition(
@@ -361,17 +416,20 @@ class NewsTableViewController: UITableViewController,
         }
     }
     
-    // MARK: UITableViewDataSource
+}
+
+// MARK: - UITableViewDataSource
+extension NewsTableViewController: UITableViewDataSource {
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredNewsViewModels.count
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
             as? NewsTableViewCell else {
                 return UITableViewCell()
@@ -414,25 +472,51 @@ class NewsTableViewController: UITableViewController,
         return cell
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
+}
+
+// MARK: - UITableViewDelegate
+extension NewsTableViewController: UITableViewDelegate {
+
+    private func trackOpenNews(_ news: News) {
+        guard let contextFrom = trackContextFrom else {
+            return
+        }
+        
+        contentViewsService.postContentView(news.identifier, context: contextFrom, success: nil, fail: nil)
+    }
     
-    // MARK: UITableViewDelegate
+    func openNews(_ news: News) {
+        
+        trackOpenNews(news)
+        
+        if userSettingsManager.shouldOpenNewsInsideApp {
+            let vc = SFSafariViewController(url: news.url, entersReaderIfAvailable: true)
+            vc.delegate = self
+            self.selectedNews = news
+            present(vc, animated: true, completion: nil)
+        } else {
+            UIApplication.shared.open(news.url, options: [:], completionHandler: nil)
+        }
+    }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let n = filteredNewsViewModels[indexPath.row].news
         openNews(n)
     }
-    
-    // MARK: NewsCellViewModelDelegate
+}
+
+// MARK: - NewsCellViewModelDelegate
+extension NewsTableViewController: NewsCellViewModelDelegate {
     
     func newsViewModel(_ viewModel: NewsCellViewModel, didSelectReaction reaction: Reaction) {
-
+        
         let success: (URLResponse?, News?) -> Void = { [unowned self] (response, updatedNews) in
             guard let n = updatedNews else {
                 return
@@ -455,8 +539,11 @@ class NewsTableViewController: UITableViewController,
     func newsViewModelDidSelectReactionPicker(_ viewModel: NewsCellViewModel) {
         performSegue(withIdentifier: "reaction", sender: viewModel)
     }
-    
-    // MARK: UIViewControllerTransitioningDelegate
+}
+
+// MARK: - UIViewControllerTransitioningDelegate
+extension NewsTableViewController: UIViewControllerTransitioningDelegate {
+
     func animationController(forPresented presented: UIViewController,
                              presenting: UIViewController,
                              source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
@@ -468,8 +555,11 @@ class NewsTableViewController: UITableViewController,
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return DimPresentAnimationController()
     }
+}
+
+// MARK: - SFSafariViewControllerDelegate
+extension NewsTableViewController: SFSafariViewControllerDelegate {
     
-    // MARK: SFSafariViewControllerDelegate
     func safariViewController(_ controller: SFSafariViewController,
                               activityItemsFor URL: URL,
                               title: String?) -> [UIActivity] {
@@ -481,17 +571,28 @@ class NewsTableViewController: UITableViewController,
         let activity = ShareCanillitapActivity(withNews: n)
         return [activity]
     }
+}
+
+// MARK: - TabbedViewController
+extension NewsTableViewController: TabbedViewController {
     
-    // MARK: - TabbedViewController
     func tabbedViewControllerWasDoubleTapped() {
+        guard let tableView = tableView else {
+            return
+        }
+        
         tableView.setContentOffset(CGPoint.zero, animated: true)
     }
 }
 
-// MARK: UIViewControllerPreviewingDelegate
+// MARK: - UIViewControllerPreviewingDelegate
 extension NewsTableViewController: UIViewControllerPreviewingDelegate {
     
     private func setupPreview() {
+        guard let tableView = tableView else {
+            return
+        }
+        
         if traitCollection.forceTouchCapability == .available {
             registerForPreviewing(with: self, sourceView: tableView)
         } else {
@@ -513,7 +614,11 @@ extension NewsTableViewController: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing,
                            viewControllerForLocation location: CGPoint) -> UIViewController? {
         
-        guard let indexPath = tableView.indexPathForRow(at: tableView.convert(location, from: view)) else {
+        guard let tableView = tableView else {
+            return nil
+        }
+        
+        guard let indexPath = tableView.indexPathForRow(at: location) else {
             return nil
         }
         

@@ -33,7 +33,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         showActivity(true)
         
-        let success: ([Topic]?) -> Void = { [unowned self] (topics) in
+        let success: ([Topic]?) -> Void = { [weak self] (topics) in
+            guard let self = self else {
+                return
+            }
+            
             self.showActivity(false)
             
             var items = topics
@@ -57,7 +61,11 @@ class TodayViewController: UIViewController, NCWidgetProviding {
             self.widgetLabel.attributedText = attributedText
         }
         
-        let fail: (NSError) -> Void = { [unowned self] (error) in
+        let fail: (NSError) -> Void = { [weak self] (error) in
+            guard let self = self else {
+                return
+            }
+            
             self.showActivity(false)
         }
         

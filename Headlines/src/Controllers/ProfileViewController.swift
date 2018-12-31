@@ -171,7 +171,7 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
         switch identifier {
         case "interest_did_select":
             guard
-                let vc = segue.destination as? NewsTableViewController,
+                let vc = segue.destination as? TrendingNewsTableViewController,
                 let interestNews = sender as? InterestNews else {
                 return
             }
@@ -186,6 +186,10 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
+        
+        guard let collectionView = collectionView else {
+            return
+        }
         collectionView.collectionViewLayout.invalidateLayout()
     }
     

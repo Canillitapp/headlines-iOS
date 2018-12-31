@@ -171,7 +171,7 @@ class TrendingCardsViewController: UIViewController {
         }
 
         if identifier == "news" {
-            if let vc = segue.destination as? NewsTableViewController,
+            if let vc = segue.destination as? TrendingNewsTableViewController,
                 let topic = sender as? Topic,
                 let topicName = topic.name,
                 let topicNews = topic.news {
