@@ -10,7 +10,6 @@ import UIKit
 
 class TrendingNewsTableViewController: NewsTableViewController {
 
-    var topic: Topic?
     var headerViewModel: TopicHeaderViewModel?
     
     let headerViewHeight: CGFloat = 180.0
@@ -30,11 +29,7 @@ class TrendingNewsTableViewController: NewsTableViewController {
         
         tableView.contentOffset = CGPoint(x: 0, y: -headerViewHeight)
         
-        guard let topic = topic else {
-            return
-        }
-        
-        headerViewModel = TopicHeaderViewModel(topic: topic)
+        headerViewModel = TopicHeaderViewModel(news: news)
         guard let headerViewModel = headerViewModel else {
             return
         }
@@ -47,7 +42,7 @@ class TrendingNewsTableViewController: NewsTableViewController {
         
         // Set labels and image
         headerView.dateLabel.text = headerViewModel.dateString
-        headerView.titleLabel.text = headerViewModel.title
+        headerView.titleLabel.text = self.title
         headerView.quantityLabel.text = headerViewModel.quantity
         
         let newsWithImages = news.filter({$0.imageUrl != nil})

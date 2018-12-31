@@ -176,7 +176,6 @@ class TrendingCardsViewController: UIViewController {
                 let topicName = topic.name,
                 let topicNews = topic.news {
                 
-                vc.topic = topic
                 vc.title = topicName
                 vc.news = topicNews
                 vc.trackContextFrom = .trending

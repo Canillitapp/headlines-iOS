@@ -9,10 +9,11 @@
 import Foundation
 
 class TopicHeaderViewModel {
-    let topic: Topic
+    
+    let news: [News]
     
     var dateString: String {
-        guard let date = topic.date else {
+        guard let date = news.first?.date else {
             return "-"
         }
         
@@ -23,16 +24,12 @@ class TopicHeaderViewModel {
         return dateFormatter.string(from: date)
     }
     
-    var title: String {
-        return topic.name ?? "Sin Título"
-    }
-    
     var quantity: String {
-        let q = topic.news?.count ?? 1
+        let q = news.count
         return "\(q) noticias"
     }
     
-    init(topic: Topic) {
-        self.topic = topic
+    init(news: [News]) {
+        self.news = news
     }
 }
