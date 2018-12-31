@@ -171,7 +171,7 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
         switch identifier {
         case "interest_did_select":
             guard
-                let vc = segue.destination as? NewsTableViewController,
+                let vc = segue.destination as? TrendingNewsTableViewController,
                 let interestNews = sender as? InterestNews else {
                 return
             }
