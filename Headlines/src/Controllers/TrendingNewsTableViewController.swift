@@ -114,5 +114,7 @@ class TrendingNewsTableViewController: NewsTableViewController {
         } else {
             headerViewTopConstraint.constant = -max(scrollView.contentOffset.y + headerViewHeight, 0)
         }
+        
+        scrollView.scrollIndicatorInsets.top = headerViewHeightConstraint.constant
     }
 }
