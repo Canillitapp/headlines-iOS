@@ -149,4 +149,24 @@ class HeadlinesMockedUITests: XCTestCase {
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
         wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
     }
+    
+    func testInterestsNavigation() {
+        let app = XCUIApplication()
+        
+        //  Go to Reciente tab
+        app.tabBars.buttons["Perfil"].tap()
+        
+        // Check that interests cell exists and tap it
+        let cell = app.collectionViews.cells.element(boundBy: 0)
+        _ = cell.waitForExistence(timeout: defaultWaitThreshold)
+        cell.tap()
+        
+        // Check that a new controller is pushed and dismissed correctly
+        let navigationBar = app.navigationBars["Macri"]
+        let navigationExists = navigationBar.waitForExistence(timeout: defaultWaitThreshold)
+        XCTAssert(navigationExists)
+        
+        navigationBar.buttons.element(boundBy: 0).tap()
+        XCTAssertFalse(navigationBar.exists)
+    }
 }
