@@ -166,7 +166,7 @@ class SnapshotUITests: XCTestCase {
         
         // Check that a new controller is pushed
         let navigationBar = app.navigationBars["Kim"]
-        let _ = navigationBar.waitForExistence(timeout: defaultWaitThreshold)
+        _ = navigationBar.waitForExistence(timeout: defaultWaitThreshold)
         
         sleep(5)
         snapshot("01-trending-detail")
