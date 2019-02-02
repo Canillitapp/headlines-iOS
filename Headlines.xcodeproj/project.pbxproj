@@ -152,6 +152,7 @@
 		67CE08B31E903B2D00D5911E /* ReactionPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CE08B21E903B2D00D5911E /* ReactionPickerViewController.swift */; };
 		67CE08B51E904F2000D5911E /* ReactionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CE08B41E904F2000D5911E /* ReactionCollectionViewCell.swift */; };
 		67D434F11EB0000C001A79D8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D434F01EB0000C001A79D8 /* ProfileViewController.swift */; };
+		67D9575921FAA27B006F6878 /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = 67D9575821FAA27A006F6878 /* fabric.apikey */; };
 		67E10ACE1F637FAA009F017C /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67E10ACC1F637FAA009F017C /* Filter.storyboard */; };
 		67E10AD01F6385FE009F017C /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E10ACF1F6385FE009F017C /* FilterViewController.swift */; };
 		67F32F9C21116AA500509F09 /* NewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F32F9B21116AA400509F09 /* NewsTests.swift */; };
@@ -421,6 +422,7 @@
 		67CE08B21E903B2D00D5911E /* ReactionPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionPickerViewController.swift; sourceTree = "<group>"; };
 		67CE08B41E904F2000D5911E /* ReactionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionCollectionViewCell.swift; sourceTree = "<group>"; };
 		67D434F01EB0000C001A79D8 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		67D9575821FAA27A006F6878 /* fabric.apikey */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fabric.apikey; sourceTree = SOURCE_ROOT; };
 		67E10ACD1F637FAA009F017C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Filter.storyboard; sourceTree = "<group>"; };
 		67E10ACF1F6385FE009F017C /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		67F32F9B21116AA400509F09 /* NewsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTests.swift; sourceTree = "<group>"; };
@@ -671,6 +673,7 @@
 		675A81D31D6BF6E8000DC680 = {
 			isa = PBXGroup;
 			children = (
+				67D9575821FAA27A006F6878 /* fabric.apikey */,
 				6797F8931EE4B30600B8EAA5 /* Common */,
 				675A81DE1D6BF6E8000DC680 /* Headlines */,
 				675A81F51D6BF6E8000DC680 /* HeadlinesTests */,
@@ -1339,6 +1342,7 @@
 				6704850620F952E300360701 /* ReviewView.xib in Resources */,
 				67BC0911204B33F200796B8B /* NewsPreview.storyboard in Resources */,
 				676E1C201EECA7EB00EC71A5 /* GET-recent.json in Resources */,
+				67D9575921FAA27B006F6878 /* fabric.apikey in Resources */,
 				67E10ACE1F637FAA009F017C /* Filter.storyboard in Resources */,
 				67A364E221B727290030D651 /* NewsTableViewCell.xib in Resources */,
 				674E6D1D20F050C9000D0841 /* GET-categories.json in Resources */,
@@ -1931,7 +1935,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 607;
+				CURRENT_PROJECT_VERSION = 611;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				IBSC_MODULE = Watch_Extension;
 				INFOPLIST_FILE = Watch/Info.plist;
@@ -1957,7 +1961,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 607;
+				CURRENT_PROJECT_VERSION = 611;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				IBSC_MODULE = Watch_Extension;
 				INFOPLIST_FILE = Watch/Info.plist;
@@ -1982,7 +1986,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 607;
+				CURRENT_PROJECT_VERSION = 611;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -2005,7 +2009,7 @@
 			baseConfigurationReference = 5EA3242399336F7A8DE27E42 /* Pods-Watch Extension.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 607;
+				CURRENT_PROJECT_VERSION = 611;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = "Watch Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -2080,7 +2084,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2155,7 +2159,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 607;
+				CURRENT_PROJECT_VERSION = 611;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = Headlines/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -2180,7 +2184,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 607;
+				CURRENT_PROJECT_VERSION = 611;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = Headlines/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
