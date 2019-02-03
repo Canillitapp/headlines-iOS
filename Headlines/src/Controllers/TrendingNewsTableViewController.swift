@@ -10,6 +10,7 @@ import UIKit
 
 class TrendingNewsTableViewController: NewsTableViewController {
 
+    var headerView: TopicHeaderView?
     var headerViewModel: TopicHeaderViewModel?
     
     let headerViewHeight: CGFloat = 180.0
@@ -91,15 +92,24 @@ class TrendingNewsTableViewController: NewsTableViewController {
         headerViewHeightConstraint = heightConstraint
         
         view.addConstraints([leftConstraint, topConstraint, rightConstraint, heightConstraint])
+        
+        self.headerView = headerView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupTopicHeaderView()
+        
+        if view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.compact {
+            setupTopicHeaderView()
+        }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
 
+        if view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.regular {
+            return
+        }
+        
         guard
             let headerViewHeightConstraint = headerViewHeightConstraint,
             let headerViewTopConstraint = headerViewTopConstraint else {
@@ -116,5 +126,20 @@ class TrendingNewsTableViewController: NewsTableViewController {
         }
         
         scrollView.scrollIndicatorInsets.top = headerViewHeightConstraint.constant
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        // Remove headerview just in case there was another headerview before
+        self.headerView?.removeFromSuperview()
+        
+        if view.traitCollection.horizontalSizeClass == UIUserInterfaceSizeClass.compact {
+            setupTopicHeaderView()
+            
+        } else {
+            // Reset tableView insets to zero that were modified to support headerView
+            tableView?.contentInset = .zero
+            tableView?.contentOffset = .zero
+            tableView?.scrollIndicatorInsets = .zero
+        }
     }
 }
