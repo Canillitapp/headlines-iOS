@@ -153,4 +153,22 @@ class SnapshotUITests: XCTestCase {
         sleep(5)
         snapshot("06-reactions")
     }
+    
+    func testTrendingTopic() {
+        let app = XCUIApplication()
+        let cell = app.collectionViews.cells.element(boundBy: 0)
+        
+        let cellExists = NSPredicate(format: "exists == 1")
+        let cellExistsExpectation = expectation(for: cellExists, evaluatedWith: cell, handler: nil)
+        wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
+        
+        cell.tap()
+        
+        // Check that a new controller is pushed
+        let navigationBar = app.navigationBars["Kim"]
+        _ = navigationBar.waitForExistence(timeout: defaultWaitThreshold)
+        
+        sleep(5)
+        snapshot("01-trending-detail")
+    }
 }

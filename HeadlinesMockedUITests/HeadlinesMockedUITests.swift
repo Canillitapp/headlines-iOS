@@ -169,4 +169,20 @@ class HeadlinesMockedUITests: XCTestCase {
         navigationBar.buttons.element(boundBy: 0).tap()
         XCTAssertFalse(navigationBar.exists)
     }
+    
+    func testTrendingTopic() {
+        let app = XCUIApplication()
+        let cell = app.collectionViews.cells.element(boundBy: 0)
+        
+        let cellExists = NSPredicate(format: "exists == 1")
+        let cellExistsExpectation = expectation(for: cellExists, evaluatedWith: cell, handler: nil)
+        wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
+        
+        cell.tap()
+
+        // Check that a new controller is pushed
+        let navigationBar = app.navigationBars["Kim"]
+        let navigationExists = navigationBar.waitForExistence(timeout: defaultWaitThreshold)
+        XCTAssert(navigationExists)
+    }
 }
