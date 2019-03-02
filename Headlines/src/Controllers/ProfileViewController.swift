@@ -21,6 +21,7 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
     let contentViewsService = ContentViewsService()
     let profileDataSource = ProfileDataSource()
     let newsService = NewsService()
+    let userSettingsManager = UserSettingsManager()
     
     typealias InterestNews = (interest: String, news: [News])
     
@@ -30,15 +31,10 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
     }
     
     func openURL(_ url: URL) {
-        guard let shouldOpenNewsInsideApp = UserDefaults.standard.object(forKey: "open_news_inside_app") as? Bool else {
-            //  By default, open the news using Safari outside the app
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            return
-        }
-        
-        if shouldOpenNewsInsideApp {
+        if userSettingsManager.shouldOpenNewsInsideApp {
             let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
             present(vc, animated: true, completion: nil)
+
         } else {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }

@@ -22,7 +22,10 @@ class UserSettingsManager: NSObject {
     }
     
     var shouldOpenNewsInsideApp: Bool {
-        return UserDefaults.standard.bool(forKey: "open_news_inside_app")
+        guard let value = UserDefaults.standard.value(forKey: "open_news_inside_app") as? Bool else {
+            return true
+        }
+        return value
     }
     
     var firstOpenDate: Date? {
