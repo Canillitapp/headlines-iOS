@@ -217,9 +217,18 @@ class NewsService: HTTPService {
         
         container.fetchUserRecordID { (recordId, _) in
             
+            /**
+             * This is some weird shit.
+             * This worked until some backend update and had to replace "user_id" to "user-id"
+             * it seems that sending headers with "_" breaks something now.
+             *
+             * Also, "user-id" translates to "HTTP_USER_ID" on the other side.
+             *
+             * Related issue: https://github.com/rails/rails/issues/16519
+             */
             if let identifier = recordId?.recordName {
-                headers["user_id"] = identifier
-                headers["user_source"] = "iOS"
+                headers["user-id"] = identifier
+                headers["user-source"] = "iOS"
             }
             
             group.leave()
