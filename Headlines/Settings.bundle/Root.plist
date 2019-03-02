@@ -20,7 +20,7 @@
 			<key>Key</key>
 			<string>open_news_inside_app</string>
 			<key>DefaultValue</key>
-			<false/>
+			<true/>
 		</dict>
 	</array>
 </dict>
