@@ -25,7 +25,7 @@ class NewsTableViewController: UIViewController {
             })
         }
     }
-    
+    var hasRegisteredPreview = false
     var selectedNews: News?
     
     var preferredDateStyle: DateFormatter.Style = .none
@@ -589,7 +589,7 @@ extension NewsTableViewController: TabbedViewController {
 extension NewsTableViewController: UIViewControllerPreviewingDelegate {
     
     private func setupPreview() {
-        guard let tableView = tableView else {
+        guard let tableView = tableView, hasRegisteredPreview == false else {
             return
         }
         
@@ -604,6 +604,8 @@ extension NewsTableViewController: UIViewControllerPreviewingDelegate {
             longPressRecognizer.delaysTouchesBegan = true
             tableView.addGestureRecognizer(longPressRecognizer)
         }
+
+        hasRegisteredPreview = true
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

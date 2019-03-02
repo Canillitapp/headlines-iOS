@@ -129,6 +129,8 @@ class TrendingNewsTableViewController: NewsTableViewController {
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
         // Remove headerview just in case there was another headerview before
         self.headerView?.removeFromSuperview()
         
