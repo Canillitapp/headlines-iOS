@@ -59,23 +59,10 @@ class News: NSObject, Decodable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
 
         // Required: Identifier
-        guard let newsId = try? values.decode(Int.self, forKey: .identifier) else {
-            throw NSError(
-                domain: "News",
-                code: 1,
-                userInfo: [NSLocalizedDescriptionKey: "Invalid identifier"]
-            )
-        }
-        identifier = "\(newsId)"
+        identifier = "\(try values.decode(Int.self, forKey: .identifier))"
 
         // Required: Date
-        guard let timestamp = try? values.decode(TimeInterval.self, forKey: .date) else {
-            throw NSError(
-                domain: "News",
-                code: 1,
-                userInfo: [NSLocalizedDescriptionKey: "Invalid date"]
-            )
-        }
+        let timestamp = try values.decode(TimeInterval.self, forKey: .date)
         date = Date(timeIntervalSince1970: timestamp)
 
         // Required: URL

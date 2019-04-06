@@ -7,7 +7,6 @@
 //
 
 import XCTest
-import SwiftyJSON
 @testable import Canillitapp
 
 // swiftlint:disable force_try

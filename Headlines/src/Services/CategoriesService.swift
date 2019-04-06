@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import SwiftyJSON
 
 class CategoriesService: HTTPService {
     
@@ -15,17 +14,12 @@ class CategoriesService: HTTPService {
                          fail: ((_ error: NSError) -> Void)?) {
         
         let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data, let json = try? JSON(data: d) else {
+            guard let d = data else {
                 return
             }
-                    
-            var res = [Category]()
-            
-            for (_, v) in json {
-                let c = Category(json: v)
-                res.append(c)
-            }
-            
+
+            let res = try? JSONDecoder().decode([Category].self, from: d)
+
             DispatchQueue.main.async(execute: {
                 success?(res)
             })

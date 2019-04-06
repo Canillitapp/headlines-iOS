@@ -7,34 +7,27 @@
 //
 
 import Foundation
-import SwiftyJSON
 
-class Interest {
+class Interest: Decodable {
     var identifier: String
     var tagId: String
     var score: Int
     var name: String
 
-    init?(json: JSON) {
-        
-        guard let interestId = json["interest_id"].int else {
-            return nil
-        }
-        self.identifier = "\(interestId)"
-        
-        guard let tagId = json["tag_id"].int else {
-            return nil
-        }
-        self.tagId = "\(tagId)"
-        
-        guard let name = json["name"].string else {
-            return nil
-        }
-        self.name = name
-        
-        guard let score = json["score"].int else {
-            return nil
-        }
-        self.score = score
-     }
+    enum CodingKeys: String, CodingKey {
+        case identifier = "interest_id"
+        case tagId = "tag_id"
+        case score
+        case name
+    }
+
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+
+        // Required
+        identifier = "\(try values.decode(Int.self, forKey: .identifier))"
+        tagId = "\(try values.decode(Int.self, forKey: .tagId))"
+        score = try values.decode(Int.self, forKey: .score)
+        name = try values.decode(String.self, forKey: .name)
+    }
 }

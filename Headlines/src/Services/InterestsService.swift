@@ -8,23 +8,17 @@
 
 import UIKit
 import CloudKit
-import SwiftyJSON
 
 class InterestsService: HTTPService {
     func getInterests(success: ((_ response: URLResponse?, [Interest]) -> Void)?,
                       fail: ((_ error: Error) -> Void)?) {
         
         let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data, let json = try? JSON(data: d) else {
+            guard let d = data else {
                 return
             }
-            
-            var interests = [Interest]()
-            json.forEach ({ (_, j) in
-                if let interest = Interest(json: j) {
-                    interests.append(interest)
-                }
-            })
+
+            let interests = (try? JSONDecoder().decode([Interest].self, from: d)) ?? [Interest]()
             
             DispatchQueue.main.async(execute: {
                 success?(response, interests)

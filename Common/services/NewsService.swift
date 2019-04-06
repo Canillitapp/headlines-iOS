@@ -8,7 +8,6 @@
 
 import Foundation
 import CloudKit
-import SwiftyJSON
 
 // swiftlint:disable force_try
 class NewsService: HTTPService {

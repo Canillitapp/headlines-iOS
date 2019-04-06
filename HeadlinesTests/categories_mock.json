@@ -1,0 +1,17 @@
+[{
+    "id": 1,
+    "name": "Política",
+    "img_url": "https://cdn.tn.com.ar/sites/default/files/styles/470x269/public/2019/04/04/carlos_stornelli_1.jpg"
+}, {
+    "id": 2,
+    "name": "Internacionales",
+    "img_url": "https://cdn.tn.com.ar/sites/default/files/styles/470x269/public/2019/04/05/trata-adolescentes.jpg"
+}, {
+    "id": 3,
+    "name": "Tecnología",
+    "img_url": "https://bucket1.glanacion.com/anexos/fotos/04/2782004.jpg"
+}, {
+    "id": 4,
+    "name": "Espectáculos",
+    "img_url": "https://bucket2.glanacion.com/anexos/fotos/74/2908374.jpg"
+}]

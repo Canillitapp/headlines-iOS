@@ -8,7 +8,6 @@
 
 import UIKit
 import CloudKit
-import SwiftyJSON
 
 // swiftlint:disable force_try
 class ReactionsService: HTTPService {
