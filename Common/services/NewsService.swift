@@ -10,6 +10,7 @@ import Foundation
 import CloudKit
 import SwiftyJSON
 
+// swiftlint:disable force_try
 class NewsService: HTTPService {
     
     func requestFromCategory (_ categoryId: String,
@@ -21,7 +22,7 @@ class NewsService: HTTPService {
                 return
             }
             
-            let res = News.decodeArrayOfNews(from: d)
+            let res = try? News.decodeArrayOfNews(from: d)
             
             DispatchQueue.main.async(execute: {
                 success?(res)
@@ -46,7 +47,7 @@ class NewsService: HTTPService {
                 return
             }
             
-            let res = News.decodeArrayOfNews(from: d)
+            let res = try? News.decodeArrayOfNews(from: d)
             
             DispatchQueue.main.async(execute: {
                 success?(res)
@@ -84,7 +85,7 @@ class NewsService: HTTPService {
                 return
             }
             
-            let res = News.decodeArrayOfNews(from: d)
+            let res = try? News.decodeArrayOfNews(from: d)
             
             DispatchQueue.main.async(execute: {
                 success?(res)
@@ -110,7 +111,7 @@ class NewsService: HTTPService {
     
     func requestTrendingTopicsWithDate (_ date: Date,
                                         count: Int,
-                                        success: ((_ result: [Topic]?) -> Void)?,
+                                        success: ((_ result: TopicList?) -> Void)?,
                                         fail: ((_ error: NSError) -> Void)?) -> URLSessionDataTask? {
         
         let calendar = Calendar.current
@@ -119,35 +120,12 @@ class NewsService: HTTPService {
         let datePath = String(format: "%d-%02d-%02d", components.year!, components.month!, components.day!)
         
         let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data, let json = try? JSON(data: d)  else {
+            guard let d = data else {
                 return
             }
-            
-            var res = [Topic]()
-            
-            for (k, t) in json["news"] {
-                let a = Topic()
-                a.name = k
-                a.date = date
-                a.news = [News]()
-                
-                for (_, n) in t {
-                    if let news = News(json: n) {
-                        a.news!.append(news)
-                    }
-                }
-                
-                res.append(a)
-            }
-            
-            res.sort(by: { (a, b) -> Bool in
-                guard let dateA = a.news?.first?.date, let dateB = b.news?.first?.date else {
-                    return false
-                }
-                
-                return dateA.compare(dateB) == .orderedDescending
-            })
-            
+
+            let res = try! JSONDecoder().decode(TopicList.self, from: d)
+
             DispatchQueue.main.async(execute: {
                 success?(res)
             })
@@ -189,7 +167,7 @@ class NewsService: HTTPService {
                 return
             }
             
-            let res = News.decodeArrayOfNews(from: d)
+            let res = try? News.decodeArrayOfNews(from: d)
             
             DispatchQueue.main.async(execute: {
                 success?(res)
@@ -249,8 +227,12 @@ class NewsService: HTTPService {
                             fail: ((_ error: NSError) -> Void)?) {
         
         let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {( data, response) in
-            guard let data = data, let json = try? JSON(data: data) else { return }
-            let terms = json.arrayValue.compactMap(TrendingTerm.init)
+            guard let data = data else {
+                return
+            }
+
+            let terms = (try? JSONDecoder().decode([TrendingTerm].self, from: data)) ?? [TrendingTerm]()
+
             DispatchQueue.main.async(execute: {
                 success?(terms)
             })

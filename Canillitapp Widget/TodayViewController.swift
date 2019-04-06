@@ -33,26 +33,14 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         
         showActivity(true)
         
-        let success: ([Topic]?) -> Void = { [weak self] (topics) in
+        let success: (TopicList?) -> Void = { [weak self] (topicList) in
             guard let self = self else {
                 return
             }
             
             self.showActivity(false)
-            
-            var items = topics
-            
-            items?.sort(by: { (topicA, topicB) -> Bool in
-                guard
-                    let newsA = topicA.news,
-                    let newsB = topicB.news else {
-                    return true
-                }
-                
-                return newsA.count > newsB.count
-            })
-            
-            self.todayViewModel.topics = items
+
+            self.todayViewModel.topics = topicList?.topics
 
             guard let attributedText = self.todayViewModel.attributedTitlesString else {
                 return

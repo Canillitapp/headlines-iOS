@@ -24,8 +24,8 @@ class NewsInterfaceController: WKInterfaceController {
             return
         }
         
-        let sortedNews = news.sorted { $0.date!.compare($1.date!) == .orderedDescending }
-        
+        let sortedNews = news.sorted { $0.date.compare($1.date) == .orderedDescending }
+
         self.setTitle(title)
         self.newsTable.setNumberOfRows(sortedNews.count, withRowType: "NewsRow")
         

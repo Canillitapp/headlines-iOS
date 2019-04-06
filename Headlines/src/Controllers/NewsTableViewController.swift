@@ -493,7 +493,7 @@ extension NewsTableViewController: UITableViewDelegate {
     }
     
     func openNews(_ news: News) {
-        
+
         trackOpenNews(news)
         
         if userSettingsManager.shouldOpenNewsInsideApp {

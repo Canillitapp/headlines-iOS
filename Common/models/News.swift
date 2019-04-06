@@ -7,17 +7,30 @@
 //
 
 import Foundation
-import SwiftyJSON
 
-class News: NSObject {
+class News: NSObject, Decodable {
+    // Required
     var identifier: String
-    var title: String?
+    var date: Date
+    var title: String
     var url: URL
-    var date: Date?
+
+    // Optional
     var source: String?
     var category: String?
     var imageUrl: URL?
     var reactions: [Reaction]?
+
+    enum CodingKeys: String, CodingKey {
+        case identifier = "news_id"
+        case title
+        case url
+        case date
+        case source = "source_name"
+        case category
+        case imageUrl = "img_url"
+        case reactions
+    }
     
     var representativeReaction: Reaction? {
         guard let r = reactions?.sorted(by: { (reactionA, reactionB) -> Bool in
@@ -29,71 +42,60 @@ class News: NSObject {
         return r.first
     }
     
-    class func decodeArrayOfNews(from data: Data) -> [News] {
-        // Decoding Data into News
-        // (replace this with Decodable snippet in the future)
-        let json = try? JSON(data: data)
-        
-        var news = [News]()
-        for (_, v) in json! {
-            if let n = News(json: v) {
-                news.append(n)
-            }
-        }
-        return news
+    class func decodeArrayOfNews(from data: Data) throws -> [News] {
+        let throwables = try JSONDecoder().decode([Throwable<News>].self, from: data)
+        return throwables.compactMap { $0.value }
     }
     
-    init(identifier: String, url: URL) {
+    init(identifier: String, url: URL, title: String, date: Date) {
         self.identifier = identifier
         self.url = url
+        self.date = date
+        self.title = title
         super.init()
     }
-    
-    init?(json: JSON) {
-        
-        // identifier is mandatory
-        guard let newsId = json["news_id"].int else {
-            return nil
+
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+
+        // Required: Identifier
+        guard let newsId = try? values.decode(Int.self, forKey: .identifier) else {
+            throw NSError(
+                domain: "News",
+                code: 1,
+                userInfo: [NSLocalizedDescriptionKey: "Invalid identifier"]
+            )
         }
         identifier = "\(newsId)"
-        
-        // title is mandatory
-        guard let newsTitle = json["title"].string else {
-            return nil
-        }
-        title = newsTitle
-        
-        // url is mandatory
-        guard let url = json["url"].url else {
-            return nil
-        }
-        self.url = url
-        
-        // date is mandatory
-        guard let timestamp = json["date"].double else {
-            return nil
+
+        // Required: Date
+        guard let timestamp = try? values.decode(TimeInterval.self, forKey: .date) else {
+            throw NSError(
+                domain: "News",
+                code: 1,
+                userInfo: [NSLocalizedDescriptionKey: "Invalid date"]
+            )
         }
         date = Date(timeIntervalSince1970: timestamp)
-        
-        // source
-        source = json["source_name"].string
-        
-        // category
-        category = json["category"].string
-        
-        // imageURL
-        imageUrl = json["img_url"].url
-        
-        // reactions
-        var tmp: [Reaction] = []
-        
-        json["reactions"].forEach ({ (_, j) in
-            let r = Reaction(json: j)
-            tmp.append(r)
-        })
-        
-        reactions = tmp
-        
-        super.init()
+
+        // Required: URL
+        do {
+            url = try values.decode(URL.self, forKey: .url)
+        } catch {
+            if let urlString = try values.decodeIfPresent(String.self, forKey: .url) {
+                print("ERROR: Tried to parse URL: \(urlString)")
+            }
+            throw error
+        }
+
+        // Required: Title
+        title = try values.decode(String.self, forKey: .title)
+
+        //  Optional values
+        //  The reason of "try?" instead of "try" is because these fields are optional
+        source = try? values.decode(String.self, forKey: .source)
+        category = try? values.decode(String.self, forKey: .category)
+        imageUrl = try? values.decode(URL.self, forKey: .imageUrl)
+        reactions = try? values.decode([Reaction].self, forKey: .reactions)
     }
 }

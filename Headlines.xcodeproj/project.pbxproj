@@ -94,6 +94,16 @@
 		677710DA1FFC8889009ABFD5 /* SnapshotUIReviewBannerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677710D91FFC8889009ABFD5 /* SnapshotUIReviewBannerTests.swift */; };
 		677AE3461D6E7D0E00CD710D /* NewsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677AE3451D6E7D0E00CD710D /* NewsInterfaceController.swift */; };
 		677AE3481D6E7FE900CD710D /* NewsRowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677AE3471D6E7FE900CD710D /* NewsRowController.swift */; };
+		677CE72F22593808008D6BBB /* ReactionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677CE72E22593808008D6BBB /* ReactionTests.swift */; };
+		677CE73122593826008D6BBB /* reactions_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 677CE73022593826008D6BBB /* reactions_mock.json */; };
+		677CE73422593E2C008D6BBB /* TopicList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677CE73222593ADD008D6BBB /* TopicList.swift */; };
+		677CE73522593E3B008D6BBB /* TopicList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677CE73222593ADD008D6BBB /* TopicList.swift */; };
+		677CE73622593E3C008D6BBB /* TopicList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677CE73222593ADD008D6BBB /* TopicList.swift */; };
+		677CE7382259466E008D6BBB /* Throwable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677CE7372259466E008D6BBB /* Throwable.swift */; };
+		677CE7392259466E008D6BBB /* Throwable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677CE7372259466E008D6BBB /* Throwable.swift */; };
+		677CE73A2259466E008D6BBB /* Throwable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677CE7372259466E008D6BBB /* Throwable.swift */; };
+		677CE73C2259542C008D6BBB /* search_trending_mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 677CE73B2259542C008D6BBB /* search_trending_mock.json */; };
+		677CE73E22595453008D6BBB /* TrendingTermTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 677CE73D22595453008D6BBB /* TrendingTermTests.swift */; };
 		67877E9F21863C7B00C172B1 /* InterestsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67877E9E21863C7B00C172B1 /* InterestsService.swift */; };
 		67877EA121863E4000C172B1 /* Interest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67877EA021863E4000C172B1 /* Interest.swift */; };
 		67877EA321863ECC00C172B1 /* GET-interests.json in Resources */ = {isa = PBXBuildFile; fileRef = 67877EA221863ECC00C172B1 /* GET-interests.json */; };
@@ -370,6 +380,12 @@
 		677710D91FFC8889009ABFD5 /* SnapshotUIReviewBannerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapshotUIReviewBannerTests.swift; sourceTree = "<group>"; };
 		677AE3451D6E7D0E00CD710D /* NewsInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsInterfaceController.swift; sourceTree = "<group>"; };
 		677AE3471D6E7FE900CD710D /* NewsRowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsRowController.swift; sourceTree = "<group>"; };
+		677CE72E22593808008D6BBB /* ReactionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionTests.swift; sourceTree = "<group>"; };
+		677CE73022593826008D6BBB /* reactions_mock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = reactions_mock.json; sourceTree = "<group>"; };
+		677CE73222593ADD008D6BBB /* TopicList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicList.swift; sourceTree = "<group>"; };
+		677CE7372259466E008D6BBB /* Throwable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Throwable.swift; sourceTree = "<group>"; };
+		677CE73B2259542C008D6BBB /* search_trending_mock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = search_trending_mock.json; sourceTree = "<group>"; };
+		677CE73D22595453008D6BBB /* TrendingTermTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingTermTests.swift; sourceTree = "<group>"; };
 		67877E9E21863C7B00C172B1 /* InterestsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InterestsService.swift; path = Services/InterestsService.swift; sourceTree = "<group>"; };
 		67877EA021863E4000C172B1 /* Interest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interest.swift; sourceTree = "<group>"; };
 		67877EA221863ECC00C172B1 /* GET-interests.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-interests.json"; sourceTree = "<group>"; };
@@ -749,9 +765,13 @@
 				6790F1242113F78D00BD5D9D /* news_null_title_mock.json */,
 				6790F1262113F79C00BD5D9D /* news_null_or_wrong_date_mock.json */,
 				6790F128211401E500BD5D9D /* news_mock.json */,
+				677CE73022593826008D6BBB /* reactions_mock.json */,
+				677CE73B2259542C008D6BBB /* search_trending_mock.json */,
 				67F7DA57213CE4B2001F983D /* news_mock_full_2018-08-31.json */,
 				670B793F1F4CE8A100C485A9 /* PopularNewsDataSourceTests.swift */,
 				6757C30B1F4BE0810007C17F /* RecentNewsDataSourceTests.swift */,
+				677CE73D22595453008D6BBB /* TrendingTermTests.swift */,
+				677CE72E22593808008D6BBB /* ReactionTests.swift */,
 				67F32F9B21116AA400509F09 /* NewsTests.swift */,
 				673880B31FD25E87001005FF /* TopicTests.swift */,
 				FB0F97F220F84F5E00555A7A /* FilterSourcesDataSourceTests.swift */,
@@ -806,7 +826,9 @@
 		6797F8A51EE4B38E00B8EAA5 /* models */ = {
 			isa = PBXGroup;
 			children = (
+				677CE7372259466E008D6BBB /* Throwable.swift */,
 				6797F8A61EE4B38E00B8EAA5 /* News.swift */,
+				677CE73222593ADD008D6BBB /* TopicList.swift */,
 				6797F8A71EE4B38E00B8EAA5 /* Reaction.swift */,
 				6797F8A81EE4B38E00B8EAA5 /* Topic.swift */,
 				FBBDCC6D20F2C3B200757861 /* TrendingTerm.swift */,
@@ -1276,6 +1298,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -1379,8 +1402,10 @@
 			files = (
 				67F7DA5B213CE894001F983D /* news_wrong_url_mock.json in Resources */,
 				6790F1272113F79C00BD5D9D /* news_null_or_wrong_date_mock.json in Resources */,
+				677CE73C2259542C008D6BBB /* search_trending_mock.json in Resources */,
 				6790F1232113F76F00BD5D9D /* news_null_or_wrong_identifier_mock.json in Resources */,
 				67F7DA5C213CE894001F983D /* news_null_url_mock.json in Resources */,
+				677CE73122593826008D6BBB /* reactions_mock.json in Resources */,
 				6790F129211401E500BD5D9D /* news_mock.json in Resources */,
 				6790F1252113F78D00BD5D9D /* news_null_title_mock.json in Resources */,
 				67F7DA58213CE4B2001F983D /* news_mock_full_2018-08-31.json in Resources */,
@@ -1594,12 +1619,14 @@
 			files = (
 				677AE3461D6E7D0E00CD710D /* NewsInterfaceController.swift in Sources */,
 				6797F8B31EE4B38E00B8EAA5 /* Topic.swift in Sources */,
+				677CE7392259466E008D6BBB /* Throwable.swift in Sources */,
 				FBBDCC6F20F2C59E00757861 /* TrendingTerm.swift in Sources */,
 				67C3CD3D1D6D1876003CC04E /* TrendingInterfaceController.swift in Sources */,
 				6719DA731D6D143E00D1E214 /* ExtensionDelegate.swift in Sources */,
 				67C3CD3F1D6D1A68003CC04E /* TrendingRowController.swift in Sources */,
 				6797F8AF1EE4B38E00B8EAA5 /* News.swift in Sources */,
 				6797F8BD1EE4D17E00B8EAA5 /* MockService.swift in Sources */,
+				677CE73522593E3B008D6BBB /* TopicList.swift in Sources */,
 				677AE3481D6E7FE900CD710D /* NewsRowController.swift in Sources */,
 				6797F8B11EE4B38E00B8EAA5 /* Reaction.swift in Sources */,
 				FB9F586C20FA34970028C1DF /* Tag.swift in Sources */,
@@ -1661,6 +1688,7 @@
 				6797F8B41EE4B38E00B8EAA5 /* HTTPService.swift in Sources */,
 				670B793E1F4CE7F000C485A9 /* PopularNewsDataSource.swift in Sources */,
 				6797F8BC1EE4D17E00B8EAA5 /* MockService.swift in Sources */,
+				677CE7382259466E008D6BBB /* Throwable.swift in Sources */,
 				6797F8B01EE4B38E00B8EAA5 /* Reaction.swift in Sources */,
 				FB9F586620FA2B4F0028C1DF /* SuggestedTermsTableViewController.swift in Sources */,
 				674D0D5C1FF998790015A16B /* ReviewBannerViewModel.swift in Sources */,
@@ -1676,6 +1704,7 @@
 				6767C59D204A4F6F00D909E1 /* FilterSourcesDataSource.swift in Sources */,
 				6757E984201ACCF2002AC331 /* UsersService.swift in Sources */,
 				67E10AD01F6385FE009F017C /* FilterViewController.swift in Sources */,
+				677CE73422593E2C008D6BBB /* TopicList.swift in Sources */,
 				674E7CFF20E1BABC007A8337 /* UIImageEffects.swift in Sources */,
 				67877EA121863E4000C172B1 /* Interest.swift in Sources */,
 				677392C31F6B42CE0076E8BB /* DynamicHeightCollectionView.swift in Sources */,
@@ -1707,10 +1736,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				677CE73E22595453008D6BBB /* TrendingTermTests.swift in Sources */,
 				43CC643E1EBBE7E90066D49E /* OrientationAwareControllers.swift in Sources */,
 				673880B41FD25E87001005FF /* TopicTests.swift in Sources */,
 				67F32F9C21116AA500509F09 /* NewsTests.swift in Sources */,
 				670B79401F4CE8A100C485A9 /* PopularNewsDataSourceTests.swift in Sources */,
+				677CE72F22593808008D6BBB /* ReactionTests.swift in Sources */,
 				FB0F97F320F84F5E00555A7A /* FilterSourcesDataSourceTests.swift in Sources */,
 				6757C30C1F4BE0810007C17F /* RecentNewsDataSourceTests.swift in Sources */,
 			);
@@ -1742,11 +1773,13 @@
 				671513161FCB6C1500D4638F /* Reaction.swift in Sources */,
 				6715131B1FCB6C2E00D4638F /* NewsService.swift in Sources */,
 				6715131A1FCB6C2C00D4638F /* MockService.swift in Sources */,
+				677CE73622593E3C008D6BBB /* TopicList.swift in Sources */,
 				671513171FCB6C1800D4638F /* News.swift in Sources */,
 				FB9F586D20FA34970028C1DF /* Tag.swift in Sources */,
 				671513191FCB6C2800D4638F /* HTTPService.swift in Sources */,
 				671513181FCB6C1C00D4638F /* ConfigHelper.swift in Sources */,
 				671513151FCB6C1200D4638F /* Topic.swift in Sources */,
+				677CE73A2259466E008D6BBB /* Throwable.swift in Sources */,
 				673880B21FD21896001005FF /* TodayViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

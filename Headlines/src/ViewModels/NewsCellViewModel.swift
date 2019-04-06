@@ -22,15 +22,11 @@ class NewsCellViewModel: NSObject,
     
     var dateStyle: DateFormatter.Style?
     
-    var timeString: String? {
-        guard let date = news.date else {
-            return nil
-        }
-        
+    var timeString: String {
         let timeFormatter = DateFormatter()
         timeFormatter.dateStyle = dateStyle ?? .none
         timeFormatter.timeStyle = .short
-        return timeFormatter.string(from: date)
+        return timeFormatter.string(from: news.date)
     }
     
     var title: String? {
