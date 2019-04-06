@@ -5,7 +5,6 @@ use_frameworks!
 
 target 'Canillitapp' do
   platform :ios, '10.0'
-  pod 'SwiftyJSON'
   pod 'SDWebImage'
   pod 'ViewAnimator'
   pod 'JGProgressHUD'
@@ -16,16 +15,13 @@ end
 
 target 'Watch Extension' do
   platform :watchos, '3.0'
-  pod 'SwiftyJSON'
 end
 
 target 'Canillitapp Widget' do
   platform :ios, '10.0'
-  pod 'SwiftyJSON'
 end
 
 target 'HeadlinesTests' do
   platform :ios, '10.0'
-  pod 'SwiftyJSON'
 end
 
