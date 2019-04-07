@@ -21,7 +21,18 @@ class TopicList: Decodable {
 
         keywords = try values.decode([String].self, forKey: .keywords)
 
-        let news = try values.decode([String: [News]].self, forKey: .news)
+        // Safely parse news and discard the ones that cannot be parsed
+        let safeNews = try values.decode([String: [Throwable<News>]].self, forKey: .news)
+        let news = safeNews.compactMapValues { throwables -> [News]? in
+            return throwables.compactMap({ t -> News? in
+                return t.value
+            })
+        }
+
+        /**
+         *  Transform each [String: [News]] into Topic and then sort it
+         *  from most recent news to oldest news.
+         */
 
         topics = news.map({ (k, v) -> Topic in
             return Topic(name: k, news: v)
