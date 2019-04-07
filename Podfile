@@ -5,12 +5,12 @@ use_frameworks!
 
 target 'Canillitapp' do
   platform :ios, '10.0'
-  pod 'SDWebImage'
-  pod 'ViewAnimator'
-  pod 'JGProgressHUD'
-  pod 'Firebase/Core'
-  pod 'Fabric'
-  pod 'Crashlytics'
+  pod 'SDWebImage', '~> 4.4'
+  pod 'ViewAnimator', '~> 2.1'
+  pod 'JGProgressHUD', '~> 2.0'
+  pod 'Firebase/Core', '~> 5.13'
+  pod 'Fabric', '~> 1.9'
+  pod 'Crashlytics', '~> 3.12'
 end
 
 target 'Watch Extension' do
