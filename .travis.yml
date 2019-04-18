@@ -5,6 +5,7 @@ xcode_scheme: Headlines
 xcode_sdk: iphonesimulator12.2
 
 before_install:
+  - bundle install
   - pod repo update
 
 script:
