@@ -69,10 +69,26 @@ class News: NSObject, Decodable {
         do {
             url = try values.decode(URL.self, forKey: .url)
         } catch {
-            if let urlString = try values.decodeIfPresent(String.self, forKey: .url) {
-                print("ERROR: Tried to parse URL: \(urlString)")
+
+            // Trying to "sanitze" wrong formatted URL
+            guard let urlString = try? values.decode(String.self, forKey: .url) else {
+                // Something went really wrong (nil URL maybe?)
+                print("ERROR: Tried to parse URL at news: \(identifier)")
+                throw error
             }
-            throw error
+
+            let specialCharacters = CharacterSet(charactersIn: "áéíóúñÁÉÍÓÚÑ").inverted
+
+            guard
+                let escapedURLString = urlString.addingPercentEncoding(withAllowedCharacters: specialCharacters),
+                let escapedURL = URL(string: escapedURLString) else {
+
+                    print("ERROR: Tried to parse URL: \(urlString)")
+                    throw error
+                }
+
+            print("WARNING: URL was wrong formatted: \(urlString). Sanitized to \(escapedURL).")
+            url = escapedURL
         }
 
         // Required: Title

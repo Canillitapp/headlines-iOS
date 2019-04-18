@@ -145,8 +145,6 @@ class NewsTests: XCTestCase {
         let data = try! Data(contentsOf: url)
         let news = try! News.decodeArrayOfNews(from: data)
 
-        // TODO: They should be 988 news but some URL are not right.
-        // They contain ñ and other special characters
-        XCTAssert(news.count == 984)
+        XCTAssert(news.count == 988)
     }
 }
