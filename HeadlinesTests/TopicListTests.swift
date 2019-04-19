@@ -24,7 +24,6 @@ class TopicListTests: XCTestCase {
         XCTAssertNotNil(riachueloTopic)
         XCTAssert(riachueloTopic?.name! == "Riachuelo")
 
-        // NOTE: They're actually 14 news but one is invalid due to an invalid URL
-        XCTAssert(riachueloTopic?.news?.count == 13)
+        XCTAssert(riachueloTopic?.news?.count == 14)
     }
 }

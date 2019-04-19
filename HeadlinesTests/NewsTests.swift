@@ -25,8 +25,8 @@ class NewsTests: XCTestCase {
         // Array should not be null
         XCTAssertNotNil(news)
         
-        // News should not be parsed
-        XCTAssert(news.count == 0)
+        // NOTE: Only one news' URL was able to be fixed
+        XCTAssert(news.count == 1)
     }
     
     func testNewsParsingWithNullURL() {
