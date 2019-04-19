@@ -1,5 +1,5 @@
 //
-//  NewsTableViewController+PeakAndPop.swift
+//  NewsTableViewController+PeekAndPop.swift
 //  Canillitapp
 //
 //  Created by Ezequiel Becerra on 19/04/2019.
