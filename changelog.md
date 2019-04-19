@@ -1,5 +1,6 @@
 # 1.8.0
 - feat: removed SwiftyJSON in favor of Codable protocol.
+- feat: pagination.
 
 # 1.7.1
 - fix: search tracking.
