@@ -103,17 +103,8 @@ class NewsTableViewController: UIViewController {
             nav.modalPresentationStyle = .formSheet
         
         case "filter":
-            guard let vc = segue.destination as? FilterViewController else {
-                return
-            }
+            prepareFilter(with: segue)
 
-            let sources = FilterSourcesDataSource.sources(fromNews: news)
-            let selectedSources = FilterSourcesDataSource.preSelectedSources(fromNewsViewModels: filteredNewsViewModels)
-            vc.filterSourcesDataSource = FilterSourcesDataSource(sources: sources, preSelectedSources: selectedSources)
-            
-            vc.transitioningDelegate = self
-            vc.modalPresentationStyle = .overFullScreen
-            
         default:
             return
         }
@@ -181,22 +172,6 @@ class NewsTableViewController: UIViewController {
         //  Had to set content offset because of UIRefreshControl bug
         //  http://stackoverflow.com/a/31224299/994129
         tableView.contentOffset = CGPoint(x: 0, y: -refreshCtrl.frame.size.height)
-    }
-    
-    @objc func filterButtonTapped() {
-        performSegue(withIdentifier: "filter", sender: self)
-    }
-    
-    private func setupFilterButtonItem() {
-        let filterImage = UIImage(named: "filter_icon")
-        let filterButtonItem = UIBarButtonItem(
-                image: filterImage,
-                style: .plain,
-                target: self,
-                action: #selector(filterButtonTapped)
-        )
-        filterButtonItem.tintColor = UIColor.white
-        navigationItem.rightBarButtonItem = filterButtonItem
     }
     
     private func setupTableView() {
@@ -307,48 +282,6 @@ class NewsTableViewController: UIViewController {
             fail: fail
         )
     }
-    
-    @IBAction func unwindFromFilter(segue: UIStoryboardSegue) {
-        guard let vc = segue.source as? FilterViewController else {
-            return
-        }
-        
-        guard let identifier = segue.identifier else {
-            return
-        }
-        
-        switch identifier {
-        
-        case "dismiss":
-            return
-            
-        case "sourcesApply":
-            guard let dataSource = vc.filterSourcesDataSource else {
-                return
-            }
-            
-            userSettingsManager.whitelistedSources = dataSource.selectedSources
-            
-            filteredNewsViewModels = newsViewModels.filter { dataSource.selectedSources.contains($0.source!) }
-            
-            guard let tableView = tableView else {
-                return
-            }
-            
-            UIView.transition(
-                with: tableView,
-                duration: 0.30,
-                options: .transitionCrossDissolve,
-                animations: { tableView.reloadData() },
-                completion: nil
-            )
-            return
-            
-        default:
-            return
-        }
-    }
-    
 }
 
 // MARK: - UITableViewDataSource
@@ -530,21 +463,5 @@ extension NewsTableViewController: NewsCellViewModelDelegate {
     
     func newsViewModelDidSelectReactionPicker(_ viewModel: NewsCellViewModel) {
         performSegue(withIdentifier: "reaction", sender: viewModel)
-    }
-}
-
-// MARK: - UIViewControllerTransitioningDelegate
-extension NewsTableViewController: UIViewControllerTransitioningDelegate {
-
-    func animationController(forPresented presented: UIViewController,
-                             presenting: UIViewController,
-                             source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        let animator = DimPresentAnimationController()
-        animator.isPresenting = true
-        return animator
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return DimPresentAnimationController()
     }
 }
