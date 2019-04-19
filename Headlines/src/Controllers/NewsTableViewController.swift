@@ -515,12 +515,15 @@ extension NewsTableViewController: UITableViewDataSource {
                     indexPaths.append(i)
                 }
 
+                tableView.beginUpdates()
+
                 strongSelf.newsViewModels.append(contentsOf: viewModels)
                 strongSelf.filteredNewsViewModels.append(contentsOf: viewModels)
 
-                strongSelf.tableView?.insertRows(at: indexPaths, with: .none)
-                let moveIndexPath = IndexPath(row: indexPath.row + 1, section: indexPath.section)
-                strongSelf.tableView?.scrollToRow(at: moveIndexPath, at: .bottom, animated: true)
+                tableView.insertRows(at: indexPaths, with: .none)
+                tableView.setContentOffset(tableView.contentOffset, animated: false)
+
+                tableView.endUpdates()
             }
 
             let fail: ((NSError) -> Void) = {  [weak self] error in
