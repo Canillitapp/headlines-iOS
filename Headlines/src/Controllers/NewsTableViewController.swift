@@ -43,7 +43,7 @@ class NewsTableViewController: UIViewController {
     var tableView: UITableView?
 
     var lastPage: Int = 1
-    var isFetchingInitialNews: Bool = false
+    var isFetchingNews: Bool = false
     
     // MARK: Private
     
@@ -171,11 +171,11 @@ class NewsTableViewController: UIViewController {
         }
         
         self.startRefreshing()
-        self.isFetchingInitialNews = true
+        self.isFetchingNews = true
         
         let success: ([News]) -> Void = { [unowned self] (result) in
             self.endRefreshing()
-            self.isFetchingInitialNews = false
+            self.isFetchingNews = false
             
             self.news.removeAll()
             self.news.append(contentsOf: result)
@@ -203,7 +203,7 @@ class NewsTableViewController: UIViewController {
         let fail: (NSError) -> Void = { [unowned self] (error) in
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
                 self.endRefreshing()
-                self.isFetchingInitialNews = false
+                self.isFetchingNews = false
             }
                         
             self.showControllerWithError(error)
@@ -484,7 +484,9 @@ extension NewsTableViewController: UITableViewDataSource {
             return
         }
 
-        if indexPath.row >= filteredNewsViewModels.count - 10 && !isFetchingInitialNews {
+        if indexPath.row >= filteredNewsViewModels.count - 10 && !isFetchingNews {
+
+            isFetchingNews = true
 
             let success: (([News]) -> Void) = { [weak self] news in
 
@@ -517,10 +519,21 @@ extension NewsTableViewController: UITableViewDataSource {
                     tableView.insertRows(at: indexPaths, with: .none)
                     tableView.setContentOffset(tableView.contentOffset, animated: false)
                     tableView.endUpdates()
+
+                    strongSelf.isFetchingNews = false
                 }
             }
 
-            newsDataSource.fetchNews(page: lastPage+1, success: success, fail: nil)
+            let fail: ((NSError?) -> Void) = { [weak self] _ in
+
+                guard let strongSelf = self else {
+                    return
+                }
+
+                strongSelf.isFetchingNews = false
+            }
+
+            newsDataSource.fetchNews(page: lastPage+1, success: success, fail: fail)
         }
     }
     
