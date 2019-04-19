@@ -11,5 +11,6 @@ import UIKit
 protocol NewsTableViewControllerDataSource {
     var shouldDisplayPullToRefreshControl: Bool { get }
     var isFilterEnabled: Bool { get }
-    func fetchNews(success: ((_: [News]) -> Void)?, fail: ((_ error: NSError) -> Void)?)
+    var isPaginationEnabled: Bool { get }
+    func fetchNews(page: Int, success: ((_: [News]) -> Void)?, fail: ((_ error: NSError) -> Void)?)
 }

@@ -16,19 +16,21 @@ class RecentNewsDataSource: NewsTableViewControllerDataSource {
     var shouldDisplayPullToRefreshControl = true
     
     var isFilterEnabled = true
-    
-    func fetchNews(success: ((_: [News]) -> Void)?, fail: ((_ error: NSError) -> Void)?) {
+
+    var isPaginationEnabled = false
+
+    func fetchNews(page: Int, success: (([News]) -> Void)?, fail: ((NSError) -> Void)?) {
         newsService.requestRecentNewsWithDate(Date(), success: { (result) in
             guard let r = result else {
                 let userInfo = [
                     NSLocalizedDescriptionKey: "No data"
                 ]
-                
+
                 let e = NSError(domain: "RecentNewsDataSource", code: 1, userInfo: userInfo)
                 fail?(e)
                 return
             }
-            
+
             success?(r)
         }, fail: fail)
     }

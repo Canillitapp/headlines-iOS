@@ -41,6 +41,10 @@ class NewsTableViewController: UIViewController {
     let userSettingsManager = UserSettingsManager()
     
     var tableView: UITableView?
+    var paginationActivityView: UIActivityIndicatorView?
+
+    var lastPage: Int = 1
+    var isFetchingInitialNews: Bool = false
     
     // MARK: Private
     
@@ -168,9 +172,11 @@ class NewsTableViewController: UIViewController {
         }
         
         self.startRefreshing()
+        self.isFetchingInitialNews = true
         
         let success: ([News]) -> Void = { [unowned self] (result) in
             self.endRefreshing()
+            self.isFetchingInitialNews = false
             
             self.news.removeAll()
             self.news.append(contentsOf: result)
@@ -198,12 +204,13 @@ class NewsTableViewController: UIViewController {
         let fail: (NSError) -> Void = { [unowned self] (error) in
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
                 self.endRefreshing()
+                self.isFetchingInitialNews = false
             }
                         
             self.showControllerWithError(error)
         }
         
-        ds.fetchNews(success: success, fail: fail)
+        ds.fetchNews(page: 1, success: success, fail: fail)
     }
 
     func setupPullToRefreshControl() {
@@ -471,6 +478,62 @@ extension NewsTableViewController: UITableViewDataSource {
         
         return cell
     }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        // This is not needed on screens without pagination
+        guard let newsDataSource = newsDataSource, newsDataSource.isPaginationEnabled == true else {
+            return
+        }
+
+        if indexPath.row == filteredNewsViewModels.count - 1 && !isFetchingInitialNews {
+
+            paginationActivityView?.startAnimating()
+
+            let success: (([News]) -> Void) = { [weak self] news in
+
+                guard let strongSelf = self else {
+                    return
+                }
+
+                strongSelf.paginationActivityView?.stopAnimating()
+
+                strongSelf.lastPage += 1
+
+                let viewModels = news.map({ [weak self] n -> NewsCellViewModel in
+                    let viewModel = NewsCellViewModel(news: n)
+                    viewModel.delegate = self
+                    viewModel.dateStyle = self?.preferredDateStyle
+                    return viewModel
+                })
+
+                var indexPaths = [IndexPath]()
+                let startIndex = indexPath.row + 1
+                let endIndex = startIndex + viewModels.count - 1
+
+                for index in startIndex...endIndex {
+                    let i = IndexPath(row: index, section: 0)
+                    indexPaths.append(i)
+                }
+
+                strongSelf.newsViewModels.append(contentsOf: viewModels)
+                strongSelf.filteredNewsViewModels.append(contentsOf: viewModels)
+
+                strongSelf.tableView?.insertRows(at: indexPaths, with: .none)
+                let moveIndexPath = IndexPath(row: indexPath.row + 1, section: indexPath.section)
+                strongSelf.tableView?.scrollToRow(at: moveIndexPath, at: .bottom, animated: true)
+            }
+
+            let fail: ((NSError) -> Void) = {  [weak self] error in
+                guard let strongSelf = self else {
+                    return
+                }
+
+                strongSelf.paginationActivityView?.stopAnimating()
+            }
+
+            newsDataSource.fetchNews(page: lastPage+1, success: success, fail: fail)
+        }
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
@@ -509,6 +572,46 @@ extension NewsTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let n = filteredNewsViewModels[indexPath.row].news
         openNews(n)
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+
+        guard let isPaginationEnabled = self.newsDataSource?.isPaginationEnabled else {
+            return 0
+        }
+
+        return isPaginationEnabled ? 50 : 0
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let rect = CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 50)
+        let footerView = UIView(frame: rect)
+
+        let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+        activityView.translatesAutoresizingMaskIntoConstraints = false
+
+        footerView.addSubview(activityView)
+
+        let centerXConstraint = NSLayoutConstraint(item: activityView,
+                                                   attribute: .centerX,
+                                                    relatedBy: .equal,
+                                                    toItem: footerView,
+                                                    attribute: .centerX,
+                                                    multiplier: 1,
+                                                    constant: 0)
+
+        let centerYConstraint = NSLayoutConstraint(item: activityView,
+                                                   attribute: .centerY,
+                                                   relatedBy: .equal,
+                                                   toItem: footerView,
+                                                   attribute: .centerY,
+                                                   multiplier: 1,
+                                                   constant: 0)
+
+        footerView.addConstraints([centerXConstraint, centerYConstraint])
+
+        paginationActivityView = activityView
+        return footerView
     }
 }
 

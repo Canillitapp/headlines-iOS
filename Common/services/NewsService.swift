@@ -13,6 +13,7 @@ import CloudKit
 class NewsService: HTTPService {
     
     func requestFromCategory (_ categoryId: String,
+                              page: Int = 1,
                               success: ((_ result: [News]?) -> Void)?,
                               fail: ((_ error: NSError) -> Void)?) {
         
@@ -34,11 +35,12 @@ class NewsService: HTTPService {
             })
         }
         
-        let path = "news/category/\(categoryId)"
+        let path = "news/category/\(categoryId)?page=\(page)"
         _ = request(method: .GET, path: path, params: nil, success: successBlock, fail: failBlock)
     }
     
-    func requestPopularNews (success: ((_ result: [News]?) -> Void)?,
+    func requestPopularNews (page: Int = 1,
+                             success: ((_ result: [News]?) -> Void)?,
                              fail: ((_ error: NSError) -> Void)?) {
 
         let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
@@ -66,8 +68,9 @@ class NewsService: HTTPService {
                                     fail: failBlock)
             return
         }
-        
-        _ = request(method: .GET, path: "popular", params: nil, success: successBlock, fail: failBlock)
+
+        let path = "popular?page=\(page)"
+        _ = request(method: .GET, path: path, params: nil, success: successBlock, fail: failBlock)
     }
     
     func requestRecentNewsWithDate (_ date: Date,
