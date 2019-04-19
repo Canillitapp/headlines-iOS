@@ -111,11 +111,6 @@ class NewsTableViewController: UIViewController {
             let selectedSources = FilterSourcesDataSource.preSelectedSources(fromNewsViewModels: filteredNewsViewModels)
             vc.filterSourcesDataSource = FilterSourcesDataSource(sources: sources, preSelectedSources: selectedSources)
             
-            let categories = FilterCategoriesDataSource.categories(fromNews: news)
-            let categoriesDataSource = FilterCategoriesDataSource(withCategories: categories)
-            categoriesDataSource.viewController = vc
-            vc.filterCategoriesDataSource = categoriesDataSource
-            
             vc.transitioningDelegate = self
             vc.modalPresentationStyle = .overFullScreen
             
@@ -386,33 +381,6 @@ class NewsTableViewController: UIViewController {
                 duration: 0.30,
                 options: .transitionCrossDissolve,
                 animations: { tableView.reloadData() },
-                completion: nil
-            )
-            return
-            
-        case "categorySelected":
-            guard let dataSource = vc.filterCategoriesDataSource else {
-                return
-            }
-            
-            if dataSource.selectedCategory == nil {
-                filteredNewsViewModels = newsViewModels
-            } else {
-                filteredNewsViewModels = newsViewModels.filter { $0.news.category == dataSource.selectedCategory }
-            }
-            
-            guard let tableView = tableView else {
-                return
-            }
-            
-            tableView.reloadData()
-            tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
-            
-            UIView.transition(
-                with: tableView,
-                duration: 0.30,
-                options: .transitionCrossDissolve,
-                animations: {},
                 completion: nil
             )
             return
