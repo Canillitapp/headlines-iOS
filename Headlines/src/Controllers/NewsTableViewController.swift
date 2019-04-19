@@ -41,7 +41,6 @@ class NewsTableViewController: UIViewController {
     let userSettingsManager = UserSettingsManager()
     
     var tableView: UITableView?
-    var paginationActivityView: UIActivityIndicatorView?
 
     var lastPage: Int = 1
     var isFetchingInitialNews: Bool = false
@@ -485,17 +484,13 @@ extension NewsTableViewController: UITableViewDataSource {
             return
         }
 
-        if indexPath.row == filteredNewsViewModels.count - 1 && !isFetchingInitialNews {
-
-            paginationActivityView?.startAnimating()
+        if indexPath.row >= filteredNewsViewModels.count - 10 && !isFetchingInitialNews {
 
             let success: (([News]) -> Void) = { [weak self] news in
 
                 guard let strongSelf = self else {
                     return
                 }
-
-                strongSelf.paginationActivityView?.stopAnimating()
 
                 strongSelf.lastPage += 1
 
@@ -515,26 +510,17 @@ extension NewsTableViewController: UITableViewDataSource {
                     indexPaths.append(i)
                 }
 
-                tableView.beginUpdates()
-
-                strongSelf.newsViewModels.append(contentsOf: viewModels)
-                strongSelf.filteredNewsViewModels.append(contentsOf: viewModels)
-
-                tableView.insertRows(at: indexPaths, with: .none)
-                tableView.setContentOffset(tableView.contentOffset, animated: false)
-
-                tableView.endUpdates()
-            }
-
-            let fail: ((NSError) -> Void) = {  [weak self] error in
-                guard let strongSelf = self else {
-                    return
+                UIView.performWithoutAnimation {
+                    tableView.beginUpdates()
+                    strongSelf.newsViewModels.append(contentsOf: viewModels)
+                    strongSelf.filteredNewsViewModels.append(contentsOf: viewModels)
+                    tableView.insertRows(at: indexPaths, with: .none)
+                    tableView.setContentOffset(tableView.contentOffset, animated: false)
+                    tableView.endUpdates()
                 }
-
-                strongSelf.paginationActivityView?.stopAnimating()
             }
 
-            newsDataSource.fetchNews(page: lastPage+1, success: success, fail: fail)
+            newsDataSource.fetchNews(page: lastPage+1, success: success, fail: nil)
         }
     }
     
@@ -575,46 +561,6 @@ extension NewsTableViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let n = filteredNewsViewModels[indexPath.row].news
         openNews(n)
-    }
-
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-
-        guard let isPaginationEnabled = self.newsDataSource?.isPaginationEnabled else {
-            return 0
-        }
-
-        return isPaginationEnabled ? 50 : 0
-    }
-
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let rect = CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 50)
-        let footerView = UIView(frame: rect)
-
-        let activityView = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-        activityView.translatesAutoresizingMaskIntoConstraints = false
-
-        footerView.addSubview(activityView)
-
-        let centerXConstraint = NSLayoutConstraint(item: activityView,
-                                                   attribute: .centerX,
-                                                    relatedBy: .equal,
-                                                    toItem: footerView,
-                                                    attribute: .centerX,
-                                                    multiplier: 1,
-                                                    constant: 0)
-
-        let centerYConstraint = NSLayoutConstraint(item: activityView,
-                                                   attribute: .centerY,
-                                                   relatedBy: .equal,
-                                                   toItem: footerView,
-                                                   attribute: .centerY,
-                                                   multiplier: 1,
-                                                   constant: 0)
-
-        footerView.addConstraints([centerXConstraint, centerYConstraint])
-
-        paginationActivityView = activityView
-        return footerView
     }
 }
 
