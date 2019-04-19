@@ -39,8 +39,8 @@ class LoadingTask {
     private func fetchTrendingNews() {
         let newsService = NewsService()
         
-        let success: ([Topic]?) -> Void = { [unowned self] (topics) in
-            self.topics = topics
+        let success: (TopicList?) -> Void = { [unowned self] (topicList) in
+            self.topics = topicList?.topics
             self.group.leave()
         }
         

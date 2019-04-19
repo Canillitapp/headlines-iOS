@@ -95,11 +95,11 @@ class TrendingCardsViewController: UIViewController {
     }
     
     func requestTrendingTopicsWithDate(_ date: Date) {
-        newsDataTask = newsService.requestTrendingTopicsWithDate(date, count: 6, success: { (result) in
+        newsDataTask = newsService.requestTrendingTopicsWithDate(date, count: 6, success: { (topicList) in
             
             self.endRefreshing()
             
-            guard let r = result else {
+            guard let topics = topicList?.topics else {
                 return
             }
             
@@ -108,7 +108,7 @@ class TrendingCardsViewController: UIViewController {
              *  that current date has no results
              */
             
-            if r.count == 0 {
+            if topics.count == 0 {
                 let calendar = Calendar.current
                 if let newDate = calendar.date(byAdding: .day, value: -1, to: date) {
                     self.requestTrendingTopicsWithDate(newDate)
@@ -116,7 +116,7 @@ class TrendingCardsViewController: UIViewController {
                 return
             }
             
-            self.appendTopics(r)
+            self.appendTopics(topics)
             
         }, fail: { (error) in
             print(error.localizedDescription)

@@ -8,8 +8,8 @@
 
 import UIKit
 import CloudKit
-import SwiftyJSON
 
+// swiftlint:disable force_try
 class ReactionsService: HTTPService {
 
     func postReaction(_ reaction: String,
@@ -38,11 +38,11 @@ class ReactionsService: HTTPService {
             }
             
             let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-                guard let d = data, let json = try? JSON(data: d)  else {
+                guard let d = data else {
                     return
                 }
-                
-                let n = News(json: json)
+
+                let n = try? JSONDecoder().decode(News.self, from: d)
                 
                 DispatchQueue.main.async(execute: {
                     success?(response, n)
@@ -73,16 +73,12 @@ class ReactionsService: HTTPService {
                       fail: ((_ error: Error) -> Void)?) {
         
         let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data, let json = try? JSON(data: d) else {
+            guard let d = data else {
                 return
             }
-                        
-            var reactions = [Reaction]()
-            json.forEach ({ (_, j) in
-                let r = Reaction(json: j)
-                reactions.append(r)
-            })
-            
+
+            let reactions = try! JSONDecoder().decode([Reaction].self, from: d)
+
             DispatchQueue.main.async(execute: {
                 success?(response, reactions)
             })

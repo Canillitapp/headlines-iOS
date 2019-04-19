@@ -7,9 +7,9 @@
 //
 
 import XCTest
-import SwiftyJSON
 @testable import Canillitapp
 
+// swiftlint:disable force_try
 class TopicTests: XCTestCase {
     
     var topics: [Topic]?
@@ -21,23 +21,8 @@ class TopicTests: XCTestCase {
         let url = URL(fileURLWithPath: path!)
         do {
             let data = try Data(contentsOf: url)
-            let json = try JSON(data: data)
-            topics = [Topic]()
-            
-            for (k, t) in json["news"] {
-                let a = Topic()
-                a.name = k
-                a.date = Date()
-                a.news = [News]()
-                
-                for (_, n) in t {
-                    if let news = News(json: n) {
-                        a.news!.append(news)
-                    }
-                }
-                
-                topics?.append(a)
-            }
+            let topicList = try! JSONDecoder().decode(TopicList.self, from: data)
+            topics = topicList.topics
         } catch {}
     }
     

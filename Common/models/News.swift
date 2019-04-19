@@ -7,17 +7,30 @@
 //
 
 import Foundation
-import SwiftyJSON
 
-class News: NSObject {
+class News: NSObject, Decodable {
+    // Required
     var identifier: String
-    var title: String?
+    var date: Date
+    var title: String
     var url: URL
-    var date: Date?
+
+    // Optional
     var source: String?
     var category: String?
     var imageUrl: URL?
     var reactions: [Reaction]?
+
+    enum CodingKeys: String, CodingKey {
+        case identifier = "news_id"
+        case title
+        case url
+        case date
+        case source = "source_name"
+        case category
+        case imageUrl = "img_url"
+        case reactions
+    }
     
     var representativeReaction: Reaction? {
         guard let r = reactions?.sorted(by: { (reactionA, reactionB) -> Bool in
@@ -29,71 +42,63 @@ class News: NSObject {
         return r.first
     }
     
-    class func decodeArrayOfNews(from data: Data) -> [News] {
-        // Decoding Data into News
-        // (replace this with Decodable snippet in the future)
-        let json = try? JSON(data: data)
-        
-        var news = [News]()
-        for (_, v) in json! {
-            if let n = News(json: v) {
-                news.append(n)
-            }
-        }
-        return news
+    class func decodeArrayOfNews(from data: Data) throws -> [News] {
+        let throwables = try JSONDecoder().decode([Throwable<News>].self, from: data)
+        return throwables.compactMap { $0.value }
     }
     
-    init(identifier: String, url: URL) {
+    init(identifier: String, url: URL, title: String, date: Date) {
         self.identifier = identifier
         self.url = url
+        self.date = date
+        self.title = title
         super.init()
     }
-    
-    init?(json: JSON) {
-        
-        // identifier is mandatory
-        guard let newsId = json["news_id"].int else {
-            return nil
-        }
-        identifier = "\(newsId)"
-        
-        // title is mandatory
-        guard let newsTitle = json["title"].string else {
-            return nil
-        }
-        title = newsTitle
-        
-        // url is mandatory
-        guard let url = json["url"].url else {
-            return nil
-        }
-        self.url = url
-        
-        // date is mandatory
-        guard let timestamp = json["date"].double else {
-            return nil
-        }
+
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+
+        // Required: Identifier
+        identifier = "\(try values.decode(Int.self, forKey: .identifier))"
+
+        // Required: Date
+        let timestamp = try values.decode(TimeInterval.self, forKey: .date)
         date = Date(timeIntervalSince1970: timestamp)
-        
-        // source
-        source = json["source_name"].string
-        
-        // category
-        category = json["category"].string
-        
-        // imageURL
-        imageUrl = json["img_url"].url
-        
-        // reactions
-        var tmp: [Reaction] = []
-        
-        json["reactions"].forEach ({ (_, j) in
-            let r = Reaction(json: j)
-            tmp.append(r)
-        })
-        
-        reactions = tmp
-        
-        super.init()
+
+        // Required: URL
+        do {
+            url = try values.decode(URL.self, forKey: .url)
+        } catch {
+
+            // Trying to "sanitze" wrong formatted URL
+            guard let urlString = try? values.decode(String.self, forKey: .url) else {
+                // Something went really wrong (nil URL maybe?)
+                print("ERROR: Tried to parse URL at news: \(identifier)")
+                throw error
+            }
+
+            let specialCharacters = CharacterSet(charactersIn: "áéíóúñÁÉÍÓÚÑ").inverted
+
+            guard
+                let escapedURLString = urlString.addingPercentEncoding(withAllowedCharacters: specialCharacters),
+                let escapedURL = URL(string: escapedURLString) else {
+
+                    print("ERROR: Tried to parse URL: \(urlString)")
+                    throw error
+                }
+
+            print("WARNING: URL was wrong formatted: \(urlString). Sanitized to \(escapedURL).")
+            url = escapedURL
+        }
+
+        // Required: Title
+        title = try values.decode(String.self, forKey: .title)
+
+        //  Optional values
+        //  The reason of "try?" instead of "try" is because these fields are optional
+        source = try? values.decode(String.self, forKey: .source)
+        category = try? values.decode(String.self, forKey: .category)
+        imageUrl = try? values.decode(URL.self, forKey: .imageUrl)
+        reactions = try? values.decode([Reaction].self, forKey: .reactions)
     }
 }

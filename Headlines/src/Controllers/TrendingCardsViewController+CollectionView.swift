@@ -116,19 +116,17 @@ extension TrendingCardsViewController: UICollectionViewDataSource {
         guard let firstNews = newsWithImages.first != nil ? newsWithImages.first : news.first else {
             return cell
         }
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        dateFormatter.doesRelativeDateFormatting = true
+        cell.dateLabel.text = dateFormatter.string(from: firstNews.date)
         
-        if let newsDate = firstNews.date {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateStyle = .short
-            dateFormatter.timeStyle = .none
-            dateFormatter.doesRelativeDateFormatting = true
-            cell.dateLabel.text = dateFormatter.string(from: newsDate)
-            
-            let timeFormatter = DateFormatter()
-            timeFormatter.dateStyle = .none
-            timeFormatter.timeStyle = .short
-            cell.timeLabel.text = timeFormatter.string(from: newsDate)
-        }
+        let timeFormatter = DateFormatter()
+        timeFormatter.dateStyle = .none
+        timeFormatter.timeStyle = .short
+        cell.timeLabel.text = timeFormatter.string(from: firstNews.date)
         
         cell.titleLabel.text = topic.name
         cell.bodyLabel.text = firstNews.title

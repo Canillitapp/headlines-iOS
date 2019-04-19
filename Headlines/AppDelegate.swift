@@ -262,8 +262,8 @@ class AppDelegate: UIResponder,
                 let postURL = URL(string: postURLString) else {
                     return
             }
-            
-            newsToOpen = News.init(identifier: "\(postId)", url: postURL)
+
+            newsToOpen = News(identifier: "\(postId)", url: postURL, title: "Noticia", date: Date())
             NotificationCenter.default.post(name: .notificationNewsTapped, object: newsToOpen)
         }
         

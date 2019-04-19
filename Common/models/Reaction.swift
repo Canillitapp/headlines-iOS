@@ -7,40 +7,26 @@
 //
 
 import UIKit
-import SwiftyJSON
 
-class Reaction: NSObject {
+class Reaction: NSObject, Decodable {
+
+    // Required
     var reaction: String
     var amount: Int
-    var news: News?
     var date: Date
-    
+
+    // Optional
+    var news: News?
+
+    enum CodingKeys: String, CodingKey {
+        case reaction
+        case amount
+        case date
+        case news
+    }
+
     var reactionString: String {
         return "\(self.reaction) \(self.amount)"
-    }
-    
-    init(json: JSON) {
-        
-        if let r = json["reaction"].string {
-            reaction = r
-        } else {
-            reaction = "🤦🏿‍♂️"
-        }
-        
-        if let i = json["amount"].int {
-            amount = i
-        } else {
-            amount = 0
-        }
-        
-        let timestamp = json["date"].doubleValue
-        date = Date(timeIntervalSince1970: timestamp)
-        
-        if json["news"].exists() {
-            news = News(json: json["news"])
-        }
-
-        super.init()
     }
     
     init(reaction: String, amount: Int) {
@@ -48,6 +34,23 @@ class Reaction: NSObject {
         self.amount = amount
         self.date = Date()
         super.init()
+    }
+
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+
+        // Required
+        reaction = try values.decode(String.self, forKey: .reaction)
+        amount = (try? values.decode(Int.self, forKey: .amount)) ?? 0
+
+        // Optional
+        if let timestamp = try? values.decode(TimeInterval.self, forKey: .date) {
+            date = Date(timeIntervalSince1970: timestamp)
+        } else {
+            date = Date()
+        }
+
+        news = try? values.decode(News.self, forKey: .news)
     }
     
     override func copy() -> Any {
