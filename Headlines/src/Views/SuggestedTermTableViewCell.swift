@@ -30,7 +30,7 @@ class SuggestedTermTableViewCell: UITableViewCell {
 }
 
 extension NSMutableAttributedString {
-    
+
     public func setBold(text: String) {
         let foundRange = mutableString.range(of: text)
         if foundRange.location != NSNotFound {

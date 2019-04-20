@@ -30,7 +30,7 @@ class Topic: NSObject, Decodable {
                 fetchedReaction.amount += r.amount
             })
         })
-        
+
         let sortedReactions = reactionMap.values.sorted { return $0.amount > $1.amount }
         return sortedReactions.first
     }

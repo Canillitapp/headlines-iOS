@@ -15,9 +15,9 @@ class DynamicHeightCollectionView: UICollectionView {
         if !__CGSizeEqualToSize(bounds.size, self.intrinsicContentSize) {
             self.invalidateIntrinsicContentSize()
         }
-        
+
     }
-    
+
     override var intrinsicContentSize: CGSize {
         return contentSize
     }

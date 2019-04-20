@@ -11,7 +11,7 @@ import UIKit
 class ContentStateViewController: UIViewController {
     private var state: State?
     var shownViewController: UIViewController?
-    
+
     func transition(to newState: State) {
         shownViewController?.remove()
         let vc = viewController(for: newState)

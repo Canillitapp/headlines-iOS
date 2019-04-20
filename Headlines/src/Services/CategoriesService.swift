@@ -9,10 +9,10 @@
 import Foundation
 
 class CategoriesService: HTTPService {
-    
+
     func categoriesList (success: ((_ result: [Category]?) -> Void)?,
                          fail: ((_ error: NSError) -> Void)?) {
-        
+
         let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
             guard let d = data else {
                 return
@@ -24,13 +24,13 @@ class CategoriesService: HTTPService {
                 success?(res)
             })
         }
-        
+
         let failBlock: (_ error: NSError) -> Void = { (e) in
             DispatchQueue.main.async(execute: {
                 fail?(e as NSError)
             })
         }
-        
+
         if ProcessInfo.processInfo.arguments.contains("mockRequests") {
             let mockService = MockService()
             _ = mockService.request(file: "GET-categories",
@@ -38,7 +38,7 @@ class CategoriesService: HTTPService {
                                     fail: failBlock)
             return
         }
-        
+
         _ = request(method: .GET, path: "categories/", params: nil, success: successBlock, fail: failBlock)
     }
 }

@@ -22,7 +22,7 @@ class Category: Decodable {
         case name
         case imageURL = "img_url"
     }
-    
+
     init(identifier: String, name: String, imageURL: URL?) {
         self.identifier = identifier
         self.name = name

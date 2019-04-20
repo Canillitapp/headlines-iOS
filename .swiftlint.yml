@@ -5,7 +5,6 @@ excluded:
 
 disabled_rules:
   - force_cast
-  - trailing_whitespace
 
 line_length: 120
 identifier_name:
