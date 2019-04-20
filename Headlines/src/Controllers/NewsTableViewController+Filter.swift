@@ -16,7 +16,7 @@ extension NewsTableViewController {
             return
         }
 
-        let sources = FilterSourcesDataSource.sources(fromNews: news)
+        let sources = FilterSourcesDataSource.sources(fromNews: newsViewModels)
         let selectedSources = FilterSourcesDataSource.preSelectedSources(fromNewsViewModels: filteredNewsViewModels)
         vc.filterSourcesDataSource = FilterSourcesDataSource(sources: sources, preSelectedSources: selectedSources)
 

@@ -8,7 +8,6 @@
 
 import UIKit
 import SafariServices
-import ViewAnimator
 
 class NewsTableViewController: UIViewController {
     
@@ -45,20 +44,6 @@ class NewsTableViewController: UIViewController {
     var lastPage: Int = 1
     var isFetchingNews: Bool = false
     
-    // MARK: Private
-    
-    func endRefreshing() {
-        if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
-            tableView?.refreshControl?.endRefreshing()
-        }
-    }
-    
-    func startRefreshing() {
-        if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
-            tableView?.refreshControl?.beginRefreshing()
-        }
-    }
-    
     func showControllerWithError(_ error: NSError) {
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
         let alertController = UIAlertController(title: "Sorry",
@@ -68,24 +53,6 @@ class NewsTableViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    func addReaction(_ currentReaction: String, toNews currentNews: News) {
-        guard let n = filteredNewsViewModels.filter ({$0.news.identifier == currentNews.identifier}).first else {
-            return
-        }
-        
-        n.news.reactions = currentNews.reactions?.sorted(by: { $0.date < $1.date })
-        
-        if let i = filteredNewsViewModels.index(of: n) {
-            
-            guard let tableView = tableView else {
-                return
-            }
-            
-            let indexPathToReload = IndexPath(row: i, section: 0)
-            tableView.reloadRows(at: [indexPathToReload], with: .none)
-        }
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else {
             return
@@ -93,14 +60,7 @@ class NewsTableViewController: UIViewController {
         
         switch identifier {
         case "reaction":
-            guard let nav = segue.destination as? UINavigationController,
-                let vc = nav.topViewController as? ReactionPickerViewController,
-                let newsViewModel = sender as? NewsCellViewModel else {
-                    return
-            }
-            
-            vc.news = newsViewModel.news
-            nav.modalPresentationStyle = .formSheet
+            prepareReaction(with: segue, sender: sender)
         
         case "filter":
             prepareFilter(with: segue)
@@ -108,70 +68,6 @@ class NewsTableViewController: UIViewController {
         default:
             return
         }
-    }
-    
-    @objc func fetchNews() {
-        guard let ds = self.newsDataSource else {
-            return
-        }
-        
-        self.startRefreshing()
-        self.isFetchingNews = true
-        
-        let success: ([News]) -> Void = { [unowned self] (result) in
-            self.endRefreshing()
-            self.isFetchingNews = false
-            
-            self.news.removeAll()
-            self.news.append(contentsOf: result)
-            
-            if ds.isFilterEnabled {
-                if let whitelist = self.userSettingsManager.whitelistedSources {
-                    if whitelist.count > 0 {
-                        self.filteredNewsViewModels = self.newsViewModels.filter { whitelist.contains($0.source!) }
-                    }
-                }
-            }
-
-            guard let tableView = self.tableView else {
-                return
-            }
-            
-            tableView.reloadData()
-            UIView.animate(
-                views: tableView.visibleCells,
-                animations: [AnimationType.from(direction: .right, offset: 10.0)],
-                animationInterval: 0.1
-            )
-        }
-        
-        let fail: (NSError) -> Void = { [unowned self] (error) in
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-                self.endRefreshing()
-                self.isFetchingNews = false
-            }
-                        
-            self.showControllerWithError(error)
-        }
-        
-        ds.fetchNews(page: 1, success: success, fail: fail)
-    }
-
-    func setupPullToRefreshControl() {
-        //  Setup refresh control
-        guard let tableView = tableView else {
-            return
-        }
-        
-        let refreshCtrl = UIRefreshControl()
-        tableView.refreshControl = refreshCtrl
-        
-        refreshCtrl.tintColor = UIColor(red: 0.99, green: 0.29, blue: 0.39, alpha: 1.00)
-        refreshCtrl.addTarget(self, action: #selector(fetchNews), for: .valueChanged)
-        
-        //  Had to set content offset because of UIRefreshControl bug
-        //  http://stackoverflow.com/a/31224299/994129
-        tableView.contentOffset = CGPoint(x: 0, y: -refreshCtrl.frame.size.height)
     }
     
     private func setupTableView() {
@@ -246,41 +142,7 @@ class NewsTableViewController: UIViewController {
             setupFilterButtonItem()
         }
         
-        self.fetchNews()
-    }
-    
-    @IBAction func unwindToNews(segue: UIStoryboardSegue) {
-        guard let vc = segue.source as? ReactionPickerViewController else {
-            return
-        }
-        
-        guard let currentNews = vc.news,
-            let selectedReaction = vc.selectedReaction else {
-                return
-        }
-        
-        let success: (URLResponse?, News?) -> Void = { [unowned self] (_, updatedNews) in
-            guard let n = updatedNews else {
-                return
-            }
-            self.addReaction(selectedReaction, toNews: n)
-        }
-        
-        let fail: (Error) -> Void = { [weak self] err in
-            
-            let error = err as NSError
-            
-            if let s = self {
-                s.showControllerWithError(error)
-            }
-        }
-        
-        reactionsService.postReaction(
-            selectedReaction,
-            atPost: currentNews.identifier,
-            success: success,
-            fail: fail
-        )
+        self.fetchReload()
     }
 }
 
@@ -345,55 +207,7 @@ extension NewsTableViewController: UITableViewDataSource {
         }
 
         if indexPath.row >= filteredNewsViewModels.count - 10 && !isFetchingNews {
-
-            isFetchingNews = true
-
-            let success: (([News]) -> Void) = { [weak self] news in
-
-                guard let strongSelf = self else {
-                    return
-                }
-
-                strongSelf.lastPage += 1
-
-                let viewModels = news.map({ [weak self] n -> NewsCellViewModel in
-                    let viewModel = NewsCellViewModel(news: n)
-                    viewModel.delegate = self
-                    viewModel.dateStyle = self?.preferredDateStyle
-                    return viewModel
-                })
-
-                var indexPaths = [IndexPath]()
-                let startIndex = indexPath.row + 1
-                let endIndex = startIndex + viewModels.count - 1
-
-                for index in startIndex...endIndex {
-                    let i = IndexPath(row: index, section: 0)
-                    indexPaths.append(i)
-                }
-
-                UIView.performWithoutAnimation {
-                    tableView.beginUpdates()
-                    strongSelf.newsViewModels.append(contentsOf: viewModels)
-                    strongSelf.filteredNewsViewModels.append(contentsOf: viewModels)
-                    tableView.insertRows(at: indexPaths, with: .none)
-                    tableView.setContentOffset(tableView.contentOffset, animated: false)
-                    tableView.endUpdates()
-
-                    strongSelf.isFetchingNews = false
-                }
-            }
-
-            let fail: ((NSError?) -> Void) = { [weak self] _ in
-
-                guard let strongSelf = self else {
-                    return
-                }
-
-                strongSelf.isFetchingNews = false
-            }
-
-            newsDataSource.fetchNews(page: lastPage+1, success: success, fail: fail)
+            fetch(mode: .nextPage)
         }
     }
     
@@ -408,60 +222,9 @@ extension NewsTableViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension NewsTableViewController: UITableViewDelegate {
-
-    private func trackOpenNews(_ news: News) {
-        guard let contextFrom = trackContextFrom else {
-            return
-        }
-        
-        contentViewsService.postContentView(news.identifier, context: contextFrom, success: nil, fail: nil)
-    }
-    
-    func openNews(_ news: News) {
-
-        trackOpenNews(news)
-        
-        if userSettingsManager.shouldOpenNewsInsideApp {
-            let vc = SFSafariViewController(url: news.url, entersReaderIfAvailable: true)
-            vc.delegate = self
-            self.selectedNews = news
-            present(vc, animated: true, completion: nil)
-        } else {
-            UIApplication.shared.open(news.url, options: [:], completionHandler: nil)
-        }
-    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let n = filteredNewsViewModels[indexPath.row].news
         openNews(n)
-    }
-}
-
-// MARK: - NewsCellViewModelDelegate
-extension NewsTableViewController: NewsCellViewModelDelegate {
-    
-    func newsViewModel(_ viewModel: NewsCellViewModel, didSelectReaction reaction: Reaction) {
-        
-        let success: (URLResponse?, News?) -> Void = { [unowned self] (response, updatedNews) in
-            guard let n = updatedNews else {
-                return
-            }
-            self.addReaction(reaction.reaction, toNews: n)
-        }
-        
-        let fail: (Error) -> Void = { [unowned self] (err) in
-            self.showControllerWithError(err as NSError)
-        }
-        
-        reactionsService.postReaction(
-            reaction.reaction,
-            atPost: viewModel.news.identifier,
-            success: success,
-            fail: fail
-        )
-    }
-    
-    func newsViewModelDidSelectReactionPicker(_ viewModel: NewsCellViewModel) {
-        performSegue(withIdentifier: "reaction", sender: viewModel)
     }
 }

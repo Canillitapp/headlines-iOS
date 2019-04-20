@@ -22,9 +22,8 @@ class FilterSourcesDataSource: NSObject, UICollectionViewDelegateFlowLayout, UIC
         super.init()
     }
     
-    class func sources(fromNews news: [News]) -> [String] {
-        return news
-            .compactMap { $0.source }
+    class func sources(fromNews news: [NewsCellViewModel]) -> [String] {
+        return news.compactMap { $0.news.source }
             .uniqued()
             .sorted()
     }

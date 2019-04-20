@@ -9,6 +9,32 @@
 import Foundation
 import SafariServices
 
+// MARK: - Safari Related
+extension NewsTableViewController {
+
+    private func trackOpenNews(_ news: News) {
+        guard let contextFrom = trackContextFrom else {
+            return
+        }
+
+        contentViewsService.postContentView(news.identifier, context: contextFrom, success: nil, fail: nil)
+    }
+
+    func openNews(_ news: News) {
+
+        trackOpenNews(news)
+
+        if userSettingsManager.shouldOpenNewsInsideApp {
+            let vc = SFSafariViewController(url: news.url, entersReaderIfAvailable: true)
+            vc.delegate = self
+            self.selectedNews = news
+            present(vc, animated: true, completion: nil)
+        } else {
+            UIApplication.shared.open(news.url, options: [:], completionHandler: nil)
+        }
+    }
+}
+
 // MARK: - SFSafariViewControllerDelegate
 extension NewsTableViewController: SFSafariViewControllerDelegate {
 
