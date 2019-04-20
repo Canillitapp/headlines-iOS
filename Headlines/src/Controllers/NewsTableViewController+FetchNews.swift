@@ -82,6 +82,12 @@ extension NewsTableViewController {
                 strongSelf.endRefreshing()
             }
 
+            // If news are == 0, then we reached to the end
+            guard news.count > 0 else {
+                strongSelf.canFetchMoreNews = false
+                return
+            }
+
             // Generate NewsCellViewModels from News
             let viewModels = strongSelf.viewModels(from: news)
 

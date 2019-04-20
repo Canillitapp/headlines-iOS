@@ -43,6 +43,7 @@ class NewsTableViewController: UIViewController {
 
     var lastPage: Int = 1
     var isFetchingNews: Bool = false
+    var canFetchMoreNews: Bool = true
     
     func showControllerWithError(_ error: NSError) {
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -201,14 +202,18 @@ extension NewsTableViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        // This is not needed on screens without pagination
-        guard let newsDataSource = newsDataSource, newsDataSource.isPaginationEnabled == true else {
-            return
+
+        guard
+            let newsDataSource = newsDataSource,
+            newsDataSource.isPaginationEnabled == true,
+            indexPath.row >= filteredNewsViewModels.count - 10,
+            isFetchingNews == false,
+            canFetchMoreNews == true else {
+
+                return
         }
 
-        if indexPath.row >= filteredNewsViewModels.count - 10 && !isFetchingNews {
-            fetch(mode: .nextPage)
-        }
+        fetch(mode: .nextPage)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
