@@ -11,16 +11,16 @@ import UIKit
 class PopularNewsDataSource: NewsTableViewControllerDataSource {
 
     let newsService = NewsService()
-    
+
     // MARK: NewsTableViewControllerDataSource
     var shouldDisplayPullToRefreshControl = true
-    
+
     var isFilterEnabled = false
 
     var isPaginationEnabled = true
 
     required init() {}
-    
+
     func fetchNews(page: Int, success: ((_: [News]) -> Void)?, fail: ((_ error: NSError) -> Void)?) {
 
         let success: (([News]?) -> Void) = { result in

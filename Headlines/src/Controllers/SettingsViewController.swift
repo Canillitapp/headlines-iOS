@@ -17,7 +17,7 @@ class SettingsViewController: UIViewController {
 
     // MARK: - Properties
     var userNotificationCenter = UNUserNotificationCenter.current()
-    
+
     // MARK: - Init & Deinit
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -30,13 +30,13 @@ class SettingsViewController: UIViewController {
     deinit {
         NotificationCenter.default.removeObserver(self)
     }
-    
+
     // MARK: - View Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         layout()
     }
-    
+
     @objc func layout() {
         userNotificationCenter.getNotificationSettings { settings in
             switch settings.authorizationStatus {
@@ -47,7 +47,7 @@ class SettingsViewController: UIViewController {
             }
         }
     }
-    
+
     private func layoutAskForNotifications() {
         DispatchQueue.main.async {
             self.subscribeButton.isEnabled = true
@@ -57,7 +57,7 @@ class SettingsViewController: UIViewController {
             "Al suscribirte, recibirás una notificación sobre una noticia importante una vez al día"
         }
     }
-    
+
     private func layoutNotificationsAuthorized() {
         DispatchQueue.main.async {
             self.subscribeButton.isEnabled = false
@@ -67,7 +67,7 @@ class SettingsViewController: UIViewController {
             "Ya estas suscripto! Estarás recibiendo una notificación sobre una noticia importante una vez al dia."
         }
     }
-    
+
     private func checkRemoteNotificationsStatus() {
         userNotificationCenter.getNotificationSettings { settings in
             switch settings.authorizationStatus {
@@ -98,11 +98,11 @@ class SettingsViewController: UIViewController {
             }
         }
     }
-    
+
     @IBAction func subscribeButtonPressed(_ sender: Any) {
         checkRemoteNotificationsStatus()
     }
-    
+
     private func registerApplicationWillEnterForeground() {
         NotificationCenter.default.addObserver(
             self,

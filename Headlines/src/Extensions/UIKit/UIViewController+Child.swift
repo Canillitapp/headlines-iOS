@@ -31,14 +31,14 @@ extension UIViewController {
         removeFromParent()
         view.removeFromSuperview()
     }
-    
+
     //swiftlint: disable: all
     private var _safeAreaLayoutGuide: UILayoutGuide {
         if #available(iOS 11.0, *) {
             return view.safeAreaLayoutGuide
         } else {
             let id = "ft_safeAreaLayoutGuide"
-            
+
             if let layoutGuide = view.layoutGuides.filter({ $0.identifier == id }).first {
                 return layoutGuide
             } else {

@@ -9,12 +9,12 @@
 import Foundation
 
 class ConfigHelper {
-    
+
     class func configForKey(_ key: String) -> Any? {
         guard let url = Bundle.main.url(forResource: "config", withExtension: "plist") else {
             return nil
         }
-        
+
         do {
             let data = try Data(contentsOf: url)
             let dict = try PropertyListSerialization.propertyList(from: data,

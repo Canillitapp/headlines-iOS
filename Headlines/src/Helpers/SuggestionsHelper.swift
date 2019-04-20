@@ -9,11 +9,11 @@
 import Foundation
 
 class SuggestionsHelper {
-    
+
     enum ActivityType: String {
         case search = "ar.com.betzerra.headlines.search"
     }
-    
+
     @available(iOS 12.0, *)
     class func searchActivity(from topic: String) -> NSUserActivity {
         let activity = NSUserActivity(activityType: ActivityType.search.rawValue)
@@ -21,7 +21,7 @@ class SuggestionsHelper {
         activity.isEligibleForPrediction = true
         activity.title = "Buscar noticias sobre \"\(topic)\""
         activity.userInfo = ["topic": topic]
-        
+
         return activity
     }
 }

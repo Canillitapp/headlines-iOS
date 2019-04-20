@@ -11,10 +11,10 @@ import UIKit
 class RecentNewsDataSource: NewsTableViewControllerDataSource {
 
     let newsService = NewsService()
-    
+
     // MARK: NewsTableViewControllerDataSource
     var shouldDisplayPullToRefreshControl = true
-    
+
     var isFilterEnabled = true
 
     var isPaginationEnabled = false

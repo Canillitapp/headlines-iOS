@@ -11,7 +11,7 @@ import Foundation
 final class NewsManager {
     var topics: [Topic]?
     var categories: [Category]?
-    
+
     static let sharedInstance = NewsManager()
     private init() {}
 }

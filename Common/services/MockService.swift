@@ -9,7 +9,7 @@
 import Foundation
 
 class MockService {
-    
+
     func request(file: String,
                  success: ((_ result: Data?, _ response: URLResponse?) -> Void)?,
                  fail: ((_ error: NSError) -> Void)?) {

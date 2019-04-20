@@ -17,39 +17,39 @@ class NewsTableViewCell: UITableViewCell {
     @IBOutlet weak var reactionsCollectionView: UICollectionView!
     @IBOutlet weak var reactionsHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var addReactionButton: UIButton!
-    
+
     weak var reactionsDataSource: UICollectionViewDataSource? {
-        didSet {            
+        didSet {
             reactionsCollectionView?.dataSource = reactionsDataSource
         }
     }
-    
+
     weak var reactionsDelegate: UICollectionViewDelegate? {
         didSet {
             reactionsCollectionView?.delegate = reactionsDelegate
         }
     }
-    
+
     weak var viewModel: NewsCellViewModel?
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         let reactionNib = UINib(nibName: "ReactionCollectionViewCell", bundle: nil)
         reactionsCollectionView.register(reactionNib, forCellWithReuseIdentifier: "reactionCell")
-        
+
         let addReactionNib = UINib(nibName: "AddReactionCollectionViewCell", bundle: nil)
         reactionsCollectionView.register(addReactionNib, forCellWithReuseIdentifier: "addCell")
     }
-    
+
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    
+
     override func setHighlighted(_ highlighted: Bool, animated: Bool) {
         super.setHighlighted(highlighted, animated: animated)
     }
-    
+
     @IBAction func reactionButtonPressed(_ sender: Any) {
         if let d = viewModel?.delegate {
             d.newsViewModelDidSelectReactionPicker(viewModel!)

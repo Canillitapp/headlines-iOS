@@ -9,7 +9,7 @@
 import Foundation
 
 class LoadingTask {
-    
+
     /**
      *  First approach was doing an OperationQueue with OperationBlocks
      *  but since I'm not going to handle their cancel / fail state I thought
@@ -27,28 +27,28 @@ class LoadingTask {
      *
      *  There's some room to improvement here :-)
      */
-    
+
     let group = DispatchGroup()
     var error: NSError?
-    
+
     var topics: [Topic]?
     var categories: [Category]?
-    
+
     var completion: ([Topic]?, [Category]?, NSError?) -> Void
-    
+
     private func fetchTrendingNews() {
         let newsService = NewsService()
-        
+
         let success: (TopicList?) -> Void = { [unowned self] (topicList) in
             self.topics = topicList?.topics
             self.group.leave()
         }
-        
+
         let fail: ((NSError) -> Void) = { [unowned self] (error) in
             self.error = error
             self.group.leave()
         }
-        
+
         _ = newsService.requestTrendingTopicsWithDate(
             Date(),
             count: 6,
@@ -57,32 +57,32 @@ class LoadingTask {
         )
         group.enter()
     }
-    
+
     private func fetchCategories() {
         let categoriesService = CategoriesService()
-        
+
         let success: ([Category]?) -> Void = { [unowned self] (categories) in
             self.categories = categories
             self.group.leave()
         }
-        
+
         let fail: ((NSError) -> Void) = { [unowned self] (error) in
             self.error = error
             self.group.leave()
         }
-        
+
         categoriesService.categoriesList(success: success, fail: fail)
         group.enter()
     }
-    
+
     init(with completion:@escaping ([Topic]?, [Category]?, NSError?) -> Void) {
         self.completion = completion
     }
-    
+
     func start() {
         fetchTrendingNews()
         fetchCategories()
-        
+
         group.notify(queue: DispatchQueue.main) { [unowned self] in
             self.completion(self.topics, self.categories, self.error)
         }
