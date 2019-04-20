@@ -16,6 +16,8 @@ class CategoryNewsDataSource: NewsTableViewControllerDataSource {
     var shouldDisplayPullToRefreshControl = true
     
     var isFilterEnabled = false
+
+    var isPaginationEnabled = true
     
     let category: Category
     
@@ -23,8 +25,8 @@ class CategoryNewsDataSource: NewsTableViewControllerDataSource {
         self.category = category
     }
     
-    func fetchNews(success: ((_: [News]) -> Void)?, fail: ((_ error: NSError) -> Void)?) {
-        newsService.requestFromCategory(category.identifier, success: { (result) in
+    func fetchNews(page: Int, success: ((_: [News]) -> Void)?, fail: ((_ error: NSError) -> Void)?) {
+        newsService.requestFromCategory(category.identifier, page: page, success: { (result) in
             guard let r = result else {
                 let userInfo = [
                     NSLocalizedDescriptionKey: "No data"

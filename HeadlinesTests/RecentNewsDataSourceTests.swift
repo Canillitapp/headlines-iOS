@@ -24,7 +24,7 @@ class RecentNewsDataSourceTests: XCTestCase {
             XCTFail(error.localizedDescription)
         }
         
-        self.dataSource.fetchNews(success: success, fail: fail)
+        self.dataSource.fetchNews(page: 1, success: success, fail: fail)
         wait(for: [exp], timeout: 10)
     }
     

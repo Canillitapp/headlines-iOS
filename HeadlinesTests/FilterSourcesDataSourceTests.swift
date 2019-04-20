@@ -12,7 +12,7 @@ import XCTest
 class FilterSourcesDataSourceTests: XCTestCase {
 
     func testSources() {
-        let news = ["Clarín", "La Nación", nil, "Infobae"].map(newsWith)
+        let news = ["Clarín", "La Nación", nil, "Infobae"].map(newsCellViewModelWith)
         let sources = FilterSourcesDataSource.sources(fromNews: news)
         XCTAssertEqual(sources, ["Clarín", "Infobae", "La Nación"])
     }

@@ -8,7 +8,6 @@
 
 import UIKit
 import SafariServices
-import ViewAnimator
 
 class NewsTableViewController: UIViewController {
     
@@ -41,20 +40,10 @@ class NewsTableViewController: UIViewController {
     let userSettingsManager = UserSettingsManager()
     
     var tableView: UITableView?
-    
-    // MARK: Private
-    
-    func endRefreshing() {
-        if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
-            tableView?.refreshControl?.endRefreshing()
-        }
-    }
-    
-    func startRefreshing() {
-        if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
-            tableView?.refreshControl?.beginRefreshing()
-        }
-    }
+
+    var lastPage: Int = 1
+    var isFetchingNews: Bool = false
+    var canFetchMoreNews: Bool = true
     
     func showControllerWithError(_ error: NSError) {
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -65,24 +54,6 @@ class NewsTableViewController: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
-    func addReaction(_ currentReaction: String, toNews currentNews: News) {
-        guard let n = filteredNewsViewModels.filter ({$0.news.identifier == currentNews.identifier}).first else {
-            return
-        }
-        
-        n.news.reactions = currentNews.reactions?.sorted(by: { $0.date < $1.date })
-        
-        if let i = filteredNewsViewModels.index(of: n) {
-            
-            guard let tableView = tableView else {
-                return
-            }
-            
-            let indexPathToReload = IndexPath(row: i, section: 0)
-            tableView.reloadRows(at: [indexPathToReload], with: .none)
-        }
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let identifier = segue.identifier else {
             return
@@ -90,153 +61,14 @@ class NewsTableViewController: UIViewController {
         
         switch identifier {
         case "reaction":
-            guard let nav = segue.destination as? UINavigationController,
-                let vc = nav.topViewController as? ReactionPickerViewController,
-                let newsViewModel = sender as? NewsCellViewModel else {
-                    return
-            }
-            
-            vc.news = newsViewModel.news
-            nav.modalPresentationStyle = .formSheet
+            prepareReaction(with: segue, sender: sender)
         
         case "filter":
-            guard let vc = segue.destination as? FilterViewController else {
-                return
-            }
+            prepareFilter(with: segue)
 
-            let sources = FilterSourcesDataSource.sources(fromNews: news)
-            let selectedSources = FilterSourcesDataSource.preSelectedSources(fromNewsViewModels: filteredNewsViewModels)
-            vc.filterSourcesDataSource = FilterSourcesDataSource(sources: sources, preSelectedSources: selectedSources)
-            
-            let categories = FilterCategoriesDataSource.categories(fromNews: news)
-            let categoriesDataSource = FilterCategoriesDataSource(withCategories: categories)
-            categoriesDataSource.viewController = vc
-            vc.filterCategoriesDataSource = categoriesDataSource
-            
-            vc.transitioningDelegate = self
-            vc.modalPresentationStyle = .overFullScreen
-            
         default:
             return
         }
-    }
-    
-    @objc func handleLongPress(gesture: UILongPressGestureRecognizer!) {
-        
-        if gesture.state != .began {
-            return
-        }
-        
-        let p = gesture.location(in: tableView)
-        
-        guard let tableView = tableView else {
-            return
-        }
-        
-        guard let indexPath = tableView.indexPathForRow(at: p) else {
-            return
-        }
-        
-        let viewModel = filteredNewsViewModels[indexPath.row]
-        
-        let vc = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        vc.popoverPresentationController?.sourceView = tableView.cellForRow(at: indexPath)
-        
-        let shareAction = UIAlertAction(title: "Compartir Noticia", style: .default) { (_) in
-            UIPasteboard.general.string = ShareCanillitapActivity.canillitappURL(fromNews: viewModel.news)
-            vc.dismiss(animated: true, completion: nil)
-        }
-        vc.addAction(shareAction)
-        
-        let reactAction = UIAlertAction(title: "Agregar Reacción", style: .default) { [weak self] (_) in
-            vc.dismiss(animated: false, completion: nil)
-            self?.performSegue(withIdentifier: "reaction", sender: viewModel)
-        }
-        vc.addAction(reactAction)
-        
-        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel) { (_) in
-            vc.dismiss(animated: true, completion: nil)
-        }
-        vc.addAction(cancelAction)
-        
-        present(vc, animated: true, completion: nil)
-    }
-    
-    @objc func fetchNews() {
-        guard let ds = self.newsDataSource else {
-            return
-        }
-        
-        self.startRefreshing()
-        
-        let success: ([News]) -> Void = { [unowned self] (result) in
-            self.endRefreshing()
-            
-            self.news.removeAll()
-            self.news.append(contentsOf: result)
-            
-            if ds.isFilterEnabled {
-                if let whitelist = self.userSettingsManager.whitelistedSources {
-                    if whitelist.count > 0 {
-                        self.filteredNewsViewModels = self.newsViewModels.filter { whitelist.contains($0.source!) }
-                    }
-                }
-            }
-
-            guard let tableView = self.tableView else {
-                return
-            }
-            
-            tableView.reloadData()
-            UIView.animate(
-                views: tableView.visibleCells,
-                animations: [AnimationType.from(direction: .right, offset: 10.0)],
-                animationInterval: 0.1
-            )
-        }
-        
-        let fail: (NSError) -> Void = { [unowned self] (error) in
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(1)) {
-                self.endRefreshing()
-            }
-                        
-            self.showControllerWithError(error)
-        }
-        
-        ds.fetchNews(success: success, fail: fail)
-    }
-
-    func setupPullToRefreshControl() {
-        //  Setup refresh control
-        guard let tableView = tableView else {
-            return
-        }
-        
-        let refreshCtrl = UIRefreshControl()
-        tableView.refreshControl = refreshCtrl
-        
-        refreshCtrl.tintColor = UIColor(red: 0.99, green: 0.29, blue: 0.39, alpha: 1.00)
-        refreshCtrl.addTarget(self, action: #selector(fetchNews), for: .valueChanged)
-        
-        //  Had to set content offset because of UIRefreshControl bug
-        //  http://stackoverflow.com/a/31224299/994129
-        tableView.contentOffset = CGPoint(x: 0, y: -refreshCtrl.frame.size.height)
-    }
-    
-    @objc func filterButtonTapped() {
-        performSegue(withIdentifier: "filter", sender: self)
-    }
-    
-    private func setupFilterButtonItem() {
-        let filterImage = UIImage(named: "filter_icon")
-        let filterButtonItem = UIBarButtonItem(
-                image: filterImage,
-                style: .plain,
-                target: self,
-                action: #selector(filterButtonTapped)
-        )
-        filterButtonItem.tintColor = UIColor.white
-        navigationItem.rightBarButtonItem = filterButtonItem
     }
     
     private func setupTableView() {
@@ -311,111 +143,8 @@ class NewsTableViewController: UIViewController {
             setupFilterButtonItem()
         }
         
-        self.fetchNews()
+        self.fetchReload()
     }
-    
-    @IBAction func unwindToNews(segue: UIStoryboardSegue) {
-        guard let vc = segue.source as? ReactionPickerViewController else {
-            return
-        }
-        
-        guard let currentNews = vc.news,
-            let selectedReaction = vc.selectedReaction else {
-                return
-        }
-        
-        let success: (URLResponse?, News?) -> Void = { [unowned self] (_, updatedNews) in
-            guard let n = updatedNews else {
-                return
-            }
-            self.addReaction(selectedReaction, toNews: n)
-        }
-        
-        let fail: (Error) -> Void = { [weak self] err in
-            
-            let error = err as NSError
-            
-            if let s = self {
-                s.showControllerWithError(error)
-            }
-        }
-        
-        reactionsService.postReaction(
-            selectedReaction,
-            atPost: currentNews.identifier,
-            success: success,
-            fail: fail
-        )
-    }
-    
-    @IBAction func unwindFromFilter(segue: UIStoryboardSegue) {
-        guard let vc = segue.source as? FilterViewController else {
-            return
-        }
-        
-        guard let identifier = segue.identifier else {
-            return
-        }
-        
-        switch identifier {
-        
-        case "dismiss":
-            return
-            
-        case "sourcesApply":
-            guard let dataSource = vc.filterSourcesDataSource else {
-                return
-            }
-            
-            userSettingsManager.whitelistedSources = dataSource.selectedSources
-            
-            filteredNewsViewModels = newsViewModels.filter { dataSource.selectedSources.contains($0.source!) }
-            
-            guard let tableView = tableView else {
-                return
-            }
-            
-            UIView.transition(
-                with: tableView,
-                duration: 0.30,
-                options: .transitionCrossDissolve,
-                animations: { tableView.reloadData() },
-                completion: nil
-            )
-            return
-            
-        case "categorySelected":
-            guard let dataSource = vc.filterCategoriesDataSource else {
-                return
-            }
-            
-            if dataSource.selectedCategory == nil {
-                filteredNewsViewModels = newsViewModels
-            } else {
-                filteredNewsViewModels = newsViewModels.filter { $0.news.category == dataSource.selectedCategory }
-            }
-            
-            guard let tableView = tableView else {
-                return
-            }
-            
-            tableView.reloadData()
-            tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: false)
-            
-            UIView.transition(
-                with: tableView,
-                duration: 0.30,
-                options: .transitionCrossDissolve,
-                animations: {},
-                completion: nil
-            )
-            return
-            
-        default:
-            return
-        }
-    }
-    
 }
 
 // MARK: - UITableViewDataSource
@@ -471,6 +200,21 @@ extension NewsTableViewController: UITableViewDataSource {
         
         return cell
     }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+
+        guard
+            let newsDataSource = newsDataSource,
+            newsDataSource.isPaginationEnabled == true,
+            indexPath.row >= filteredNewsViewModels.count - 10,
+            isFetchingNews == false,
+            canFetchMoreNews == true else {
+
+                return
+        }
+
+        fetch(mode: .nextPage)
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
@@ -483,167 +227,9 @@ extension NewsTableViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension NewsTableViewController: UITableViewDelegate {
-
-    private func trackOpenNews(_ news: News) {
-        guard let contextFrom = trackContextFrom else {
-            return
-        }
-        
-        contentViewsService.postContentView(news.identifier, context: contextFrom, success: nil, fail: nil)
-    }
-    
-    func openNews(_ news: News) {
-
-        trackOpenNews(news)
-        
-        if userSettingsManager.shouldOpenNewsInsideApp {
-            let vc = SFSafariViewController(url: news.url, entersReaderIfAvailable: true)
-            vc.delegate = self
-            self.selectedNews = news
-            present(vc, animated: true, completion: nil)
-        } else {
-            UIApplication.shared.open(news.url, options: [:], completionHandler: nil)
-        }
-    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let n = filteredNewsViewModels[indexPath.row].news
         openNews(n)
-    }
-}
-
-// MARK: - NewsCellViewModelDelegate
-extension NewsTableViewController: NewsCellViewModelDelegate {
-    
-    func newsViewModel(_ viewModel: NewsCellViewModel, didSelectReaction reaction: Reaction) {
-        
-        let success: (URLResponse?, News?) -> Void = { [unowned self] (response, updatedNews) in
-            guard let n = updatedNews else {
-                return
-            }
-            self.addReaction(reaction.reaction, toNews: n)
-        }
-        
-        let fail: (Error) -> Void = { [unowned self] (err) in
-            self.showControllerWithError(err as NSError)
-        }
-        
-        reactionsService.postReaction(
-            reaction.reaction,
-            atPost: viewModel.news.identifier,
-            success: success,
-            fail: fail
-        )
-    }
-    
-    func newsViewModelDidSelectReactionPicker(_ viewModel: NewsCellViewModel) {
-        performSegue(withIdentifier: "reaction", sender: viewModel)
-    }
-}
-
-// MARK: - UIViewControllerTransitioningDelegate
-extension NewsTableViewController: UIViewControllerTransitioningDelegate {
-
-    func animationController(forPresented presented: UIViewController,
-                             presenting: UIViewController,
-                             source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        let animator = DimPresentAnimationController()
-        animator.isPresenting = true
-        return animator
-    }
-    
-    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return DimPresentAnimationController()
-    }
-}
-
-// MARK: - SFSafariViewControllerDelegate
-extension NewsTableViewController: SFSafariViewControllerDelegate {
-    
-    func safariViewController(_ controller: SFSafariViewController,
-                              activityItemsFor URL: URL,
-                              title: String?) -> [UIActivity] {
-        
-        guard let n = self.selectedNews else {
-            return []
-        }
-        
-        let activity = ShareCanillitapActivity(withNews: n)
-        return [activity]
-    }
-}
-
-// MARK: - TabbedViewController
-extension NewsTableViewController: TabbedViewController {
-    
-    func tabbedViewControllerWasDoubleTapped() {
-        guard let tableView = tableView else {
-            return
-        }
-        
-        tableView.setContentOffset(CGPoint.zero, animated: true)
-    }
-}
-
-// MARK: - UIViewControllerPreviewingDelegate
-extension NewsTableViewController: UIViewControllerPreviewingDelegate {
-    
-    private func setupPreview() {
-        guard let tableView = tableView, hasRegisteredPreview == false else {
-            return
-        }
-        
-        if traitCollection.forceTouchCapability == .available {
-            registerForPreviewing(with: self, sourceView: tableView)
-        } else {
-            let longPressRecognizer = UILongPressGestureRecognizer(
-                target: self,
-                action: #selector(self.handleLongPress)
-            )
-            
-            longPressRecognizer.delaysTouchesBegan = true
-            tableView.addGestureRecognizer(longPressRecognizer)
-        }
-
-        hasRegisteredPreview = true
-    }
-    
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        setupPreview()
-    }
-    
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing,
-                           viewControllerForLocation location: CGPoint) -> UIViewController? {
-        
-        guard let tableView = tableView else {
-            return nil
-        }
-        
-        guard let indexPath = tableView.indexPathForRow(at: location) else {
-            return nil
-        }
-        
-        let news = filteredNewsViewModels[indexPath.row].news
-        
-        let storyboard = UIStoryboard(name: "NewsPreview", bundle: nil)
-        let vc: NewsPreviewViewController? = storyboard.instantiateInitialViewController() as? NewsPreviewViewController
-        vc?.news = news
-        vc?.newsViewController = self
-        vc?.preferredContentSize = CGSize(width: 300, height: 300)
-        selectedNews = news
-        return vc
-    }
-    
-    func previewingContext(_ previewingContext: UIViewControllerPreviewing,
-                           commit viewControllerToCommit: UIViewController) {
-        
-        guard let url = selectedNews?.url else {
-            return
-        }
-        
-        let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
-        vc.delegate = self
-        present(vc, animated: true, completion: nil)
     }
 }
