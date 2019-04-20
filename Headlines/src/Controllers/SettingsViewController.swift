@@ -45,6 +45,8 @@ class SettingsViewController: UIViewController {
 
             case .authorized, .provisional:
                 self.layoutNotificationsAuthorized()
+            @unknown default:
+                assertionFailure("Unhandled case")
             }
         }
     }
@@ -87,6 +89,9 @@ class SettingsViewController: UIViewController {
             case .authorized, .provisional:
                 assertionFailure("Suscribe button was enabled while the notifications where already authorized.")
                 self.layoutNotificationsAuthorized()
+
+            @unknown default:
+                assertionFailure("Unhandled case")
             }
         }
     }

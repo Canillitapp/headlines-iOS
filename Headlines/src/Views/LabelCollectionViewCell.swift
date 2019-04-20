@@ -32,13 +32,13 @@ class LabelCollectionViewCell: UICollectionViewCell {
     }
 
     private func setupLabel() {
-        label = UILabel(frame: .zero)
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = LabelCollectionViewCell.defaultFont
-        label.textColor = normalTextColor
-        self.addSubview(label)
+        let aLabel = UILabel(frame: .zero)
+        aLabel.translatesAutoresizingMaskIntoConstraints = false
+        aLabel.font = LabelCollectionViewCell.defaultFont
+        aLabel.textColor = normalTextColor
+        self.addSubview(aLabel)
 
-        let leftConstraint = NSLayoutConstraint(item: label,
+        let leftConstraint = NSLayoutConstraint(item: aLabel,
                                                 attribute: .left,
                                                 relatedBy: .equal,
                                                 toItem: self,
@@ -46,7 +46,7 @@ class LabelCollectionViewCell: UICollectionViewCell {
                                                 multiplier: 1,
                                                 constant: LabelCollectionViewCell.defaultInsets.left)
 
-        let topConstraint = NSLayoutConstraint(item: label,
+        let topConstraint = NSLayoutConstraint(item: aLabel,
                                                attribute: .top,
                                                relatedBy: .equal,
                                                toItem: self,
@@ -54,7 +54,7 @@ class LabelCollectionViewCell: UICollectionViewCell {
                                                multiplier: 1,
                                                constant: LabelCollectionViewCell.defaultInsets.top)
 
-        let rightConstraint = NSLayoutConstraint(item: label,
+        let rightConstraint = NSLayoutConstraint(item: aLabel,
                                                  attribute: .right,
                                                  relatedBy: .equal,
                                                  toItem: self,
@@ -62,7 +62,7 @@ class LabelCollectionViewCell: UICollectionViewCell {
                                                  multiplier: 1,
                                                  constant: -LabelCollectionViewCell.defaultInsets.right)
 
-        let bottomConstraint = NSLayoutConstraint(item: label,
+        let bottomConstraint = NSLayoutConstraint(item: aLabel,
                                                   attribute: .bottom,
                                                   relatedBy: .equal,
                                                   toItem: self,
@@ -73,6 +73,8 @@ class LabelCollectionViewCell: UICollectionViewCell {
 
         let constraints = [leftConstraint, topConstraint, rightConstraint, bottomConstraint]
         self.addConstraints(constraints)
+
+        label = aLabel
     }
 
     override init(frame: CGRect) {
