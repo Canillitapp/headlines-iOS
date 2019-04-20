@@ -12,8 +12,8 @@ class ShareCanillitapActivity: UIActivity {
     
     // MARK: Properties
     override var activityTitle: String? { return "Compartir URL" }
-    override var activityType: UIActivityType? { return UIActivityType(rawValue: "Canillitapp URL") }
-    override class var activityCategory: UIActivityCategory { return .action }
+    override var activityType: UIActivity.ActivityType? { return UIActivity.ActivityType(rawValue: "Canillitapp URL") }
+    override class var activityCategory: UIActivity.Category { return .action }
     override var activityImage: UIImage? { return UIImage(named: "icon_activity_share") }
     
     var news: News

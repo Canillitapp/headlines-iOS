@@ -24,7 +24,7 @@ class TodayViewModel: NSObject {
 
             let attributedSpace = NSAttributedString(
                 string: " ",
-                attributes: [NSAttributedStringKey.font: regularTitleFont]
+                attributes: [NSAttributedString.Key.font: regularTitleFont]
             )
             
             let retVal = NSMutableAttributedString(attributedString: topicTitle)
@@ -45,7 +45,7 @@ class TodayViewModel: NSObject {
     var attributedTitlesString: NSAttributedString? {
         let attributedNewLine = NSAttributedString(
             string: "\n",
-            attributes: [NSAttributedStringKey.font: regularTitleFont]
+            attributes: [NSAttributedString.Key.font: regularTitleFont]
         )
         
         guard let titles = attributedTitles else {
@@ -68,8 +68,8 @@ class TodayViewModel: NSObject {
         return NSAttributedString(
             string: topic.name?.capitalized ?? "nil_topic",
             attributes: [
-                NSAttributedStringKey.font: boldTitleFont,
-                NSAttributedStringKey.paragraphStyle: paragraphStyle
+                NSAttributedString.Key.font: boldTitleFont,
+                NSAttributedString.Key.paragraphStyle: paragraphStyle
             ]
         )
     }
@@ -83,8 +83,8 @@ class TodayViewModel: NSObject {
         return NSAttributedString(
             string: reaction,
             attributes: [
-                NSAttributedStringKey.font: regularTitleFont,
-                NSAttributedStringKey.paragraphStyle: paragraphStyle
+                NSAttributedString.Key.font: regularTitleFont,
+                NSAttributedString.Key.paragraphStyle: paragraphStyle
             ]
         )
     }
@@ -93,8 +93,8 @@ class TodayViewModel: NSObject {
         return NSAttributedString(
             string: "(\(topic.news?.count ?? 0))",
             attributes: [
-                NSAttributedStringKey.font: regularTitleFont,
-                NSAttributedStringKey.paragraphStyle: paragraphStyle
+                NSAttributedString.Key.font: regularTitleFont,
+                NSAttributedString.Key.paragraphStyle: paragraphStyle
             ]
         )
     }

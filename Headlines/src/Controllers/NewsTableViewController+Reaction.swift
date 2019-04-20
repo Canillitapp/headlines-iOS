@@ -29,7 +29,7 @@ extension NewsTableViewController {
 
         n.news.reactions = currentNews.reactions?.sorted(by: { $0.date < $1.date })
 
-        if let i = filteredNewsViewModels.index(of: n) {
+        if let i = filteredNewsViewModels.firstIndex(of: n) {
 
             guard let tableView = tableView else {
                 return

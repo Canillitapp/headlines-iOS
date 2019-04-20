@@ -78,7 +78,7 @@ class SettingsViewController: UIViewController {
                 // Push notifications where denied so we open the app page
                 // on iOS Settings.
                 DispatchQueue.main.async {
-                    let url = URL(string: UIApplicationOpenSettingsURLString)!
+                    let url = URL(string: UIApplication.openSettingsURLString)!
                     UIApplication.shared.open(url)
                 }
             case .authorized, .provisional:
@@ -107,7 +107,7 @@ class SettingsViewController: UIViewController {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(self.layout),
-            name: Notification.Name.UIApplicationWillEnterForeground,
+            name: UIApplication.willEnterForegroundNotification,
             object: nil
         )
     }

@@ -27,7 +27,7 @@ class DismissableNavigationController: UINavigationController {
         navigationBar.isTranslucent = false
         
         let attributes = [
-            NSAttributedStringKey.font: UIFont(name: "Rubik-Regular", size: 18)!
+            NSAttributedString.Key.font: UIFont(name: "Rubik-Regular", size: 18)!
         ]
         
         navigationBar.titleTextAttributes = attributes

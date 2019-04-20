@@ -10,7 +10,7 @@ import UIKit
 
 extension UIViewController {
     func add(_ child: UIViewController) {
-        addChildViewController(child)
+        addChild(child)
         let childView = child.view
         childView?.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(childView!)
@@ -20,15 +20,15 @@ extension UIViewController {
             childView!.bottomAnchor.constraint(equalTo: _safeAreaLayoutGuide.bottomAnchor),
             childView!.rightAnchor.constraint(equalTo: _safeAreaLayoutGuide.rightAnchor)
             ])
-        child.didMove(toParentViewController: self)
+        child.didMove(toParent: self)
     }
 
     func remove() {
         guard parent != nil else {
             return
         }
-        willMove(toParentViewController: nil)
-        removeFromParentViewController()
+        willMove(toParent: nil)
+        removeFromParent()
         view.removeFromSuperview()
     }
     

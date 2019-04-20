@@ -29,16 +29,16 @@ class LoadingViewController: UIViewController {
         alphaAnimation.duration = 1.8
         alphaAnimation.values = [0, 1, 1, 0]
         alphaAnimation.keyTimes = [0, 0.05, 0.90, 1]
-        alphaAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+        alphaAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeIn)
         
         let positionAnimation = CAKeyframeAnimation(keyPath: "transform.translation.y")
         positionAnimation.duration = 0.5
         positionAnimation.values = [-15, 0]
-        positionAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        positionAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         
         let groupAnimation = CAAnimationGroup()
         groupAnimation.animations = [positionAnimation, alphaAnimation]
-        groupAnimation.fillMode = kCAFillModeForwards
+        groupAnimation.fillMode = CAMediaTimingFillMode.forwards
         groupAnimation.isRemovedOnCompletion = false
         groupAnimation.duration = 1.8
         logoImageView.layer.add(groupAnimation, forKey: "group")
@@ -51,9 +51,9 @@ class LoadingViewController: UIViewController {
         alphaAnimation.duration = 1.0
         alphaAnimation.fromValue = 0.0
         alphaAnimation.toValue = 1.0
-        alphaAnimation.fillMode = kCAFillModeForwards
+        alphaAnimation.fillMode = CAMediaTimingFillMode.forwards
         alphaAnimation.isRemovedOnCompletion = false
-        alphaAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        alphaAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         
         backgroundImageView.layer.add(alphaAnimation, forKey: "opacity")
     }
