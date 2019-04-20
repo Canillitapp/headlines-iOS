@@ -24,8 +24,8 @@ class InitialTabBarController: UITabBarController, UITabBarControllerDelegate {
         let font = UIFont(name: "Rubik-Regular", size: 18)
         if let font = font {
             navController.navigationBar.titleTextAttributes = [
-                NSAttributedStringKey.font: font,
-                NSAttributedStringKey.foregroundColor: UIColor.white
+                NSAttributedString.Key.font: font,
+                NSAttributedString.Key.foregroundColor: UIColor.white
             ]
         }
         

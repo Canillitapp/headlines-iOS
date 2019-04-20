@@ -50,8 +50,8 @@ class ScreenSwitcherViewController: OrientationAwareViewController {
     func setViewController(_ viewcontroller: UIViewController, animated: Bool) {
         DispatchQueue.main.async { [unowned self] in
             
-            self.currentViewController?.willMove(toParentViewController: nil)
-            self.addChildViewController(viewcontroller)
+            self.currentViewController?.willMove(toParent: nil)
+            self.addChild(viewcontroller)
             self.view.addSubview(viewcontroller.view)
             
             let completion: (Bool) -> Void = { [weak self] completed in
@@ -60,8 +60,8 @@ class ScreenSwitcherViewController: OrientationAwareViewController {
                 }
                 
                 vc.currentViewController?.view.removeFromSuperview()
-                vc.currentViewController?.removeFromParentViewController()
-                viewcontroller.didMove(toParentViewController: self)
+                vc.currentViewController?.removeFromParent()
+                viewcontroller.didMove(toParent: self)
                 
                 vc.currentViewController = viewcontroller
                 vc.setNeedsStatusBarAppearanceUpdate()

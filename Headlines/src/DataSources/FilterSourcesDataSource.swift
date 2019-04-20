@@ -38,7 +38,7 @@ class FilterSourcesDataSource: NSObject, UICollectionViewDelegateFlowLayout, UIC
         guard let s = arrayOfSources else {
             return
         }
-        let indexes = s.compactMap { sources.index(of: $0) }
+        let indexes = s.compactMap { sources.firstIndex(of: $0) }
         indexes.forEach {
             collectionView?.selectItem(
                 at: IndexPath(item: $0, section: 0),
@@ -91,7 +91,7 @@ class FilterSourcesDataSource: NSObject, UICollectionViewDelegateFlowLayout, UIC
     func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
         let deselected = sources[indexPath.row]
         
-        guard let deselectedIndex = selectedSources.index(of: deselected) else {
+        guard let deselectedIndex = selectedSources.firstIndex(of: deselected) else {
                 return
         }
         

@@ -46,7 +46,7 @@ class NewsCellViewModel: NSObject,
         }
         
         if news.category != nil {
-            let attributes = [NSAttributedStringKey.foregroundColor: UIColor(white: 0.75, alpha: 1)]
+            let attributes = [NSAttributedString.Key.foregroundColor: UIColor(white: 0.75, alpha: 1)]
             let tmp = NSAttributedString(string: " (\(news.category!))", attributes: attributes)
             attributedSource.append(tmp)
         }
@@ -118,7 +118,7 @@ class NewsCellViewModel: NSObject,
         
         let size = CGSize(width: Double.greatestFiniteMagnitude, height: 30)
         let options: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]
-        let attributes = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 14)]
+        let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
         
         let width = NSString(string: r.reactionString).boundingRect(with: size,
                                                                     options: options,

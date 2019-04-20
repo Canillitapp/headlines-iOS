@@ -65,7 +65,7 @@ class AppDelegate: UIResponder,
     func retryFetchCategoriesAndNewsAlert(with error: NSError) {
         var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = UIViewController()
-        window?.windowLevel = UIWindowLevelAlert + 1
+        window?.windowLevel = UIWindow.Level.alert + 1
         
         let alert = UIAlertController(
             title: "Whoops",
@@ -159,7 +159,7 @@ class AppDelegate: UIResponder,
     }
     
     func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+                     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         //  https://www.herzbube.ch/blog/2016/08/how-hide-fabric-api-key-and-build-secret-open-source-project
         let resourceURL = Bundle.main.url(forResource: "fabric", withExtension: "apikey")
@@ -189,7 +189,7 @@ class AppDelegate: UIResponder,
     
     func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,
-                     restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+                     restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         
         if userActivity.activityType == SuggestionsHelper.ActivityType.search.rawValue {
             
