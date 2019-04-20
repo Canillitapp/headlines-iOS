@@ -9,7 +9,7 @@
 import UIKit
 
 class TrendingSearchViewController: UITableViewController {
-    
+
     private var terms = [TrendingTerm]() {
         didSet {
             tableView.reloadData()
@@ -17,10 +17,10 @@ class TrendingSearchViewController: UITableViewController {
     }
     let service = NewsService()
     var didSelect: (String) -> Void = { _ in }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
             tableView.contentOffset = CGPoint(
                 x: 0,
@@ -28,10 +28,10 @@ class TrendingSearchViewController: UITableViewController {
             )
             refreshControl?.beginRefreshing()
         }
-        
+
         fetchTrending()
     }
-    
+
     private func fetchTrending() {
         service.fetchTrendingTerms(success: { [unowned self] in
             self.terms = $0
@@ -44,12 +44,12 @@ class TrendingSearchViewController: UITableViewController {
                 }
         })
     }
-    
+
     // MARK: - UITableViewDataSource
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return terms.count
     }
-    
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(
             withIdentifier: "trending_term_cell"
@@ -57,22 +57,22 @@ class TrendingSearchViewController: UITableViewController {
         cell.label.text = terms[indexPath.row].criteria
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let term = terms[indexPath.row].criteria
         didSelect(terms[indexPath.row].criteria)
-        
+
         // Save "Siri suggestion" to search news for <Topic>
         if #available(iOS 12.0, *) {
             let activity = SuggestionsHelper.searchActivity(from: term)
             self.userActivity = activity
         }
     }
-    
+
     @IBAction func reload(_ sender: UIRefreshControl) {
         fetchTrending()
     }
-    
+
     func set(enabled: Bool) {
         let textColor = enabled ?
         UIColor(red: 246/255, green: 35/255, blue: 84/255, alpha: 1.0) :

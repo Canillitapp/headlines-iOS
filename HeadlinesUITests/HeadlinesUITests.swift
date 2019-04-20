@@ -11,7 +11,7 @@ import XCTest
 class HeadlinesUITests: XCTestCase {
 
     let defaultWaitThreshold = 60.0
-    
+
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation
@@ -32,30 +32,30 @@ class HeadlinesUITests: XCTestCase {
     func testTrendingCards() {
         let app = XCUIApplication()
         let cell = app.collectionViews.cells.element(boundBy: 0)
-        
+
         let exists = NSPredicate(format: "exists == 1")
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
         wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
     }
-    
+
     func testPopularNews() {
         let app = XCUIApplication()
-        
+
         //  Go to Popular tab
         app.tabBars.buttons["Popular"].tap()
-        
+
         let cell = app.tables.cells.element(boundBy: 0)
         let exists = NSPredicate(format: "exists == 1")
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
         wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
     }
-    
+
     func testRecentNews() {
         let app = XCUIApplication()
-        
+
         //  Go to Reciente tab
         app.tabBars.buttons["Reciente"].tap()
-        
+
         let cell = app.tables.cells.element(boundBy: 0)
         let exists = NSPredicate(format: "exists == 1")
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)

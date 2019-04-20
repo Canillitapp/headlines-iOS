@@ -9,11 +9,11 @@
 import UIKit
 
 class SuggestedTermsTableViewController: UITableViewController {
-    
+
     var searchedTerm = String()
     var tags = [Tag]()
     var didSelect: (String) -> Void = { _ in }
-    
+
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -25,7 +25,7 @@ class SuggestedTermsTableViewController: UITableViewController {
         cell.set(tag: tags[indexPath.row], searchedTerm: searchedTerm)
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         didSelect(tags[indexPath.row].name)
     }

@@ -6,8 +6,8 @@
 //  Copyright © 2016 Ezequiel Becerra. All rights reserved.
 //
 
-import WatchKit
 import Foundation
+import WatchKit
 
 class TrendingRowController: NSObject {
     @IBOutlet var titleLabel: WKInterfaceLabel!

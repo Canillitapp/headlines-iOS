@@ -34,9 +34,9 @@ class TopicList: Decodable {
          *  from most recent news to oldest news.
          */
 
-        topics = news.map({ (k, v) -> Topic in
+        topics = news.map({ k, v -> Topic in
             return Topic(name: k, news: v)
-        }).sorted(by: { (a, b) -> Bool in
+        }).sorted(by: { a, b -> Bool in
             guard let dateA = a.news?.first?.date, let dateB = b.news?.first?.date else {
                 return false
             }

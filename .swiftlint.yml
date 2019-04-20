@@ -3,9 +3,19 @@ excluded:
   - fastlane
   - vendor
 
-disabled_rules:
-  - force_cast
-  - trailing_whitespace
+force_cast: warning
+
+opt_in_rules:
+  - multiline_literal_brackets
+  - multiline_parameters
+  - sorted_imports
+  - switch_case_on_newline
+  - unneeded_parentheses_in_closure_argument
+  - unused_import
+  - vertical_parameter_alignment_on_call
+  - vertical_whitespace_between_cases
+  - vertical_whitespace_closing_braces
+  - yoda_condition
 
 line_length: 120
 identifier_name:

@@ -20,6 +20,7 @@ extension NewsTableViewController {
             switch self {
             case .reload:
                 return true
+
             default:
                 return false
             }
@@ -29,6 +30,7 @@ extension NewsTableViewController {
             switch self {
             case .reload:
                 return true
+
             default:
                 return false
             }

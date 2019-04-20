@@ -6,8 +6,8 @@
 //  Copyright © 2019 Ezequiel Becerra. All rights reserved.
 //
 
-import XCTest
 @testable import Canillitapp
+import XCTest
 
 // swiftlint:disable force_try
 class TopicListTests: XCTestCase {

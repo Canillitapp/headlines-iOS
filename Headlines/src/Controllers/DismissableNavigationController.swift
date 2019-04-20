@@ -13,24 +13,23 @@ class DismissableNavigationController: UINavigationController {
     var dismissButtonItem: UIBarButtonItem {
         return UIBarButtonItem(barButtonSystemItem: .stop, target: self, action: #selector(selfDismiss))
     }
-    
+
     @objc func selfDismiss() {
         dismiss(animated: true, completion: nil)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // Styling
         navigationBar.tintColor = UIColor.white
         navigationBar.barStyle = .black
         navigationBar.isTranslucent = false
-        
+
         let attributes = [
             NSAttributedString.Key.font: UIFont(name: "Rubik-Regular", size: 18)!
         ]
-        
+
         navigationBar.titleTextAttributes = attributes
     }
-    
 }

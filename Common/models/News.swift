@@ -31,22 +31,22 @@ class News: NSObject, Decodable {
         case imageUrl = "img_url"
         case reactions
     }
-    
+
     var representativeReaction: Reaction? {
-        guard let r = reactions?.sorted(by: { (reactionA, reactionB) -> Bool in
+        guard let r = reactions?.sorted(by: { reactionA, reactionB -> Bool in
             return reactionA.amount > reactionB.amount
         }) else {
             return nil
         }
-        
+
         return r.first
     }
-    
+
     class func decodeArrayOfNews(from data: Data) throws -> [News] {
         let throwables = try JSONDecoder().decode([Throwable<News>].self, from: data)
         return throwables.compactMap { $0.value }
     }
-    
+
     init(identifier: String, url: URL, title: String, date: Date) {
         self.identifier = identifier
         self.url = url

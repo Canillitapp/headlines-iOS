@@ -27,6 +27,7 @@ extension Throwable {
         switch self {
         case .failure:
             return nil
+
         case .success(let value):
             return value
         }

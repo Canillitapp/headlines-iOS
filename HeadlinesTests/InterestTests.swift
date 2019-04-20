@@ -6,8 +6,8 @@
 //  Copyright © 2019 Ezequiel Becerra. All rights reserved.
 //
 
-import XCTest
 @testable import Canillitapp
+import XCTest
 
 // swiftlint:disable force_try
 class InterestTests: XCTestCase {
@@ -29,5 +29,4 @@ class InterestTests: XCTestCase {
         XCTAssertNotNil(interests)
         XCTAssert(interests.count == 20)
     }
-
 }

@@ -7,29 +7,28 @@
 //
 
 import Foundation
-import UIKit
 import StoreKit
+import UIKit
 
 // MARK: Review
 extension TrendingCardsViewController: ReviewViewDelegate {
-    
+
     func setupReviewView() {
         guard let view = ReviewView.loadViewFromNib() as? ReviewView,
             reviewViewModel.shouldShowBanner() else {
             return
         }
-        
+
         view.delegate = self
         mainStackView.insertArrangedSubview(view, at: 0)
         reviewView = view
     }
-    
+
     func reviewViewDidAccept(_ view: ReviewView) {
         self.userSettingsManager.reviewDate = Date()
         SKStoreReviewController.requestReview()
-
     }
-    
+
     func reviewViewDidCancel(_ view: ReviewView) {
         self.userSettingsManager.canceledReviewDate = Date()
     }

@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import UIKit
 import SafariServices
+import UIKit
 
 // MARK: - UIViewControllerPreviewingDelegate
 extension NewsTableViewController: UIViewControllerPreviewingDelegate {
@@ -93,19 +93,19 @@ extension NewsTableViewController: UIViewControllerPreviewingDelegate {
         let vc = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         vc.popoverPresentationController?.sourceView = tableView.cellForRow(at: indexPath)
 
-        let shareAction = UIAlertAction(title: "Compartir Noticia", style: .default) { (_) in
+        let shareAction = UIAlertAction(title: "Compartir Noticia", style: .default) { _ in
             UIPasteboard.general.string = ShareCanillitapActivity.canillitappURL(fromNews: viewModel.news)
             vc.dismiss(animated: true, completion: nil)
         }
         vc.addAction(shareAction)
 
-        let reactAction = UIAlertAction(title: "Agregar Reacción", style: .default) { [weak self] (_) in
+        let reactAction = UIAlertAction(title: "Agregar Reacción", style: .default) { [weak self] _ in
             vc.dismiss(animated: false, completion: nil)
             self?.performSegue(withIdentifier: "reaction", sender: viewModel)
         }
         vc.addAction(reactAction)
 
-        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel) { (_) in
+        let cancelAction = UIAlertAction(title: "Cancelar", style: .cancel) { _ in
             vc.dismiss(animated: true, completion: nil)
         }
         vc.addAction(cancelAction)

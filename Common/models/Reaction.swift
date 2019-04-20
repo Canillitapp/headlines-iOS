@@ -28,7 +28,7 @@ class Reaction: NSObject, Decodable {
     var reactionString: String {
         return "\(self.reaction) \(self.amount)"
     }
-    
+
     init(reaction: String, amount: Int) {
         self.reaction = reaction
         self.amount = amount
@@ -52,23 +52,23 @@ class Reaction: NSObject, Decodable {
 
         news = try? values.decode(News.self, forKey: .news)
     }
-    
+
     override func copy() -> Any {
         let retVal = Reaction(reaction: reaction, amount: amount)
         retVal.date = date
         return retVal
     }
-    
+
     class func randomReaction() -> Reaction {
         let emojis = availableReactions()
         let emojisRandomIndex = Int(arc4random_uniform(UInt32(emojis.count)))
         let reaction = emojis[emojisRandomIndex]
-        
+
         let amount = Int(arc4random_uniform(UInt32(999)))
 
         return Reaction(reaction: reaction, amount: amount)
     }
-    
+
     class func availableReactions() -> [String] {
         return [
             "😀", "😄", "😆", "😅", "😂", "😊", "😇", "🙂", "🙃", "😍", "😘", "😗", "😜",

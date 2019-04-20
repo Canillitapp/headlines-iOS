@@ -14,14 +14,14 @@ class SearchViewController: UIViewController {
     fileprivate var searchController: UISearchController!
     private var trendingSearchController: TrendingSearchViewController!
     private let resultController = NewsSearchStateController()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUISearchController()
         navigationController?.navigationBarShadow(hidden: true)
         resultController.didSelectSuggestion = search
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destination = segue.destination
         if let trendingSearchController = destination as? TrendingSearchViewController {
@@ -29,7 +29,7 @@ class SearchViewController: UIViewController {
             self.trendingSearchController = trendingSearchController
         }
     }
-    
+
     // MARK: - Search
     private func configureUISearchController() {
         searchController = UISearchController(
@@ -47,7 +47,7 @@ class SearchViewController: UIViewController {
         searchController.searchResultsUpdater = resultController
         navigationItem.titleView = searchController.searchBar
     }
-    
+
     func search(term: String?) {
         searchController.isActive = true
         searchController.searchBar.text = term
@@ -55,7 +55,7 @@ class SearchViewController: UIViewController {
         navigationController?.navigationBarShadow(hidden: false)
         if let term = term {
             resultController.fetch(term: term)
-            
+
             // Save "Siri suggestion" to search news for <Topic>
             if #available(iOS 12.0, *) {
                 let activity = SuggestionsHelper.searchActivity(from: term)
@@ -69,7 +69,7 @@ extension SearchViewController: UISearchControllerDelegate {
     func willPresentSearchController(_ searchController: UISearchController) {
         trendingSearchController.set(enabled: false)
     }
-    
+
     func willDismissSearchController(_ searchController: UISearchController) {
         trendingSearchController.set(enabled: true)
     }
@@ -79,14 +79,14 @@ extension SearchViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         navigationController?.navigationBarShadow(hidden: true)
     }
-    
+
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         search(term: searchBar.text)
     }
 }
 
 extension SearchViewController: TabbedViewController {
-    
+
     func tabbedViewControllerWasDoubleTapped() {
         guard
             let searchStateController = searchController.searchResultsController as? NewsSearchStateController,

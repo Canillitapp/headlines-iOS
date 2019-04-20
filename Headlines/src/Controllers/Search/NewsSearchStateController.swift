@@ -15,22 +15,22 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
     private let dispatchQueue = DispatchQueue.global(qos: .utility)
     private var dispatchWorkItem: DispatchWorkItem?
     private var previousTerm: String?
-    
+
     var didSelectSuggestion: (String) -> Void = { _ in }
     lazy var stateViewController = ContentStateViewController()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         add(stateViewController)
     }
-    
+
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text, !text.isEmpty else {
             dataTask?.cancel()
             return
         }
-        
+
         if text == previousTerm { return }
         previousTerm = text
         dataTask?.cancel()
@@ -41,7 +41,7 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
             self.render(tags: tags, searchedTerm: text)
             }, fail: nil)
     }
-    
+
     private func render(news: [News]?) {
         let storyboard = UIStoryboard(name: "Search", bundle: Bundle.main)
         let newsController = storyboard.instantiateViewController(
@@ -50,7 +50,7 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
         newsController.show(news: news)
         stateViewController.transition(to: .render(newsController))
     }
-    
+
     private func render(tags: [Tag], searchedTerm: String) {
         let storyboard = UIStoryboard(name: "Search", bundle: Bundle.main)
         let termsTableController = storyboard.instantiateViewController(
@@ -61,7 +61,7 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
         termsTableController.didSelect = didSelectSuggestion
         stateViewController.transition(to: .render(termsTableController))
     }
-    
+
     func fetch(term: String) {
         dataTask?.cancel()
         stateViewController.transition(to: .loading)
@@ -72,7 +72,7 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
             fail: self.error
         )
     }
-    
+
     private func error(_ error: NSError) {
         guard error.code == NSURLErrorCancelled else {
             let alert = UIAlertController(

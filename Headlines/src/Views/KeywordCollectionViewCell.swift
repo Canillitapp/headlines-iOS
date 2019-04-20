@@ -17,20 +17,20 @@ class KeywordCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var newsQuantityLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var reactionLabel: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         contentView.layer.cornerRadius = 10
         contentView.layer.masksToBounds = true
         contentView.layer.backgroundColor = UIColor.white.cgColor
         contentView.layer.borderColor = UIColor(white: 216/255.0, alpha: 1).cgColor
         contentView.layer.borderWidth = 1
-        
+
         layer.backgroundColor = UIColor.clear.cgColor
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0, height: 2.0)

@@ -15,26 +15,26 @@ let kAnimationDurationDismiss: TimeInterval = 0.30
 class DimPresentAnimationController: NSObject, UIViewControllerAnimatedTransitioning {
 
     var isPresenting: Bool = false
-    
+
     private func dismissAnimation(using transitionContext: UIViewControllerContextTransitioning) {
-        
+
         guard let fromVC = transitionContext.viewController(forKey: .from) else {
             return
         }
-        
+
         let animationClosure: (() -> Void) = {
             fromVC.view.alpha = 0
-            
+
             if let filterVC = fromVC as? FilterViewController {
                 filterVC.containerStackView.transform = CGAffineTransform(translationX: 0,
                                                                           y: kContainerStackViewDistance)
             }
         }
-        
-        let completionClosure: ((Bool) -> Void) = { (_) in
+
+        let completionClosure: ((Bool) -> Void) = { _ in
             transitionContext.completeTransition(true)
         }
-        
+
         UIView.animate(
             withDuration: self.transitionDuration(using: transitionContext),
             delay: 0,
@@ -43,32 +43,32 @@ class DimPresentAnimationController: NSObject, UIViewControllerAnimatedTransitio
             completion: completionClosure
         )
     }
-    
+
     private func presentAnimation(using transitionContext: UIViewControllerContextTransitioning) {
         guard let toVC = transitionContext.viewController(forKey: .to) else {
             return
         }
-        
+
         transitionContext.containerView.addSubview(toVC.view)
         toVC.view.alpha = 0
-        
+
         if let filterVC = toVC as? FilterViewController {
             filterVC.containerStackView.transform = CGAffineTransform(translationX: 0, y: kContainerStackViewDistance)
         }
-        
+
         let animationClosure: (() -> Void) = {
             toVC.view.alpha = 1
-            
+
             if let filterVC = toVC as? FilterViewController {
                 filterVC.containerStackView.transform = CGAffineTransform.identity
             }
         }
-        
-        let completionClosure: ((Bool) -> Void) = { (_) in
+
+        let completionClosure: ((Bool) -> Void) = { _ in
             transitionContext.completeTransition(true)
             UIApplication.shared.keyWindow?.addSubview(toVC.view)
         }
-        
+
         UIView.animate(
             withDuration: self.transitionDuration(using: transitionContext),
             delay: 0,
@@ -79,12 +79,12 @@ class DimPresentAnimationController: NSObject, UIViewControllerAnimatedTransitio
             completion: completionClosure
         )
     }
-    
+
     // MARK: UIViewControllerAnimatedTransitioning
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
         return isPresenting ? kAnimationDurationPresent : kAnimationDurationDismiss
     }
-    
+
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         if isPresenting {
             presentAnimation(using: transitionContext)

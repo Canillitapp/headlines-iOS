@@ -11,7 +11,7 @@ import UIKit
 class ContentStateViewController: UIViewController {
     private var state: State?
     var shownViewController: UIViewController?
-    
+
     func transition(to newState: State) {
         shownViewController?.remove()
         let vc = viewController(for: newState)
@@ -26,6 +26,7 @@ private extension ContentStateViewController {
         switch state {
         case .loading:
             return SpinnerViewController()
+
         case .render(let viewController):
             return viewController
         }

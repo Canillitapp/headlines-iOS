@@ -16,7 +16,7 @@ class SpinnerViewController: UIViewController {
         indicator.startAnimating()
         return indicator
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(activityIndicator)

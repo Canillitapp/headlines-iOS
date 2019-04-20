@@ -15,39 +15,39 @@ class NewsPreviewViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         imageView.sd_setImage(with: news?.imageUrl)
         titleLabel.text = news?.title
         subtitleLabel.text = news?.source
     }
-    
+
     override var previewActionItems: [UIPreviewActionItem] {
-        
-        let shareAction = UIPreviewAction(title: "Compartir Noticia", style: .default, handler: { (_, _) -> Void in
+
+        let shareAction = UIPreviewAction(title: "Compartir Noticia", style: .default, handler: { _, _ -> Void in
             guard let n = self.news else {
                 return
             }
-            
+
             UIPasteboard.general.string = ShareCanillitapActivity.canillitappURL(fromNews: n)
         })
-        
+
         var actions = [shareAction]
-        
+
         if newsViewController != nil {
-            let reactionsAction = UIPreviewAction(title: "Agregar Reacción", style: .default, handler: { (_, _) -> Void in
+            let reactionsAction = UIPreviewAction(title: "Agregar Reacción", style: .default, handler: { _, _ -> Void in
                 guard let n = self.news else {
                     return
                 }
-                
+
                 let vm = NewsCellViewModel(news: n)
                 self.newsViewController?.performSegue(withIdentifier: "reaction", sender: vm)
             })
             actions.append(reactionsAction)
         }
-        
+
         return actions
     }
 }

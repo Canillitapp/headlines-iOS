@@ -21,8 +21,8 @@ class Topic: NSObject, Decodable {
 
     var representativeReaction: Reaction? {
         var reactionMap = [String: Reaction]()
-        news?.forEach({ (n) in
-            n.reactions?.forEach({ (r) in
+        news?.forEach({ n in
+            n.reactions?.forEach({ r in
                 guard let fetchedReaction = reactionMap[r.reaction] else {
                     reactionMap[r.reaction] = r.copy() as? Reaction
                     return
@@ -30,7 +30,7 @@ class Topic: NSObject, Decodable {
                 fetchedReaction.amount += r.amount
             })
         })
-        
+
         let sortedReactions = reactionMap.values.sorted { return $0.amount > $1.amount }
         return sortedReactions.first
     }

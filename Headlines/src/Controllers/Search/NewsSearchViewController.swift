@@ -16,14 +16,14 @@ class NewsSearchViewController: NewsTableViewController {
         preferredDateStyle = .short
         trackContextFrom = .search
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         guard let tableView = tableView else {
             return
         }
-        
+
         tableView.accessibilityIdentifier = "search table"
     }
 
@@ -32,11 +32,11 @@ class NewsSearchViewController: NewsTableViewController {
             return
         }
         self.news = news
-        
+
         guard let tableView = tableView else {
             return
         }
-        
+
         tableView.reloadData()
         let move = AnimationType.from(direction: .bottom, offset: 5)
         let scale = AnimationType.zoom(scale: 0.98)
@@ -45,14 +45,14 @@ class NewsSearchViewController: NewsTableViewController {
             animations: [move, scale]
         )
     }
-        
+
     func resetNews() {
         news.removeAll()
-        
+
         guard let tableView = tableView else {
             return
         }
-        
+
         DispatchQueue.main.async {
             tableView.reloadData()
         }

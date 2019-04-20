@@ -50,7 +50,7 @@ extension NewsTableViewController {
                 return
         }
 
-        let success: (URLResponse?, News?) -> Void = { [unowned self] (_, updatedNews) in
+        let success: (URLResponse?, News?) -> Void = { [unowned self] _, updatedNews in
             guard let n = updatedNews else {
                 return
             }
@@ -80,14 +80,14 @@ extension NewsTableViewController: NewsCellViewModelDelegate {
 
     func newsViewModel(_ viewModel: NewsCellViewModel, didSelectReaction reaction: Reaction) {
 
-        let success: (URLResponse?, News?) -> Void = { [unowned self] (response, updatedNews) in
+        let success: (URLResponse?, News?) -> Void = { [unowned self] response, updatedNews in
             guard let n = updatedNews else {
                 return
             }
             self.addReaction(reaction.reaction, toNews: n)
         }
 
-        let fail: (Error) -> Void = { [unowned self] (err) in
+        let fail: (Error) -> Void = { [unowned self] err in
             self.showControllerWithError(err as NSError)
         }
 
