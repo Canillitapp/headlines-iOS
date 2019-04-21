@@ -206,7 +206,7 @@ extension NewsTableViewController: UITableViewDataSource {
         guard
             let newsDataSource = newsDataSource,
             newsDataSource.isPaginationEnabled == true,
-            indexPath.row >= filteredNewsViewModels.count - 10,
+            indexPath.row >= filteredNewsViewModels.count - 15,
             isFetchingNews == false,
             canFetchMoreNews == true else {
 
