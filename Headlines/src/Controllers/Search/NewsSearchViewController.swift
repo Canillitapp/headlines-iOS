@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ViewAnimator
 
 class NewsSearchViewController: NewsTableViewController {
 
