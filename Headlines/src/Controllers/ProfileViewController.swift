@@ -10,8 +10,8 @@ import Foundation
 import UIKit
 import SafariServices
 import Crashlytics
-import JGProgressHUD
-import SDWebImage
+//import JGProgressHUD
+import Kingfisher
 
 class ProfileViewController: UIViewController, TabbedViewController, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
@@ -126,12 +126,12 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
     }
 
     func handleInterestSelection(_ interest: Interest) {
-        let hud = JGProgressHUD(style: .dark)
-        hud.textLabel.text = "Loading"
-        hud.show(in: self.view)
+//        let hud = JGProgressHUD(style: .dark)
+//        hud.textLabel.text = "Loading"
+//        hud.show(in: self.view)
 
         let success: (([News]?) -> Void) = { [unowned self] (news) in
-            hud.dismiss()
+//            hud.dismiss()
 
             guard let news = news else {
                 return
@@ -142,7 +142,7 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
         }
 
         let fail: ((NSError) -> Void) = { [unowned self] (error) in
-            hud.dismiss()
+//            hud.dismiss()
 
             self.showControllerWithError(error as NSError)
         }

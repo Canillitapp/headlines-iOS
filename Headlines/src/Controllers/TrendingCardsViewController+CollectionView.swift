@@ -137,18 +137,14 @@ extension TrendingCardsViewController: UICollectionViewDataSource {
         cell.imageView.contentMode = .center
 
         if let imgURL = firstNews.imageUrl {
-            cell.imageView.sd_setImage(
-                with: imgURL,
-                placeholderImage: UIImage(named: "icon_placeholder_big"),
-                options: [],
-                completed: { (_, error, _, _) in
-
-                    if error != nil {
-                        return
-                    }
-
+            cell.imageView.kf.setImage(with: imgURL, placeholder: UIImage(named: "icon_placeholder_small")) { result in
+                switch result {
+                case .success(_):
                     cell.imageView.contentMode = .scaleAspectFill
-            })
+                case .failure(_):
+                    break
+                }
+            }
         } else {
             cell.imageView.image = nil
         }

@@ -107,7 +107,7 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
 
             if let n = reaction.news {
                 cell.label.text = n.title
-                cell.imageView.sd_setImage(with: n.imageUrl)
+                cell.imageView.kf.setImage(with: n.imageUrl)
             }
 
             return cell

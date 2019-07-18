@@ -50,7 +50,7 @@ class TrendingNewsTableViewController: NewsTableViewController {
         guard let image = newsWithImages.first?.imageUrl else {
             return
         }
-        headerView.backgroundImageView.sd_setImage(with: image, completed: nil)
+        headerView.backgroundImageView.kf.setImage(with: image)
         headerView.backgroundColor = UIColor.red
 
         // Constraints

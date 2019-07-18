@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-import SDWebImage
+import Kingfisher
 
 protocol CategoriesContainerViewModelDelegate: class {
     func didSelectCategory(_ category: Category)
@@ -39,32 +39,34 @@ class CategoriesContainerViewModel: NSObject {
     func loadImage(with category: Category, at cell: CategoryCollectionViewCell) {
         let key = CategoriesContainerViewModel.imageKeyFromCategory(category)
 
-        if let cachedImage = ImageCacheManager.shared.image(forKey: key) {
-            cell.backgroundImageView.image = cachedImage
-        } else {
-            guard let imageURL = category.imageURL else {
-                return
-            }
-
-            cell.backgroundImageView.alpha = 0
-            cell.backgroundImageView.sd_setImage(with: imageURL) {(image, _, _, _) in
-                guard let img = image else {
+        ImageCacheManager.shared.image(forKey: key) { image in
+            if let cachedImage = image {
+                cell.backgroundImageView.image = cachedImage
+            } else {
+                guard let imageURL = category.imageURL else {
                     return
                 }
-
-                DispatchQueue.global().async {
-                    let tintColor = UIColor(white: 0, alpha: 0.35)
-                    let blurredImage = img.applyBlurWithRadius(3, tintColor: tintColor, saturationDeltaFactor: 1)
-
-                    DispatchQueue.main.async {
-                        cell.backgroundImageView.image = blurredImage
-                        if let blurredImage = blurredImage {
-                            ImageCacheManager.shared.setImage(blurredImage, forKey: key)
+                
+                cell.backgroundImageView.alpha = 0
+                cell.backgroundImageView.kf.setImage(with: imageURL) {(image, _, _, _) in
+                    guard let img = image else {
+                        return
+                    }
+                    
+                    DispatchQueue.global().async {
+                        let tintColor = UIColor(white: 0, alpha: 0.35)
+                        let blurredImage = img.applyBlurWithRadius(3, tintColor: tintColor, saturationDeltaFactor: 1)
+                        
+                        DispatchQueue.main.async {
+                            cell.backgroundImageView.image = blurredImage
+                            if let blurredImage = blurredImage {
+                                ImageCacheManager.shared.setImage(blurredImage, forKey: key)
+                            }
+                            
+                            UIView.animate(withDuration: 0.3, animations: {
+                                cell.backgroundImageView.alpha = 1.0
+                            })
                         }
-
-                        UIView.animate(withDuration: 0.3, animations: {
-                            cell.backgroundImageView.alpha = 1.0
-                        })
                     }
                 }
             }

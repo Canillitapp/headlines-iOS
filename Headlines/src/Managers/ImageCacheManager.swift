@@ -8,36 +8,40 @@
 
 import Foundation
 import UIKit
-import SDWebImage
+import Kingfisher
 
 class ImageCacheManager {
 
     static let shared = ImageCacheManager()
+    private let cache = ImageCache(name: "canillitapp.cache")
+    private var cachedImages = [String: UIImage]()
+    
 
-    var cachedImages = [String: UIImage]()
-
-    func image(forKey key: String) -> UIImage? {
+    func image(forKey key: String, completion: ((UIImage?) -> Void)? = nil) {
 
         // Look for it on cache
         if let cachedImage = cachedImages[key] {
-            return cachedImage
+            DispatchQueue.main.async {
+                completion?(cachedImage)
+            }
         }
 
         // Look for it on disk
-        if let cachedImage = SDWebImageManager.shared().imageCache?.imageFromDiskCache(forKey: key) {
-            // Cache it on memory
-            cachedImages[key] = cachedImage
-            return cachedImage
+        cache.retrieveImageInDiskCache(forKey: key) { [unowned self] result in
+            switch result {
+            case .success(let image):
+                self.cachedImages[key] = image
+                DispatchQueue.main.async {
+                    completion?(image)
+                }
+            case .failure(_):
+                completion?(nil)
+            }
         }
-
-        return nil
     }
 
     func setImage(_ image: UIImage, forKey key: String) {
         cachedImages[key] = image
-
-        DispatchQueue.main.async {
-            SDImageCache.shared().store(image, forKey: key, toDisk: true)
-        }
+        cache.store(image, forKey: key)
     }
 }

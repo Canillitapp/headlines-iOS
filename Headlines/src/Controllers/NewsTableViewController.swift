@@ -177,18 +177,14 @@ extension NewsTableViewController: UITableViewDataSource {
 
         if let imgURL = viewModel.imageURL {
             cell.newsImageView.isHidden = false
-            cell.newsImageView.sd_setImage(
-                with: imgURL,
-                placeholderImage: UIImage(named: "icon_placeholder_small"),
-                options: [],
-                completed: { (_, error, _, _) in
-
-                    if error != nil {
-                        return
-                    }
-
+            cell.newsImageView.kf.setImage(with: imgURL, placeholder: UIImage(named: "icon_placeholder_small")) { result in
+                switch result {
+                case .success(_):
                     cell.newsImageView.contentMode = .scaleAspectFill
-            })
+                case .failure(_):
+                    break
+                }
+            }
         } else {
             cell.newsImageView.isHidden = true
         }

@@ -19,7 +19,7 @@ class NewsPreviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        imageView.sd_setImage(with: news?.imageUrl)
+        imageView.kf.setImage(with: news?.imageUrl)
         titleLabel.text = news?.title
         subtitleLabel.text = news?.source
     }

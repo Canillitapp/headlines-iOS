@@ -11,7 +11,7 @@ import UserNotifications
 
 import Fabric
 import Firebase
-import JGProgressHUD
+//import JGProgressHUD
 
 extension Notification.Name {
     static let notificationNewsTapped = Notification.Name("notification_news_tapped")
@@ -123,12 +123,12 @@ class AppDelegate: UIResponder,
             return
         }
 
-        let hud = JGProgressHUD(style: .dark)
-        hud.textLabel.text = "Loading"
-        hud.show(in: vc.view)
+//        let hud = JGProgressHUD(style: .dark)
+//        hud.textLabel.text = "Loading"
+//        hud.show(in: vc.view)
 
         let success: (([News]?) -> Void) = { (news) in
-            hud.dismiss()
+//            hud.dismiss()
 
             guard let news = news else {
                 return
@@ -151,7 +151,7 @@ class AppDelegate: UIResponder,
         }
 
         let fail: ((NSError) -> Void) = { (error) in
-            hud.dismiss()
+//            hud.dismiss()
         }
 
         let newsService = NewsService()
