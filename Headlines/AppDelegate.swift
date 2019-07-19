@@ -10,7 +10,8 @@ import UIKit
 import UserNotifications
 
 import Fabric
-import Firebase
+import Crashlytics
+import FirebaseCore
 //import JGProgressHUD
 
 extension Notification.Name {
