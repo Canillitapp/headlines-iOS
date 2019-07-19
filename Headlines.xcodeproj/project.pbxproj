@@ -41,7 +41,7 @@
 		6719DA6C1D6D143E00D1E214 /* Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6719DA6B1D6D143E00D1E214 /* Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6719DA731D6D143E00D1E214 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6719DA721D6D143E00D1E214 /* ExtensionDelegate.swift */; };
 		6719DA751D6D143E00D1E214 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6719DA741D6D143E00D1E214 /* Assets.xcassets */; };
-		6719DA791D6D143E00D1E214 /* Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6719DA5F1D6D143E00D1E214 /* Watch.app */; };
+		6719DA791D6D143E00D1E214 /* Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6719DA5F1D6D143E00D1E214 /* Watch.app */; platformFilter = ios; };
 		671DC3761EE35FB3000CBAF0 /* SnapshotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671DC3751EE35FB3000CBAF0 /* SnapshotUITests.swift */; };
 		671DC37E1EE35FC3000CBAF0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671DC37D1EE35FC3000CBAF0 /* SnapshotHelper.swift */; };
 		6723B67720EB145D00DEF366 /* LoadingTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6723B67620EB145D00DEF366 /* LoadingTask.swift */; };
@@ -158,7 +158,7 @@
 		67BA65C41FCB65B400411A06 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BA65C31FCB65B400411A06 /* NotificationCenter.framework */; };
 		67BA65C71FCB65B400411A06 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BA65C61FCB65B400411A06 /* TodayViewController.swift */; };
 		67BA65CA1FCB65B400411A06 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67BA65C81FCB65B400411A06 /* MainInterface.storyboard */; };
-		67BA65CE1FCB65B400411A06 /* Canillitapp Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 67BA65C21FCB65B400411A06 /* Canillitapp Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		67BA65CE1FCB65B400411A06 /* Canillitapp Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 67BA65C21FCB65B400411A06 /* Canillitapp Widget.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		67BC0911204B33F200796B8B /* NewsPreview.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67BC090F204B33F200796B8B /* NewsPreview.storyboard */; };
 		67BC0913204B35D400796B8B /* NewsPreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BC0912204B35D400796B8B /* NewsPreviewViewController.swift */; };
 		67C3CD3D1D6D1876003CC04E /* TrendingInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C3CD3C1D6D1876003CC04E /* TrendingInterfaceController.swift */; };
@@ -179,7 +179,6 @@
 		67F39C1A1EB2DEE600CF99F2 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F39C191EB2DEE600CF99F2 /* SearchViewController.swift */; };
 		67F5C2C5219B8AD8009093D8 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F5C2C4219B8AD8009093D8 /* ImageCacheManager.swift */; };
 		67FD84DE1D6BF85D00BACAFC /* TrendingCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67FD84DA1D6BF85D00BACAFC /* TrendingCardsViewController.swift */; };
-		FB0420D622E1187A001BB658 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = FB0420D522E1187A001BB658 /* Kingfisher */; };
 		FB0F97F320F84F5E00555A7A /* FilterSourcesDataSourceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0F97F220F84F5E00555A7A /* FilterSourcesDataSourceTests.swift */; };
 		FB0F97F720F8D51A00555A7A /* Array+Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB0F97F520F8D40C00555A7A /* Array+Util.swift */; };
 		FB450E0F20F2813B00084445 /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FB450E0D20F2813B00084445 /* Search.storyboard */; };
@@ -202,19 +201,20 @@
 		FB9F586B20FA34730028C1DF /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9F586A20FA34730028C1DF /* Tag.swift */; };
 		FB9F586C20FA34970028C1DF /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9F586A20FA34730028C1DF /* Tag.swift */; };
 		FB9F586D20FA34970028C1DF /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB9F586A20FA34730028C1DF /* Tag.swift */; };
-		FBA9FE6822E1424D0099C666 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA9FE6022E1424B0099C666 /* FirebaseCore.framework */; };
-		FBA9FE6922E1424D0099C666 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA9FE6122E1424B0099C666 /* FirebaseAnalytics.framework */; };
-		FBA9FE6A22E1424D0099C666 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA9FE6222E1424C0099C666 /* nanopb.framework */; };
-		FBA9FE6B22E1424D0099C666 /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA9FE6322E1424C0099C666 /* GoogleAppMeasurement.framework */; };
-		FBA9FE6C22E1424D0099C666 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA9FE6422E1424C0099C666 /* FirebaseInstanceID.framework */; };
-		FBA9FE6D22E1424D0099C666 /* FIRAnalyticsConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA9FE6522E1424C0099C666 /* FIRAnalyticsConnector.framework */; };
-		FBA9FE6E22E1424D0099C666 /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA9FE6622E1424D0099C666 /* GoogleUtilities.framework */; };
-		FBA9FE6F22E1424D0099C666 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA9FE6722E1424D0099C666 /* FirebaseCoreDiagnostics.framework */; };
+		FBA0CD4422E155FA00DEA857 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = FBA0CD4322E155FA00DEA857 /* SwiftPackageProductDependency */; };
+		FBA9FE6822E1424D0099C666 /* FirebaseCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA9FE6022E1424B0099C666 /* FirebaseCore.framework */; platformFilter = ios; };
+		FBA9FE6922E1424D0099C666 /* FirebaseAnalytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA9FE6122E1424B0099C666 /* FirebaseAnalytics.framework */; platformFilter = ios; };
+		FBA9FE6A22E1424D0099C666 /* nanopb.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA9FE6222E1424C0099C666 /* nanopb.framework */; platformFilter = ios; };
+		FBA9FE6B22E1424D0099C666 /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA9FE6322E1424C0099C666 /* GoogleAppMeasurement.framework */; platformFilter = ios; };
+		FBA9FE6C22E1424D0099C666 /* FirebaseInstanceID.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA9FE6422E1424C0099C666 /* FirebaseInstanceID.framework */; platformFilter = ios; };
+		FBA9FE6D22E1424D0099C666 /* FIRAnalyticsConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA9FE6522E1424C0099C666 /* FIRAnalyticsConnector.framework */; platformFilter = ios; };
+		FBA9FE6E22E1424D0099C666 /* GoogleUtilities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA9FE6622E1424D0099C666 /* GoogleUtilities.framework */; platformFilter = ios; };
+		FBA9FE6F22E1424D0099C666 /* FirebaseCoreDiagnostics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA9FE6722E1424D0099C666 /* FirebaseCoreDiagnostics.framework */; platformFilter = ios; };
 		FBBDCC6E20F2C3B200757861 /* TrendingTerm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBDCC6D20F2C3B200757861 /* TrendingTerm.swift */; };
 		FBBDCC6F20F2C59E00757861 /* TrendingTerm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBDCC6D20F2C3B200757861 /* TrendingTerm.swift */; };
 		FBBDCC7020F2C59E00757861 /* TrendingTerm.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBBDCC6D20F2C3B200757861 /* TrendingTerm.swift */; };
-		FBC1019222E1178800778E0B /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC1019022E1178700778E0B /* Crashlytics.framework */; };
-		FBC1019322E1178800778E0B /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC1019122E1178700778E0B /* Fabric.framework */; };
+		FBC1019222E1178800778E0B /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC1019022E1178700778E0B /* Crashlytics.framework */; platformFilter = ios; };
+		FBC1019322E1178800778E0B /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBC1019122E1178700778E0B /* Fabric.framework */; platformFilter = ios; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -513,6 +513,7 @@
 		FBBDCC6D20F2C3B200757861 /* TrendingTerm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingTerm.swift; sourceTree = "<group>"; };
 		FBC1019022E1178700778E0B /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		FBC1019122E1178700778E0B /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		FBE3A19022E1487700DC481E /* Notifications.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Notifications.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -541,6 +542,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBA0CD4422E155FA00DEA857 /* BuildFile in Frameworks */,
 				67897EB21EA70B2B0084F598 /* CloudKit.framework in Frameworks */,
 				FBA9FE6822E1424D0099C666 /* FirebaseCore.framework in Frameworks */,
 				FBA9FE6922E1424D0099C666 /* FirebaseAnalytics.framework in Frameworks */,
@@ -551,7 +553,6 @@
 				FBC1019322E1178800778E0B /* Fabric.framework in Frameworks */,
 				FBA9FE6B22E1424D0099C666 /* GoogleAppMeasurement.framework in Frameworks */,
 				FBA9FE6F22E1424D0099C666 /* FirebaseCoreDiagnostics.framework in Frameworks */,
-				FB0420D622E1187A001BB658 /* Kingfisher in Frameworks */,
 				FBA9FE6E22E1424D0099C666 /* GoogleUtilities.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -944,6 +945,7 @@
 		679A72C12018CE3F005CCCB5 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
+				FBE3A19022E1487700DC481E /* Notifications.entitlements */,
 				679A72C22018CE3F005CCCB5 /* NotificationService.swift */,
 				679A72C42018CE3F005CCCB5 /* Info.plist */,
 			);
@@ -1216,7 +1218,7 @@
 			);
 			name = Canillitapp;
 			packageProductDependencies = (
-				FB0420D522E1187A001BB658 /* Kingfisher */,
+				FBA0CD4322E155FA00DEA857 /* SwiftPackageProductDependency */,
 			);
 			productName = Headlines;
 			productReference = 675A81DC1D6BF6E8000DC680 /* Canillitapp.app */;
@@ -1330,7 +1332,6 @@
 					};
 					675A81DB1D6BF6E8000DC680 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = 2334RGUT2P;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -1357,7 +1358,6 @@
 					};
 					679A72BF2018CE3F005CCCB5 = {
 						CreatedOnToolsVersion = 9.2;
-						DevelopmentTeam = 2334RGUT2P;
 						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 					};
@@ -1380,7 +1380,7 @@
 			);
 			mainGroup = 675A81D31D6BF6E8000DC680;
 			packageReferences = (
-				FB0420D422E1187A001BB658 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				FBA0CD4222E155FA00DEA857 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 675A81DD1D6BF6E8000DC680 /* Products */;
 			projectDirPath = "";
@@ -1532,7 +1532,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"Fabric.framework/run\"\n";
+			shellScript = "#\"Fabric.framework/run\"\n";
 		};
 		67FD84E11D6BF89D00BACAFC /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2196,14 +2196,15 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 679;
-				DEVELOPMENT_TEAM = 2334RGUT2P;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
+				DEVELOPMENT_TEAM = 8PC4X7QUY9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Headlines/src/Firebase",
 				);
 				INFOPLIST_FILE = Headlines/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2212,10 +2213,11 @@
 					"-ObjC",
 					"-l\"sqlite3\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.headlines;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marcosgriselli.canillita;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2231,14 +2233,15 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 679;
-				DEVELOPMENT_TEAM = 2334RGUT2P;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
+				DEVELOPMENT_TEAM = 8PC4X7QUY9;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/Headlines/src/Firebase",
 				);
 				INFOPLIST_FILE = Headlines/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -2247,10 +2250,11 @@
 					"-ObjC",
 					"-l\"sqlite3\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.headlines;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marcosgriselli.canillita;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2348,10 +2352,12 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = Notifications/Notifications.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2334RGUT2P;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
+				DEVELOPMENT_TEAM = 8PC4X7QUY9;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Notifications/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -2360,9 +2366,10 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.headlines.Notifications;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marcosgriselli.canillita.Notifications;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2382,10 +2389,12 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = Notifications/Notifications.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2334RGUT2P;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
+				DEVELOPMENT_TEAM = 8PC4X7QUY9;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Notifications/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
@@ -2394,9 +2403,10 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.headlines.Notifications;
+				PRODUCT_BUNDLE_IDENTIFIER = com.marcosgriselli.canillita.Notifications;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2430,6 +2440,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "ar.com.betzerra.headlines.Canillitapp-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
@@ -2465,6 +2476,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "ar.com.betzerra.headlines.Canillitapp-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2567,7 +2579,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		FB0420D422E1187A001BB658 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+		FBA0CD4222E155FA00DEA857 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
@@ -2578,9 +2590,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		FB0420D522E1187A001BB658 /* Kingfisher */ = {
+		FBA0CD4322E155FA00DEA857 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = FB0420D422E1187A001BB658 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = FBA0CD4222E155FA00DEA857 /* RemoteSwiftPackageReference */;
 			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */

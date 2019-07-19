@@ -8,7 +8,6 @@
 
 import UIKit
 import UserNotifications
-
 import Fabric
 import Crashlytics
 import FirebaseCore
@@ -162,9 +161,10 @@ class AppDelegate: UIResponder,
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+        #if !targetEnvironment(macCatalyst)
         //  https://www.herzbube.ch/blog/2016/08/how-hide-fabric-api-key-and-build-secret-open-source-project
         let resourceURL = Bundle.main.url(forResource: "fabric", withExtension: "apikey")
-
+        
         do {
             var fabricAPIKey = try String(contentsOf: resourceURL!)
             fabricAPIKey = fabricAPIKey.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -174,6 +174,8 @@ class AppDelegate: UIResponder,
         } catch let error {
             print(error.localizedDescription)
         }
+        FirebaseApp.configure()
+        #endif
 
         if userSettingsManager.firstOpenDate == nil {
             userSettingsManager.firstOpenDate = Date()
@@ -182,8 +184,6 @@ class AppDelegate: UIResponder,
         fetchCategoriesAndNews()
 
         setupNotifications()
-
-        FirebaseApp.configure()
 
         return true
     }
