@@ -33,36 +33,33 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
         showActivity(true)
 
-        let success: (TopicList?) -> Void = { [weak self] (topicList) in
-            guard let self = self else {
-                return
+        let handler: ((Result <TopicList?, Error>) -> Void) = { [weak self] result in
+            switch result {
+            case .success(let topicList):
+                guard let self = self else {
+                    return
+                }
+
+                self.showActivity(false)
+
+                self.todayViewModel.topics = topicList?.topics
+
+                guard let attributedText = self.todayViewModel.attributedTitlesString else {
+                    return
+                }
+
+                self.widgetLabel.attributedText = attributedText
+
+            case .failure(_):
+                guard let self = self else {
+                    return
+                }
+
+                self.showActivity(false)
             }
-
-            self.showActivity(false)
-
-            self.todayViewModel.topics = topicList?.topics
-
-            guard let attributedText = self.todayViewModel.attributedTitlesString else {
-                return
-            }
-
-            self.widgetLabel.attributedText = attributedText
         }
 
-        let fail: (NSError) -> Void = { [weak self] (error) in
-            guard let self = self else {
-                return
-            }
-
-            self.showActivity(false)
-        }
-
-        newsDataTask = newsService.requestTrendingTopicsWithDate(
-            Date(),
-            count: 6,
-            success: success,
-            fail: fail
-        )
+        newsDataTask = newsService.requestTrendingTopicsWithDate(Date(), count: 6, handler: handler)
     }
 
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {

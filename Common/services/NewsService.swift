@@ -12,151 +12,156 @@ import CloudKit
 // swiftlint:disable force_try
 class NewsService: HTTPService {
 
+//handler: ((Result <Data?, Error>) -> Void)?) -> URLSessionDataTask? {
+
     func requestFromCategory (_ categoryId: String,
                               page: Int = 1,
-                              success: ((_ result: [News]?) -> Void)?,
-                              fail: ((_ error: NSError) -> Void)?) {
-
-        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data else {
-                return
-            }
-
-            let res = try? News.decodeArrayOfNews(from: d)
-
-            DispatchQueue.main.async(execute: {
-                success?(res)
-            })
-        }
-
-        let failBlock: (_ error: NSError) -> Void = { (e) in
-            DispatchQueue.main.async(execute: {
-                fail?(e as NSError)
-            })
-        }
+                              handler: ((_ result: Result <[News]?, Error>) -> Void)?) {
 
         let path = "news/category/\(categoryId)?page=\(page)"
-        _ = request(method: .GET, path: path, params: nil, success: successBlock, fail: failBlock)
+
+        let handler: ((Result <Data?, Error>) -> Void) = { result in
+            switch result {
+            case .success(let data):
+                guard let d = data else {
+                    handler?(.success(nil))
+                    return
+                }
+
+                let res = try? News.decodeArrayOfNews(from: d)
+
+                DispatchQueue.main.async(execute: {
+                    handler?(.success(res))
+                })
+
+            case .failure(let error):
+                handler?(.failure(error))
+                return
+            }
+        }
+
+        _ = request(method: .GET, path: path, params: nil, handler: handler)
     }
 
     func requestPopularNews (page: Int = 1,
-                             success: ((_ result: [News]?) -> Void)?,
-                             fail: ((_ error: NSError) -> Void)?) {
+                             handler: ((_ result: Result <[News]?, Error>) -> Void)?) {
 
-        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data else {
-                return
-            }
-
-            let res = try? News.decodeArrayOfNews(from: d)
-
-            DispatchQueue.main.async(execute: {
-                success?(res)
-            })
-        }
-
-        let failBlock: (_ error: NSError) -> Void = { (e) in
-            DispatchQueue.main.async(execute: {
-                fail?(e as NSError)
-            })
-        }
-
-        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-            let mockService = MockService()
-            _ = mockService.request(file: "GET-popular",
-                                    success: successBlock,
-                                    fail: failBlock)
-            return
-        }
+//        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+//            let mockService = MockService()
+//            _ = mockService.request(file: "GET-popular",
+//                                    success: successBlock,
+//                                    fail: failBlock)
+//            return
+//        }
 
         let path = "popular?page=\(page)"
-        _ = request(method: .GET, path: path, params: nil, success: successBlock, fail: failBlock)
+
+        let handler: ((Result <Data?, Error>) -> Void) = { result in
+            switch result {
+            case .success(let data):
+                guard let d = data else {
+                    handler?(.success(nil))
+                    return
+                }
+
+                let res = try? News.decodeArrayOfNews(from: d)
+
+                DispatchQueue.main.async(execute: {
+                    handler?(.success(res))
+                })
+            case .failure(let error):
+                handler?(.failure(error))
+            }
+        }
+
+        _ = request(method: .GET, path: path, params: nil, handler: handler)
     }
 
     func requestRecentNewsWithDate (_ date: Date,
-                                    success: ((_ result: [News]?) -> Void)?,
-                                    fail: ((_ error: NSError) -> Void)?) {
+                                    handler: ((_ result: Result <[News]?, Error>) -> Void)?) {
 
         let calendar = Calendar.current
         let components = (calendar as NSCalendar).components([.day, .month, .year], from: date)
 
         let datePath = String(format: "%d-%02d-%02d", components.year!, components.month!, components.day!)
 
-        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data else {
-                return
+//        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+//            let mockService = MockService()
+//            _ = mockService.request(file: "GET-recent",
+//                                    success: successBlock,
+//                                    fail: failBlock)
+//            return
+//        }
+
+        let handler: ((Result <Data?, Error>) -> Void) = { result in
+            switch result {
+            case .success(let data):
+                guard let d = data else {
+                    handler?(.success(nil))
+                    return
+                }
+
+                let res = try? News.decodeArrayOfNews(from: d)
+
+                DispatchQueue.main.async(execute: {
+                    handler?(.success(res))
+                })
+            case .failure(let error):
+                handler?(.failure(error))
             }
-
-            let res = try? News.decodeArrayOfNews(from: d)
-
-            DispatchQueue.main.async(execute: {
-                success?(res)
-            })
         }
 
-        let failBlock: (_ error: NSError) -> Void = { (e) in
-            DispatchQueue.main.async(execute: {
-                fail?(e as NSError)
-            })
-        }
-
-        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-            let mockService = MockService()
-            _ = mockService.request(file: "GET-recent",
-                                    success: successBlock,
-                                    fail: failBlock)
-            return
-        }
-
-        _ = request(method: .GET, path: "latest/\(datePath)", params: nil, success: successBlock, fail: failBlock)
+        _ = request(method: .GET, path: "latest/\(datePath)", params: nil, handler: handler)
     }
 
     func requestTrendingTopicsWithDate (_ date: Date,
                                         count: Int,
-                                        success: ((_ result: TopicList?) -> Void)?,
-                                        fail: ((_ error: NSError) -> Void)?) -> URLSessionDataTask? {
+                                        handler: ((_ result: Result <TopicList?, Error>) -> Void)?) -> URLSessionDataTask? {
 
         let calendar = Calendar.current
         let components = (calendar as NSCalendar).components([.day, .month, .year], from: date)
 
         let datePath = String(format: "%d-%02d-%02d", components.year!, components.month!, components.day!)
 
-        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data else {
-                return
+//        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+//            let mockService = MockService()
+//            _ = mockService.request(file: "GET-trending",
+//                                    success: successBlock,
+//                                    fail: failBlock)
+//            return nil
+//        }
+
+        let handler: ((Result <Data?, Error>) -> Void) = { result in
+            switch result {
+            case .success(let data):
+                guard let d = data else {
+                    handler?(.success(nil))
+                    return
+                }
+
+                let res = try! JSONDecoder().decode(TopicList.self, from: d)
+
+                DispatchQueue.main.async(execute: {
+                    handler?(.success(res))
+                })
+
+            case .failure(let error):
+                handler?(.failure(error))
             }
-
-            let res = try! JSONDecoder().decode(TopicList.self, from: d)
-
-            DispatchQueue.main.async(execute: {
-                success?(res)
-            })
         }
 
-        let failBlock: (_ error: NSError) -> Void = { (e) in
-            DispatchQueue.main.async(execute: {
-                fail?(e as NSError)
-            })
-        }
+        let task = request(
+            method: .GET,
+            path: "trending/\(datePath)/\(count)",
+            params: nil,
+            handler: handler
+        )
 
-        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-            let mockService = MockService()
-            _ = mockService.request(file: "GET-trending",
-                                    success: successBlock,
-                                    fail: failBlock)
-            return nil
-        }
-
-        return request(method: .GET,
-                       path: "trending/\(datePath)/\(count)",
-                       params: nil,
-                       success: successBlock,
-                       fail: failBlock)!
+        return task
     }
 
     func searchNews(_ text: String,
-                    success: ((_ result: [News]?) -> Void)?,
-                    fail: ((_ error: NSError) -> Void)?) -> URLSessionDataTask? {
+                    handler: ((_ result: Result <[News]?, Error>) -> Void)?) -> URLSessionDataTask? {
 
         let group = DispatchGroup()
 
@@ -164,31 +169,13 @@ class NewsService: HTTPService {
             return nil
         }
 
-        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data else {
-                return
-            }
-
-            let res = try? News.decodeArrayOfNews(from: d)
-
-            DispatchQueue.main.async(execute: {
-                success?(res)
-            })
-        }
-
-        let failBlock: (_ error: NSError) -> Void = { (e) in
-            DispatchQueue.main.async(execute: {
-                fail?(e as NSError)
-            })
-        }
-
-        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-            let mockService = MockService()
-            _ = mockService.request(file: "GET-search",
-                                    success: successBlock,
-                                    fail: failBlock)
-            return nil
-        }
+//        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+//            let mockService = MockService()
+//            _ = mockService.request(file: "GET-search",
+//                                    success: successBlock,
+//                                    fail: failBlock)
+//            return nil
+//        }
 
         var headers: [String: String] = [:]
 
@@ -215,88 +202,92 @@ class NewsService: HTTPService {
         }
 
         group.wait()
-        return self.request(
-                        method: .GET,
-                        path: "search/\(encodedText)",
-                        params: nil,
-                        headers: headers,
-                        success: successBlock,
-                        fail: failBlock
-                )
+
+        let handler: ((Result <Data?, Error>) -> Void) = { result in
+            switch result {
+            case .success(let data):
+                guard let d = data else {
+                    handler?(.success(nil))
+                    return
+                }
+
+                let res = try? News.decodeArrayOfNews(from: d)
+
+                DispatchQueue.main.async(execute: {
+                    handler?(.success(res))
+                })
+            case .failure(let error):
+                handler?(.failure(error))
+            }
+        }
+
+        let task = self.request(method: .GET, path: "search/\(encodedText)", params: nil, handler: handler)
+        return task
     }
 
-    func fetchTrendingTerms(success: ((_ result: [TrendingTerm]) -> Void)?,
-                            fail: ((_ error: NSError) -> Void)?) {
+    func fetchTrendingTerms(handler: ((_ result: Result <[TrendingTerm]?, Error>) -> Void)?) {
 
-        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {( data, response) in
-            guard let data = data else {
-                return
+//        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+//            let mockService = MockService()
+//            _ = mockService.request(file: "GET-search-trending",
+//                                    success: successBlock,
+//                                    fail: failBlock)
+//            return
+//        }
+
+        let handler: ((Result <Data?, Error>) -> Void) = { result in
+            switch result {
+            case .success(let data):
+                guard let d = data else {
+                    handler?(.success(nil))
+                    return
+                }
+
+                let res = (try? JSONDecoder().decode([TrendingTerm].self, from: d)) ?? [TrendingTerm]()
+
+                DispatchQueue.main.async(execute: {
+                    handler?(.success(res))
+                })
+            case .failure(let error):
+                handler?(.failure(error))
             }
-
-            let terms = (try? JSONDecoder().decode([TrendingTerm].self, from: data)) ?? [TrendingTerm]()
-
-            DispatchQueue.main.async(execute: {
-                success?(terms)
-            })
         }
 
-        let failBlock: (_ error: NSError) -> Void = { (e) in
-            DispatchQueue.main.async(execute: {
-                fail?(e as NSError)
-            })
-        }
-
-        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-            let mockService = MockService()
-            _ = mockService.request(file: "GET-search-trending",
-                                    success: successBlock,
-                                    fail: failBlock)
-            return
-        }
-
-        _ = request(
-            method: .GET,
-            path: "search/trending/",
-            params: nil,
-            success: successBlock,
-            fail: failBlock
-        )
+        _ = request(method: .GET, path: "search/trending/", params: nil, handler: handler)
     }
 
     @discardableResult
-    func fetchTags(tag: String, success: ((_ result: [Tag]) -> Void)?,
-                   fail: ((_ error: NSError) -> Void)?) -> URLSessionDataTask? {
+    func fetchTags(tag: String,
+                   handler: ((_ result: Result <[Tag]?, Error>) -> Void)?) -> URLSessionDataTask? {
 
-        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {( data, response) in
-            guard let data = data else { return }
-            let decoder = JSONDecoder()
-            let tags = try? decoder.decode([Tag].self, from: data)
-            DispatchQueue.main.async(execute: {
-                success?(tags ?? [Tag]())
-            })
-        }
+//        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+//            let mockService = MockService()
+//            _ = mockService.request(file: "GET-search-term",
+//                                    success: successBlock,
+//                                    fail: failBlock)
+//            return nil
+//        }
 
-        let failBlock: (_ error: NSError) -> Void = { (e) in
-            DispatchQueue.main.async(execute: {
-                fail?(e as NSError)
-            })
-        }
+        let handler: ((Result <Data?, Error>) -> Void) = { result in
+            switch result {
+            case .success(let data):
+                guard let d = data else {
+                    handler?(.success(nil))
+                    return
+                }
 
-        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-            let mockService = MockService()
-            _ = mockService.request(file: "GET-search-term",
-                                    success: successBlock,
-                                    fail: failBlock)
-            return nil
+                let res = try? JSONDecoder().decode([Tag].self, from: d)
+
+                DispatchQueue.main.async(execute: {
+                    handler?(.success(res))
+                })
+            case .failure(let error):
+                handler?(.failure(error))
+            }
         }
 
         let encodedTag = tag.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? String()
-        return request(
-            method: .GET,
-            path: "tags/\(encodedTag)",
-            params: nil,
-            success: successBlock,
-            fail: failBlock
-        )
+        let task = request(method: .GET, path: "tags/\(encodedTag)", params: nil, handler: handler)
+        return task
     }
 }
