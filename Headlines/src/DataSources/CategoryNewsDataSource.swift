@@ -25,19 +25,7 @@ class CategoryNewsDataSource: NewsTableViewControllerDataSource {
         self.category = category
     }
 
-    func fetchNews(page: Int, success: ((_: [News]) -> Void)?, fail: ((_ error: NSError) -> Void)?) {
-        newsService.requestFromCategory(category.identifier, page: page, success: { (result) in
-            guard let r = result else {
-                let userInfo = [
-                    NSLocalizedDescriptionKey: "No data"
-                ]
-
-                let e = NSError(domain: "CategoryNewsDataSource", code: 1, userInfo: userInfo)
-                fail?(e)
-                return
-            }
-
-            success?(r)
-        }, fail: fail)
+    func fetchNews(page: Int, handler: ((_ result: Result <[News], Error>) -> Void)?) {
+        newsService.requestFromCategory(category.identifier, page: page, handler: handler)
     }
 }

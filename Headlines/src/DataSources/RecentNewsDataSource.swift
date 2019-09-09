@@ -19,19 +19,7 @@ class RecentNewsDataSource: NewsTableViewControllerDataSource {
 
     var isPaginationEnabled = false
 
-    func fetchNews(page: Int, success: (([News]) -> Void)?, fail: ((NSError) -> Void)?) {
-        newsService.requestRecentNewsWithDate(Date(), success: { (result) in
-            guard let r = result else {
-                let userInfo = [
-                    NSLocalizedDescriptionKey: "No data"
-                ]
-
-                let e = NSError(domain: "RecentNewsDataSource", code: 1, userInfo: userInfo)
-                fail?(e)
-                return
-            }
-
-            success?(r)
-        }, fail: fail)
+    func fetchNews(page: Int, handler: ((_ result: Result <[News], Error>) -> Void)?) {
+        newsService.requestRecentNewsWithDate(Date(), handler: handler)
     }
 }

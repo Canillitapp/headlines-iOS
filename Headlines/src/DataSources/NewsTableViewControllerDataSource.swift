@@ -12,5 +12,5 @@ protocol NewsTableViewControllerDataSource {
     var shouldDisplayPullToRefreshControl: Bool { get }
     var isFilterEnabled: Bool { get }
     var isPaginationEnabled: Bool { get }
-    func fetchNews(page: Int, success: ((_: [News]) -> Void)?, fail: ((_ error: NSError) -> Void)?)
+    func fetchNews(page: Int, handler: ((_ result: Result <[News], Error>) -> Void)?)
 }

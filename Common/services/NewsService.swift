@@ -16,7 +16,7 @@ class NewsService: HTTPService {
 
     func requestFromCategory (_ categoryId: String,
                               page: Int = 1,
-                              handler: ((_ result: Result <[News]?, Error>) -> Void)?) {
+                              handler: ((_ result: Result <[News], Error>) -> Void)?) {
 
         let path = "news/category/\(categoryId)?page=\(page)"
 
@@ -24,11 +24,11 @@ class NewsService: HTTPService {
             switch result {
             case .success(let data):
                 guard let d = data else {
-                    handler?(.success(nil))
+                    handler?(.success([News]()))
                     return
                 }
 
-                let res = try? News.decodeArrayOfNews(from: d)
+                let res = (try? News.decodeArrayOfNews(from: d)) ?? [News]()
 
                 DispatchQueue.main.async(execute: {
                     handler?(.success(res))
@@ -78,7 +78,7 @@ class NewsService: HTTPService {
     }
 
     func requestRecentNewsWithDate (_ date: Date,
-                                    handler: ((_ result: Result <[News]?, Error>) -> Void)?) {
+                                    handler: ((_ result: Result <[News], Error>) -> Void)?) {
 
         let calendar = Calendar.current
         let components = (calendar as NSCalendar).components([.day, .month, .year], from: date)
@@ -97,11 +97,11 @@ class NewsService: HTTPService {
             switch result {
             case .success(let data):
                 guard let d = data else {
-                    handler?(.success(nil))
+                    handler?(.success([News]()))
                     return
                 }
 
-                let res = try? News.decodeArrayOfNews(from: d)
+                let res = (try? News.decodeArrayOfNews(from: d)) ?? [News]()
 
                 DispatchQueue.main.async(execute: {
                     handler?(.success(res))
@@ -258,7 +258,7 @@ class NewsService: HTTPService {
 
     @discardableResult
     func fetchTags(tag: String,
-                   handler: ((_ result: Result <[Tag]?, Error>) -> Void)?) -> URLSessionDataTask? {
+                   handler: ((_ result: Result <[Tag], Error>) -> Void)?) -> URLSessionDataTask? {
 
 //        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
 //            let mockService = MockService()
@@ -272,11 +272,11 @@ class NewsService: HTTPService {
             switch result {
             case .success(let data):
                 guard let d = data else {
-                    handler?(.success(nil))
+                    handler?(.success([Tag]()))
                     return
                 }
 
-                let res = try? JSONDecoder().decode([Tag].self, from: d)
+                let res = (try? JSONDecoder().decode([Tag].self, from: d)) ?? [Tag]()
 
                 DispatchQueue.main.async(execute: {
                     handler?(.success(res))
