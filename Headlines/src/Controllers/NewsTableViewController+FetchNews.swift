@@ -56,6 +56,59 @@ extension NewsTableViewController {
         fetch(mode: .reload)
     }
 
+    func updateNews(_ news: [News], _ mode: FetchMode) {
+
+        guard let tableView = tableView else {
+            return
+        }
+
+        // Stop pull to refresh animation (if needed)
+        if mode.shouldAnimatePullToRefresh() {
+            endRefreshing()
+        }
+
+        // If news are == 0, then we reached to the end
+        guard news.count > 0 else {
+            canFetchMoreNews = false
+            return
+        }
+
+        // Generate NewsCellViewModels from News
+        let viewModels = self.viewModels(from: news)
+
+        // Calculate indexpaths to update
+        let filteredNews = filterNews(viewModels)
+
+        let indexPaths = indexPathsToUpdate(
+            start: newsViewModels.count,
+            length: filteredNews.count
+        )
+
+        // Append all news to newsViewModels
+        newsViewModels.append(contentsOf: viewModels)
+
+        // Append filtered news and update our tableView
+        UIView.performWithoutAnimation {
+            tableView.beginUpdates()
+            filteredNewsViewModels.append(contentsOf: filteredNews)
+            tableView.insertRows(at: indexPaths, with: .none)
+            tableView.setContentOffset(tableView.contentOffset, animated: false)
+            tableView.endUpdates()
+        }
+
+        // Animate all cells appearing (if needed)
+        if mode.shouldAnimateCells() {
+            UIView.animate(
+                views: tableView.visibleCells,
+                animations: [AnimationType.from(direction: .right, offset: 10.0)],
+                animationInterval: 0.1
+            )
+        }
+
+        lastPage += 1
+        isFetchingNews = false
+    }
+
     func fetch(mode: FetchMode) {
 
         guard let newsDataSource = newsDataSource,
@@ -69,59 +122,6 @@ extension NewsTableViewController {
         // Animate pull to refresh (if needed)
         if mode.shouldAnimatePullToRefresh() {
             startRefreshing()
-        }
-
-        let success: (([News]) -> Void) = { [weak self] news in
-
-            guard let strongSelf = self, let tableView = strongSelf.tableView else {
-                return
-            }
-
-            // Stop pull to refresh animation (if needed)
-            if mode.shouldAnimatePullToRefresh() {
-                strongSelf.endRefreshing()
-            }
-
-            // If news are == 0, then we reached to the end
-            guard news.count > 0 else {
-                strongSelf.canFetchMoreNews = false
-                return
-            }
-
-            // Generate NewsCellViewModels from News
-            let viewModels = strongSelf.viewModels(from: news)
-
-            // Calculate indexpaths to update
-            let filteredNews = strongSelf.filterNews(viewModels)
-
-            let indexPaths = strongSelf.indexPathsToUpdate(
-                start: strongSelf.newsViewModels.count,
-                length: filteredNews.count
-            )
-
-            // Append all news to newsViewModels
-            strongSelf.newsViewModels.append(contentsOf: viewModels)
-
-            // Append filtered news and update our tableView
-            UIView.performWithoutAnimation {
-                tableView.beginUpdates()
-                strongSelf.filteredNewsViewModels.append(contentsOf: filteredNews)
-                tableView.insertRows(at: indexPaths, with: .none)
-                tableView.setContentOffset(tableView.contentOffset, animated: false)
-                tableView.endUpdates()
-            }
-
-            // Animate all cells appearing (if needed)
-            if mode.shouldAnimateCells() {
-                UIView.animate(
-                    views: tableView.visibleCells,
-                    animations: [AnimationType.from(direction: .right, offset: 10.0)],
-                    animationInterval: 0.1
-                )
-            }
-
-            strongSelf.lastPage += 1
-            strongSelf.isFetchingNews = false
         }
 
         let fail: ((NSError?) -> Void) = { [weak self] _ in
@@ -149,7 +149,21 @@ extension NewsTableViewController {
             break
         }
 
-        newsDataSource.fetchNews(page: lastPage, success: success, fail: fail)
+        let handler: ((Result <[News], Error>) -> Void) = { [weak self] result in
+            switch result {
+            case .success(let news):
+                self?.updateNews(news, mode)
+
+            case .failure(_):
+                // Stop pull to refresh animation (if needed)
+                if mode.shouldAnimatePullToRefresh() {
+                    self?.endRefreshing()
+                }
+
+                self?.isFetchingNews = false
+            }
+        }
+        newsDataSource.fetchNews(page: lastPage, handler: handler)
     }
 }
 

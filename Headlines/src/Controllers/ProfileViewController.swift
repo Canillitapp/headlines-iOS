@@ -27,7 +27,7 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
 
     // MARK: Private
     private func trackOpenNews(_ news: News) {
-        contentViewsService.postContentView(news.identifier, context: .reactions, success: nil, fail: nil)
+        contentViewsService.postContentView(news.identifier, context: .reactions, handler: nil)
     }
 
     func openURL(_ url: URL) {
@@ -52,7 +52,7 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
         }
     }
 
-    func showControllerWithError(_ error: NSError) {
+    func showControllerWithError(_ error: Error) {
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
         let alertController = UIAlertController(title: "Sorry",
                                                 message: error.localizedDescription,
@@ -131,24 +131,20 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
         hud.textLabel.text = "Loading"
         hud.show(in: self.view)
 
-        let success: (([News]?) -> Void) = { [unowned self] (news) in
-            hud.dismiss()
+        let handler: ((Result<[News], Error>) -> Void) = { [weak self] result in
+            switch result {
+            case .success(let news):
+                hud.dismiss()
 
-            guard let news = news else {
-                return
+                let interestNews = InterestNews(interest: interest.name, news: news)
+                self?.performSegue(withIdentifier: "interest_did_select", sender: interestNews)
+
+            case .failure(let error):
+                hud.dismiss()
+                self?.showControllerWithError(error)
             }
-
-            let interestNews = InterestNews(interest: interest.name, news: news)
-            self.performSegue(withIdentifier: "interest_did_select", sender: interestNews)
         }
-
-        let fail: ((NSError) -> Void) = { [unowned self] (error) in
-            hud.dismiss()
-
-            self.showControllerWithError(error as NSError)
-        }
-
-        _ = newsService.searchNews(interest.name, success: success, fail: fail)
+        _ = newsService.searchNews(interest.name, handler: handler)
     }
 
     // MARK: Public

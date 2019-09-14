@@ -95,33 +95,37 @@ class TrendingCardsViewController: UIViewController {
     }
 
     func requestTrendingTopicsWithDate(_ date: Date) {
-        newsDataTask = newsService.requestTrendingTopicsWithDate(date, count: 6, success: { (topicList) in
+        let handler: ((Result<TopicList?, Error>) -> Void) = { result in
+            switch result {
+            case .success(let topicList):
+                self.endRefreshing()
 
-            self.endRefreshing()
-
-            guard let topics = topicList?.topics else {
-                return
-            }
-
-            /*  
-             *  Horrible recursive hot-fix to avoid not showing anything because
-             *  that current date has no results
-             */
-
-            if topics.count == 0 {
-                let calendar = Calendar.current
-                if let newDate = calendar.date(byAdding: .day, value: -1, to: date) {
-                    self.requestTrendingTopicsWithDate(newDate)
+                guard let topics = topicList?.topics else {
+                    return
                 }
-                return
+
+                /*
+                 *  Horrible recursive hot-fix to avoid not showing anything because
+                 *  that current date has no results
+                 */
+
+                if topics.count == 0 {
+                    let calendar = Calendar.current
+                    if let newDate = calendar.date(byAdding: .day, value: -1, to: date) {
+                        self.requestTrendingTopicsWithDate(newDate)
+                    }
+                    return
+                }
+
+                self.appendTopics(topics)
+
+            case .failure(let error):
+                print(error.localizedDescription)
+                self.updateFooterView()
             }
+        }
 
-            self.appendTopics(topics)
-
-        }, fail: { (error) in
-            print(error.localizedDescription)
-            self.updateFooterView()
-        })
+        newsDataTask = newsService.requestTrendingTopicsWithDate(date, count: 6, handler: handler)
 
         updateFooterView()
     }

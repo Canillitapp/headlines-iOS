@@ -21,22 +21,7 @@ class PopularNewsDataSource: NewsTableViewControllerDataSource {
 
     required init() {}
 
-    func fetchNews(page: Int, success: ((_: [News]) -> Void)?, fail: ((_ error: NSError) -> Void)?) {
-
-        let success: (([News]?) -> Void) = { result in
-            guard let r = result else {
-                let userInfo = [
-                    NSLocalizedDescriptionKey: "No data"
-                ]
-
-                let e = NSError(domain: "PopularNewsDataSource", code: 1, userInfo: userInfo)
-                fail?(e)
-                return
-            }
-
-            success?(r)
-        }
-
-        newsService.requestPopularNews(page: page, success: success, fail: fail)
+    func fetchNews(page: Int, handler: ((Result <[News], Error>) -> Void)?) {
+        newsService.requestPopularNews(page: page, handler: handler)
     }
 }

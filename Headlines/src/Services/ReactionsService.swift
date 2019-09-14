@@ -64,7 +64,7 @@ class ReactionsService: HTTPService {
         }
     }
 
-    func getReactions(handler: ((_ result: Result <[Reaction]?, Error>) -> Void)?) {
+    func getReactions(handler: ((_ result: Result <[Reaction], Error>) -> Void)?) {
 
 //        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
 //            let mockService = MockService()
@@ -99,10 +99,11 @@ class ReactionsService: HTTPService {
                 switch result {
                 case .success(let data):
                     guard let d = data else {
+                        handler?(.success([]))
                         return
                     }
 
-                    let res = try! JSONDecoder().decode([Reaction].self, from: d)
+                    let res = (try? JSONDecoder().decode([Reaction].self, from: d)) ?? []
 
                     DispatchQueue.main.async(execute: {
                         handler?(.success(res))

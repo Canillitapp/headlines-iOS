@@ -62,7 +62,7 @@ class AppDelegate: UIResponder,
         }
     }
 
-    func retryFetchCategoriesAndNewsAlert(with error: NSError) {
+    func retryFetchCategoriesAndNewsAlert(with error: Error) {
         var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = UIViewController()
         window?.windowLevel = UIWindow.Level.alert + 1
@@ -87,7 +87,7 @@ class AppDelegate: UIResponder,
     }
 
     func fetchCategoriesAndNews() {
-        let completion: ([Topic]?, [Category]?, NSError?) -> Void = { [unowned self] (topics, categories, error) in
+        let completion: ([Topic]?, [Category]?, Error?) -> Void = { [unowned self] (topics, categories, error) in
             if let e = error {
                 print("#ERROR: \(e.localizedDescription)")
                 self.retryFetchCategoriesAndNewsAlert(with: e)
@@ -127,35 +127,33 @@ class AppDelegate: UIResponder,
         hud.textLabel.text = "Loading"
         hud.show(in: vc.view)
 
-        let success: (([News]?) -> Void) = { (news) in
-            hud.dismiss()
+        let handler: ((Result <[News], Error>) -> Void) = { result in
+            switch result {
+            case .success(let news):
+                hud.dismiss()
 
-            guard let news = news else {
-                return
+                let storyboard = UIStoryboard.init(name: "News", bundle: Bundle.main)
+                guard let newsViewController = storyboard.instantiateViewController(withIdentifier: "news")
+                    as? NewsTableViewController else {
+                        return
+                }
+                newsViewController.preferredDateStyle = .short
+                newsViewController.trackContextFrom = .search
+                newsViewController.news = news
+                newsViewController.title = topic
+
+                let navController = DismissableNavigationController(rootViewController: newsViewController)
+                newsViewController.navigationItem.leftBarButtonItem = navController.dismissButtonItem
+
+                vc.present(navController, animated: true, completion: nil)
+
+            case .failure(_):
+                hud.dismiss()
             }
-
-            let storyboard = UIStoryboard.init(name: "News", bundle: Bundle.main)
-            guard let newsViewController = storyboard.instantiateViewController(withIdentifier: "news")
-                as? NewsTableViewController else {
-                return
-            }
-            newsViewController.preferredDateStyle = .short
-            newsViewController.trackContextFrom = .search
-            newsViewController.news = news
-            newsViewController.title = topic
-
-            let navController = DismissableNavigationController(rootViewController: newsViewController)
-            newsViewController.navigationItem.leftBarButtonItem = navController.dismissButtonItem
-
-            vc.present(navController, animated: true, completion: nil)
-        }
-
-        let fail: ((NSError) -> Void) = { (error) in
-            hud.dismiss()
         }
 
         let newsService = NewsService()
-        _ = newsService.searchNews(topic, success: success, fail: fail)
+        _ = newsService.searchNews(topic, handler: handler)
     }
 
     func application(_ application: UIApplication,
@@ -206,7 +204,7 @@ class AppDelegate: UIResponder,
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        usersService.postDeviceToken(token, success: nil, fail: nil)
+        usersService.postDeviceToken(token, handler: nil)
     }
 
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -241,19 +239,10 @@ class AppDelegate: UIResponder,
 
         switch response.actionIdentifier {
         case "like":
-            reactionsService.postReaction(
-                "👍",
-                atPost: "\(postId)",
-                success: nil,
-                fail: nil
-            )
+            reactionsService.postReaction("👍", atPost: "\(postId)", handler: nil)
         case "dislike":
-            reactionsService.postReaction(
-                "👎",
-                atPost: "\(postId)",
-                success: nil,
-                fail: nil
-            )
+            reactionsService.postReaction("👎", atPost: "\(postId)", handler: nil)
+
         //  Responds "view" action and default one
         default:
 

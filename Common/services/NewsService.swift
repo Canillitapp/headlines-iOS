@@ -44,7 +44,7 @@ class NewsService: HTTPService {
     }
 
     func requestPopularNews (page: Int = 1,
-                             handler: ((_ result: Result <[News]?, Error>) -> Void)?) {
+                             handler: ((_ result: Result <[News], Error>) -> Void)?) {
 
 //        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
 //            let mockService = MockService()
@@ -60,11 +60,11 @@ class NewsService: HTTPService {
             switch result {
             case .success(let data):
                 guard let d = data else {
-                    handler?(.success(nil))
+                    handler?(.success([]))
                     return
                 }
 
-                let res = try? News.decodeArrayOfNews(from: d)
+                let res = (try? News.decodeArrayOfNews(from: d)) ?? []
 
                 DispatchQueue.main.async(execute: {
                     handler?(.success(res))
@@ -161,7 +161,7 @@ class NewsService: HTTPService {
     }
 
     func searchNews(_ text: String,
-                    handler: ((_ result: Result <[News]?, Error>) -> Void)?) -> URLSessionDataTask? {
+                    handler: ((_ result: Result <[News], Error>) -> Void)?) -> URLSessionDataTask? {
 
         let group = DispatchGroup()
 
@@ -207,11 +207,11 @@ class NewsService: HTTPService {
             switch result {
             case .success(let data):
                 guard let d = data else {
-                    handler?(.success(nil))
+                    handler?(.success([]))
                     return
                 }
 
-                let res = try? News.decodeArrayOfNews(from: d)
+                let res = (try? News.decodeArrayOfNews(from: d)) ?? []
 
                 DispatchQueue.main.async(execute: {
                     handler?(.success(res))
@@ -225,7 +225,7 @@ class NewsService: HTTPService {
         return task
     }
 
-    func fetchTrendingTerms(handler: ((_ result: Result <[TrendingTerm]?, Error>) -> Void)?) {
+    func fetchTrendingTerms(handler: ((_ result: Result <[TrendingTerm], Error>) -> Void)?) {
 
 //        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
 //            let mockService = MockService()
@@ -239,7 +239,7 @@ class NewsService: HTTPService {
             switch result {
             case .success(let data):
                 guard let d = data else {
-                    handler?(.success(nil))
+                    handler?(.success([]))
                     return
                 }
 
