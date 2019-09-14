@@ -39,26 +39,30 @@ class HeadlinesUITests: XCTestCase {
     }
 
     func testPopularNews() {
-        let app = XCUIApplication()
-
-        //  Go to Popular tab
-        app.tabBars.buttons["Popular"].tap()
-
-        let cell = app.tables.cells.element(boundBy: 0)
         let exists = NSPredicate(format: "exists == 1")
+
+        let tab = XCUIApplication().tabBars.buttons["Popular"]
+        let tabBarExpectation = expectation(for: exists, evaluatedWith: tab) { () -> Bool in
+            tab.tap()
+            return true
+        }
+
+        let cell = XCUIApplication().tables.cells.element(boundBy: 0)
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
-        wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
+        wait(for: [tabBarExpectation, cellExistsExpectation], timeout: defaultWaitThreshold)
     }
 
     func testRecentNews() {
-        let app = XCUIApplication()
-
-        //  Go to Reciente tab
-        app.tabBars.buttons["Reciente"].tap()
-
-        let cell = app.tables.cells.element(boundBy: 0)
         let exists = NSPredicate(format: "exists == 1")
+
+        let tab = XCUIApplication().tabBars.buttons["Reciente"]
+        let tabBarExpectation = expectation(for: exists, evaluatedWith: tab) { () -> Bool in
+            tab.tap()
+            return true
+        }
+
+        let cell = XCUIApplication().tables.cells.element(boundBy: 0)
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
-        wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
+        wait(for: [tabBarExpectation, cellExistsExpectation], timeout: defaultWaitThreshold)
     }
 }

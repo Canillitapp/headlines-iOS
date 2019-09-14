@@ -12,15 +12,13 @@ import CloudKit
 // swiftlint:disable force_try
 class NewsService: HTTPService {
 
-//handler: ((Result <Data?, Error>) -> Void)?) -> URLSessionDataTask? {
-
     func requestFromCategory (_ categoryId: String,
                               page: Int = 1,
                               handler: ((_ result: Result <[News], Error>) -> Void)?) {
 
         let path = "news/category/\(categoryId)?page=\(page)"
 
-        let handler: ((Result <Data?, Error>) -> Void) = { result in
+        let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
             switch result {
             case .success(let data):
                 guard let d = data else {
@@ -40,23 +38,13 @@ class NewsService: HTTPService {
             }
         }
 
-        _ = request(method: .GET, path: path, params: nil, handler: handler)
+        _ = request(method: .GET, path: path, params: nil, handler: httpHandler)
     }
 
     func requestPopularNews (page: Int = 1,
                              handler: ((_ result: Result <[News], Error>) -> Void)?) {
 
-//        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-//            let mockService = MockService()
-//            _ = mockService.request(file: "GET-popular",
-//                                    success: successBlock,
-//                                    fail: failBlock)
-//            return
-//        }
-
-        let path = "popular?page=\(page)"
-
-        let handler: ((Result <Data?, Error>) -> Void) = { result in
+        let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
             switch result {
             case .success(let data):
                 guard let d = data else {
@@ -74,7 +62,14 @@ class NewsService: HTTPService {
             }
         }
 
-        _ = request(method: .GET, path: path, params: nil, handler: handler)
+        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            let mockService = MockService()
+            _ = mockService.request(file: "GET-popular", handler: httpHandler)
+            return
+        }
+
+        let path = "popular?page=\(page)"
+        _ = request(method: .GET, path: path, params: nil, handler: httpHandler)
     }
 
     func requestRecentNewsWithDate (_ date: Date,
@@ -85,15 +80,7 @@ class NewsService: HTTPService {
 
         let datePath = String(format: "%d-%02d-%02d", components.year!, components.month!, components.day!)
 
-//        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-//            let mockService = MockService()
-//            _ = mockService.request(file: "GET-recent",
-//                                    success: successBlock,
-//                                    fail: failBlock)
-//            return
-//        }
-
-        let handler: ((Result <Data?, Error>) -> Void) = { result in
+        let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
             switch result {
             case .success(let data):
                 guard let d = data else {
@@ -111,7 +98,13 @@ class NewsService: HTTPService {
             }
         }
 
-        _ = request(method: .GET, path: "latest/\(datePath)", params: nil, handler: handler)
+        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            let mockService = MockService()
+            _ = mockService.request(file: "GET-recent", handler: httpHandler)
+            return
+        }
+
+        _ = request(method: .GET, path: "latest/\(datePath)", params: nil, handler: httpHandler)
     }
 
     func requestTrendingTopicsWithDate (_ date: Date,
@@ -123,15 +116,7 @@ class NewsService: HTTPService {
 
         let datePath = String(format: "%d-%02d-%02d", components.year!, components.month!, components.day!)
 
-//        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-//            let mockService = MockService()
-//            _ = mockService.request(file: "GET-trending",
-//                                    success: successBlock,
-//                                    fail: failBlock)
-//            return nil
-//        }
-
-        let handler: ((Result <Data?, Error>) -> Void) = { result in
+        let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
             switch result {
             case .success(let data):
                 guard let d = data else {
@@ -150,11 +135,17 @@ class NewsService: HTTPService {
             }
         }
 
+        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            let mockService = MockService()
+            _ = mockService.request(file: "GET-trending", handler: httpHandler)
+            return nil
+        }
+
         let task = request(
             method: .GET,
             path: "trending/\(datePath)/\(count)",
             params: nil,
-            handler: handler
+            handler: httpHandler
         )
 
         return task
@@ -169,13 +160,29 @@ class NewsService: HTTPService {
             return nil
         }
 
-//        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-//            let mockService = MockService()
-//            _ = mockService.request(file: "GET-search",
-//                                    success: successBlock,
-//                                    fail: failBlock)
-//            return nil
-//        }
+        let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
+            switch result {
+            case .success(let data):
+                guard let d = data else {
+                    handler?(.success([]))
+                    return
+                }
+
+                let res = (try? News.decodeArrayOfNews(from: d)) ?? []
+
+                DispatchQueue.main.async(execute: {
+                    handler?(.success(res))
+                })
+            case .failure(let error):
+                handler?(.failure(error))
+            }
+        }
+
+        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            let mockService = MockService()
+            _ = mockService.request(file: "GET-search", handler: httpHandler)
+            return nil
+        }
 
         var headers: [String: String] = [:]
 
@@ -203,39 +210,13 @@ class NewsService: HTTPService {
 
         group.wait()
 
-        let handler: ((Result <Data?, Error>) -> Void) = { result in
-            switch result {
-            case .success(let data):
-                guard let d = data else {
-                    handler?(.success([]))
-                    return
-                }
-
-                let res = (try? News.decodeArrayOfNews(from: d)) ?? []
-
-                DispatchQueue.main.async(execute: {
-                    handler?(.success(res))
-                })
-            case .failure(let error):
-                handler?(.failure(error))
-            }
-        }
-
-        let task = self.request(method: .GET, path: "search/\(encodedText)", params: nil, handler: handler)
+        let task = self.request(method: .GET, path: "search/\(encodedText)", params: nil, handler: httpHandler)
         return task
     }
 
-    func fetchTrendingTerms(handler: ((_ result: Result <[TrendingTerm], Error>) -> Void)?) {
+    func fetchTrendingTerms(handler: ((_ handler: Result <[TrendingTerm], Error>) -> Void)?) {
 
-//        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-//            let mockService = MockService()
-//            _ = mockService.request(file: "GET-search-trending",
-//                                    success: successBlock,
-//                                    fail: failBlock)
-//            return
-//        }
-
-        let handler: ((Result <Data?, Error>) -> Void) = { result in
+        let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
             switch result {
             case .success(let data):
                 guard let d = data else {
@@ -253,22 +234,20 @@ class NewsService: HTTPService {
             }
         }
 
-        _ = request(method: .GET, path: "search/trending/", params: nil, handler: handler)
+        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            let mockService = MockService()
+            _ = mockService.request(file: "GET-search-trending", handler: httpHandler)
+            return
+        }
+
+        _ = request(method: .GET, path: "search/trending/", params: nil, handler: httpHandler)
     }
 
     @discardableResult
     func fetchTags(tag: String,
-                   handler: ((_ result: Result <[Tag], Error>) -> Void)?) -> URLSessionDataTask? {
+                   handler: ((_ handler: Result <[Tag], Error>) -> Void)?) -> URLSessionDataTask? {
 
-//        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-//            let mockService = MockService()
-//            _ = mockService.request(file: "GET-search-term",
-//                                    success: successBlock,
-//                                    fail: failBlock)
-//            return nil
-//        }
-
-        let handler: ((Result <Data?, Error>) -> Void) = { result in
+        let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
             switch result {
             case .success(let data):
                 guard let d = data else {
@@ -286,8 +265,14 @@ class NewsService: HTTPService {
             }
         }
 
+        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            let mockService = MockService()
+            _ = mockService.request(file: "GET-search-term", handler: httpHandler)
+            return nil
+        }
+
         let encodedTag = tag.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? String()
-        let task = request(method: .GET, path: "tags/\(encodedTag)", params: nil, handler: handler)
+        let task = request(method: .GET, path: "tags/\(encodedTag)", params: nil, handler: httpHandler)
         return task
     }
 }

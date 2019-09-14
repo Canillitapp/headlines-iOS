@@ -10,17 +10,13 @@ import Foundation
 
 class MockService {
 
-    func request(file: String,
-                 success: ((_ result: Data?, _ response: URLResponse?) -> Void)?,
-                 fail: ((_ error: NSError) -> Void)?) {
+    func request(file: String, handler: ((_ result: Result <Data?, Error>) -> Void)?) {
 
         let path = Bundle.main.path(forResource: file, ofType: "json")
         let url = URL(fileURLWithPath: path!)
-        do {
-            let data = try Data(contentsOf: url)
-            DispatchQueue.main.async(execute: {
-                success?(data, nil)
-            })
-        } catch {}
+        let data = try? Data(contentsOf: url)
+        DispatchQueue.main.async {
+            handler?(.success(data))
+        }
     }
 }
