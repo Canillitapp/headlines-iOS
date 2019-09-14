@@ -13,14 +13,6 @@ class InterestsService: HTTPService {
 
     func getInterests(handler: ((_ result: Result <[Interest], Error>) -> Void)?) {
 
-//        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-//            let mockService = MockService()
-//            _ = mockService.request(file: "GET-interests",
-//                                    success: successBlock,
-//                                    fail: failBlock)
-//            return
-//        }
-
         let container = CKContainer.default()
         container.fetchUserRecordID { (recordId, error) in
             if let err = error {
@@ -60,6 +52,12 @@ class InterestsService: HTTPService {
                     handler?(.failure(error))
                     return
                 }
+            }
+
+            if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+                let mockService = MockService()
+                _ = mockService.request(file: "GET-interests", handler: httpHandler)
+                return
             }
 
             _ = self.request(

@@ -66,14 +66,6 @@ class ReactionsService: HTTPService {
 
     func getReactions(handler: ((_ result: Result <[Reaction], Error>) -> Void)?) {
 
-//        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-//            let mockService = MockService()
-//            _ = mockService.request(file: "GET-reactions",
-//                                    success: successBlock,
-//                                    fail: failBlock)
-//            return
-//        }
-
         let container = CKContainer.default()
         container.fetchUserRecordID { (recordId, error) in
             if let err = error {
@@ -112,6 +104,12 @@ class ReactionsService: HTTPService {
                 case .failure(let error):
                     handler?(.failure(error))
                 }
+            }
+
+            if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+                let mockService = MockService()
+                _ = mockService.request(file: "GET-reactions", handler: httpHandler)
+                return
             }
 
             _ = self.request(

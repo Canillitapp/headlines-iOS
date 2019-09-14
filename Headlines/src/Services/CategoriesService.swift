@@ -12,14 +12,6 @@ class CategoriesService: HTTPService {
 
     func categoriesList (handler: ((_ result: Result <[Category]?, Error>) -> Void)?) {
 
-//        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-//            let mockService = MockService()
-//            _ = mockService.request(file: "GET-categories",
-//                                    success: successBlock,
-//                                    fail: failBlock)
-//            return
-//        }
-
         let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
             switch result {
             case .success(let data):
@@ -38,6 +30,12 @@ class CategoriesService: HTTPService {
                 handler?(.failure(error))
                 return
             }
+        }
+
+        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            let mockService = MockService()
+            _ = mockService.request(file: "GET-categories", handler: httpHandler)
+            return
         }
 
         _ = request(method: .GET, path: "categories/", params: nil, handler: httpHandler)
