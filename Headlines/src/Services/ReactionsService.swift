@@ -66,6 +66,31 @@ class ReactionsService: HTTPService {
 
     func getReactions(handler: ((_ result: Result <[Reaction], Error>) -> Void)?) {
 
+        let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
+            switch result {
+            case .success(let data):
+                guard let d = data else {
+                    handler?(.success([]))
+                    return
+                }
+
+                let res = (try? JSONDecoder().decode([Reaction].self, from: d)) ?? []
+
+                DispatchQueue.main.async(execute: {
+                    handler?(.success(res))
+                })
+
+            case .failure(let error):
+                handler?(.failure(error))
+            }
+        }
+
+        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            let mockService = MockService()
+            _ = mockService.request(file: "GET-reactions", handler: httpHandler)
+            return
+        }
+
         let container = CKContainer.default()
         container.fetchUserRecordID { (recordId, error) in
             if let err = error {
@@ -84,31 +109,6 @@ class ReactionsService: HTTPService {
                 DispatchQueue.main.async(execute: {
                     handler?(.failure(err))
                 })
-                return
-            }
-
-            let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
-                switch result {
-                case .success(let data):
-                    guard let d = data else {
-                        handler?(.success([]))
-                        return
-                    }
-
-                    let res = (try? JSONDecoder().decode([Reaction].self, from: d)) ?? []
-
-                    DispatchQueue.main.async(execute: {
-                        handler?(.success(res))
-                    })
-
-                case .failure(let error):
-                    handler?(.failure(error))
-                }
-            }
-
-            if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-                let mockService = MockService()
-                _ = mockService.request(file: "GET-reactions", handler: httpHandler)
                 return
             }
 

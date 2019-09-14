@@ -13,6 +13,32 @@ class InterestsService: HTTPService {
 
     func getInterests(handler: ((_ result: Result <[Interest], Error>) -> Void)?) {
 
+        let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
+            switch result {
+            case .success(let data):
+                guard let d = data else {
+                    handler?(.success([Interest]()))
+                    return
+                }
+
+                let res = (try? JSONDecoder().decode([Interest].self, from: d)) ?? [Interest]()
+
+                DispatchQueue.main.async(execute: {
+                    handler?(.success(res))
+                })
+
+            case .failure(let error):
+                handler?(.failure(error))
+                return
+            }
+        }
+
+        if ProcessInfo.processInfo.arguments.contains("mockRequests") {
+            let mockService = MockService()
+            _ = mockService.request(file: "GET-interests", handler: httpHandler)
+            return
+        }
+
         let container = CKContainer.default()
         container.fetchUserRecordID { (recordId, error) in
             if let err = error {
@@ -31,32 +57,6 @@ class InterestsService: HTTPService {
                 DispatchQueue.main.async(execute: {
                     handler?(.failure(err))
                 })
-                return
-            }
-
-            let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
-                switch result {
-                case .success(let data):
-                    guard let d = data else {
-                        handler?(.success([Interest]()))
-                        return
-                    }
-
-                    let res = (try? JSONDecoder().decode([Interest].self, from: d)) ?? [Interest]()
-
-                    DispatchQueue.main.async(execute: {
-                        handler?(.success(res))
-                    })
-
-                case .failure(let error):
-                    handler?(.failure(error))
-                    return
-                }
-            }
-
-            if ProcessInfo.processInfo.arguments.contains("mockRequests") {
-                let mockService = MockService()
-                _ = mockService.request(file: "GET-interests", handler: httpHandler)
                 return
             }
 
