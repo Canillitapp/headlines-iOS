@@ -147,7 +147,7 @@ class AppDelegate: UIResponder,
 
                 vc.present(navController, animated: true, completion: nil)
 
-            case .failure(_):
+            case .failure:
                 hud.dismiss()
             }
         }

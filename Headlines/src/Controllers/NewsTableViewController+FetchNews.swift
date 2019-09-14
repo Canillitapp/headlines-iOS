@@ -154,7 +154,7 @@ extension NewsTableViewController {
             case .success(let news):
                 self?.updateNews(news, mode)
 
-            case .failure(_):
+            case .failure:
                 // Stop pull to refresh animation (if needed)
                 if mode.shouldAnimatePullToRefresh() {
                     self?.endRefreshing()

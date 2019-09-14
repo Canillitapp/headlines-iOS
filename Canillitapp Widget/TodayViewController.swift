@@ -50,7 +50,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 
                 self.widgetLabel.attributedText = attributedText
 
-            case .failure(_):
+            case .failure:
                 guard let self = self else {
                     return
                 }

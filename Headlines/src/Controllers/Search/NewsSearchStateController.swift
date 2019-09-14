@@ -42,7 +42,7 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
             switch result {
             case .success(let tags):
                 self?.render(tags: tags, searchedTerm: text)
-            case .failure(let _):
+            case .failure:
                 print("Fail at updateSearchResults")
             }
         })

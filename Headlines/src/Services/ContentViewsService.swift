@@ -44,7 +44,7 @@ class ContentViewsService: HTTPService {
 
             let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
                 switch result {
-                case .success(_):
+                case .success:
                     DispatchQueue.main.async(execute: {
                         handler?(.success(nil))
                     })

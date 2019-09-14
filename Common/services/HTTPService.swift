@@ -56,7 +56,7 @@ class HTTPService {
             request.httpBody = httpBody.data(using: .utf8)
         }
 
-        let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
+        let task = session.dataTask(with: request, completionHandler: {(data, _, error) in
             if let e = error {
                 handler?(.failure(e))
                 return
