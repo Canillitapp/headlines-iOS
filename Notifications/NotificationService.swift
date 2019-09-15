@@ -24,7 +24,9 @@ class NotificationService: UNNotificationServiceExtension {
                 isDirectory: true)
 
             do {
-                try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true, attributes: nil)
+                try FileManager.default.createDirectory(at: directory,
+                                                        withIntermediateDirectories: true,
+                                                        attributes: nil)
 
                 let fileURL = directory.appendingPathComponent(identifier)
                 try data.write(to: fileURL, options: [])

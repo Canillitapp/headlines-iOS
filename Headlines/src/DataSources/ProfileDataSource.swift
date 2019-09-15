@@ -90,9 +90,13 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
 
         switch indexPath.section {
         case 0:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "interest_cell", for: indexPath) as? LabelCollectionViewCell else {
-                return UICollectionViewCell()
+
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: "interest_cell",
+                for: indexPath) as? LabelCollectionViewCell else {
+                    return UICollectionViewCell()
             }
+
             let interest = interests[indexPath.row]
             cell.label.text = interest.name
             cell.label.textColor = UIColor.black
@@ -106,9 +110,13 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
             return cell
 
         case 1:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reaction_cell", for: indexPath) as? ProfileReactionCollectionViewCell else {
-                return UICollectionViewCell()
+
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: "reaction_cell",
+                for: indexPath) as? ProfileReactionCollectionViewCell else {
+                    return UICollectionViewCell()
             }
+
             let reaction = reactions[indexPath.row]
             cell.emojiLabel.text = reaction.reaction
 

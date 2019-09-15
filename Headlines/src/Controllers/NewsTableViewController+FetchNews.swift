@@ -124,20 +124,6 @@ extension NewsTableViewController {
             startRefreshing()
         }
 
-        let fail: ((NSError?) -> Void) = { [weak self] _ in
-
-            guard let strongSelf = self else {
-                return
-            }
-
-            // Stop pull to refresh animation (if needed)
-            if mode.shouldAnimatePullToRefresh() {
-                strongSelf.endRefreshing()
-            }
-
-            strongSelf.isFetchingNews = false
-        }
-
         switch mode {
         case .reload:
             lastPage = 1

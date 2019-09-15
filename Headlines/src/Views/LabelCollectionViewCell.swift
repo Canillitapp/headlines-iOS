@@ -32,7 +32,10 @@ class LabelCollectionViewCell: UICollectionViewCell {
     }
 
     private func setupLabel() {
-        label = UILabel(frame: .zero)
+        // Setting this to a local variable and then assigning it to the property
+        // because otherwise I get "Expression implicitly coerced from 'UILabel?' to 'Any'"
+
+        let label = UILabel(frame: .zero)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = LabelCollectionViewCell.defaultFont
         label.textColor = normalTextColor
@@ -73,6 +76,7 @@ class LabelCollectionViewCell: UICollectionViewCell {
 
         let constraints = [leftConstraint, topConstraint, rightConstraint, bottomConstraint]
         self.addConstraints(constraints)
+        self.label = label
     }
 
     override init(frame: CGRect) {

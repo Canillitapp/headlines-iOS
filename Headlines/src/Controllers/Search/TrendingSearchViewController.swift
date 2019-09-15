@@ -41,7 +41,7 @@ class TrendingSearchViewController: UITableViewController {
                     self?.refreshControl?.endRefreshing()
                 }
 
-            case .failure(let error):
+            case .failure:
                 if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
                     self?.refreshControl?.endRefreshing()
                 }
