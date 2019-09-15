@@ -12,10 +12,10 @@ class CategoriesService: HTTPService {
 
     func categoriesList (handler: ((_ result: Result <[Category]?, Error>) -> Void)?) {
 
-        let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
+        let httpHandler: ((HTTPResult) -> Void) = { result in
             switch result {
-            case .success(let data):
-                guard let d = data else {
+            case .success(let success):
+                guard let d = success.data else {
                     handler?(.success(nil))
                     return
                 }

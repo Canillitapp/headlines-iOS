@@ -36,14 +36,15 @@ class ReactionsService: HTTPService {
                 return
             }
 
-            let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
+            let httpHandler: ((HTTPResult) -> Void) = { result in
                 switch result {
-                case .success(let data):
-                    guard let d = data else {
+                case .success(let success):
+                    guard let d = success.data else {
+                        handler?(.success(nil))
                         return
                     }
 
-                    let res = try! JSONDecoder().decode(News.self, from: d)
+                    let res = try? JSONDecoder().decode(News.self, from: d)
 
                     DispatchQueue.main.async(execute: {
                         handler?(.success(res))
@@ -66,10 +67,10 @@ class ReactionsService: HTTPService {
 
     func getReactions(handler: ((_ result: Result <[Reaction], Error>) -> Void)?) {
 
-        let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
+        let httpHandler: ((HTTPResult) -> Void) = { result in
             switch result {
-            case .success(let data):
-                guard let d = data else {
+            case .success(let success):
+                guard let d = success.data else {
                     handler?(.success([]))
                     return
                 }

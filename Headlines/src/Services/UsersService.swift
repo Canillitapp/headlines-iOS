@@ -12,7 +12,7 @@ import CloudKit
 class UsersService: HTTPService {
 
     func postDeviceToken(_ token: String,
-                         handler: ((_ result: Result<Data?, Error>) -> Void)?) {
+                         handler: ((_ result: Result<URLResponse?, Error>) -> Void)?) {
 
         let container = CKContainer.default()
         container.fetchUserRecordID { (recordId, error) in
@@ -36,11 +36,11 @@ class UsersService: HTTPService {
                 "user_id": userId.recordName
             ]
 
-            let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
+            let httpHandler: ((HTTPResult) -> Void) = { result in
                 switch result {
-                case .success(let data):
+                case .success(let success):
                     DispatchQueue.main.async(execute: {
-                        handler?(.success(data))
+                        handler?(.success(success.response))
                     })
 
                 case .failure(let error):

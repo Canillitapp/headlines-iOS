@@ -18,10 +18,10 @@ class NewsService: HTTPService {
 
         let path = "news/category/\(categoryId)?page=\(page)"
 
-        let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
+        let httpHandler: ((HTTPResult) -> Void) = { result in
             switch result {
-            case .success(let data):
-                guard let d = data else {
+            case .success(let success):
+                guard let d = success.data else {
                     handler?(.success([News]()))
                     return
                 }
@@ -44,10 +44,10 @@ class NewsService: HTTPService {
     func requestPopularNews (page: Int = 1,
                              handler: ((_ result: Result <[News], Error>) -> Void)?) {
 
-        let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
+        let httpHandler: ((HTTPResult) -> Void) = { result in
             switch result {
-            case .success(let data):
-                guard let d = data else {
+            case .success(let success):
+                guard let d = success.data else {
                     handler?(.success([]))
                     return
                 }
@@ -80,10 +80,10 @@ class NewsService: HTTPService {
 
         let datePath = String(format: "%d-%02d-%02d", components.year!, components.month!, components.day!)
 
-        let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
+        let httpHandler: ((HTTPResult) -> Void) = { result in
             switch result {
-            case .success(let data):
-                guard let d = data else {
+            case .success(let success):
+                guard let d = success.data else {
                     handler?(.success([News]()))
                     return
                 }
@@ -116,15 +116,15 @@ class NewsService: HTTPService {
 
         let datePath = String(format: "%d-%02d-%02d", components.year!, components.month!, components.day!)
 
-        let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
+        let httpHandler: ((HTTPResult) -> Void) = { result in
             switch result {
-            case .success(let data):
-                guard let d = data else {
+            case .success(let success):
+                guard let d = success.data else {
                     handler?(.success(nil))
                     return
                 }
 
-                let res = try! JSONDecoder().decode(TopicList.self, from: d)
+                let res = try? JSONDecoder().decode(TopicList.self, from: d)
 
                 DispatchQueue.main.async(execute: {
                     handler?(.success(res))
@@ -160,10 +160,10 @@ class NewsService: HTTPService {
             return nil
         }
 
-        let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
+        let httpHandler: ((HTTPResult) -> Void) = { result in
             switch result {
-            case .success(let data):
-                guard let d = data else {
+            case .success(let success):
+                guard let d = success.data else {
                     handler?(.success([]))
                     return
                 }
@@ -216,10 +216,10 @@ class NewsService: HTTPService {
 
     func fetchTrendingTerms(handler: ((_ handler: Result <[TrendingTerm], Error>) -> Void)?) {
 
-        let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
+        let httpHandler: ((HTTPResult) -> Void) = { result in
             switch result {
-            case .success(let data):
-                guard let d = data else {
+            case .success(let success):
+                guard let d = success.data else {
                     handler?(.success([]))
                     return
                 }
@@ -247,10 +247,10 @@ class NewsService: HTTPService {
     func fetchTags(tag: String,
                    handler: ((_ handler: Result <[Tag], Error>) -> Void)?) -> URLSessionDataTask? {
 
-        let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
+        let httpHandler: ((HTTPResult) -> Void) = { result in
             switch result {
-            case .success(let data):
-                guard let d = data else {
+            case .success(let success):
+                guard let d = success.data else {
                     handler?(.success([Tag]()))
                     return
                 }

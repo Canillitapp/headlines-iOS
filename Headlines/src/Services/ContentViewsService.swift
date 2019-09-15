@@ -17,7 +17,7 @@ class ContentViewsService: HTTPService {
 
     func postContentView(_ newsIdentifier: String,
                          context: ContentViewContextFrom,
-                         handler: ((Result<String?, Error>) -> Void)?) {
+                         handler: ((Result<URLResponse?, Error>) -> Void)?) {
 
         let container = CKContainer.default()
         container.fetchUserRecordID { [weak self] (recordId, error) in
@@ -42,11 +42,11 @@ class ContentViewsService: HTTPService {
                 "context_from": context.rawValue
                 ]
 
-            let httpHandler: ((Result <Data?, Error>) -> Void) = { result in
+            let httpHandler: ((HTTPResult) -> Void) = { result in
                 switch result {
-                case .success:
+                case .success(let success):
                     DispatchQueue.main.async(execute: {
-                        handler?(.success(nil))
+                        handler?(.success(success.response))
                     })
 
                 case .failure(let error):
