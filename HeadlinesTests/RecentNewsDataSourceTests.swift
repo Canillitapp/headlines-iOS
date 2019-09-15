@@ -18,7 +18,7 @@ class RecentNewsDataSourceTests: XCTestCase {
 
         let handler: ((Result<[News], Error>) -> Void) = { result in
             switch result {
-            case .success(_):
+            case .success:
                 exp.fulfill()
 
             case .failure(let error):
