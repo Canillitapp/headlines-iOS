@@ -29,53 +29,52 @@ class LoadingTask {
      */
 
     let group = DispatchGroup()
-    var error: NSError?
+    var error: Error?
 
     var topics: [Topic]?
     var categories: [Category]?
 
-    var completion: ([Topic]?, [Category]?, NSError?) -> Void
+    var completion: ([Topic]?, [Category]?, Error?) -> Void
 
     private func fetchTrendingNews() {
         let newsService = NewsService()
 
-        let success: (TopicList?) -> Void = { [unowned self] (topicList) in
-            self.topics = topicList?.topics
-            self.group.leave()
+        let handler: ((Result <TopicList?, Error>) -> Void) = { [weak self] result in
+            switch result {
+            case .success(let topicList):
+                self?.topics = topicList?.topics
+                self?.group.leave()
+
+            case .failure(let error):
+                self?.error = error
+                self?.group.leave()
+            }
         }
 
-        let fail: ((NSError) -> Void) = { [unowned self] (error) in
-            self.error = error
-            self.group.leave()
-        }
-
-        _ = newsService.requestTrendingTopicsWithDate(
-            Date(),
-            count: 6,
-            success: success,
-            fail: fail
-        )
+        _ = newsService.requestTrendingTopicsWithDate(Date(), count: 6, handler: handler)
         group.enter()
     }
 
     private func fetchCategories() {
         let categoriesService = CategoriesService()
 
-        let success: ([Category]?) -> Void = { [unowned self] (categories) in
-            self.categories = categories
-            self.group.leave()
+        let handler: ((Result <[Category]?, Error>) -> Void) = { [weak self] result in
+            switch result {
+            case .success(let categories):
+                self?.categories = categories
+                self?.group.leave()
+
+            case .failure(let error):
+                self?.error = error
+                self?.group.leave()
+            }
         }
 
-        let fail: ((NSError) -> Void) = { [unowned self] (error) in
-            self.error = error
-            self.group.leave()
-        }
-
-        categoriesService.categoriesList(success: success, fail: fail)
+        categoriesService.categoriesList(handler: handler)
         group.enter()
     }
 
-    init(with completion:@escaping ([Topic]?, [Category]?, NSError?) -> Void) {
+    init(with completion:@escaping ([Topic]?, [Category]?, Error?) -> Void) {
         self.completion = completion
     }
 

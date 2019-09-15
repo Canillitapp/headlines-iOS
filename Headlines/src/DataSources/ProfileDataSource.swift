@@ -23,28 +23,35 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
         let group = DispatchGroup()
         let queue = DispatchQueue(label: "profile data source")
 
-        let reactionsSuccess: ((URLResponse?, [Reaction]) -> Void) = { [unowned self] (response, reactions) in
-            self.reactions.removeAll()
-            self.reactions.append(contentsOf: reactions)
-            group.leave()
-        }
+        group.enter()
+        let reactionsHandler: ((Result <[Reaction], Error>) -> Void) = { [weak self] result in
+            switch result {
+            case .success(let reactions):
+                self?.reactions.removeAll()
+                self?.reactions.append(contentsOf: reactions)
+                group.leave()
 
-        let interestSuccess: ((URLResponse?, [Interest]) -> Void) = { [unowned self] (response, interests) in
-            self.interests.removeAll()
-            self.interests.append(contentsOf: interests)
-            group.leave()
+            case .failure(let error):
+                self?.error = error
+                group.leave()
+            }
         }
-
-        let serviceFail: ((Error) -> Void) = { (error) in
-            self.error = error
-            group.leave()
-        }
+        reactionsService.getReactions(handler: reactionsHandler)
 
         group.enter()
-        reactionsService.getReactions(success: reactionsSuccess, fail: serviceFail)
+        let interestsHandler: ((Result <[Interest], Error>) -> Void) = { [weak self] result in
+            switch result {
+            case .success(let interests):
+                self?.interests.removeAll()
+                self?.interests.append(contentsOf: interests)
+                group.leave()
 
-        group.enter()
-        interestsService.getInterests(success: interestSuccess, fail: serviceFail)
+            case .failure(let error):
+                self?.error = error
+                group.leave()
+            }
+        }
+        interestsService.getInterests(handler: interestsHandler)
 
         group.notify(queue: queue) { [unowned self] in
             if let error = self.error, let fail = fail {
@@ -83,9 +90,13 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
 
         switch indexPath.section {
         case 0:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "interest_cell", for: indexPath) as? LabelCollectionViewCell else {
-                return UICollectionViewCell()
+
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: "interest_cell",
+                for: indexPath) as? LabelCollectionViewCell else {
+                    return UICollectionViewCell()
             }
+
             let interest = interests[indexPath.row]
             cell.label.text = interest.name
             cell.label.textColor = UIColor.black
@@ -99,9 +110,13 @@ class ProfileDataSource: NSObject, UICollectionViewDataSource {
             return cell
 
         case 1:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reaction_cell", for: indexPath) as? ProfileReactionCollectionViewCell else {
-                return UICollectionViewCell()
+
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: "reaction_cell",
+                for: indexPath) as? ProfileReactionCollectionViewCell else {
+                    return UICollectionViewCell()
             }
+
             let reaction = reactions[indexPath.row]
             cell.emojiLabel.text = reaction.reaction
 

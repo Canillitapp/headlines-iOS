@@ -31,22 +31,25 @@ class TrendingInterfaceController: WKInterfaceController {
 
     func fetchTrendingNews() {
         showLoadingIndicator(true)
-        _ = newsService.requestTrendingTopicsWithDate(Date(), count: 6, success: { (result) in
-            self.topics = result?.topics
 
-            guard let topics = self.topics else {
-                return
+        _ = newsService.requestTrendingTopicsWithDate(Date(), count: 6, handler: { result in
+            if case .success(let topicList) = result {
+                self.topics = topicList?.topics
+
+                guard let topics = self.topics else {
+                    return
+                }
+
+                self.trendingTable.setNumberOfRows(topics.count, withRowType: "TrendingRow")
+
+                for (index, t) in topics.enumerated() {
+                    let row = self.trendingTable.rowController(at: index) as! TrendingRowController
+                    row.titleLabel.setText(t.name)
+                }
+                self.showLoadingIndicator(false)
+                self.lastFetch = Date()
             }
-
-            self.trendingTable.setNumberOfRows(topics.count, withRowType: "TrendingRow")
-
-            for (index, t) in topics.enumerated() {
-                let row = self.trendingTable.rowController(at: index) as! TrendingRowController
-                row.titleLabel.setText(t.name)
-            }
-            self.showLoadingIndicator(false)
-            self.lastFetch = Date()
-            }, fail: nil)
+        })
     }
 
     override func awake(withContext context: Any?) {

@@ -17,7 +17,7 @@ extension NewsTableViewController {
             return
         }
 
-        contentViewsService.postContentView(news.identifier, context: contextFrom, success: nil, fail: nil)
+        contentViewsService.postContentView(news.identifier, context: contextFrom, handler: nil)
     }
 
     func openNews(_ news: News) {

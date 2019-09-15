@@ -50,28 +50,20 @@ extension NewsTableViewController {
                 return
         }
 
-        let success: (URLResponse?, News?) -> Void = { [unowned self] (_, updatedNews) in
-            guard let n = updatedNews else {
-                return
-            }
-            self.addReaction(selectedReaction, toNews: n)
-        }
+        let handler: ((Result <News?, Error>) -> Void) = { [weak self] result in
+            switch result {
+            case .success(let news):
+                guard let n = news else {
+                    return
+                }
+                self?.addReaction(selectedReaction, toNews: n)
 
-        let fail: (Error) -> Void = { [weak self] err in
-
-            let error = err as NSError
-
-            if let s = self {
-                s.showControllerWithError(error)
+            case .failure(let error):
+                self?.showControllerWithError(error)
             }
         }
 
-        reactionsService.postReaction(
-            selectedReaction,
-            atPost: currentNews.identifier,
-            success: success,
-            fail: fail
-        )
+        reactionsService.postReaction(selectedReaction, atPost: currentNews.identifier, handler: handler)
     }
 }
 
@@ -80,23 +72,20 @@ extension NewsTableViewController: NewsCellViewModelDelegate {
 
     func newsViewModel(_ viewModel: NewsCellViewModel, didSelectReaction reaction: Reaction) {
 
-        let success: (URLResponse?, News?) -> Void = { [unowned self] (response, updatedNews) in
-            guard let n = updatedNews else {
-                return
+        let handler: ((Result <News?, Error>) -> Void) = { [weak self] result in
+            switch result {
+            case .success(let news):
+                guard let n = news else {
+                    return
+                }
+                self?.addReaction(reaction.reaction, toNews: n)
+
+            case .failure(let error):
+                self?.showControllerWithError(error)
             }
-            self.addReaction(reaction.reaction, toNews: n)
         }
 
-        let fail: (Error) -> Void = { [unowned self] (err) in
-            self.showControllerWithError(err as NSError)
-        }
-
-        reactionsService.postReaction(
-            reaction.reaction,
-            atPost: viewModel.news.identifier,
-            success: success,
-            fail: fail
-        )
+        reactionsService.postReaction(reaction.reaction, atPost: viewModel.news.identifier, handler: handler)
     }
 
     func newsViewModelDidSelectReactionPicker(_ viewModel: NewsCellViewModel) {

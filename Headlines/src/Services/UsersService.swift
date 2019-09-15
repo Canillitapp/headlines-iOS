@@ -12,13 +12,12 @@ import CloudKit
 class UsersService: HTTPService {
 
     func postDeviceToken(_ token: String,
-                         success: ((_ response: URLResponse?) -> Void)?,
-                         fail: ((_ error: Error) -> Void)?) {
+                         handler: ((_ result: Result<URLResponse?, Error>) -> Void)?) {
 
         let container = CKContainer.default()
         container.fetchUserRecordID { (recordId, error) in
             if let err = error {
-                fail?(err)
+                handler?(.failure(err))
                 return
             }
 
@@ -27,20 +26,8 @@ class UsersService: HTTPService {
                 let err = NSError(domain: "ReactionsService",
                                   code: 1,
                                   userInfo: errUserInfo)
-                fail?(err)
+                handler?(.failure(err))
                 return
-            }
-
-            let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-                DispatchQueue.main.async(execute: {
-                    success?(response)
-                })
-            }
-
-            let failBlock: (_ error: NSError) -> Void = { (e) in
-                DispatchQueue.main.async(execute: {
-                    fail?(e as NSError)
-                })
             }
 
             let params = [
@@ -49,13 +36,22 @@ class UsersService: HTTPService {
                 "user_id": userId.recordName
             ]
 
-            _ = self.request(
-                method: .POST,
-                path: "users/devicetoken",
-                params: params,
-                success: successBlock,
-                fail: failBlock
-            )
+            let httpHandler: ((HTTPResult) -> Void) = { result in
+                switch result {
+                case .success(let success):
+                    DispatchQueue.main.async(execute: {
+                        handler?(.success(success.response))
+                    })
+
+                case .failure(let error):
+                    DispatchQueue.main.async(execute: {
+                        handler?(.failure(error))
+                    })
+                    return
+                }
+            }
+
+            _ = self.request(method: .POST, path: "users/devicetoken", params: params, handler: httpHandler)
         }
     }
 }

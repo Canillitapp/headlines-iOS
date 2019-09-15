@@ -45,7 +45,7 @@ class NewsTableViewController: UIViewController {
     var isFetchingNews: Bool = false
     var canFetchMoreNews: Bool = true
 
-    func showControllerWithError(_ error: NSError) {
+    func showControllerWithError(_ error: Error) {
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
         let alertController = UIAlertController(title: "Sorry",
                                                 message: error.localizedDescription,

@@ -12,6 +12,8 @@ enum Method {
     case DELETE, GET, POST, PUT
 }
 
+typealias HTTPResult = Result<(response: URLResponse?, data: Data?), Error>
+
 class HTTPService {
 
     func baseURL() -> String {
@@ -26,8 +28,7 @@ class HTTPService {
                  path: String,
                  params: [String: String]?,
                  headers: [String: String]? = nil,
-                 success: ((_ result: Data?, _ response: URLResponse?) -> Void)?,
-                 fail: ((_ error: NSError) -> Void)?) -> URLSessionDataTask? {
+                 handler: ((_ result: HTTPResult) -> Void)?) -> URLSessionDataTask? {
 
         let url = URL(string: "\(baseURL())/\(path)")
         var request = URLRequest(url: url!)
@@ -59,11 +60,11 @@ class HTTPService {
 
         let task = session.dataTask(with: request, completionHandler: {(data, response, error) in
             if let e = error {
-                fail?(e as NSError)
+                handler?(.failure(e))
                 return
             }
 
-            success?(data, response)
+            handler?(.success((response: response, data: data)))
         })
 
         task.resume()

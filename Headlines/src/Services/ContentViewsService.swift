@@ -17,13 +17,12 @@ class ContentViewsService: HTTPService {
 
     func postContentView(_ newsIdentifier: String,
                          context: ContentViewContextFrom,
-                         success: ((_ response: URLResponse?) -> Void)?,
-                         fail: ((_ error: Error) -> Void)?) {
+                         handler: ((Result<URLResponse?, Error>) -> Void)?) {
 
         let container = CKContainer.default()
-        container.fetchUserRecordID { (recordId, error) in
+        container.fetchUserRecordID { [weak self] (recordId, error) in
             if let err = error {
-                fail?(err)
+                handler?(.failure(err))
                 return
             }
 
@@ -32,20 +31,8 @@ class ContentViewsService: HTTPService {
                 let err = NSError(domain: "ContentViewsService",
                                   code: 1,
                                   userInfo: errUserInfo)
-                fail?(err)
+                handler?(.failure(err))
                 return
-            }
-
-            let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-                DispatchQueue.main.async(execute: {
-                    success?(response)
-                })
-            }
-
-            let failBlock: (_ error: NSError) -> Void = { (e) in
-                DispatchQueue.main.async(execute: {
-                    fail?(e as NSError)
-                })
             }
 
             let params = [
@@ -55,11 +42,21 @@ class ContentViewsService: HTTPService {
                 "context_from": context.rawValue
                 ]
 
-            _ = self.request(method: .POST,
-                             path: "content-views/",
-                             params: params,
-                             success: successBlock,
-                             fail: failBlock)
+            let httpHandler: ((HTTPResult) -> Void) = { result in
+                switch result {
+                case .success(let success):
+                    DispatchQueue.main.async(execute: {
+                        handler?(.success(success.response))
+                    })
+
+                case .failure(let error):
+                    DispatchQueue.main.async(execute: {
+                        handler?(.failure(error))
+                    })
+                }
+            }
+
+            _ = self?.request(method: .POST, path: "content-views/", params: params, handler: httpHandler)
         }
     }
 }

@@ -10,32 +10,32 @@ import UIKit
 import CloudKit
 
 class InterestsService: HTTPService {
-    func getInterests(success: ((_ response: URLResponse?, [Interest]) -> Void)?,
-                      fail: ((_ error: Error) -> Void)?) {
 
-        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data else {
+    func getInterests(handler: ((_ result: Result <[Interest], Error>) -> Void)?) {
+
+        let httpHandler: ((HTTPResult) -> Void) = { result in
+            switch result {
+            case .success(let success):
+                guard let d = success.data else {
+                    handler?(.success([Interest]()))
+                    return
+                }
+
+                let res = (try? JSONDecoder().decode([Interest].self, from: d)) ?? [Interest]()
+
+                DispatchQueue.main.async(execute: {
+                    handler?(.success(res))
+                })
+
+            case .failure(let error):
+                handler?(.failure(error))
                 return
             }
-
-            let interests = (try? JSONDecoder().decode([Interest].self, from: d)) ?? [Interest]()
-
-            DispatchQueue.main.async(execute: {
-                success?(response, interests)
-            })
-        }
-
-        let failBlock: (_ error: NSError) -> Void = { (e) in
-            DispatchQueue.main.async(execute: {
-                fail?(e as NSError)
-            })
         }
 
         if ProcessInfo.processInfo.arguments.contains("mockRequests") {
             let mockService = MockService()
-            _ = mockService.request(file: "GET-interests",
-                                    success: successBlock,
-                                    fail: failBlock)
+            _ = mockService.request(file: "GET-interests", handler: httpHandler)
             return
         }
 
@@ -43,7 +43,7 @@ class InterestsService: HTTPService {
         container.fetchUserRecordID { (recordId, error) in
             if let err = error {
                 DispatchQueue.main.async(execute: {
-                    fail?(err)
+                    handler?(.failure(err))
                 })
                 return
             }
@@ -55,16 +55,17 @@ class InterestsService: HTTPService {
                                   userInfo: errUserInfo)
 
                 DispatchQueue.main.async(execute: {
-                    fail?(err)
+                    handler?(.failure(err))
                 })
                 return
             }
 
-            _ = self.request(method: .GET,
-                             path: "interests/\(userId.recordName)/iOS",
+            _ = self.request(
+                method: .GET,
+                path: "interests/\(userId.recordName)/iOS",
                 params: nil,
-                success: successBlock,
-                fail: failBlock)
+                handler: httpHandler
+            )
         }
     }
 }

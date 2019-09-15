@@ -33,16 +33,22 @@ class TrendingSearchViewController: UITableViewController {
     }
 
     private func fetchTrending() {
-        service.fetchTrendingTerms(success: { [unowned self] in
-            self.terms = $0
-            if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
-                self.refreshControl?.endRefreshing()
-            }
-            }, fail: { [unowned self] _ in
+        let handler: ((Result<[TrendingTerm], Error>) -> Void) = { [weak self] result in
+            switch result {
+            case .success(let terms):
+                self?.terms = terms
                 if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
-                    self.refreshControl?.endRefreshing()
+                    self?.refreshControl?.endRefreshing()
                 }
-        })
+
+            case .failure:
+                if !ProcessInfo.processInfo.arguments.contains("mockRequests") {
+                    self?.refreshControl?.endRefreshing()
+                }
+            }
+        }
+
+        service.fetchTrendingTerms(handler: handler)
     }
 
     // MARK: - UITableViewDataSource

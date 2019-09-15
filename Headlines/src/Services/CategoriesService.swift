@@ -10,35 +10,34 @@ import Foundation
 
 class CategoriesService: HTTPService {
 
-    func categoriesList (success: ((_ result: [Category]?) -> Void)?,
-                         fail: ((_ error: NSError) -> Void)?) {
+    func categoriesList (handler: ((_ result: Result <[Category]?, Error>) -> Void)?) {
 
-        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data else {
+        let httpHandler: ((HTTPResult) -> Void) = { result in
+            switch result {
+            case .success(let success):
+                guard let d = success.data else {
+                    handler?(.success(nil))
+                    return
+                }
+
+                let res = try? JSONDecoder().decode([Category].self, from: d)
+
+                DispatchQueue.main.async(execute: {
+                    handler?(.success(res))
+                })
+
+            case .failure(let error):
+                handler?(.failure(error))
                 return
             }
-
-            let res = try? JSONDecoder().decode([Category].self, from: d)
-
-            DispatchQueue.main.async(execute: {
-                success?(res)
-            })
-        }
-
-        let failBlock: (_ error: NSError) -> Void = { (e) in
-            DispatchQueue.main.async(execute: {
-                fail?(e as NSError)
-            })
         }
 
         if ProcessInfo.processInfo.arguments.contains("mockRequests") {
             let mockService = MockService()
-            _ = mockService.request(file: "GET-categories",
-                                    success: successBlock,
-                                    fail: failBlock)
+            _ = mockService.request(file: "GET-categories", handler: httpHandler)
             return
         }
 
-        _ = request(method: .GET, path: "categories/", params: nil, success: successBlock, fail: failBlock)
+        _ = request(method: .GET, path: "categories/", params: nil, handler: httpHandler)
     }
 }

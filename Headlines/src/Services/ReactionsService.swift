@@ -14,14 +14,13 @@ class ReactionsService: HTTPService {
 
     func postReaction(_ reaction: String,
                       atPost postId: String,
-                      success: ((_ response: URLResponse?, News?) -> Void)?,
-                      fail: ((_ error: Error) -> Void)?) {
+                      handler: ((_ response: Result <News?, Error>) -> Void)?) {
 
         let container = CKContainer.default()
         container.fetchUserRecordID { (recordId, error) in
             if let err = error {
                 DispatchQueue.main.async(execute: {
-                    fail?(err)
+                    handler?(.failure(err))
                 })
                 return
             }
@@ -32,27 +31,28 @@ class ReactionsService: HTTPService {
                                   code: 1,
                                   userInfo: errUserInfo)
                 DispatchQueue.main.async(execute: {
-                    fail?(err)
+                    handler?(.failure(err))
                 })
                 return
             }
 
-            let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-                guard let d = data else {
-                    return
+            let httpHandler: ((HTTPResult) -> Void) = { result in
+                switch result {
+                case .success(let success):
+                    guard let d = success.data else {
+                        handler?(.success(nil))
+                        return
+                    }
+
+                    let res = try? JSONDecoder().decode(News.self, from: d)
+
+                    DispatchQueue.main.async(execute: {
+                        handler?(.success(res))
+                    })
+
+                case .failure(let error):
+                    handler?(.failure(error))
                 }
-
-                let n = try? JSONDecoder().decode(News.self, from: d)
-
-                DispatchQueue.main.async(execute: {
-                    success?(response, n)
-                })
-            }
-
-            let failBlock: (_ error: NSError) -> Void = { (e) in
-                DispatchQueue.main.async(execute: {
-                    fail?(e as NSError)
-                })
             }
 
             let params = [
@@ -61,40 +61,34 @@ class ReactionsService: HTTPService {
                 "user_id": userId.recordName
             ]
 
-            _ = self.request(method: .POST,
-                             path: "reactions/\(postId)",
-                             params: params,
-                             success: successBlock,
-                             fail: failBlock)
+            _ = self.request(method: .POST, path: "reactions/\(postId)", params: params, handler: httpHandler)
         }
     }
 
-    func getReactions(success: ((_ response: URLResponse?, [Reaction]) -> Void)?,
-                      fail: ((_ error: Error) -> Void)?) {
+    func getReactions(handler: ((_ result: Result <[Reaction], Error>) -> Void)?) {
 
-        let successBlock: (_ result: Data?, _ response: URLResponse?) -> Void = {(data, response) in
-            guard let d = data else {
-                return
+        let httpHandler: ((HTTPResult) -> Void) = { result in
+            switch result {
+            case .success(let success):
+                guard let d = success.data else {
+                    handler?(.success([]))
+                    return
+                }
+
+                let res = (try? JSONDecoder().decode([Reaction].self, from: d)) ?? []
+
+                DispatchQueue.main.async(execute: {
+                    handler?(.success(res))
+                })
+
+            case .failure(let error):
+                handler?(.failure(error))
             }
-
-            let reactions = try! JSONDecoder().decode([Reaction].self, from: d)
-
-            DispatchQueue.main.async(execute: {
-                success?(response, reactions)
-            })
-        }
-
-        let failBlock: (_ error: NSError) -> Void = { (e) in
-            DispatchQueue.main.async(execute: {
-                fail?(e as NSError)
-            })
         }
 
         if ProcessInfo.processInfo.arguments.contains("mockRequests") {
             let mockService = MockService()
-            _ = mockService.request(file: "GET-reactions",
-                                    success: successBlock,
-                                    fail: failBlock)
+            _ = mockService.request(file: "GET-reactions", handler: httpHandler)
             return
         }
 
@@ -102,7 +96,7 @@ class ReactionsService: HTTPService {
         container.fetchUserRecordID { (recordId, error) in
             if let err = error {
                 DispatchQueue.main.async(execute: {
-                    fail?(err)
+                    handler?(.failure(err))
                 })
                 return
             }
@@ -114,16 +108,17 @@ class ReactionsService: HTTPService {
                                   userInfo: errUserInfo)
 
                 DispatchQueue.main.async(execute: {
-                    fail?(err)
+                    handler?(.failure(err))
                 })
                 return
             }
 
-            _ = self.request(method: .GET,
-                             path: "reactions/\(userId.recordName)/iOS",
-                             params: nil,
-                             success: successBlock,
-                             fail: failBlock)
+            _ = self.request(
+                method: .GET,
+                path: "reactions/\(userId.recordName)/iOS",
+                params: nil,
+                handler: httpHandler
+            )
         }
     }
 }

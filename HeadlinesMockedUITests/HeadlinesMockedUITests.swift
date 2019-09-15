@@ -52,44 +52,50 @@ class HeadlinesMockedUITests: XCTestCase {
     }
 
     func testMockedPopularNews() {
-        let app = XCUIApplication()
-
-        //  Go to Popular tab
-        app.tabBars.buttons["Popular"].tap()
-
-        let cell = app.tables.cells.element(boundBy: 0)
         let exists = NSPredicate(format: "exists == 1")
+
+        let tab = XCUIApplication().tabBars.buttons["Popular"]
+        let tabBarExpectation = expectation(for: exists, evaluatedWith: tab) { () -> Bool in
+            tab.tap()
+            return true
+        }
+
+        let cell = XCUIApplication().tables.cells.element(boundBy: 0)
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
-        wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
+        wait(for: [tabBarExpectation, cellExistsExpectation], timeout: defaultWaitThreshold)
     }
 
     func testMockedRecentNews() {
-        let app = XCUIApplication()
-
-        //  Go to Reciente tab
-        app.tabBars.buttons["Reciente"].tap()
-
-        let cell = app.tables.cells.element(boundBy: 0)
         let exists = NSPredicate(format: "exists == 1")
+
+        let tab = XCUIApplication().tabBars.buttons["Reciente"]
+        let tabBarExpectation = expectation(for: exists, evaluatedWith: tab) { () -> Bool in
+            tab.tap()
+            return true
+        }
+
+        let cell = XCUIApplication().tables.cells.element(boundBy: 0)
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
-        wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
+        wait(for: [tabBarExpectation, cellExistsExpectation], timeout: defaultWaitThreshold)
     }
 
     func testReactionScreenFromMockedRecentNews() {
-        let app = XCUIApplication()
-
-        //  Go to Reciente tab
-        app.tabBars.buttons["Reciente"].tap()
-
-        let cell = app.tables.cells.element(boundBy: 1)
         let exists = NSPredicate(format: "exists == 1")
+
+        let tab = XCUIApplication().tabBars.buttons["Reciente"]
+        let tabBarExpectation = expectation(for: exists, evaluatedWith: tab) { () -> Bool in
+            tab.tap()
+            return true
+        }
+
+        let cell = XCUIApplication().tables.cells.element(boundBy: 0)
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
-        wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
+        wait(for: [tabBarExpectation, cellExistsExpectation], timeout: defaultWaitThreshold)
 
         //  Go to reacciones by tapping the "reaction button"
         cell.buttons["add reaction icon"].tap()
 
-        let reaccionesStaticText = app.navigationBars["Reacciones"].otherElements["Reacciones"]
+        let reaccionesStaticText = XCUIApplication().navigationBars["Reacciones"].otherElements["Reacciones"]
         let reaccionesTitleLabelExpectation = expectation(for: exists,
                                                           evaluatedWith: reaccionesStaticText,
                                                           handler: nil)
@@ -97,27 +103,36 @@ class HeadlinesMockedUITests: XCTestCase {
     }
 
     func testReactionScreenFromMockedSearch() {
-        let app = XCUIApplication()
-
-        //  Go to search
-        app.tabBars.buttons["Buscar"].tap()
-
-        //  Tap search text input
-        let buscarSearchField = app.searchFields["Buscar"]
-        buscarSearchField.tap()
-
-        //  Type "Calu rivero" and ENTER
-        buscarSearchField.typeText("Calu rivero\r")
-
-        let cell = app.tables["search table"].cells.element(boundBy: 0)
         let exists = NSPredicate(format: "exists == 1")
+
+        let tab = XCUIApplication().tabBars.buttons["Buscar"]
+        let tabBarExpectation = expectation(for: exists, evaluatedWith: tab) { () -> Bool in
+            tab.tap()
+            return true
+        }
+
+        wait(for: [tabBarExpectation], timeout: defaultWaitThreshold)
+
+        let searchField = XCUIApplication().navigationBars["Buscar"].searchFields["Buscar"]
+        let searchFieldExistsExpectation = expectation(for: exists, evaluatedWith: searchField, handler: nil)
+        wait(for: [searchFieldExistsExpectation], timeout: defaultWaitThreshold)
+
+        //  Type "Calu"
+        searchField.tap()
+        searchField.typeText("Calu")
+        XCUIApplication().navigationBars["Buscar"].searchFields["Buscar"].tap()
+
+        //  Enter
+        searchField.typeText("\r")
+        let cell = XCUIApplication().tables["search table"].cells.element(boundBy: 0)
+
         let cellExistsExpectation = expectation(for: exists, evaluatedWith: cell, handler: nil)
         wait(for: [cellExistsExpectation], timeout: defaultWaitThreshold)
 
         //  Go to reacciones by tapping the "reaction button"
         cell.buttons["add reaction icon"].tap()
 
-        let reaccionesStaticText = app.navigationBars["Reacciones"].otherElements["Reacciones"]
+        let reaccionesStaticText = XCUIApplication().navigationBars["Reacciones"]
         let reaccionesTitleLabelExpectation = expectation(for: exists,
                                                           evaluatedWith: reaccionesStaticText,
                                                           handler: nil)

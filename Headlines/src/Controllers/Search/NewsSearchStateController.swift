@@ -37,9 +37,15 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
         if stateViewController.shownViewController is NewsSearchViewController {
             stateViewController.transition(to: .loading)
         }
-        dataTask = service.fetchTags(tag: text, success: { [unowned self] tags in
-            self.render(tags: tags, searchedTerm: text)
-            }, fail: nil)
+
+        dataTask = service.fetchTags(tag: text, handler: { [weak self] result in
+            switch result {
+            case .success(let tags):
+                self?.render(tags: tags, searchedTerm: text)
+            case .failure:
+                print("Fail at updateSearchResults")
+            }
+        })
     }
 
     private func render(news: [News]?) {
@@ -66,23 +72,23 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
         dataTask?.cancel()
         stateViewController.transition(to: .loading)
 
-        self.dataTask = self.service.searchNews(
-            term,
-            success: self.render,
-            fail: self.error
-        )
+        self.dataTask = self.service.searchNews(term, handler: { [weak self] result in
+            switch result {
+            case .success(let news):
+                self?.render(news: news)
+            case .failure(let err):
+                self?.error(err)
+            }
+        })
     }
 
-    private func error(_ error: NSError) {
-        guard error.code == NSURLErrorCancelled else {
-            let alert = UIAlertController(
-                title: "Sorry",
-                message: error.localizedDescription,
-                preferredStyle: .alert
-            )
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            present(alert, animated: true, completion: nil)
-            return
-        }
+    private func error(_ error: Error) {
+        let alert = UIAlertController(
+            title: "Sorry",
+            message: error.localizedDescription,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
