@@ -31,7 +31,10 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
 
     func openURL(_ url: URL) {
         if userSettingsManager.shouldOpenNewsInsideApp {
-            let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
+            let configuration = SFSafariViewController.Configuration()
+            configuration.entersReaderIfAvailable = true
+
+            let vc = SFSafariViewController(url: url, configuration: configuration)
             present(vc, animated: true, completion: nil)
 
         } else {

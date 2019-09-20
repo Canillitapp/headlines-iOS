@@ -125,7 +125,7 @@ class TrendingNewsTableViewController: NewsTableViewController {
             headerViewTopConstraint.constant = -max(scrollView.contentOffset.y + headerViewHeight, 0)
         }
 
-        scrollView.scrollIndicatorInsets.top = headerViewHeightConstraint.constant
+        scrollView.verticalScrollIndicatorInsets.top = headerViewHeightConstraint.constant
     }
 
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {

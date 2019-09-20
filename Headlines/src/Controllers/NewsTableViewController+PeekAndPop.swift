@@ -67,7 +67,10 @@ extension NewsTableViewController: UIViewControllerPreviewingDelegate {
             return
         }
 
-        let vc = SFSafariViewController(url: url, entersReaderIfAvailable: true)
+        let configuration = SFSafariViewController.Configuration()
+        configuration.entersReaderIfAvailable = true
+
+        let vc = SFSafariViewController(url: url, configuration: configuration)
         vc.delegate = self
         present(vc, animated: true, completion: nil)
     }
