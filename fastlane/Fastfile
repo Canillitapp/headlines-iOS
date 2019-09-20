@@ -19,7 +19,7 @@ ENV["FASTLANE_ITC_TEAM_NAME"] = "Ezequiel Alejandro Becerra"
 
 platform :ios do
   before_all do
-    cocoapods
+    spm
   end
 
   desc "Runs all the tests"
