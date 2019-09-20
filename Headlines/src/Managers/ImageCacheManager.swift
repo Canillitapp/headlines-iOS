@@ -16,28 +16,28 @@ class ImageCacheManager {
 
     var cachedImages = [String: UIImage]()
 
-    func image(forKey key: String) -> UIImage? {
+    func image(forKey key: String, completion: ((_ image: UIImage?) -> Void)?) {
 
         // Look for it on cache
         if let cachedImage = cachedImages[key] {
-            return cachedImage
+            completion?(cachedImage)
+            return
         }
 
-        // Look for it on disk
-        if let cachedImage = SDWebImageManager.shared().imageCache?.imageFromDiskCache(forKey: key) {
-            // Cache it on memory
-            cachedImages[key] = cachedImage
-            return cachedImage
-        }
+        SDWebImageManager.shared.imageCache.queryImage(forKey: key, options: [], context: nil) { [weak self] (image, _, _) in
+            if let image = image {
+                self?.cachedImages[key] = image
+            }
 
-        return nil
+            completion?(image)
+        }
     }
 
     func setImage(_ image: UIImage, forKey key: String) {
         cachedImages[key] = image
 
         DispatchQueue.main.async {
-            SDImageCache.shared().store(image, forKey: key, toDisk: true)
+            SDImageCache.shared.store(image, forKey: key, completion: nil)
         }
     }
 }
