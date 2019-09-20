@@ -6,7 +6,9 @@ xcode_sdk: iphonesimulator13.0
 
 before_install:
   - bundle install
-  - pod repo update
+
+install:
+  - swift package update
 
 script:
   - fastlane test
