@@ -24,7 +24,7 @@ class NewsTableViewController: UIViewController {
             })
         }
     }
-    var hasRegisteredPreview = false
+
     var selectedNews: News?
 
     var preferredDateStyle: DateFormatter.Style = .none
@@ -130,6 +130,7 @@ class NewsTableViewController: UIViewController {
         super.viewDidLoad()
 
         setupTableView()
+        setupPreview()
 
         guard let ds = self.newsDataSource else {
             return
