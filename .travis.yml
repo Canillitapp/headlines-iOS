@@ -7,9 +7,6 @@ xcode_sdk: iphonesimulator13.0
 before_install:
   - bundle install
 
-install:
-  - swift package update
-
 script:
   - fastlane test
   - bundle exec danger
