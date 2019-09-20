@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import ViewAnimator
 
 extension NewsTableViewController {
 
@@ -17,15 +16,6 @@ extension NewsTableViewController {
         case nextPage
 
         func shouldAnimatePullToRefresh() -> Bool {
-            switch self {
-            case .reload:
-                return true
-            default:
-                return false
-            }
-        }
-
-        func shouldAnimateCells() -> Bool {
             switch self {
             case .reload:
                 return true
@@ -92,17 +82,7 @@ extension NewsTableViewController {
             tableView.beginUpdates()
             filteredNewsViewModels.append(contentsOf: filteredNews)
             tableView.insertRows(at: indexPaths, with: .none)
-            tableView.setContentOffset(tableView.contentOffset, animated: false)
             tableView.endUpdates()
-        }
-
-        // Animate all cells appearing (if needed)
-        if mode.shouldAnimateCells() {
-            UIView.animate(
-                views: tableView.visibleCells,
-                animations: [AnimationType.from(direction: .right, offset: 10.0)],
-                animationInterval: 0.1
-            )
         }
 
         lastPage += 1

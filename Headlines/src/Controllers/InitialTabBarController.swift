@@ -185,7 +185,10 @@ class InitialTabBarController: UITabBarController, UITabBarControllerDelegate {
 extension InitialTabBarController: SFSafariViewControllerDelegate {
 
     fileprivate func presentNews(_ news: News) {
-        let vc = SFSafariViewController(url: news.url, entersReaderIfAvailable: true)
+        let configuration = SFSafariViewController.Configuration()
+        configuration.entersReaderIfAvailable = true
+
+        let vc = SFSafariViewController(url: news.url, configuration: configuration)
         vc.delegate = self
         present(vc, animated: true, completion: nil)
     }

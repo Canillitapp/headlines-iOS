@@ -119,7 +119,9 @@ class AppDelegate: UIResponder,
 
     func presentSearchController(topic: String) {
 
-        guard let vc = UIApplication.shared.keyWindow?.rootViewController else {
+        guard
+            let keyWindow = UIApplication.shared.windows.filter({ $0.isKeyWindow }).first ,
+            let vc = keyWindow.rootViewController else {
             return
         }
 

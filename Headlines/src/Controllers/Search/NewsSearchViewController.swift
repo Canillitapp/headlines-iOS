@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ViewAnimator
 
 class NewsSearchViewController: NewsTableViewController {
 
@@ -38,12 +37,6 @@ class NewsSearchViewController: NewsTableViewController {
         }
 
         tableView.reloadData()
-        let move = AnimationType.from(direction: .bottom, offset: 5)
-        let scale = AnimationType.zoom(scale: 0.98)
-        UIView.animate(
-            views: tableView.visibleCells,
-            animations: [move, scale]
-        )
     }
 
     func resetNews() {

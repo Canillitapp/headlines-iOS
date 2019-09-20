@@ -9,7 +9,6 @@
 import UIKit
 import CloudKit
 
-// swiftlint:disable force_try
 class ReactionsService: HTTPService {
 
     func postReaction(_ reaction: String,

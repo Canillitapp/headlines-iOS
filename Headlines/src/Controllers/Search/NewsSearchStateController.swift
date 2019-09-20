@@ -21,7 +21,7 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.white
+        view.backgroundColor = UIColor.systemBackground
         add(stateViewController)
     }
 

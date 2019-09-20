@@ -91,12 +91,12 @@ class NewsCellViewModel: NSObject,
 
         if indexPath.row >= reactions.count {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addCell", for: indexPath)
-            cell.layer.borderColor = UIColor(white: 236/255.0, alpha: 1).cgColor
+            cell.layer.borderColor = UIColor.secondarySystemFill.cgColor
             return cell
 
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "reactionCell", for: indexPath)
-            cell.layer.borderColor = UIColor(white: 236/255.0, alpha: 1).cgColor
+            cell.layer.borderColor = UIColor.secondarySystemFill.cgColor
 
             if let c = cell as? ReactionCollectionViewCell {
                 let r = reactions[indexPath.row]

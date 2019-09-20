@@ -25,7 +25,10 @@ extension NewsTableViewController {
         trackOpenNews(news)
 
         if userSettingsManager.shouldOpenNewsInsideApp {
-            let vc = SFSafariViewController(url: news.url, entersReaderIfAvailable: true)
+            let configuration = SFSafariViewController.Configuration()
+            configuration.entersReaderIfAvailable = true
+
+            let vc = SFSafariViewController(url: news.url, configuration: configuration)
             vc.delegate = self
             self.selectedNews = news
             present(vc, animated: true, completion: nil)

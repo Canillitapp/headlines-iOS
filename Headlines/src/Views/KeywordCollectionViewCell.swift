@@ -28,7 +28,7 @@ class KeywordCollectionViewCell: UICollectionViewCell {
         contentView.layer.cornerRadius = 10
         contentView.layer.masksToBounds = true
         contentView.layer.backgroundColor = UIColor.white.cgColor
-        contentView.layer.borderColor = UIColor(white: 216/255.0, alpha: 1).cgColor
+        contentView.layer.borderColor = UIColor.tertiarySystemFill.cgColor
         contentView.layer.borderWidth = 1
 
         layer.backgroundColor = UIColor.clear.cgColor
