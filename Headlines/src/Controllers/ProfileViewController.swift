@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 import SafariServices
-import Crashlytics
-import JGProgressHUD
 import SDWebImage
 
 class ProfileViewController: UIViewController, TabbedViewController, UICollectionViewDelegateFlowLayout {
@@ -129,20 +127,15 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
     }
 
     func handleInterestSelection(_ interest: Interest) {
-        let hud = JGProgressHUD(style: .dark)
-        hud.textLabel.text = "Loading"
-        hud.show(in: self.view)
 
         let handler: ((Result<[News], Error>) -> Void) = { [weak self] result in
             switch result {
             case .success(let news):
-                hud.dismiss()
 
                 let interestNews = InterestNews(interest: interest.name, news: news)
                 self?.performSegue(withIdentifier: "interest_did_select", sender: interestNews)
 
             case .failure(let error):
-                hud.dismiss()
                 self?.showControllerWithError(error)
             }
         }

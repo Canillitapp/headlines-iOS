@@ -7,13 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05859035133DF872C4F9775C /* Pods_HeadlinesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBA7D61C153D8B95DB9A361C /* Pods_HeadlinesTests.framework */; };
-		08997FABEA8931BE95F4D46A /* Pods_Canillitapp_Widget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3844BADA0445D4FFEA53F73 /* Pods_Canillitapp_Widget.framework */; };
-		133B125AD494C219DB3B0255 /* Pods_Canillitapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E364D941A8F5CACBFF8FD34 /* Pods_Canillitapp.framework */; };
 		43CC643D1EBBE7E90066D49E /* OrientationAwareControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CC643C1EBBE7E90066D49E /* OrientationAwareControllers.swift */; };
 		43CC643E1EBBE7E90066D49E /* OrientationAwareControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CC643C1EBBE7E90066D49E /* OrientationAwareControllers.swift */; };
 		43CC643F1EBBE7E90066D49E /* OrientationAwareControllers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43CC643C1EBBE7E90066D49E /* OrientationAwareControllers.swift */; };
-		597E81BAC05CC01C523956BE /* Pods_Watch_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7CA813EE9F2943ACC02746E /* Pods_Watch_Extension.framework */; };
 		67026FFE20FEE55300F67B90 /* GET-search-trending.json in Resources */ = {isa = PBXBuildFile; fileRef = 67026FFD20FEE55300F67B90 /* GET-search-trending.json */; };
 		6702700020FEE6C300F67B90 /* GET-search-term.json in Resources */ = {isa = PBXBuildFile; fileRef = 67026FFF20FEE6C300F67B90 /* GET-search-term.json */; };
 		6704850620F952E300360701 /* ReviewView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6704850520F952E300360701 /* ReviewView.xib */; };
@@ -99,7 +95,7 @@
 		675A82021D6BF6E8000DC680 /* HeadlinesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 675A82011D6BF6E8000DC680 /* HeadlinesUITests.swift */; };
 		67617F801F6CB2C200674320 /* DimPresentAnimationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67617F7F1F6CB2C200674320 /* DimPresentAnimationController.swift */; };
 		6764207920EC61F0000E2D18 /* NewsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6764207820EC61F0000E2D18 /* NewsManager.swift */; };
-		676580E2233561C600A09B58 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 676580E1233561C600A09B58 /* SwiftPackageProductDependency */; };
+		676580E2233561C600A09B58 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 676580E1233561C600A09B58 /* SDWebImage */; };
 		6767C59D204A4F6F00D909E1 /* FilterSourcesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6767C59C204A4F6F00D909E1 /* FilterSourcesDataSource.swift */; };
 		676E1C1E1EECA68400EC71A5 /* GET-popular.json in Resources */ = {isa = PBXBuildFile; fileRef = 676E1C1D1EECA68400EC71A5 /* GET-popular.json */; };
 		676E1C201EECA7EB00EC71A5 /* GET-recent.json in Resources */ = {isa = PBXBuildFile; fileRef = 676E1C1F1EECA7EB00EC71A5 /* GET-recent.json */; };
@@ -175,7 +171,6 @@
 		67CE08B31E903B2D00D5911E /* ReactionPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CE08B21E903B2D00D5911E /* ReactionPickerViewController.swift */; };
 		67CE08B51E904F2000D5911E /* ReactionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67CE08B41E904F2000D5911E /* ReactionCollectionViewCell.swift */; };
 		67D434F11EB0000C001A79D8 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67D434F01EB0000C001A79D8 /* ProfileViewController.swift */; };
-		67D9575921FAA27B006F6878 /* fabric.apikey in Resources */ = {isa = PBXBuildFile; fileRef = 67D9575821FAA27A006F6878 /* fabric.apikey */; };
 		67E10ACE1F637FAA009F017C /* Filter.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67E10ACC1F637FAA009F017C /* Filter.storyboard */; };
 		67E10AD01F6385FE009F017C /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E10ACF1F6385FE009F017C /* FilterViewController.swift */; };
 		67F32F9C21116AA500509F09 /* NewsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67F32F9B21116AA400509F09 /* NewsTests.swift */; };
@@ -299,11 +294,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0DF05652C0E59CFCA3F26160 /* Pods-Watch Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch Extension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Watch Extension/Pods-Watch Extension.debug.xcconfig"; sourceTree = "<group>"; };
-		1B88713190516178E6891750 /* Pods-HeadlinesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeadlinesTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HeadlinesTests/Pods-HeadlinesTests.debug.xcconfig"; sourceTree = "<group>"; };
-		1E364D941A8F5CACBFF8FD34 /* Pods_Canillitapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canillitapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		43CC643C1EBBE7E90066D49E /* OrientationAwareControllers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrientationAwareControllers.swift; sourceTree = "<group>"; };
-		5EA3242399336F7A8DE27E42 /* Pods-Watch Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Watch Extension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Watch Extension/Pods-Watch Extension.release.xcconfig"; sourceTree = "<group>"; };
 		67026FFD20FEE55300F67B90 /* GET-search-trending.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-search-trending.json"; sourceTree = "<group>"; };
 		67026FFF20FEE6C300F67B90 /* GET-search-term.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "GET-search-term.json"; sourceTree = "<group>"; };
 		6704850520F952E300360701 /* ReviewView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReviewView.xib; sourceTree = "<group>"; };
@@ -460,23 +451,12 @@
 		67CE08B21E903B2D00D5911E /* ReactionPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionPickerViewController.swift; sourceTree = "<group>"; };
 		67CE08B41E904F2000D5911E /* ReactionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionCollectionViewCell.swift; sourceTree = "<group>"; };
 		67D434F01EB0000C001A79D8 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		67D9575821FAA27A006F6878 /* fabric.apikey */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fabric.apikey; sourceTree = SOURCE_ROOT; };
 		67E10ACD1F637FAA009F017C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Filter.storyboard; sourceTree = "<group>"; };
 		67E10ACF1F6385FE009F017C /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 		67F32F9B21116AA400509F09 /* NewsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTests.swift; sourceTree = "<group>"; };
 		67F39C191EB2DEE600CF99F2 /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		67F5C2C4219B8AD8009093D8 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageCacheManager.swift; path = src/Managers/ImageCacheManager.swift; sourceTree = "<group>"; };
 		67FD84DA1D6BF85D00BACAFC /* TrendingCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrendingCardsViewController.swift; sourceTree = "<group>"; };
-		76124FBA967C0DCF6FC87B1F /* Pods-Headlines.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Headlines.release.xcconfig"; path = "Pods/Target Support Files/Pods-Headlines/Pods-Headlines.release.xcconfig"; sourceTree = "<group>"; };
-		7FF29453467C8A7C0AD8C91C /* Pods-Canillitapp Widget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canillitapp Widget.release.xcconfig"; path = "Pods/Target Support Files/Pods-Canillitapp Widget/Pods-Canillitapp Widget.release.xcconfig"; sourceTree = "<group>"; };
-		884A5BFA52E8811A2C5A6A7D /* Pods_Headlines.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Headlines.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BD02F270E52E39395541E474 /* Pods-Canillitapp Widget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canillitapp Widget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Canillitapp Widget/Pods-Canillitapp Widget.debug.xcconfig"; sourceTree = "<group>"; };
-		BF6FCFB06FB814847D111266 /* Pods-Canillitapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canillitapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Canillitapp/Pods-Canillitapp.debug.xcconfig"; sourceTree = "<group>"; };
-		CBCA2736BC05D788D049F5CF /* Pods-Headlines.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Headlines.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Headlines/Pods-Headlines.debug.xcconfig"; sourceTree = "<group>"; };
-		D92054C908EB67709F7A5EC5 /* Pods-Canillitapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Canillitapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-Canillitapp/Pods-Canillitapp.release.xcconfig"; sourceTree = "<group>"; };
-		E3844BADA0445D4FFEA53F73 /* Pods_Canillitapp_Widget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Canillitapp_Widget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7CA813EE9F2943ACC02746E /* Pods_Watch_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Watch_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		EBA7D61C153D8B95DB9A361C /* Pods_HeadlinesTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HeadlinesTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB0F97F220F84F5E00555A7A /* FilterSourcesDataSourceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterSourcesDataSourceTests.swift; sourceTree = "<group>"; };
 		FB0F97F520F8D40C00555A7A /* Array+Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Util.swift"; sourceTree = "<group>"; };
 		FB450E0E20F2813B00084445 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Search.storyboard; sourceTree = "<group>"; };
@@ -491,7 +471,6 @@
 		FB9F586820FA2BB30028C1DF /* SuggestedTermTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedTermTableViewCell.swift; sourceTree = "<group>"; };
 		FB9F586A20FA34730028C1DF /* Tag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		FBBDCC6D20F2C3B200757861 /* TrendingTerm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingTerm.swift; sourceTree = "<group>"; };
-		FD39590F765C68237C475997 /* Pods-HeadlinesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HeadlinesTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HeadlinesTests/Pods-HeadlinesTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -506,7 +485,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				597E81BAC05CC01C523956BE /* Pods_Watch_Extension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -521,9 +499,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				676580E2233561C600A09B58 /* BuildFile in Frameworks */,
+				676580E2233561C600A09B58 /* SDWebImage in Frameworks */,
 				67897EB21EA70B2B0084F598 /* CloudKit.framework in Frameworks */,
-				133B125AD494C219DB3B0255 /* Pods_Canillitapp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,7 +508,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05859035133DF872C4F9775C /* Pods_HeadlinesTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,7 +530,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				67BA65C41FCB65B400411A06 /* NotificationCenter.framework in Frameworks */,
-				08997FABEA8931BE95F4D46A /* Pods_Canillitapp_Widget.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,7 +702,6 @@
 		675A81D31D6BF6E8000DC680 = {
 			isa = PBXGroup;
 			children = (
-				67D9575821FAA27A006F6878 /* fabric.apikey */,
 				6797F8931EE4B30600B8EAA5 /* Common */,
 				675A81DE1D6BF6E8000DC680 /* Headlines */,
 				675A81F51D6BF6E8000DC680 /* HeadlinesTests */,
@@ -739,7 +713,6 @@
 				67BA65C51FCB65B400411A06 /* Canillitapp Widget */,
 				679A72C12018CE3F005CCCB5 /* Notifications */,
 				675A81DD1D6BF6E8000DC680 /* Products */,
-				C9B35ED6280F70EB874A775A /* Pods */,
 				7F5377F9DE7CA1E0A38F9F13 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -1007,31 +980,9 @@
 			isa = PBXGroup;
 			children = (
 				67897EB11EA70B2B0084F598 /* CloudKit.framework */,
-				884A5BFA52E8811A2C5A6A7D /* Pods_Headlines.framework */,
-				E7CA813EE9F2943ACC02746E /* Pods_Watch_Extension.framework */,
-				1E364D941A8F5CACBFF8FD34 /* Pods_Canillitapp.framework */,
 				67BA65C31FCB65B400411A06 /* NotificationCenter.framework */,
-				E3844BADA0445D4FFEA53F73 /* Pods_Canillitapp_Widget.framework */,
-				EBA7D61C153D8B95DB9A361C /* Pods_HeadlinesTests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		C9B35ED6280F70EB874A775A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				CBCA2736BC05D788D049F5CF /* Pods-Headlines.debug.xcconfig */,
-				76124FBA967C0DCF6FC87B1F /* Pods-Headlines.release.xcconfig */,
-				0DF05652C0E59CFCA3F26160 /* Pods-Watch Extension.debug.xcconfig */,
-				5EA3242399336F7A8DE27E42 /* Pods-Watch Extension.release.xcconfig */,
-				BF6FCFB06FB814847D111266 /* Pods-Canillitapp.debug.xcconfig */,
-				D92054C908EB67709F7A5EC5 /* Pods-Canillitapp.release.xcconfig */,
-				BD02F270E52E39395541E474 /* Pods-Canillitapp Widget.debug.xcconfig */,
-				7FF29453467C8A7C0AD8C91C /* Pods-Canillitapp Widget.release.xcconfig */,
-				1B88713190516178E6891750 /* Pods-HeadlinesTests.debug.xcconfig */,
-				FD39590F765C68237C475997 /* Pods-HeadlinesTests.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		FB0F97F420F8D3FD00555A7A /* Foundation */ = {
@@ -1123,7 +1074,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6719DA7E1D6D143E00D1E214 /* Build configuration list for PBXNativeTarget "Watch Extension" */;
 			buildPhases = (
-				111875771CA35CA2D69BBEA3 /* [CP] Check Pods Manifest.lock */,
 				6719DA671D6D143E00D1E214 /* Sources */,
 				6719DA681D6D143E00D1E214 /* Frameworks */,
 				6719DA691D6D143E00D1E214 /* Resources */,
@@ -1159,15 +1109,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 675A82061D6BF6E8000DC680 /* Build configuration list for PBXNativeTarget "Canillitapp" */;
 			buildPhases = (
-				ACDDC73AB3F5EA8DC32646D3 /* [CP] Check Pods Manifest.lock */,
 				675A81D81D6BF6E8000DC680 /* Sources */,
 				675A81D91D6BF6E8000DC680 /* Frameworks */,
 				675A81DA1D6BF6E8000DC680 /* Resources */,
-				931F64A98B2233C424A110A8 /* [CP] Embed Pods Frameworks */,
 				67FD84E11D6BF89D00BACAFC /* SwiftLint */,
 				6719DA811D6D143E00D1E214 /* Embed Watch Content */,
 				67BA65D21FCB65B400411A06 /* Embed App Extensions */,
-				6798B6841EBABFB50079B8E1 /* Fabric / Crashlytics */,
 			);
 			buildRules = (
 			);
@@ -1178,7 +1125,7 @@
 			);
 			name = Canillitapp;
 			packageProductDependencies = (
-				676580E1233561C600A09B58 /* SwiftPackageProductDependency */,
+				676580E1233561C600A09B58 /* SDWebImage */,
 			);
 			productName = Headlines;
 			productReference = 675A81DC1D6BF6E8000DC680 /* Canillitapp.app */;
@@ -1188,7 +1135,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 675A82091D6BF6E8000DC680 /* Build configuration list for PBXNativeTarget "HeadlinesTests" */;
 			buildPhases = (
-				5604A0896EEE31CC31C651B9 /* [CP] Check Pods Manifest.lock */,
 				675A81EE1D6BF6E8000DC680 /* Sources */,
 				675A81EF1D6BF6E8000DC680 /* Frameworks */,
 				675A81F01D6BF6E8000DC680 /* Resources */,
@@ -1242,7 +1188,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 67BA65D11FCB65B400411A06 /* Build configuration list for PBXNativeTarget "Canillitapp Widget" */;
 			buildPhases = (
-				BF46BDF242B4FBEE1F5C8EF7 /* [CP] Check Pods Manifest.lock */,
 				67BA65BE1FCB65B400411A06 /* Sources */,
 				67BA65BF1FCB65B400411A06 /* Frameworks */,
 				67BA65C01FCB65B400411A06 /* Resources */,
@@ -1344,7 +1289,7 @@
 			);
 			mainGroup = 675A81D31D6BF6E8000DC680;
 			packageReferences = (
-				676580E0233561C600A09B58 /* RemoteSwiftPackageReference */,
+				676580E0233561C600A09B58 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 675A81DD1D6BF6E8000DC680 /* Products */;
 			projectDirPath = "";
@@ -1407,7 +1352,6 @@
 				678A17441F4A1D9F00D84793 /* Reactions.storyboard in Resources */,
 				6704850620F952E300360701 /* ReviewView.xib in Resources */,
 				676E1C201EECA7EB00EC71A5 /* GET-recent.json in Resources */,
-				67D9575921FAA27B006F6878 /* fabric.apikey in Resources */,
 				67E10ACE1F637FAA009F017C /* Filter.storyboard in Resources */,
 				67A364E221B727290030D651 /* NewsTableViewCell.xib in Resources */,
 				674E6D1D20F050C9000D0841 /* GET-categories.json in Resources */,
@@ -1482,57 +1426,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		111875771CA35CA2D69BBEA3 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Watch Extension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5604A0896EEE31CC31C651B9 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-HeadlinesTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6798B6841EBABFB50079B8E1 /* Fabric / Crashlytics */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
-			);
-			name = "Fabric / Crashlytics";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
-		};
 		67FD84E11D6BF89D00BACAFC /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1546,59 +1439,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		931F64A98B2233C424A110A8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Canillitapp/Pods-Canillitapp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Canillitapp/Pods-Canillitapp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Canillitapp/Pods-Canillitapp-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		ACDDC73AB3F5EA8DC32646D3 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Canillitapp-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BF46BDF242B4FBEE1F5C8EF7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Canillitapp Widget-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -2028,7 +1868,6 @@
 		};
 		6719DA7C1D6D143E00D1E214 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0DF05652C0E59CFCA3F26160 /* Pods-Watch Extension.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
@@ -2056,7 +1895,6 @@
 		};
 		6719DA7D1D6D143E00D1E214 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5EA3242399336F7A8DE27E42 /* Pods-Watch Extension.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 699;
@@ -2231,7 +2069,6 @@
 		};
 		675A82071D6BF6E8000DC680 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF6FCFB06FB814847D111266 /* Pods-Canillitapp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Headlines/Headlines.entitlements;
@@ -2259,7 +2096,6 @@
 		};
 		675A82081D6BF6E8000DC680 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D92054C908EB67709F7A5EC5 /* Pods-Canillitapp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Headlines/Headlines.entitlements;
@@ -2287,7 +2123,6 @@
 		};
 		675A820A1D6BF6E8000DC680 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B88713190516178E6891750 /* Pods-HeadlinesTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 2334RGUT2P;
@@ -2307,7 +2142,6 @@
 		};
 		675A820B1D6BF6E8000DC680 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD39590F765C68237C475997 /* Pods-HeadlinesTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = 2334RGUT2P;
@@ -2436,7 +2270,6 @@
 		};
 		67BA65CF1FCB65B400411A06 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BD02F270E52E39395541E474 /* Pods-Canillitapp Widget.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -2473,7 +2306,6 @@
 		};
 		67BA65D01FCB65B400411A06 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7FF29453467C8A7C0AD8C91C /* Pods-Canillitapp Widget.release.xcconfig */;
 			buildSettings = {
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -2603,7 +2435,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		676580E0233561C600A09B58 /* RemoteSwiftPackageReference */ = {
+		676580E0233561C600A09B58 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
 			requirement = {
@@ -2614,9 +2446,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		676580E1233561C600A09B58 /* SwiftPackageProductDependency */ = {
+		676580E1233561C600A09B58 /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 676580E0233561C600A09B58 /* RemoteSwiftPackageReference */;
+			package = 676580E0233561C600A09B58 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
 		};
 /* End XCSwiftPackageProductDependency section */

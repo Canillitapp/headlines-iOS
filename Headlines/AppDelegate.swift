@@ -9,10 +9,6 @@
 import UIKit
 import UserNotifications
 
-import Fabric
-import Firebase
-import JGProgressHUD
-
 extension Notification.Name {
     static let notificationNewsTapped = Notification.Name("notification_news_tapped")
 }
@@ -125,14 +121,9 @@ class AppDelegate: UIResponder,
             return
         }
 
-        let hud = JGProgressHUD(style: .dark)
-        hud.textLabel.text = "Loading"
-        hud.show(in: vc.view)
-
         let handler: ((Result <[News], Error>) -> Void) = { result in
             switch result {
             case .success(let news):
-                hud.dismiss()
 
                 let storyboard = UIStoryboard.init(name: "News", bundle: Bundle.main)
                 guard let newsViewController = storyboard.instantiateViewController(withIdentifier: "news")
@@ -150,7 +141,7 @@ class AppDelegate: UIResponder,
                 vc.present(navController, animated: true, completion: nil)
 
             case .failure:
-                hud.dismiss()
+                break
             }
         }
 
@@ -161,19 +152,6 @@ class AppDelegate: UIResponder,
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        //  https://www.herzbube.ch/blog/2016/08/how-hide-fabric-api-key-and-build-secret-open-source-project
-        let resourceURL = Bundle.main.url(forResource: "fabric", withExtension: "apikey")
-
-        do {
-            var fabricAPIKey = try String(contentsOf: resourceURL!)
-            fabricAPIKey = fabricAPIKey.trimmingCharacters(in: .whitespacesAndNewlines)
-            if fabricAPIKey != "" {
-                Crashlytics.start(withAPIKey: fabricAPIKey)
-            }
-        } catch let error {
-            print(error.localizedDescription)
-        }
-
         if userSettingsManager.firstOpenDate == nil {
             userSettingsManager.firstOpenDate = Date()
         }
@@ -181,8 +159,6 @@ class AppDelegate: UIResponder,
         fetchCategoriesAndNews()
 
         setupNotifications()
-
-        FirebaseApp.configure()
 
         return true
     }
