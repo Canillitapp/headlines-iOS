@@ -12,7 +12,6 @@ import SafariServices
 import Crashlytics
 import JGProgressHUD
 import SDWebImage
-import ViewAnimator
 
 class ProfileViewController: UIViewController, TabbedViewController, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
