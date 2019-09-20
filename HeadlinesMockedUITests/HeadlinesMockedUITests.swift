@@ -84,7 +84,7 @@ class HeadlinesMockedUITests: XCTestCase {
         // search field == "Buscar".
         // I'm almost sure this is a bug, so I'm commenting this test until they fix this.
         return
-        
+
         let exists = NSPredicate(format: "exists == 1")
 
         let tab = XCUIApplication().tabBars.buttons["Reciente"]
@@ -112,7 +112,7 @@ class HeadlinesMockedUITests: XCTestCase {
         // search field == "Buscar".
         // I'm almost sure this is a bug, so I'm commenting this test until they fix this.
         return
-        
+
         let exists = NSPredicate(format: "exists == 1")
 
         let tab = XCUIApplication().tabBars.buttons["Buscar"]
