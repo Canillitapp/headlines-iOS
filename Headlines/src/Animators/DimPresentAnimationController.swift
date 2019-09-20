@@ -66,7 +66,11 @@ class DimPresentAnimationController: NSObject, UIViewControllerAnimatedTransitio
 
         let completionClosure: ((Bool) -> Void) = { (_) in
             transitionContext.completeTransition(true)
-            UIApplication.shared.keyWindow?.addSubview(toVC.view)
+
+            guard let keyWindow = UIApplication.shared.windows.filter({$0.isKeyWindow}).first else {
+                return
+            }
+            keyWindow.addSubview(toVC.view)
         }
 
         UIView.animate(

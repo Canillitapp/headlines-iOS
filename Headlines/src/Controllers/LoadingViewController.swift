@@ -79,6 +79,6 @@ class LoadingViewController: UIViewController {
     }
 
     deinit {
-        NotificationCenter.default.removeObserver(apiCallCompletionObserver)
+        NotificationCenter.default.removeObserver(apiCallCompletionObserver as Any)
     }
 }
