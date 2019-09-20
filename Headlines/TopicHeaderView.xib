@@ -116,7 +116,7 @@
     <resources>
         <image name="icon_placeholder_small" width="44" height="35"/>
         <namedColor name="thumbnail_background_color">
-            <color red="0.16078431372549018" green="0.16078431372549018" blue="0.16078431372549018" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.16099999845027924" green="0.16099999845027924" blue="0.16099999845027924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

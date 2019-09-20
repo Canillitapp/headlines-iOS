@@ -15,7 +15,7 @@ class SuggestedTermTableViewCell: UITableViewCell {
     func set(tag: Tag, searchedTerm: String) {
         let attributes: [NSAttributedString.Key: Any] = [
             .font: UIFont.systemFont(ofSize: 20),
-            .foregroundColor: UIColor(white: 0.56, alpha: 1.0)
+            .foregroundColor: UIColor.secondaryLabel
         ]
         let attributedString = NSAttributedString(
             string: tag.name.lowercased(),
@@ -36,7 +36,7 @@ extension NSMutableAttributedString {
         if foundRange.location != NSNotFound {
             addAttribute(
                 NSAttributedString.Key.foregroundColor,
-                value: UIColor.black,
+                value: UIColor.label,
                 range: foundRange
             )
         }

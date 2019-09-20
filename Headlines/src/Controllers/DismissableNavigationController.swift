@@ -22,7 +22,7 @@ class DismissableNavigationController: UINavigationController {
         super.viewDidLoad()
 
         // Styling
-        navigationBar.tintColor = UIColor.white
+        navigationBar.tintColor = UIColor.systemBackground
         navigationBar.barStyle = .black
         navigationBar.isTranslucent = false
 
