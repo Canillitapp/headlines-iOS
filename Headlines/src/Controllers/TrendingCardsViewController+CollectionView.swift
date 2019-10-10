@@ -52,7 +52,7 @@ extension TrendingCardsViewController {
 
         if UIDevice.current.userInterfaceIdiom == .pad {
             #if targetEnvironment(macCatalyst)
-            let columns: CGFloat = floor(collectionViewSize.width / 320.0)
+            let columns: CGFloat = floor(collectionViewSize.width / 340.0)
             #else
             let columns: CGFloat = floor(collectionViewSize.width / 280.0)
             #endif
@@ -128,6 +128,11 @@ extension TrendingCardsViewController: UICollectionViewDataSource {
         cell.timeLabel.text = timeFormatter.string(from: firstNews.date)
 
         cell.titleLabel.text = topic.name?.capitalized
+
+        #if targetEnvironment(macCatalyst)
+        cell.bodyLabel.font = UIFont.systemFont(ofSize: 18)
+        #endif
+
         cell.bodyLabel.text = firstNews.title
         cell.newsQuantityLabel.text = "\(news.count) noticias"
         cell.reactionLabel.text = topic.representativeReaction?.reaction ?? ""

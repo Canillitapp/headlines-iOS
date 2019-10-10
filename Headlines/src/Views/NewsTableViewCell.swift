@@ -40,6 +40,12 @@ class NewsTableViewCell: UITableViewCell {
 
         let addReactionNib = UINib(nibName: "AddReactionCollectionViewCell", bundle: nil)
         reactionsCollectionView.register(addReactionNib, forCellWithReuseIdentifier: "addCell")
+
+        #if targetEnvironment(macCatalyst)
+        titleLabel.font = UIFont.systemFont(ofSize: 18)
+        sourceLabel.font = UIFont.boldSystemFont(ofSize: 18)
+        timeLabel.font = UIFont.systemFont(ofSize: 18)
+        #endif
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
