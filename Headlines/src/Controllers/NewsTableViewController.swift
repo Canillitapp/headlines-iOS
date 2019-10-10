@@ -195,7 +195,7 @@ extension NewsTableViewController: UITableViewDataSource {
         }
 
         cell.reactionsCollectionView.isHidden = !viewModel.shouldShowReactions
-        cell.reactionsHeightConstraint.constant = cell.reactionsCollectionView.isHidden ? 0 : 30
+        cell.reactionsHeightConstraint.constant = cell.reactionsCollectionView.isHidden ? 0 : 35
         cell.addReactionButton.isHidden = viewModel.shouldShowReactions
         cell.reactionsCollectionView.reloadData()
 

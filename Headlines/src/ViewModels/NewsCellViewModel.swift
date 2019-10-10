@@ -102,18 +102,18 @@ class NewsCellViewModel: NSObject,
 
         guard indexPath.row < (news.reactions?.count)!,
             let r = news.reactions?[indexPath.row] else {
-            return CGSize(width: 40, height: 30)
+            return CGSize(width: 45, height: 35)
         }
 
-        let size = CGSize(width: Double.greatestFiniteMagnitude, height: 30)
+        let size = CGSize(width: Double.greatestFiniteMagnitude, height: 35)
         let options: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]
-        let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
+        let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 15)]
 
         let width = NSString(string: r.reactionString).boundingRect(with: size,
                                                                     options: options,
                                                                     attributes: attributes,
                                                                     context: nil).size.width
-        return CGSize(width: width + 10, height: 30)
+        return CGSize(width: width + 15, height: 35)
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

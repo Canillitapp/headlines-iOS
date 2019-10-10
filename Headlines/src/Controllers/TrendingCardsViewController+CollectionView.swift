@@ -51,7 +51,11 @@ extension TrendingCardsViewController {
         }
 
         if UIDevice.current.userInterfaceIdiom == .pad {
+            #if targetEnvironment(macCatalyst)
+            let columns: CGFloat = floor(collectionViewSize.width / 320.0)
+            #else
             let columns: CGFloat = floor(collectionViewSize.width / 280.0)
+            #endif
             let itemWidth = floor(((collectionViewSize.width - 20 - (columns-1)*10) / columns))
             flowLayout.itemSize = CGSize(width: itemWidth, height: 250)
         } else {

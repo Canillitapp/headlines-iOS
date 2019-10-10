@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="mac" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="126" id="lBj-xf-XU8" customClass="NewsTableViewCell" customModule="Canillitapp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="484" height="126"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="152" id="lBj-xf-XU8" customClass="NewsTableViewCell" customModule="Canillitapp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="411" height="152"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lBj-xf-XU8" id="Mhp-VL-zx8">
-                <rect key="frame" x="0.0" y="0.0" width="484" height="126"/>
+                <rect key="frame" x="0.0" y="0.0" width="411" height="152"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="GXe-es-ylb">
-                        <rect key="frame" x="10" y="14" width="464" height="80"/>
+                        <rect key="frame" x="10" y="10" width="391" height="92"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rhi-bJ-0yZ">
                                 <rect key="frame" x="0.0" y="0.0" width="80" height="80"/>
@@ -33,11 +33,23 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="PF2-EC-DsT">
-                                <rect key="frame" x="90" y="0.0" width="374" height="64.5"/>
+                                <rect key="frame" x="90" y="0.0" width="301" height="84"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Con Macri, Carrió y Sanz, Cambiemos presenta su Mesa Nacional." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SxN-AB-J60">
-                                        <rect key="frame" x="0.0" y="0.0" width="365" height="42.5"/>
-                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Con Macri, Carrió y Sanz, Cambiemos presenta su Mesa Nacional." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SxN-AB-J60">
+                                        <rect key="frame" x="0.0" y="0.0" width="289" height="38"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Om-kX-hje">
+                                        <rect key="frame" x="0.0" y="42" width="23" height="19"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                        <color key="textColor" systemColor="secondaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SHX-6G-Lpo">
+                                        <rect key="frame" x="0.0" y="65" width="44" height="19"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <color key="textColor" systemColor="tertiaryLabelColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="P9V-0p-29Q">
@@ -62,7 +74,7 @@
                         </subviews>
                     </stackView>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tf3-fp-bEM">
-                        <rect key="frame" x="10" y="104" width="469" height="30"/>
+                        <rect key="frame" x="10" y="112" width="396" height="30"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="cih-k0-v00"/>
@@ -76,7 +88,7 @@
                         <cells/>
                     </collectionView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1jz-iF-aCQ">
-                        <rect key="frame" x="449" y="91" width="30" height="30"/>
+                        <rect key="frame" x="376" y="117" width="30" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="30" id="97t-Mq-6UH"/>
                             <constraint firstAttribute="height" constant="30" id="WuG-gD-9p1"/>
@@ -90,7 +102,7 @@
                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="1jz-iF-aCQ" secondAttribute="bottom" constant="5" id="11k-a4-eQi"/>
-                    <constraint firstItem="GXe-es-ylb" firstAttribute="top" secondItem="Mhp-VL-zx8" secondAttribute="top" constant="14" id="9fx-AX-c2Q"/>
+                    <constraint firstItem="GXe-es-ylb" firstAttribute="top" secondItem="Mhp-VL-zx8" secondAttribute="top" constant="10" id="9fx-AX-c2Q"/>
                     <constraint firstItem="GXe-es-ylb" firstAttribute="leading" secondItem="Mhp-VL-zx8" secondAttribute="leading" constant="10" id="C7m-Z8-YTa"/>
                     <constraint firstAttribute="bottomMargin" secondItem="tf3-fp-bEM" secondAttribute="bottom" priority="999" id="KEt-TJ-BNQ"/>
                     <constraint firstAttribute="trailing" secondItem="GXe-es-ylb" secondAttribute="trailing" constant="10" id="Msx-Sr-I7b"/>
@@ -109,7 +121,7 @@
                 <outlet property="timeLabel" destination="SHX-6G-Lpo" id="LR8-El-TW5"/>
                 <outlet property="titleLabel" destination="SxN-AB-J60" id="5U3-EB-oZ8"/>
             </connections>
-            <point key="canvasLocation" x="224" y="157.42128935532236"/>
+            <point key="canvasLocation" x="165.59999999999999" y="169.11544227886057"/>
         </tableViewCell>
     </objects>
     <resources>
