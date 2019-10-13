@@ -177,6 +177,7 @@
                                                 </constraints>
                                                 <size key="customSize" width="300" height="260"/>
                                                 <connections>
+                                                    <outlet property="blurView" destination="7Zs-RS-Kcw" id="qJX-qG-EXH"/>
                                                     <outlet property="bodyLabel" destination="nD3-Ev-wvZ" id="cXv-EE-u1e"/>
                                                     <outlet property="imageView" destination="uP0-1H-e1r" id="T7Q-0L-9jw"/>
                                                     <outlet property="newsQuantityLabel" destination="7ov-pk-Fse" id="1JQ-jH-0wJ"/>
