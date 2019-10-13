@@ -138,8 +138,8 @@
                                                                     </constraints>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="😺" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNQ-RP-7St">
-                                                                    <rect key="frame" x="270" y="144.5" width="26" height="25"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                                    <rect key="frame" x="257" y="130.5" width="35" height="37"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                     <color key="shadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
@@ -159,11 +159,11 @@
                                                                 <constraint firstAttribute="bottom" secondItem="uP0-1H-e1r" secondAttribute="bottom" priority="999" id="I25-jQ-4Hx"/>
                                                                 <constraint firstItem="ePO-AZ-jGI" firstAttribute="top" secondItem="uP0-1H-e1r" secondAttribute="top" id="Kwp-MK-P59"/>
                                                                 <constraint firstItem="uP0-1H-e1r" firstAttribute="leading" secondItem="C9R-kt-J07" secondAttribute="leading" id="Lgl-zj-WLh"/>
-                                                                <constraint firstItem="7Zs-RS-Kcw" firstAttribute="top" secondItem="BNQ-RP-7St" secondAttribute="bottom" constant="4" id="PrP-8s-iIh"/>
+                                                                <constraint firstItem="7Zs-RS-Kcw" firstAttribute="top" secondItem="BNQ-RP-7St" secondAttribute="bottom" constant="6" id="PrP-8s-iIh"/>
                                                                 <constraint firstAttribute="trailing" secondItem="uP0-1H-e1r" secondAttribute="trailing" id="Txw-oF-xrx"/>
                                                                 <constraint firstItem="JOP-Mo-cUJ" firstAttribute="bottom" secondItem="7Zs-RS-Kcw" secondAttribute="bottom" priority="999" constant="-8" id="fN2-Yg-rIV"/>
                                                                 <constraint firstItem="JOP-Mo-cUJ" firstAttribute="leading" secondItem="C9R-kt-J07" secondAttribute="leading" constant="8" id="t46-eF-5qa"/>
-                                                                <constraint firstAttribute="trailing" secondItem="BNQ-RP-7St" secondAttribute="trailing" constant="4" id="tGP-IS-D3l"/>
+                                                                <constraint firstAttribute="trailing" secondItem="BNQ-RP-7St" secondAttribute="trailing" constant="8" id="tGP-IS-D3l"/>
                                                             </constraints>
                                                         </view>
                                                     </subviews>
