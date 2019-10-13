@@ -37,23 +37,6 @@ class NewsCellViewModel: NSObject,
         return news.source
     }
 
-    var attributedSource: NSAttributedString? {
-        let attributedSource = NSMutableAttributedString()
-
-        if news.source != nil {
-            let tmp = NSAttributedString(string: news.source!)
-            attributedSource.append(tmp)
-        }
-
-        if news.category != nil {
-            let attributes = [NSAttributedString.Key.foregroundColor: UIColor(white: 0.75, alpha: 1)]
-            let tmp = NSAttributedString(string: " (\(news.category!))", attributes: attributes)
-            attributedSource.append(tmp)
-        }
-
-        return attributedSource
-    }
-
     var imageURL: URL? {
         return news.imageUrl
     }

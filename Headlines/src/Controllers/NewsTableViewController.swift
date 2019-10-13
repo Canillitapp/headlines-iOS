@@ -168,7 +168,7 @@ extension NewsTableViewController: UITableViewDataSource {
         let viewModel = filteredNewsViewModels[indexPath.row]
 
         cell.titleLabel.text = viewModel.title
-        cell.sourceLabel.attributedText = viewModel.attributedSource
+        cell.sourceLabel.text = viewModel.source
         cell.timeLabel.text = viewModel.timeString
         cell.reactionsDataSource = viewModel
         cell.reactionsDelegate = viewModel
