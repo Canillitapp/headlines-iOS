@@ -19,14 +19,6 @@ class Topic: NSObject, Decodable {
         case news
     }
 
-    var hotNews: News? {
-        // Returns the news with more reactions and an imageURL
-        let newsWithImages = news?.filter { $0.imageUrl != nil }
-        let newsWithReactions = newsWithImages?.filter { ($0.reactions?.count ?? 0) > 0 }
-
-        return newsWithReactions?.first ?? newsWithImages?.first
-    }
-
     var representativeReaction: Reaction? {
         var reactionMap = [String: Reaction]()
         news?.forEach({ (n) in
