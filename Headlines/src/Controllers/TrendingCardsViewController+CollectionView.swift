@@ -123,7 +123,7 @@ extension TrendingCardsViewController: UICollectionViewDataSource {
         timeFormatter.doesRelativeDateFormatting = true
         cell.timeLabel.text = timeFormatter.string(from: firstNews.date)
 
-        cell.titleLabel.text = topic.name
+        cell.titleLabel.text = topic.name?.capitalized
         cell.bodyLabel.text = firstNews.title
         cell.newsQuantityLabel.text = "\(news.count) noticias"
         cell.reactionLabel.text = topic.representativeReaction?.reaction ?? ""

@@ -125,7 +125,7 @@ class TrendingCardsViewController: UIViewController {
             }
         }
 
-        newsDataTask = newsService.requestTrendingTopicsWithDate(date, count: 6, handler: handler)
+        newsDataTask = newsService.requestTrendingTopicsWithDate(date, count: 12, handler: handler)
 
         updateFooterView()
     }
