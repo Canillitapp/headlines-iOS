@@ -42,6 +42,12 @@ class NewsCellViewModel: NSObject,
     }
 
     var shouldShowReactions: Bool {
+
+        // Don't show this button ever if the device is iPad / macOS
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return true
+        }
+
         guard let r = news.reactions else {
             return false
         }
@@ -74,7 +80,7 @@ class NewsCellViewModel: NSObject,
 
         if indexPath.row >= reactions.count {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addCell", for: indexPath)
-            cell.layer.borderColor = UIColor.secondarySystemFill.cgColor
+            cell.layer.borderColor = UIColor.clear.cgColor
             return cell
 
         } else {
