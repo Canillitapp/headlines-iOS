@@ -107,13 +107,12 @@ extension TrendingCardsViewController: UICollectionViewDataSource {
             return cell
         }
 
-        //  Tries to show a news on the topic card that contains an image,
-        //  it will show a news without an image if all the news of that topic don't
-        //  contain an image.
+        //  Tries to show a news on the topic card that contains the following criteria:
+        //  - reaction and thumbnail
+        //  - thumbnail
+        //  - "Just give me a news"
 
-        let newsWithImages = news.filter({$0.imageUrl != nil})
-
-        guard let firstNews = newsWithImages.first != nil ? newsWithImages.first : news.first else {
+        guard let firstNews = topic.hotNews ?? news.first else {
             return cell
         }
 
