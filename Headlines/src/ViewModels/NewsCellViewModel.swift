@@ -37,28 +37,17 @@ class NewsCellViewModel: NSObject,
         return news.source
     }
 
-    var attributedSource: NSAttributedString? {
-        let attributedSource = NSMutableAttributedString()
-
-        if news.source != nil {
-            let tmp = NSAttributedString(string: news.source!)
-            attributedSource.append(tmp)
-        }
-
-        if news.category != nil {
-            let attributes = [NSAttributedString.Key.foregroundColor: UIColor(white: 0.75, alpha: 1)]
-            let tmp = NSAttributedString(string: " (\(news.category!))", attributes: attributes)
-            attributedSource.append(tmp)
-        }
-
-        return attributedSource
-    }
-
     var imageURL: URL? {
         return news.imageUrl
     }
 
     var shouldShowReactions: Bool {
+
+        // Don't show this button ever if the device is iPad / macOS
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return true
+        }
+
         guard let r = news.reactions else {
             return false
         }
@@ -91,7 +80,7 @@ class NewsCellViewModel: NSObject,
 
         if indexPath.row >= reactions.count {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "addCell", for: indexPath)
-            cell.layer.borderColor = UIColor.secondarySystemFill.cgColor
+            cell.layer.borderColor = UIColor.clear.cgColor
             return cell
 
         } else {

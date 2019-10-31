@@ -206,7 +206,7 @@ class HeadlinesMockedUITests: XCTestCase {
         cell.tap()
 
         // Check that a new controller is pushed
-        let navigationBar = app.navigationBars["Kim"]
+        let navigationBar = app.navigationBars["Moreno"]
         let navigationExists = navigationBar.waitForExistence(timeout: defaultWaitThreshold)
         XCTAssert(navigationExists)
     }

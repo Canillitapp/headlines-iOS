@@ -51,7 +51,7 @@ class LoadingTask {
             }
         }
 
-        _ = newsService.requestTrendingTopicsWithDate(Date(), count: 6, handler: handler)
+        _ = newsService.requestTrendingTopicsWithDate(Date(), count: 12, handler: handler)
         group.enter()
     }
 

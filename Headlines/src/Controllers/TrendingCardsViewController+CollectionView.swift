@@ -53,9 +53,9 @@ extension TrendingCardsViewController {
         if UIDevice.current.userInterfaceIdiom == .pad {
             let columns: CGFloat = floor(collectionViewSize.width / 280.0)
             let itemWidth = floor(((collectionViewSize.width - 20 - (columns-1)*10) / columns))
-            flowLayout.itemSize = CGSize(width: itemWidth, height: 235)
+            flowLayout.itemSize = CGSize(width: itemWidth, height: 250)
         } else {
-            flowLayout.itemSize = CGSize(width: collectionViewSize.width - 20, height: 235)
+            flowLayout.itemSize = CGSize(width: collectionViewSize.width - 20, height: 250)
         }
     }
 
@@ -117,20 +117,14 @@ extension TrendingCardsViewController: UICollectionViewDataSource {
             return cell
         }
 
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .short
-        dateFormatter.timeStyle = .none
-        dateFormatter.doesRelativeDateFormatting = true
-        cell.dateLabel.text = dateFormatter.string(from: firstNews.date)
-
         let timeFormatter = DateFormatter()
-        timeFormatter.dateStyle = .none
+        timeFormatter.dateStyle = .short
         timeFormatter.timeStyle = .short
+        timeFormatter.doesRelativeDateFormatting = true
         cell.timeLabel.text = timeFormatter.string(from: firstNews.date)
 
-        cell.titleLabel.text = topic.name
+        cell.titleLabel.text = topic.name?.capitalized
         cell.bodyLabel.text = firstNews.title
-        cell.sourceLabel.text = firstNews.source
         cell.newsQuantityLabel.text = "\(news.count) noticias"
         cell.reactionLabel.text = topic.representativeReaction?.reaction ?? ""
 

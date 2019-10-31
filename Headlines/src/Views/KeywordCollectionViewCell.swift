@@ -9,10 +9,9 @@
 import UIKit
 
 class KeywordCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var blurView: UIVisualEffectView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bodyLabel: UILabel!
-    @IBOutlet weak var sourceLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var newsQuantityLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
@@ -20,6 +19,7 @@ class KeywordCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        blurView.alpha = 0.87
     }
 
     override func layoutSubviews() {
