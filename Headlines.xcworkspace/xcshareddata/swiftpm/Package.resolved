@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "JGProgressHUD",
+        "repositoryURL": "https://github.com/JonasGessner/JGProgressHUD.git",
+        "state": {
+          "branch": null,
+          "revision": "08d130dd614a743f813286f096804c43a6ffa3f6",
+          "version": "2.1.0"
+        }
+      },
+      {
+        "package": "SDWebImage",
+        "repositoryURL": "https://github.com/SDWebImage/SDWebImage.git",
+        "state": {
+          "branch": null,
+          "revision": "bcf7576c313bd3c3517997efab13c96e3bc0b880",
+          "version": "5.2.5"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
