@@ -21,7 +21,7 @@ platform :ios do
 
   desc "Runs all the tests"
   lane :test do
-    scan(scheme: "HeadlinesTests")
+    scan(scheme: "Headlines")
   end
 
   private_lane :get_build_number_from_plist do
