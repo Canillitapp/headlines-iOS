@@ -1,6 +1,6 @@
 osx_image: xcode11.2
 language: swift
-xcode-project: Headlines.xcworkspace
+xcode-project: Headlines.xcodeproj
 xcode_scheme: Headlines
 xcode_sdk: iphonesimulator13.2
 
