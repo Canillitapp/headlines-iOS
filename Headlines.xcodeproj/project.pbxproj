@@ -41,7 +41,7 @@
 		6719DA6C1D6D143E00D1E214 /* Watch Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6719DA6B1D6D143E00D1E214 /* Watch Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6719DA731D6D143E00D1E214 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6719DA721D6D143E00D1E214 /* ExtensionDelegate.swift */; };
 		6719DA751D6D143E00D1E214 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6719DA741D6D143E00D1E214 /* Assets.xcassets */; };
-		6719DA791D6D143E00D1E214 /* Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6719DA5F1D6D143E00D1E214 /* Watch.app */; };
+		6719DA791D6D143E00D1E214 /* Watch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 6719DA5F1D6D143E00D1E214 /* Watch.app */; platformFilter = ios; };
 		671DC3761EE35FB3000CBAF0 /* SnapshotUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671DC3751EE35FB3000CBAF0 /* SnapshotUITests.swift */; };
 		671DC37E1EE35FC3000CBAF0 /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 671DC37D1EE35FC3000CBAF0 /* SnapshotHelper.swift */; };
 		6723B67720EB145D00DEF366 /* LoadingTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6723B67620EB145D00DEF366 /* LoadingTask.swift */; };
@@ -157,7 +157,7 @@
 		67BA65C41FCB65B400411A06 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BA65C31FCB65B400411A06 /* NotificationCenter.framework */; };
 		67BA65C71FCB65B400411A06 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67BA65C61FCB65B400411A06 /* TodayViewController.swift */; };
 		67BA65CA1FCB65B400411A06 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67BA65C81FCB65B400411A06 /* MainInterface.storyboard */; };
-		67BA65CE1FCB65B400411A06 /* Canillitapp Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 67BA65C21FCB65B400411A06 /* Canillitapp Widget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		67BA65CE1FCB65B400411A06 /* Canillitapp Widget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 67BA65C21FCB65B400411A06 /* Canillitapp Widget.appex */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		67C0C7F4236A61EA0004B712 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 67C0C7F3236A61EA0004B712 /* SDWebImage */; };
 		67C0C7F7236A62240004B712 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 67C0C7F6236A62240004B712 /* JGProgressHUD */; };
 		67C3CD3D1D6D1876003CC04E /* TrendingInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67C3CD3C1D6D1876003CC04E /* TrendingInterfaceController.swift */; };
@@ -446,6 +446,7 @@
 		67C799BE21BCA2CA00E1EC72 /* TrendingNewsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingNewsTableViewController.swift; sourceTree = "<group>"; };
 		67C799C021BCA3F200E1EC72 /* TopicHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicHeaderView.swift; sourceTree = "<group>"; };
 		67C9CF9C1EEA0E95007216FE /* GET-trending.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "GET-trending.json"; sourceTree = "<group>"; };
+		67CB8CDF2398ACCF002DCA6B /* Notifications.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Notifications.entitlements; sourceTree = "<group>"; };
 		67CE08B01E9012F700D5911E /* NewsCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCellViewModel.swift; sourceTree = "<group>"; };
 		67CE08B21E903B2D00D5911E /* ReactionPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionPickerViewController.swift; sourceTree = "<group>"; };
 		67CE08B41E904F2000D5911E /* ReactionCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReactionCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -889,6 +890,7 @@
 		679A72C12018CE3F005CCCB5 /* Notifications */ = {
 			isa = PBXGroup;
 			children = (
+				67CB8CDF2398ACCF002DCA6B /* Notifications.entitlements */,
 				679A72C22018CE3F005CCCB5 /* NotificationService.swift */,
 				679A72C42018CE3F005CCCB5 /* Info.plist */,
 			);
@@ -1644,6 +1646,7 @@
 		};
 		6719DA781D6D143E00D1E214 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 6719DA5E1D6D143E00D1E214 /* Watch */;
 			targetProxy = 6719DA771D6D143E00D1E214 /* PBXContainerItemProxy */;
 		};
@@ -1669,6 +1672,7 @@
 		};
 		67BA65CD1FCB65B400411A06 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = 67BA65C11FCB65B400411A06 /* Canillitapp Widget */;
 			targetProxy = 67BA65CC1FCB65B400411A06 /* PBXContainerItemProxy */;
 		};
@@ -2076,6 +2080,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 728;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = Headlines/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2088,6 +2093,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2103,6 +2109,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 728;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				INFOPLIST_FILE = Headlines/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -2115,6 +2122,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -2212,9 +2220,11 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = Notifications/Notifications.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Notifications/Info.plist;
@@ -2228,6 +2238,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.headlines.Notifications;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -2247,9 +2258,11 @@
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = Notifications/Notifications.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_TEAM = 2334RGUT2P;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				INFOPLIST_FILE = Notifications/Info.plist;
@@ -2263,6 +2276,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = ar.com.betzerra.headlines.Notifications;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -2297,6 +2311,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "ar.com.betzerra.headlines.Canillitapp-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
@@ -2333,6 +2348,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "ar.com.betzerra.headlines.Canillitapp-Widget";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
