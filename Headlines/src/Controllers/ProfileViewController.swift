@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import SafariServices
-import Crashlytics
+
 import JGProgressHUD
 import SDWebImage
 

@@ -18,13 +18,13 @@ default_platform :ios
 ENV["FASTLANE_ITC_TEAM_NAME"] = "Ezequiel Alejandro Becerra"
 
 platform :ios do
-  before_all do
-    cocoapods
-  end
 
-  desc "Runs all the tests"
+  desc "Runs tests that are OK for CI"
   lane :test do
-    scan(scheme: "HeadlinesTests")
+    scan(
+      scheme: "Headlines",
+      skip_testing: ["HeadlinesUITests", "SnapshotUITests"]
+    )
   end
 
   private_lane :get_build_number_from_plist do

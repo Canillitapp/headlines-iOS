@@ -32,16 +32,21 @@ class CategoriesContainerViewModel: NSObject {
     class func preloadCategoriesImages(from someCategories: [Category]) {
         someCategories.forEach({ (aCategory) in
             let key = imageKeyFromCategory(aCategory)
-            _ = ImageCacheManager.shared.image(forKey: key)
+            ImageCacheManager.shared.image(forKey: key, completion: nil)
         })
     }
 
     func loadImage(with category: Category, at cell: CategoryCollectionViewCell) {
         let key = CategoriesContainerViewModel.imageKeyFromCategory(category)
 
-        if let cachedImage = ImageCacheManager.shared.image(forKey: key) {
-            cell.backgroundImageView.image = cachedImage
-        } else {
+        let completion: ((UIImage?) -> Void) = { image in
+            if let image = image {
+                DispatchQueue.main.async {
+                    cell.backgroundImageView.image = image
+                }
+                return
+            }
+
             guard let imageURL = category.imageURL else {
                 return
             }
@@ -69,6 +74,8 @@ class CategoriesContainerViewModel: NSObject {
                 }
             }
         }
+
+        ImageCacheManager.shared.image(forKey: key, completion: completion)
     }
 
     required init(delegate: CategoriesContainerViewModelDelegate?,
