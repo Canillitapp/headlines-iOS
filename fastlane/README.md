@@ -20,7 +20,7 @@ or alternatively using `brew cask install fastlane`
 ```
 fastlane ios test
 ```
-Runs all the tests
+Runs tests that are OK for CI
 ### ios version_bump
 ```
 fastlane ios version_bump
