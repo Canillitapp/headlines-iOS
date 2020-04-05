@@ -18,17 +18,9 @@ class InitialTabBarController: UITabBarController, UITabBarControllerDelegate {
 
     func navigationControllerFrom(_ controller: UIViewController) -> UINavigationController {
         let navController = UINavigationController(rootViewController: controller)
-        navController.navigationBar.barStyle = .black
+        navController.navigationBar.barTintColor = UIColor.systemBackground
+        navController.navigationBar.tintColor = UIColor.label
         navController.navigationBar.isTranslucent = false
-
-        let font = UIFont(name: "Rubik-Regular", size: 18)
-        if let font = font {
-            navController.navigationBar.titleTextAttributes = [
-                NSAttributedString.Key.font: font,
-                NSAttributedString.Key.foregroundColor: UIColor.white
-            ]
-        }
-
         return navController
     }
 

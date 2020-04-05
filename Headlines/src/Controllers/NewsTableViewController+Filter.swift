@@ -36,7 +36,6 @@ extension NewsTableViewController {
             target: self,
             action: #selector(filterButtonTapped)
         )
-        filterButtonItem.tintColor = UIColor.white
         navigationItem.rightBarButtonItem = filterButtonItem
     }
 
