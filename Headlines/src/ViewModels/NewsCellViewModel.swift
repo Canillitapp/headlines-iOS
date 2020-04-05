@@ -90,6 +90,7 @@ class NewsCellViewModel: NSObject,
             if let c = cell as? ReactionCollectionViewCell {
                 let r = reactions[indexPath.row]
                 c.reactionLabel.text = r.reactionString
+                c.reactionLabel.font = AppearanceHelper.shared.reactionFont
             }
             return cell
         }
@@ -107,13 +108,17 @@ class NewsCellViewModel: NSObject,
 
         let size = CGSize(width: Double.greatestFiniteMagnitude, height: 30)
         let options: NSStringDrawingOptions = [.usesLineFragmentOrigin, .usesFontLeading]
-        let attributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14)]
+        let attributes = [NSAttributedString.Key.font: AppearanceHelper.shared.reactionFont]
 
         let width = NSString(string: r.reactionString).boundingRect(with: size,
                                                                     options: options,
                                                                     attributes: attributes,
                                                                     context: nil).size.width
-        return CGSize(width: width + 10, height: 30)
+
+        return CGSize(
+            width: width + AppearanceHelper.shared.reactionCellHorizontalPadding,
+            height: AppearanceHelper.shared.reactionCellHeight
+        )
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
