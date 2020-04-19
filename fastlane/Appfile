@@ -1,5 +1,5 @@
 app_identifier "ar.com.betzerra.headlines" # The bundle identifier of your app
-apple_id "ezequiel@betzerra.com.ar" # Your Apple email address
+apple_id "ezequiel@betzerra.com" # Your Apple email address
 
 team_id "2334RGUT2P" # Developer Portal Team ID
 
