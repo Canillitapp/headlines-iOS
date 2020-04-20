@@ -167,8 +167,14 @@ extension NewsTableViewController: UITableViewDataSource {
 
         let viewModel = filteredNewsViewModels[indexPath.row]
 
+        // Title
         cell.titleLabel.text = viewModel.title
+        cell.titleLabel.font = AppearanceHelper.shared.newsCellTitleFont
+
+        // Source label
         cell.sourceLabel.text = viewModel.source
+        cell.sourceLabel.font = AppearanceHelper.shared.newsCellSourceFont
+
         cell.timeLabel.text = viewModel.timeString
         cell.reactionsDataSource = viewModel
         cell.reactionsDelegate = viewModel
@@ -195,7 +201,7 @@ extension NewsTableViewController: UITableViewDataSource {
         }
 
         cell.reactionsCollectionView.isHidden = !viewModel.shouldShowReactions
-        cell.reactionsHeightConstraint.constant = cell.reactionsCollectionView.isHidden ? 0 : 30
+        cell.reactionsHeightConstraint.constant = cell.reactionsCollectionView.isHidden ? 0 : AppearanceHelper.shared.reactionCellHeight
         cell.addReactionButton.isHidden = viewModel.shouldShowReactions
         cell.reactionsCollectionView.reloadData()
 

@@ -68,7 +68,7 @@ platform :ios do
 
     pilot(
       skip_waiting_for_build_processing: true,
-      beta_app_feedback_email: "ezequiel@betzerra.com.ar"
+      beta_app_feedback_email: "ezequiel@betzerra.com"
     )
 
     # crashlytics

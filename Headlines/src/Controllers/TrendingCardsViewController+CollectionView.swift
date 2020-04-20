@@ -117,14 +117,21 @@ extension TrendingCardsViewController: UICollectionViewDataSource {
             return cell
         }
 
+        // Timestamp label
         let timeFormatter = DateFormatter()
         timeFormatter.dateStyle = .short
         timeFormatter.timeStyle = .short
         timeFormatter.doesRelativeDateFormatting = true
         cell.timeLabel.text = timeFormatter.string(from: firstNews.date)
 
+        // Title
+        cell.titleLabel.font = AppearanceHelper.shared.newsCardTitleFont
         cell.titleLabel.text = topic.name?.capitalized
+
+        // Body
+        cell.bodyLabel.font = AppearanceHelper.shared.newsCardBodyFont
         cell.bodyLabel.text = firstNews.title
+
         cell.newsQuantityLabel.text = "\(news.count) noticias"
         cell.reactionLabel.text = topic.representativeReaction?.reaction ?? ""
 

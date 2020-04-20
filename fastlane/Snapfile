@@ -2,9 +2,8 @@
 devices([
   "iPhone 8",
   "iPhone 8 Plus",
-  "iPad Pro (11-inch)",
-  "iPad Pro (12.9-inch) (2nd generation)",
-  "iPad Pro (12.9-inch) (3rd generation)",
+  "iPad Pro (11-inch) (2nd generation)",
+  "iPad Pro (12.9-inch) (4th generation)",
   "iPhone 11 Pro",
   "iPhone 11 Pro Max"
 ])
@@ -16,7 +15,7 @@ languages([
 # The name of the scheme which contains the UI Tests
 scheme "SnapshotUITests"
 
-ios_version '13.0'
+ios_version '13.4'
 
 # Where should the resulting screenshots be stored?
 # output_directory "./screenshots"
@@ -24,7 +23,7 @@ ios_version '13.0'
 # clear_previous_screenshots true # remove the '#' to clear all previously generated screenshots before creating new ones
 
 # Choose which project/workspace to use
-workspace "./Headlines.xcworkspace"
+project "./Headlines.xcodeproj"
 
 # Arguments to pass to the app on launch. See https://github.com/fastlane/fastlane/tree/master/snapshot#launch-arguments
 # launch_arguments(["-favColor red"])
