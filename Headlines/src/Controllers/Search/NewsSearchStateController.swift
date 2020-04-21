@@ -48,13 +48,23 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
         })
     }
 
-    private func render(news: [News]?) {
+    private func render(searchTerm: String) {
         let storyboard = UIStoryboard(name: "Search", bundle: Bundle.main)
         let newsController = storyboard.instantiateViewController(
             withIdentifier: "NewsSearchViewController"
             ) as! NewsSearchViewController
-        newsController.show(news: news)
-        stateViewController.transition(to: .render(newsController))
+        newsController.newsDataSource = SearchNewsDataSource(searchTerm: searchTerm)
+
+        /*
+         * This is not ideal, adding a 0.1 delay so refreshIndicator
+         * animates properly when tapping an existing "Trending Search Term".
+         *
+         * I need to make a decent refactor here and remove some of the intricate
+         * logic that handles this.
+         */
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            self?.stateViewController.transition(to: .render(newsController))
+        }
     }
 
     private func render(tags: [Tag], searchedTerm: String) {
@@ -70,16 +80,7 @@ class NewsSearchStateController: UIViewController, UISearchResultsUpdating {
 
     func fetch(term: String) {
         dataTask?.cancel()
-        stateViewController.transition(to: .loading)
-
-        self.dataTask = self.service.searchNews(term, handler: { [weak self] result in
-            switch result {
-            case .success(let news):
-                self?.render(news: news)
-            case .failure(let err):
-                self?.error(err)
-            }
-        })
+        render(searchTerm: term)
     }
 
     private func error(_ error: Error) {

@@ -146,7 +146,7 @@ class ProfileViewController: UIViewController, TabbedViewController, UICollectio
                 self?.showControllerWithError(error)
             }
         }
-        _ = newsService.searchNews(interest.name, handler: handler)
+        _ = newsService.searchNews(interest.name, page: 1, handler: handler)
     }
 
     // MARK: Public
