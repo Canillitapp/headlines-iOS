@@ -153,7 +153,7 @@ class AppDelegate: UIResponder,
         }
 
         let newsService = NewsService()
-        _ = newsService.searchNews(topic, handler: handler)
+        _ = newsService.searchNews(topic, page: 1, handler: handler)
     }
 
     func application(_ application: UIApplication,

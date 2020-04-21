@@ -14,6 +14,7 @@ class NewsSearchViewController: NewsTableViewController {
         super.init(coder: aDecoder)
         preferredDateStyle = .short
         trackContextFrom = .search
+        canFetchMoreNews = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -24,19 +25,6 @@ class NewsSearchViewController: NewsTableViewController {
         }
 
         tableView.accessibilityIdentifier = "search table"
-    }
-
-    func show(news: [News]?) {
-        guard let news = news else {
-            return
-        }
-        self.news = news
-
-        guard let tableView = tableView else {
-            return
-        }
-
-        tableView.reloadData()
     }
 
     func resetNews() {

@@ -152,6 +152,7 @@ class NewsService: HTTPService {
     }
 
     func searchNews(_ text: String,
+                    page: Int,
                     handler: ((_ result: Result <[News], Error>) -> Void)?) -> URLSessionDataTask? {
 
         let group = DispatchGroup()
@@ -191,7 +192,7 @@ class NewsService: HTTPService {
 
         container.fetchUserRecordID { (recordId, _) in
 
-            /**
+            /*
              * This is some weird shit.
              * This worked until some backend update and had to replace "user_id" to "user-id"
              * it seems that sending headers with "_" breaks something now.
@@ -210,7 +211,7 @@ class NewsService: HTTPService {
 
         group.wait()
 
-        let task = self.request(method: .GET, path: "search/\(encodedText)", params: nil, handler: httpHandler)
+        let task = self.request(method: .GET, path: "search/\(encodedText)?page=\(page)", params: nil, handler: httpHandler)
         return task
     }
 

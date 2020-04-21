@@ -133,7 +133,7 @@ extension NewsTableViewController {
     }
 }
 
-private extension NewsTableViewController {
+extension NewsTableViewController {
 
     func filterNews(_ news: [NewsCellViewModel]) -> [NewsCellViewModel] {
 
